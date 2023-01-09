@@ -1,0 +1,19 @@
+{
+  "name": "@modern-js/rspack-doc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "modern dev",
+    "build": "modern build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@modern-js/doc-tools": "0.0.0-next-20230109041343"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
+}
