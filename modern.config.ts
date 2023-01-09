@@ -1,4 +1,4 @@
-import { defineConfig } from "@modern-js/doc-tools";
+import DocTools, { defineConfig } from "@modern-js/doc-tools";
 import path from "path";
 
 function getI18nHelper(lang: "zh" | "en") {
@@ -96,5 +96,5 @@ export default defineConfig({
       ],
     },
   },
-  plugins: ["@modern-js/doc-tools"],
+  plugins: [DocTools()],
 });
