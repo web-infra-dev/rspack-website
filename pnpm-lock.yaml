@@ -2,10 +2,12 @@ lockfileVersion: 5.4
 
 specifiers:
   '@modern-js/doc-tools': 0.0.0-next-20230109041343
+  '@modern-js/tsconfig': 0.0.0-next-20230109041343
   typescript: ^4.9.4
 
 dependencies:
   '@modern-js/doc-tools': 0.0.0-next-20230109041343_typescript@4.9.4
+  '@modern-js/tsconfig': 0.0.0-next-20230109041343
 
 devDependencies:
   typescript: 4.9.4
@@ -2111,6 +2113,10 @@ packages:
       - debug
       - supports-color
       - utf-8-validate
+    dev: false
+
+  /@modern-js/tsconfig/0.0.0-next-20230109041343:
+    resolution: {integrity: sha512-5uiS5+Y1VLgNP10HSQbO0fiBL4bLy8VqciCazan770mv30rFyuJ4WZmFJOeQba2N7+7c+04/y7+grdYgQlUd9w==}
     dev: false
 
   /@modern-js/types/0.0.0-next-20230109041343:
