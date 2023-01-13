@@ -95,6 +95,11 @@ export default defineConfig({
         },
       ],
     },
+    builderConfig: {
+      source: {
+        preEntry: ['./src/login.js']
+      }
+    }
   },
   plugins: [DocTools()],
 });
