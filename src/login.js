@@ -7,4 +7,6 @@ async function login(){
   }
  
 }
-login();
+if (typeof window !== 'undefined'){
+  login();
+}
