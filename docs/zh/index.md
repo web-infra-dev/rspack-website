@@ -2,9 +2,8 @@
 pageType: home
 
 hero:
-  name: My Tools
-  text: 一个很棒的工具
-  tagline: 简单、强大、高性能的现代化工程开发方案
+  name: Rspack
+  tagline: 基于 Rust 的高性能模块打包工具
   image:
     src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
     alt: logo
@@ -14,22 +13,13 @@ hero:
       link: /guide/getting-started
 
 features:
-  - title: "Esbuild: 高性能的JS Bundler"
-    details: 基于 Esbuild 构建，构建速度极快，带给你极致的开发体验。
+  - title: "Fast"
+    details: 基于 Rust，构建速度极快，带给你极致的开发体验。
     icon: 🚀
-  - title: "Storybook: 社区流行的UI开发工具"
-    details: 集成了Storybook，你可以使用它调试UI。
+  - title: "Webpack Compatible"
+    details: 兼容 Webpack 生态，无需从零构建你的生态
     icon: 📦
-  - title: "transform + bundle"
-    details: 支持bundle和bundleless两种构建模式。
-    icon: ✨
-  - title: "零配置"
-    details: 无需任何配置即可开发你的npm包，内置预设覆盖多种场景。
-    icon: 🛠️
-  - title: "扩展性强: 提供强大的插件机制"
-    details: 通过其插件扩展机制，你可以轻松的扩展Module tools的各项能力。
+  - title: "Battery Includes"
+    details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持
     icon: 🎨
-  - title: "多种构建模式"
-    details: 支持多种构建模式，满足不同的场景需求。
-    icon: 👍🏻
 ---
