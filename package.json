@@ -15,6 +15,9 @@
   "nano-staged": {
     "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write"
   },
+  "dependencies": {
+    "@vercel/edge": "^0.1.2"
+  },
   "devDependencies": {
     "@modern-js/doc-tools": "2.1.0",
     "@modern-js/tsconfig": "2.1.0",

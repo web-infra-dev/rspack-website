@@ -93,6 +93,9 @@ export default defineConfig({
       source: {
         preEntry: ['./src/login.js'],
       },
+      output: {
+        copy: [{ from: './src/middleware.js', to: '' }],
+      },
     },
   },
   plugins: [DocTools()],

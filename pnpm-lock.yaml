@@ -4,10 +4,14 @@ specifiers:
   '@modern-js/doc-tools': 2.1.0
   '@modern-js/tsconfig': 2.1.0
   '@types/node': ^18.11.18
+  '@vercel/edge': ^0.1.2
   husky: ^8.0.3
   nano-staged: ^0.8.0
   prettier: ^2.8.3
   typescript: ^4.9.4
+
+dependencies:
+  '@vercel/edge': 0.1.2
 
 devDependencies:
   '@modern-js/doc-tools': 2.1.0_typescript@4.9.4
@@ -2541,6 +2545,10 @@ packages:
     dependencies:
       '@types/yargs-parser': 21.0.0
     dev: true
+
+  /@vercel/edge/0.1.2:
+    resolution: {integrity: sha512-NmoJ4JvF2/LxU8e8fRJcxaMrO9A8a2WmW6CO9GEomlDltlREyQTUWMk13BuCDDpXUPcSBDrZ2TJIoWiFQEI4sg==}
+    dev: false
 
   /@webassemblyjs/ast/1.11.1:
     resolution: {integrity: sha512-ukBh14qFLjxTQNTXocdyksN5QdM28S1CxHt2rdskFyL+xFV7VremuBLVbmCePj+URalXBENx/9Lm7lnhihtCSw==}
