@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "modern dev",
-    "build": "modern build",
+    "build": "modern build", 
     "format": "prettier docs/**/*.{md,mdx} --write"
   },
   "keywords": [],

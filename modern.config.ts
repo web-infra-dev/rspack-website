@@ -89,14 +89,6 @@ export default defineConfig({
         },
       ],
     },
-    builderConfig: {
-      source: {
-        preEntry: ['./src/login.js'],
-      },
-      output: {
-        copy: [{ from: './src/middleware.js', to: '' }],
-      },
-    },
   },
   plugins: [DocTools()],
 });
