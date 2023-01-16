@@ -4,18 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepare": "husky install",
     "dev": "modern dev",
-    "build": "modern build"
+    "build": "modern build",
+    "format": "prettier docs/**/*.{md,mdx} --write"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@modern-js/doc-tools": "0.0.0-next-20230109041343",
-    "@modern-js/tsconfig": "0.0.0-next-20230109041343"
+  "nano-staged": {
+    "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write"
   },
   "devDependencies": {
+    "@modern-js/doc-tools": "2.1.0",
+    "@modern-js/tsconfig": "2.1.0",
     "@types/node": "^18.11.18",
+    "husky": "^8.0.3",
+    "nano-staged": "^0.8.0",
+    "prettier": "^2.8.3",
     "typescript": "^4.9.4"
   }
 }

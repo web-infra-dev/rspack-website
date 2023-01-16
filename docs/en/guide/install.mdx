@@ -11,7 +11,7 @@ We can therefore specify the build product of the project as an umd product in t
 ```ts
 export default defineConfig({
   buildConfig: {
-    format: "umd",
+    format: 'umd',
   },
 });
 ```
@@ -52,9 +52,9 @@ If the project depends on `react`.
 ```ts
 export default defineConfig({
   buildConfig: {
-    format: "umd",
+    format: 'umd',
     autoExternal: false,
-    externals: ["react"],
+    externals: ['react'],
   },
 });
 ```
@@ -64,7 +64,7 @@ export default defineConfig({
 When a `react` dependency is used in the source code.
 
 ```tsx src/index.ts
-import React from "react";
+import React from 'react';
 console.info(React);
 ```
 
@@ -74,17 +74,17 @@ The `react` code is not packaged into the product at this point.
 
 ```js dist/index.js focus=1:7
 (function (global, factory) {
-  if (typeof module === "object" && typeof module.exports === "object")
-    factory(exports, require("react"));
-  else if (typeof define === "function" && define.amd)
-    define(["exports", "react"], factory);
+  if (typeof module === 'object' && typeof module.exports === 'object')
+    factory(exports, require('react'));
+  else if (typeof define === 'function' && define.amd)
+    define(['exports', 'react'], factory);
   else if (
-    (global = typeof globalThis !== "undefined" ? globalThis : global || self)
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self)
   )
     factory((global.index = {}), global.react);
 })(this, function (exports, _react) {
-  "use strict";
-  Object.defineProperty(exports, "__esModule", {
+  'use strict';
+  Object.defineProperty(exports, '__esModule', {
     value: true,
   });
   _react = /*#__PURE__*/ _interopRequireDefault(_react);
@@ -139,9 +139,9 @@ If the project depends on `react`.
 ```ts
 export default defineConfig({
   buildConfig: {
-    format: "umd",
+    format: 'umd',
     umdGlobals: {
-      react: "React",
+      react: 'React',
     },
   },
 });
@@ -152,7 +152,7 @@ export default defineConfig({
 When a `react` dependency is used in the source code.
 
 ```tsx src/index.ts
-import React from "react";
+import React from 'react';
 console.info(React);
 ```
 
@@ -162,19 +162,19 @@ At this point we will see the product code like this.
 
 ```js dist/index.js focus=7:12
 (function (global, factory) {
-  if (typeof module === "object" && typeof module.exports === "object")
+  if (typeof module === 'object' && typeof module.exports === 'object')
     factory();
-  else if (typeof define === "function" && define.amd) define([], factory);
+  else if (typeof define === 'function' && define.amd) define([], factory);
   else if (
-    (global = typeof globalThis !== "undefined" ? globalThis : global || self)
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self)
   )
     factory();
 })(this, function () {
   // ...
   // libuild:globals:react
   var require_react = __commonJS({
-    "libuild:globals:react"(exports, module1) {
-      module1.exports = Function("return this")()["React"];
+    'libuild:globals:react'(exports, module1) {
+      module1.exports = Function('return this')()['React'];
     },
   });
   // src/index.ts
@@ -193,7 +193,7 @@ When we package the following code into an umd product and run it in the browser
 
 ```ts ./src/index.ts
 export default () => {
-  console.info("hello world");
+  console.info('hello world');
 };
 ```
 
@@ -201,12 +201,12 @@ export default () => {
 
 ```js ./dist/index.js focus=6:6
 (function (global, factory) {
-  if (typeof module === "object" && typeof module.exports === "object")
+  if (typeof module === 'object' && typeof module.exports === 'object')
     factory(exports);
-  else if (typeof define === "function" && define.amd)
-    define(["exports"], factory);
+  else if (typeof define === 'function' && define.amd)
+    define(['exports'], factory);
   else if (
-    (global = typeof globalThis !== "undefined" ? globalThis : global || self)
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self)
   )
     factory((global.index = {}));
 })(this, function (exports) {
@@ -221,8 +221,8 @@ When this API is used:
 ```ts
 export default defineConfig({
   buildConfig: {
-    format: "umd",
-    umdModuleName: "myLib",
+    format: 'umd',
+    umdModuleName: 'myLib',
   },
 });
 ```
@@ -231,12 +231,12 @@ The construction products at this point are:
 
 ```js ./dist/index.js focus=6:6
 (function (global, factory) {
-  if (typeof module === "object" && typeof module.exports === "object")
+  if (typeof module === 'object' && typeof module.exports === 'object')
     factory(exports);
-  else if (typeof define === "function" && define.amd)
-    define(["exports"], factory);
+  else if (typeof define === 'function' && define.amd)
+    define(['exports'], factory);
   else if (
-    (global = typeof globalThis !== "undefined" ? globalThis : global || self)
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self)
   )
     factory((global.myLib = {}));
 })(this, function (exports) {
