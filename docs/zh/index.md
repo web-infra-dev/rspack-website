@@ -19,7 +19,7 @@ features:
   - title: 'Webpack Compatible'
     details: 兼容 Webpack 生态，无需从零构建你的生态
     icon: 📦
-  - title: 'Battery Includes'
+  - title: 'Batteries Included'
     details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持
     icon: 🎨
 ---

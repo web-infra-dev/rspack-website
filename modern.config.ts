@@ -41,12 +41,6 @@ function getSidebarConfig(lang: 'zh' | 'en') {
       {
         text: getText('快速上手', 'Quick Start'),
         link: getLink('/guide/getting-started'),
-        items: [
-          {
-            text: getText('安装', 'Install'),
-            link: getLink('/guide/install'),
-          },
-        ],
       },
       {
         text: getText('基础', 'Basic'),
