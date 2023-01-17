@@ -11,6 +11,9 @@ hero:
     - theme: brand
       text: 快速开始
       link: /guide/getting-started
+    - theme: brand
+      text: 介绍
+      link: /guide/introduction
 
 features:
   - title: 'Fast'

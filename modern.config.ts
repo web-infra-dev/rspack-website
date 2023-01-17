@@ -42,6 +42,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
   return {
     [getLink('/guide/')]: [
       {
+        text: getText('介绍', 'Introduction'),
+        link: getLink('/guide/introduction'),
+      },
+      {
         text: getText('快速上手', 'Quick Start'),
         link: getLink('/guide/getting-started'),
       },
