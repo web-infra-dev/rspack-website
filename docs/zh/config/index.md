@@ -1,0 +1,68 @@
+# 配置 Rspack
+
+Rspack 提供了与 webpack 相似的配置项，通过本章节，你可以了解 Rspack 配置的使用方式。
+
+## 配置文件
+
+当你运行 Rspack 的命令行工具时，Rspack 会自动读取当前路径下的 `rspack.config.js` 文件。
+
+一个基础的 Rspack 配置文件如下所示：
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+```
+
+## 指定配置文件
+
+Rspack 命令行支持通过 `--config` 选项来指定配置文件的名称。
+
+例如，你需要在执行 build 时使用 `rspack.prod.config.js` 文件，可以在 `package.json` 中添加如下配置：
+
+```json title="package.json"
+{
+  "scripts": {
+    "dev": "rspack serve",
+    "build": "rspack build --config rspack.prod.config.js"
+  }
+}
+```
+
+你也可以将 `--config` 选项缩写为 `-c`：
+
+```bash
+$ rspack build -c rspack.prod.config.js
+```
+
+## 导出配置函数
+
+Rspack 支持在 `rspack.config.js` 中导出一个函数，你可以在函数中动态计算配置，并返回给 Rspack。
+
+```js title="rspack.config.js"
+module.exports = function (env, argv) {
+  return {
+    devtool: env.production ? 'source-map' : 'eval',
+  };
+};
+```
+
+从上述示例中可以看到，该函数接受两个入参：
+
+- 第一个参数为 `env`，对应运行 CLI 命令时 `--env` 选项的值。
+- 第二个参数为 `argv`，包含传递给 CLI 的所有选项。
+
+### 判断当前环境
+
+除了通过 `env` 参数，通过 `process.env.NODE_ENV` 来判断当前环境是更常见的方式：
+
+```js title="rspack.config.js"
+module.exports = function (env, argv) {
+  const isProduction = process.env.NODE_ENV === 'production';
+  return {
+    devtool: isProduction ? 'source-map' : 'eval',
+  };
+};
+```
