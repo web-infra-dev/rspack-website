@@ -1,0 +1,115 @@
+# Entry
+
+用于设置 Rspack 构建的入口模块。
+
+- **类型：**
+
+```ts
+type EntryItem = string | string[];
+
+type EntryDescription = {
+  import: EntryItem;
+  runtime?: string | false;
+};
+
+type EntryObject = {
+  [k: string]: EntryItem | EntryDescription;
+};
+
+type Config = {
+  entry: EntryItem | EntryObject;
+};
+```
+
+- **默认值：** `./src/index.js`
+
+## 单个入口
+
+当你构建一个单页面应用（SPA），或是构建一个库时，通常只需要设置单个入口。
+
+设置单个入口时，直接将入口模块的路径作为字符串传入 `entry` 配置项即可。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+};
+```
+
+以上写法会自动将入口模块的名称设置为 `main`，等价于以下写法：
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+```
+
+### 路径类型
+
+入口模块的路径可以是一个相对路径，也可以是一个绝对路径。
+
+当 `entry` 被设置为相对路径时，Rspack 会使用 [context 配置项](/config/context.html) 设置的值作为基础路径，默认为 Node.js 进程的当前工作目录，即 `process.cwd()`。
+
+你也可以使用 Node.js 中的 [path 模块](https://nodejs.org/api/path.html) 来生成一个绝对路径，并传递给 `entry` 配置项：
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  entry: path.join(__dirname, './src/index.js'),
+};
+```
+
+### 入口数组
+
+在设置入口的值时，除了设置为 `string`，你也可以传入一个 `string[]`，这代表该入口中包含多个入口模块。
+
+比如以下示例，会将 `pre.js` 和 `post.js` 构建到 `page` 的产物中。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    page: ['./src/pre.js', './src/post.js'],
+  },
+};
+```
+
+多个模块会按照数组定义的顺序依次执行，因此 `pre.js` 的代码会早于 `post.js` 的代码执行。
+
+## 多个入口
+
+当你需要同时构建多个入口时，你需要使用 `entry` 的对象写法，对象的每一个 key 对应一个入口名称。
+
+比如以下示例，会将 `page1` 和 `page2` 作为两个入口进行构建：
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    page1: './src/page1/index.js',
+    page2: './src/page2/index.js',
+  },
+};
+```
+
+### 入口描述对象
+
+当你使用 `entry` 的对象写法时，可以将入口的值设置为一个描述对象。描述对象可以包含以下属性：
+
+- `import`：入口模块的路径。
+- `runtime`：运行时 chunk 的名称。设置 `runtime` 后，会创建一个新的运行时 chunk。你也可以将它设置为 `false` 来避免一个新的运行时 chunk。
+
+#### 设置 chunk 名称
+
+`runtime` 属性用于设置 `chunk` 的名称，比如将 `main` 入口的 chunk 名称设置为 `'foo'`：
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: {
+      import: './src/index.js',
+      runtime: 'foo',
+    },
+  },
+};
+```
