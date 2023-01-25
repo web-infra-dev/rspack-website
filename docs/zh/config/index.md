@@ -16,6 +16,23 @@ module.exports = {
 };
 ```
 
+### 配置类型检查
+
+`rspack.config.js` 是一个 JavaScript 文件，你可以通过 JSDoc 来启用 IDE 的智能补全和 TypeScript 类型检查。
+
+```js title="rspack.config.js"
+// @ts-check
+
+/** @type {import('@rspack/core').RspackOptions} */
+const config = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+
+module.exports = config;
+```
+
 ## 指定配置文件
 
 Rspack 命令行支持通过 `--config` 选项来指定配置文件的名称。
