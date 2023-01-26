@@ -64,8 +64,12 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         link: getLink('/config'),
       },
       {
-        text: getText('Entry', 'Entry'),
+        text: getText('Entry 入口', 'Entry'),
         link: getLink('/config/entry'),
+      },
+      {
+        text: getText('Context 基础目录', 'Context'),
+        link: getLink('/config/context'),
       },
     ],
   };

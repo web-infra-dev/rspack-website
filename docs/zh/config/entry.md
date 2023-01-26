@@ -1,4 +1,4 @@
-# Entry
+# Entry 入口
 
 用于设置 Rspack 构建的入口模块。
 
