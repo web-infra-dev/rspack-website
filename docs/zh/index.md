@@ -9,20 +9,20 @@ hero:
     alt: logo
   actions:
     - theme: brand
-      text: 快速开始
-      link: /guide/getting-started
-    - theme: brand
       text: 介绍
-      link: /guide/introduction
+      link: /zh/guide/introduction
+    - theme: alt
+      text: 快速开始
+      link: /zh/guide/getting-started
 
 features:
   - title: 'Fast'
     details: 基于 Rust，构建速度极快，带给你极致的开发体验。
     icon: 🚀
   - title: 'Webpack Compatible'
-    details: 兼容 Webpack 生态，无需从零构建你的生态
+    details: 兼容 Webpack 生态，无需从零构建你的生态。
     icon: 📦
   - title: 'Batteries Included'
-    details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持
+    details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持。
     icon: 🎨
 ---

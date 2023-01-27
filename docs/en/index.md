@@ -2,34 +2,27 @@
 pageType: home
 
 hero:
-  name: My Module Tools
-  text: A great tool
-  tagline: A simple, powerful, and high-performance modern engineering development solution
+  name: Rspack
+  tagline: A high-performance bundler based on Rust
   image:
     src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
     alt: logo
   actions:
     - theme: brand
+      text: Introduction
+      link: /guide/introduction
+    - theme: alt
       text: Quick Start
       link: /guide/getting-started
 
 features:
-  - title: 'Esbuild: High-performance JS Bundler'
-    details: Based on Esbuild, the build speed is extremely fast, giving you the ultimate development experience.
+  - title: 'Fast'
+    details: Based on Rust, the build speed is extremely fast, bringing you the ultimate development experience.
     icon: 🚀
-  - title: "Storybook: The community's popular UI development tool"
-    details: Integrated Storybook, you can use it to debug UI.
+  - title: 'Webpack Compatible'
+    details: Compatible with the Webpack ecosystem, no need to build your ecosystem from scratch.
     icon: 📦
-  - title: 'transform + bundle'
-    details: Support bundle and bundleless two build modes.
-    icon: ✨
-  - title: 'Zero configuration'
-    details: No configuration is required to develop your npm package, and the built-in presets cover many scenarios.
-    icon: 🛠️
-  - title: 'Strong extensibility: Provide powerful plug-in mechanism'
-    details: Through its plug-in extension mechanism, you can easily extend the capabilities of Module tools.
+  - title: 'Batteries Included'
+    details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
     icon: 🎨
-  - title: 'Multiple build modes'
-    details: Support multiple build modes to meet different scene requirements.
-    icon: 👍🏻
 ---
