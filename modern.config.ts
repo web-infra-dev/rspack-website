@@ -67,6 +67,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         text: getText('Context 基础目录', 'Context'),
         link: getLink('/config/context'),
       },
+      {
+        text: getText('Mode 模式', 'Mode'),
+        link: getLink('/config/mode'),
+      },
     ],
   };
 }
