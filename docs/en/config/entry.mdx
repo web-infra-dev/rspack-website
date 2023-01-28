@@ -1,3 +1,115 @@
 # Entry
 
-TODO
+The `entry` configuration is used to set the entry module for Rspack builds.
+
+- **Type:**
+
+```ts
+type EntryItem = string | string[];
+
+type EntryDescription = {
+  import: EntryItem;
+  runtime?: string | false;
+};
+
+type EntryObject = {
+  [k: string]: EntryItem | EntryDescription;
+};
+
+type Config = {
+  entry: EntryItem | EntryObject;
+};
+```
+
+- **Default:** `./src/index.js`
+
+## Single Entry
+
+If you are building a single page application or a library, you will usually only need to set up a single entry point.
+
+To set up a single entry, simply pass the path to the entry module as a string to the `entry` configuration.
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+};
+```
+
+The above writing method will automatically set the name of the entry module to `main`, which is equivalent to the following writing method:
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+```
+
+### Path Type
+
+The path of the entry module can be a relative path or an absolute path.
+
+If `entry` is set as a relative path, Rspack will use the value set by [context configuration](/config/context.html) as the base path, which by default is the current working directory of the Node.js process, namely `process.cwd ()`.
+
+You can also use the [path module](https://nodejs.org/api/path.html) in Node.js to generate an absolute path and pass it to the `entry` configuration:
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  entry: path.join(__dirname, './src/index.js'),
+};
+```
+
+### Entry Array
+
+When setting the value of an entry, in addition to setting it to `string`, you can also pass in a `string[]`, meaning that the entry contains multiple entry modules.
+
+For example, the following example will build `pre.js` and `post.js` into the output of `page`.
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    page: ['./src/pre.js', './src/post.js'],
+  },
+};
+```
+
+Multiple modules will be executed sequentially according to the order defined by the array, so the code in `pre.js` will be executed before the code in `post.js`.
+
+## Multiple Entries
+
+If you need to build multiple entries at once, you should set `entry` to an object, and each key of the object corresponds to an entry name.
+
+For example, the following example will build `page1` and `page2` as two entries:
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    page1: './src/page1/index.js',
+    page2: './src/page2/index.js',
+  },
+};
+```
+
+### Entry Description Object
+
+When you set `entry` to an object, you can set the value of the entry to a description object. A description object can contain the following properties:
+
+- `import`: The path to the entry module.
+- `runtime`: The name of the runtime chunk. When `runtime` is set, a new runtime chunk will be created. You can also set it to `false` to avoid a new runtime chunk.
+
+#### Set the Chunk Name
+
+The `runtime` property is used to set the name of the `chunk`, for example to set the name of the `main` entry chunk to `'foo'`:
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: {
+      import: './src/index.js',
+      runtime: 'foo',
+    },
+  },
+};
+```

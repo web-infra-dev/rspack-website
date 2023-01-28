@@ -4,9 +4,10 @@ pageType: home
 hero:
   name: Rspack
   tagline: 基于 Rust 的高性能模块打包工具
-  image:
-    src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
-    alt: logo
+  # TODO logo
+  # image:
+  #   src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
+  #   alt: logo
   actions:
     - theme: brand
       text: 介绍

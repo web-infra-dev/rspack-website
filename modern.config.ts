@@ -1,6 +1,8 @@
 import path from 'path';
 import DocTools, { defineConfig } from '@modern-js/doc-tools';
 
+const isProd = process.env.NODE_ENV === 'production';
+
 function getI18nHelper(lang: 'zh' | 'en') {
   const isZh = lang === 'zh';
   const prefix = isZh ? '/zh' : '';
@@ -15,10 +17,12 @@ function getNavConfig(lang: 'zh' | 'en') {
     {
       text: getText('指南', 'Guide'),
       link: getLink('/guide/introduction'),
+      activeMatch: '/guide/',
     },
     {
       text: getText('配置', 'Config'),
       link: getLink('/config'),
+      activeMatch: '/config',
     },
     {
       text: getText('生态', 'Ecosystem'),
@@ -72,13 +76,21 @@ export default defineConfig({
     root: path.join(__dirname, 'docs'),
     title: 'Rspack',
     description: 'A high-performance bundler based on Rust',
-    logo: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-2x-text-0104.png',
+    // TODO logo
+    // logo: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-2x-text-0104.png',
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-1x-0104.png',
     lang: 'en',
     themeConfig: {
       footer: {
         message: '© 2023 Bytedance Inc. All Rights Reserved.',
       },
+      socialLinks: [
+        {
+          icon: 'github',
+          mode: 'link',
+          content: 'https://github.com/modern-js-dev/rspack',
+        },
+      ],
       locales: [
         {
           lang: 'en',
@@ -97,6 +109,11 @@ export default defineConfig({
           label: '简体中文',
         },
       ],
+    },
+    builderConfig: {
+      dev: {
+        startUrl: true,
+      },
     },
   },
   plugins: [DocTools()],
