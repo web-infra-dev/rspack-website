@@ -4,14 +4,42 @@
 
 首先我们创建一个目录，初始化 npm ，然后在本地安装 @rspack/cli，通过如下方式进行安装:
 
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
 ```sh
 $ mkdir rspack-demo
 $ cd rspack-demo
 $ npm init -y
-$ npm install -D @rspack/cli # for npm
-$ yarn add -D @rspack/cli  # for yarn
-$ pnpm install -D @rspack/cli # for pnpm
+$ npm install -D @rspack/cli
 ```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ mkdir rspack-demo
+$ cd rspack-demo
+$ npm init -y
+$ yarn add -D @rspack/cli
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ mkdir rspack-demo
+$ cd rspack-demo
+$ npm init -y
+$ pnpm install -D @rspack/cli
+```
+
+  </Tab>
+</Tabs>
 
 ## 创建第一个 bundle
 
@@ -177,12 +205,32 @@ export const answer = 'rspack';
 
 ## 使用模块快速创建
 
-Rspack 提供了模块用来快速创建项目
+Rspack 提供了模块用来快速创建项目：
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
 
 ```sh
-$ npm create rspack@latest # for npm
-$ yarn create rspack@latest # for yarn
-$ pnpm create rspck@latest # for pnpm
+$ npm create rspack@latest
 ```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ yarn create rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ pnpm create rspck@latest
+```
+
+  </Tab>
+</Tabs>
 
 然后按照提示操作即可。
