@@ -6,14 +6,15 @@
   "scripts": {
     "prepare": "husky install",
     "dev": "modern dev",
-    "build": "modern build", 
-    "format": "prettier docs/**/*.{md,mdx} --write"
+    "build": "modern build",
+    "format": "prettier docs/**/*.{md,mdx} --write",
+    "spell": "npx cspell docs/**/*.{ts,tsx,js,jsx,md,mdx}"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "nano-staged": {
-    "*.{ts,tsx,js,jsx,md,mdx}": "prettier --write"
+    "*.{ts,tsx,js,jsx,md,mdx}": ["prettier --write", "npx cspell"]
   },
   "dependencies": {
     "@vercel/edge": "^0.1.2"
