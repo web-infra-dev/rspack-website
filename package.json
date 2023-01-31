@@ -20,7 +20,7 @@
     "@vercel/edge": "^0.1.2"
   },
   "devDependencies": {
-    "@modern-js/doc-tools": "0.0.0-next-20230129144507",
+    "@modern-js/doc-tools": "0.0.0-next-20230131123636",
     "@modern-js/tsconfig": "0.0.0-next-20230129144507",
     "@types/node": "^18.11.18",
     "husky": "^8.0.3",

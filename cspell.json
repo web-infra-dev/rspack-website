@@ -9,7 +9,12 @@
     }
   ],
   "dictionaries": ["project-words"],
-  "ignorePaths": ["node_modules", "/project-words.txt"],
+  "ignorePaths": [
+    "node_modules",
+    "/project-words.txt",
+    "package.json",
+    "pnpm-lock.yaml"
+  ],
   "caseSensitive": true,
   "allowCompoundWords": true
 }
