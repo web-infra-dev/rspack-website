@@ -71,6 +71,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         text: getText('Mode 模式', 'Mode'),
         link: getLink('/config/mode'),
       },
+      {
+        text: getText('Module 模块', 'Module'),
+        link: getLink('/config/module'),
+      },
     ],
   };
 }

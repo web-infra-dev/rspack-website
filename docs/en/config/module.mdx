@@ -1,0 +1,256 @@
+# Module
+
+- **Type：** `Object`
+- **Default：** `{}`
+
+Used to decide how to handle different types of modules in a project.
+
+## module.rules
+
+- **Type：** `Rule[]`
+- **Default：** `[]`
+
+An array of rules that match the module's requests when it is created. These rules can modify the creation behavior of the module. They can apply Loader, etc. to the module.
+
+## Rule
+
+- **Type：** `Object`
+- **Default：** `{}`
+
+Rule defines the conditions for matching a module and the behavior of handling those modules.
+
+**Rule Condition**
+
+Defines a module's match conditions, common matches are with `resource` and `resourceQuery`, and `include` and `exclude`.
+
+Example: app.js imports `./image.png?inline#foo`
+
+- `resource` equals to `/path/to/image.png`
+- `resourceQuery` equals to `?inline`
+- `resourceFragment` equals to `#foo`
+
+**Rule behavior**
+
+Defines the processing behavior of the corresponding matching module, e.g. :
+
+- Apply the list of Loader to these modules (`Rule.use`)
+- Apply the module's type (`Rule.type`)
+- Apply the module's resolve configuration (`Rule.resolve`)
+
+## Rule.exclude
+
+- **Type：** [`Condition`](/config/module.html#condition)
+- **Default：** `undefined`
+
+Excludes all modules that match this condition and will match against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
+
+## Rule.include
+
+- **Type：** [`Condition`](/config/module.html#condition)
+- **Default：** `undefined`
+
+Matches all modules that match this condition against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
+
+## Rule.loaders
+
+:::warning
+
+This option is deprecated, please use `Rule.use` instead
+
+:::
+
+## Rule.parser
+
+- **Type：** `Object`
+- **Default：** `{}`
+
+Module's parser configuration
+
+### Rule.parser.dataUrlCondition
+
+- **Type：** `object = { maxSize: number = 8096 }`
+- **Default：** `{}`
+
+If the current module size is less than or equal to `maxSize`, then the module will be Base64 encoded, otherwise a file will be created. This option can be used only for Asset Module scenarios.
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.png$/,
+        parser: {
+          dataUrlCondition: {
+            // Modules less than or equal to 4kb and ending in `.png` will be Base64 encoded
+            maxSize: 4 * 1024,
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+## Rule.generator
+
+- **Type：** `Object`
+- **Default：** `{}`
+
+Generator options for the module, e.g. for Asset Module you can specify the output filename.
+
+### Rule.generator.filename
+
+- **Type：** `string`
+- **Default：** `undefined`
+
+Same as `output.assetModuleFilename`, but for specific rules. Overrides `output.assetModuleFilename` and only works for asset and asset/resource module types.
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  output: {
+    assetModuleFilename: 'images/[hash][ext]',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.html/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/[hash][ext]',
+        },
+      },
+    ],
+  },
+};
+```
+
+## Rule.resource
+
+- **Type：** [`Condition`](/config/module.html#condition)
+- **Default：** `undefined`
+
+Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.test`.
+
+## Rule.resourceQuery
+
+- **Type：** [`Condition`](/config/module.html#condition)
+- **Default：** `undefined`
+
+Matches all modules that match this resource against the Resource's query. Note: Containing `? `, when `Rule.resourceQuery` is `?raw`, it will match the resource request of `xxx?raw`
+
+## Rule.sideEffects
+
+- **Type：** `boolean`
+
+Flag the module for side effects
+
+## Rule.test
+
+- **Type：** [`Condition`](/config/module.html#condition)
+- **Default：** `undefined`
+
+Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.test`.
+
+## Rule.type
+
+- **Type：** `'javascript/auto' | 'typescript' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`
+
+Used to mark the type of the matching module, which affects how the module is handled by Rspack's built-in processing. For example, when a module is marked as `'typescript'` then the module is processed using the TS parser/generator.
+
+- `'javascript/auto'`: JavaScript modules, supported module systems: CommonJS, ESM, no plans for AMD module support at this time.
+- `'typescript'`: TypeScript Module
+- `'json'`: JSON data Module
+- `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`: See Asset Module
+  {
+  //TODO: Add Link to asset module
+  }
+
+## Rule.use
+
+- **Type：**
+
+```ts
+type RuleUse = (string | { loader: string; options: object })[];
+```
+
+An array to pass the Loader package name and its options. `string[]` e.g.: `use: ['svgr-loader']` is shorthand for `use: [ { loader: 'svgr-loader' } ]`.
+Loaders will be executed in right-to-left order.
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        //...
+        use: [
+          'svgr-loader',
+          {
+            loader: 'svgo-loader',
+            options: {
+              configFile: false,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+## Rule.resolve
+
+Set specific module resolve options based on the matching modules
+{
+// TODO: Add link to resolve
+}
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        resolve: {
+          preferRelative: true,
+        },
+      },
+    ],
+  },
+};
+```
+
+## module.parser
+
+- **Type：** `Object`
+- **Default：** `{}`
+
+An object that contains options for setting the parser.
+
+### module.parser.asset
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    parser: {
+      asset: {
+        // Configuration of Asset Module parser
+      },
+    },
+  },
+};
+```
+
+## Condition
+
+- **Type：** `string | RegExp`
+
+Condition represents the form of matching a given input, and it supports the following types:
+
+- `String`: Given an input, the match is successful when the input string satisfies startsWith. Note: You can think of it as `input.startsWith(condition)`.
+- `RegExp`: Given an input, the match is successful when the input string satisfies the regular expression. Note: You can think of it as `condition.test(input)`.

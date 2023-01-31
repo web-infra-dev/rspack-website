@@ -6,6 +6,7 @@ Rollup
 Rspack
 rspack
 Rust
+svgr
 Terser
 TypeScript
 Webpack

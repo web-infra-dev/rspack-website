@@ -1,0 +1,256 @@
+# Module 模块
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+用于决定如何处理一个项目中不同类型的模块。
+
+## module.rules
+
+- **类型：** `Rule[]`
+- **默认值：** `[]`
+
+一个规则数组，当模块被创建时与该模块的请求相匹配。这些规则可以修改模块的创建行为。它们可以对模块应用 Loader 等。
+
+## Rule
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
+
+**Rule 条件**
+
+定义了一个模块的匹配条件，常见的匹配有和 `resource` 与 `resourceQuery` 的匹配，以及 `include` 与 `exclude` 的匹配。
+
+例如: 当 app.js 导入 `./image.png?inline#foo`
+
+- `resource` 为 `/path/to/image.png`
+- `resourceQuery` 为 `?inline`
+- `resourceFragment` 为 `#foo`。
+
+**Rule 处理行为**
+
+定义了对应匹配的模块的处理行为，例如:
+
+- 将 Loader 的列表应用到这些模块上（`Rule.use`）
+- 定义模块的类型（`Rule.type`）
+- 定义模块的 resolve 配置（`Rule.resolve`）
+
+## Rule.exclude
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+排除所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
+
+## Rule.include
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
+
+## Rule.loaders
+
+:::warning
+
+这个选项已经被废弃，请使用 `Rule.use` 代替
+
+:::
+
+## Rule.parser
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+模块的 parser 配置
+
+### Rule.parser.dataUrlCondition
+
+- **类型：** `object = { maxSize: number = 8096 }`
+- **默认值：** `{}`
+
+如果当前模块的小于等于 `maxSize`，那么模块将被 Base64 编码，否则模块将会以文件形式被输出。该选项仅能做用于 Asset Module 的场景
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.png$/,
+        parser: {
+          dataUrlCondition: {
+            // 小于等于 4kb，且以 `.png` 结尾的模块将被 Base64 编码
+            maxSize: 4 * 1024,
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+## Rule.generator
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+模块的生成器选项，例如：对于 Asset Module 可以指定输出文件名。
+
+### Rule.generator.filename
+
+- **类型：** `string`
+- **默认值：** `undefined`
+
+与 `output.assetModuleFilename` 相同，但用于特定规则。覆盖 `output.assetModuleFilename`，只对 asset 和 asset/resource 模块类型起作用。
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  output: {
+    assetModuleFilename: 'images/[hash][ext]',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.html/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'static/[hash][ext]',
+        },
+      },
+    ],
+  },
+};
+```
+
+## Rule.resource
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
+
+## Rule.resourceQuery
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配
+
+## Rule.sideEffects
+
+- **类型：** `boolean`
+
+标记模块是否存在副作用
+
+## Rule.test
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
+
+## Rule.type
+
+- **类型：** `'javascript/auto' | 'typescript' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`
+
+用于标记匹配的模块的类型，这会影响 Rspack 内置对于该模块的处理方式。例如：当模块被标记为 `'typescript'` 则会使用 TS parser/generator 对模块进行处理。
+
+- `'javascript/auto'`: JavaScript 模块，支持的模块系统：CommonJS、ESM，暂没有对 AMD 模块支持的计划。
+- `'typescript'`: TypeScript 模块
+- `'json'`: JSON data 模块
+- `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`: 参考 Asset Module
+  {
+  //TODO: Add Link to asset module
+  }
+
+## Rule.use
+
+- **类型：**
+
+```ts
+type RuleUse = (string | { loader: string; options: object })[];
+```
+
+用于传递 Loader 包名与其选项的数组。`string[]` 如: `use: ['svgr-loader']` 是 `use: [ { loader: 'svgr-loader' } ]` 的简写。
+Loaders 会按照从右到左的顺序执行。
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        //...
+        use: [
+          'svgr-loader',
+          {
+            loader: 'svgo-loader',
+            options: {
+              configFile: false,
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+## Rule.resolve
+
+根据匹配的模块设置具体的模块 resolve 选项
+{
+//TODO: 添加 link 到 resolve
+}
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        resolve: {
+          preferRelative: true,
+        },
+      },
+    ],
+  },
+};
+```
+
+## module.parser
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+一个对象，其中包含用于设置 parser 的选项。
+
+### module.parser.asset
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    parser: {
+      asset: {
+        // Asset Module parser 的配置项
+      },
+    },
+  },
+};
+```
+
+## Condition
+
+- **类型：** `string | RegExp`
+
+Condition 代表了匹配一个给定输入的形式，它支持的类型为：
+
+- `String`: 给定一个输入，当输入的字符串满足 startsWith 时，则匹配成功。注：你可以认为是 `input.startsWith(condition)`。
+- `RegExp`: 给定一个输入，当输入的字符串满足正则表达式时，则匹配成功。注：你可以认为是 `condition.test(input)`。
