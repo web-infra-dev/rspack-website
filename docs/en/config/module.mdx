@@ -39,14 +39,14 @@ Defines the processing behavior of the corresponding matching module, e.g. :
 
 ## Rule.exclude
 
-- **Type：** [`Condition`](/config/module.html#condition)
+- **Type：** [`Condition[]`](/config/module.html#condition)
 - **Default：** `undefined`
 
 Excludes all modules that match this condition and will match against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
 
 ## Rule.include
 
-- **Type：** [`Condition`](/config/module.html#condition)
+- **Type：** [`Condition[]`](/config/module.html#condition)
 - **Default：** `undefined`
 
 Matches all modules that match this condition against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.

@@ -39,14 +39,14 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 
 ## Rule.exclude
 
-- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **类型：** [`Condition[]`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 排除所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
 ## Rule.include
 
-- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **类型：** [`Condition[]`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
@@ -102,8 +102,9 @@ module.exports = {
 
 - **类型：** `string`
 - **默认值：** `undefined`
+- **支持的 Template string：** 参考 [`output.assetModuleFilename`](/config/output.html#outputassetmodulefilename)
 
-与 `output.assetModuleFilename` 相同，但用于特定规则。覆盖 `output.assetModuleFilename`，只对 asset 和 asset/resource 模块类型起作用。
+覆盖 [`output.assetModuleFilename`](/config/output.html#outputassetmodulefilename)，仅对模块类型为 `'asset'` 和 `'asset/resource'` 的模块生效。
 
 ```ts title=rspack.config.js
 module.exports = {

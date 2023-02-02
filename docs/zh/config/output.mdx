@@ -1,0 +1,225 @@
+# Output 输出
+
+用于指示 Rspack 如何以及在哪里输出生成的文件内容。
+
+- **类型：** `Object`
+
+## output.assetModuleFilename
+
+- **类型：** `string`
+- **默认值：** `'[hash][ext][query]'`
+- **支持的 Template String：**
+  - [Module Context](/config/output.html#module-context)
+  - [File Context](/config/output.html#file-context)
+
+Asset module 输出的文件名称。这个值可以被 [Rule.generator.filename](/config/module.html#rulegeneratorfilename) 覆盖。
+
+:::info Asset module 作为一个单独的文件输出的情况
+
+- 模块类型为 `'asset'` 且 asset 为满足 [`Rule.parser.dataUrlCondition`](/config/module.html#ruleparserdataurlcondition) 设定值
+- 模块类型为 `'asset/resource'`
+
+:::
+
+## output.filename
+
+- **类型：** `string`
+- **默认值：** `'[name].js'`
+
+这个选项决定了输出的 JavaScript bundle 文件名称。这些 bundle 将会被写如 `output.path` 指定的目录下。
+
+对于单个 [Entry](/config/entry.html) 来说，你可以使用一个静态名称，如：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: 'bundle.js',
+  },
+};
+```
+
+而对于多个 [Entry](/config/entry.html)，或其他可以导致拆分出多个 bundle 的情况，你需要使用下面这种方式来动态生成 bundle 的文件名。
+
+:::info 对于拆分成多个 bundle 的情况的描述
+
+Rspack 会对用户输入的代码进行代码拆分优化，这些优化可能包括但不限于：Code Splitting, Bundle Splitting，或通过其他插件实现的代码拆分等。
+这些代码拆分的行为会导致生成多个 bundle，因此 bundle 的文件名需要动态生成。
+
+{
+// TODO: 补充 Glossary link
+}
+
+:::
+
+使用 [Entry](/config/entry.html) 名称：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[name].bundle.js',
+  },
+};
+```
+
+使用内部生成的 chunk id：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[id].bundle.js',
+  },
+};
+```
+
+使用根据文件内容生成的 hash：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[contenthash].bundle.js',
+  },
+};
+```
+
+当然你也可以组合使用：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[name].[contenthash].bundle.js',
+  },
+};
+```
+
+更多可以参考 [Template String](/config/output.html#template-string)。
+
+## output.chunkFilename
+
+- **类型：** `string`
+- **默认值：** 根据 [`output.filename`](/config/output.html#outputfilename) 推断
+- **支持的 Template String：**
+  - [Compilation Context](/config/output.html#compilation-context)
+  - [Chunk Context](/config/output.html#chunk-context)
+
+此选项决定了非初始（non-initial）JavaScript chunk 文件的名称。
+
+## output.cssFilename
+
+- **类型：** `string`
+- **默认值：** 根据 [`output.filename`](/config/output.html#outputfilename) 推断
+
+此选项决定了 CSS 文件的名称。
+
+## output.cssChunkFilename
+
+- **类型：** `string`
+- **默认值：** 根据 [`output.chunkFilename`](/config/output.html#outputchunkfilename) 推断
+- **支持的 Template String：**
+  - [Compilation Context](/config/output.html#compilation-context)
+  - [Chunk Context](/config/output.html#chunk-context)
+
+此选项决定了非初始（non-initial）CSS chunk 文件的名称。
+
+## output.path
+
+- **类型：** `string`
+- **默认值：** `path.resolve(process.cwd(), 'dist')`
+
+输出文件目录的绝对路径。
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'dist/assets'),
+  },
+};
+```
+
+## output.publicPath
+
+- **类型：** `string`
+- **默认值：** targets 为 `'web'` 或 `'web-worker'` 时为 `'auto'`
+
+此选项决定了引用的资源的 URL 前缀，如: 图片、文件等等。
+
+例如，给定一个配置文件：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    publicPath: '/assets/',
+    chunkFilename: '[id].chunk.js',
+    assetModuleFilename: '[name][ext]',
+  },
+};
+```
+
+对于某一个非初始（non-initial） chunk 文件，它的请求 URL 看起来像是这样： `/assets/1.chunk.js`。
+
+对于一个图片的引用，它的请求 URL 看起来像是这样：`/assets/logo.png`。
+
+同时，当你使用 CDN 对产物进行部署时则非常有用：
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    publicPath: 'https://cdn.example.com/assets/',
+    assetModuleFilename: '[name][ext]',
+  },
+};
+```
+
+对于所有 asset 资源，它们的请求 URL 看起来像是这样：`https://cdn.example.com/assets/logo.png`。
+
+## output.strictModuleErrorHandling
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+按照 ES Module 规范处理 module 加载时的错误，会有性能损失。
+
+## Template String
+
+可以用下方的模板字符串来替换对应文件名。不同的 context 对应了不同的可替换内容，如 [`output.assetModuleFilename`](/config/output.html#outputassetmodulefilename) 支持使用 [file context](/config/output.html#file-context) 和 [module context](/config/output.html#module-context)。
+
+### Compilation Context
+
+可在 compilation 层面替换的内容
+
+| 模板       | 描述                    |
+| ---------- | ----------------------- |
+| [fullhash] | compilation 的完整 hash |
+
+### Chunk Context
+
+可在 chunk 层面替换的内容：
+
+| 模板          | 描述                                                                                                                                           |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| [id]          | 当前 chunk id                                                                                                                                  |
+| [name]        | 当 chunk name 存在则使用名称，否则使用 chunk id                                                                                                |
+| [chunkhash]   | chunk 的 hash 值，通过当前 chunk 中所有类型的元素计算所得                                                                                      |
+| [contenthash] | chunk 的 hash 值，通过只包含该类型内容的元素计算所得。如：生成 JavaScript 类型的文件则只会使用当前 chunk 中所有 JavaScript 模块计算所得的 hash |
+
+### Module Context
+
+可在 module 层面替换的内容：
+
+| 模板          | 描述            |
+| ------------- | --------------- |
+| [id]          | 模块的 id       |
+| [hash]        | 模块的 hash     |
+| [contenthash] | 模块内容的 hash |
+
+### File Context
+
+可在 file 层面替换的内容：
+
+| 模板    | 描述                           |
+| ------- | ------------------------------ |
+| [query] | 文件 query，包含 `?`           |
+| [path]  | 文件路径，不包含文件名         |
+| [name]  | 文件名，不包含扩展名和文件路径 |
+| [ext]   | 扩展名，包含 `.`               |

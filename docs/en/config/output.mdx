@@ -1,0 +1,225 @@
+# Output
+
+Used to indicate how and where Rspack outputs the contents of the generated file.
+
+- **Type:** `Object`
+
+## output.assetModuleFilename
+
+- **Type:** `string`
+- **Default:** `'[hash][ext][query]'`
+- **Supported Template String:**
+  - [Module Context](/config/output.html#module-context)
+  - [File Context](/config/output.html#file-context)
+
+The name of the file to be output by the Asset module. This value can be overridden by [Rule.generator.filename](/config/module.html#rulegeneratorfilename).
+
+:::info Asset module output as a separate file
+
+- Module type is `'asset'` and asset is set to satisfy [`Rule.parser.dataUrlCondition`](/config/module.html#ruleparserdataurlcondition)
+- Module type is `'asset/resource'`
+
+:::
+
+## output.filename
+
+- **Type:** `string`
+- **Default:** `'[name].js'`
+
+This option determines the name of the JavaScript bundle file to be output. These bundles will be written to the directory specified by `output.path`.
+
+For a single [Entry](/config/entry.html), you can use a static name such as:
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: 'bundle.js',
+  },
+};
+```
+
+For multiple [Entry](/config/entry.html), or other cases where multiple bundles can be split, you need to dynamically generate the filename of the bundle in the following way:
+
+:::info Description of other cases where multiple bundles can be split
+
+Rspack performs code splitting optimizations on user input code, which may include, but are not limited to, Code Splitting, Bundle Splitting, or splitting implemented through other plugins.
+These splitting actions can result in multiple bundles being generated, so the filenames of the bundles need to be generated dynamically.
+
+{
+// TODO: Add Glossary link
+}
+
+:::
+
+Use [Entry](/config/entry.html) name.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[name].bundle.js',
+  },
+};
+```
+
+Using the internally generated chunk id.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[id].bundle.js',
+  },
+};
+```
+
+Using hash generated from file content.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[contenthash].bundle.js',
+  },
+};
+```
+
+Of course you can also use a combination of each.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    filename: '[name].[contenthash].bundle.js',
+  },
+};
+```
+
+More can be found in [Template String](/config/output.html#template-string).
+
+## output.chunkFilename
+
+- **Type:** `string`
+- **Default:** inferred from [`output.filename`](/config/output.html#outputfilename)
+- **Supported Template String:**
+  - [Compilation Context](/config/output.html#compilation-context)
+  - [Chunk Context](/config/output.html#chunk-context)
+
+This option determines the name of the non-initial JavaScript chunk file.
+
+## output.cssFilename
+
+- **Type:** `string`
+- **Default:** inferred from [`output.filename`](/config/output.html#outputfilename)
+
+This option determines the name of the CSS file.
+
+## output.cssChunkFilename
+
+- **Type:** `string`
+- **Default:** inferred from [`output.chunkFilename`](/config/output.html#outputchunkfilename)
+- **Supported Template String:**
+  - [Compilation Context](/config/output.html#compilation-context)
+  - [Chunk Context](/config/output.html#chunk-context)
+
+This option determines the name of the non-initial CSS chunk file.
+
+## output.path
+
+- **Type:** `string`
+- **Default:** `path.resolve(process.cwd(), 'dist')`
+
+Output the absolute path to the file directory.
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  output: {
+    path: path.resolve(__dirname, 'dist/assets'),
+  },
+};
+```
+
+## output.publicPath
+
+- **Type:** `string`
+- **Default:** targets are `'web'` or `'web-worker'` when it is `'auto'`
+
+This option determines the URL prefix of the referenced resource, such as: image, file, etc.
+
+For example, given a configuration file.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    publicPath: '/assets/',
+    chunkFilename: '[id].chunk.js',
+    assetModuleFilename: '[name][ext]',
+  },
+};
+```
+
+For a non-initial chunk file, its request URL looks like this: `/assets/1.chunk.js`.
+
+For a reference to an image, the request URL looks like this: `/assets/logo.png`.
+
+Also, it is useful when you deploy the product using a CDN
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    publicPath: 'https://cdn.example.com/assets/',
+    assetModuleFilename: '[name][ext]',
+  },
+};
+```
+
+For all asset resources, their request URLs look like this: `https://cdn.example.com/assets/logo.png`.
+
+## output.strictModuleErrorHandling
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Handle module loading errors according to the ES Module specification, with performance loss.
+
+## Template String
+
+The template string below can be used to replace the corresponding file name. Different contexts correspond to different replaceable content, e.g. [`output.assetModuleFilename`](/config/output.html#outputassetmodulefilename) supports the use of [File Context](/config/output.html#file-context) and [Module Context](/config/output.html#module-context).
+
+### Compilation Context
+
+Content that can be replaced at the compilation level.
+
+| Template   | Description              |
+| ---------- | ------------------------ |
+| [fullhash] | full hash of compilation |
+
+### Chunk Context
+
+Content that can be replaced at the chunk level.
+
+| template      | description                                                                                                                                                                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [id]          | The current chunk id                                                                                                                                                                                                                      |
+| [name]        | Use name when chunk name exists, otherwise use chunk id                                                                                                                                                                                   |
+| [chunkhash]   | The hash value of the chunk, computed from all elements of type in the current chunk                                                                                                                                                      |
+| [contenthash] | The hash value of the chunk, computed from the elements that contain only the content of that type. For example, if a module of type JavaScript is generated, only the hash of all JavaScript-typed modules in the current chunk is used. |
+
+### Module Context
+
+Content that can be replaced at the module level.
+
+| Template      | Description            |
+| ------------- | ---------------------- |
+| [id]          | The id of the module   |
+| [hash]        | The hash of the module |
+| [contenthash] | hash of module content |
+
+### File Context
+
+Content that can be replaced at the file level.
+
+| template | description                                |
+| -------- | ------------------------------------------ |
+| [query]  | The file query, containing `? `            |
+| [path]   | The path to the file, without the filename |
+| [name]   | file name, without extension and file path |
+| [ext]    | extension, contains `. `                   |

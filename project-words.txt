@@ -10,3 +10,4 @@ svgr
 Terser
 TypeScript
 Webpack
+ruleparserdataurlcondition
