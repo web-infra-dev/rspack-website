@@ -53,6 +53,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         text: getText('快速上手', 'Quick Start'),
         link: getLink('/guide/getting-started'),
       },
+      {
+        text: getText('术语表', 'Glossary'),
+        link: getLink('/guide/glossary'),
+      },
     ],
     [getLink('/config/')]: [
       {
