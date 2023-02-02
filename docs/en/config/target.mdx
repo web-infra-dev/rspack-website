@@ -1,0 +1,56 @@
+# Target
+
+Used to configure the compatibility settings between the target environment and the ECMAScript version of the Rspack output.
+
+- **Type:** `string[]`
+
+## string
+
+The following options are now supported:
+
+| options          | description                                                                                                             |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `'node'`         | Compile as available for Node.js environments                                                                           |
+| `'web'`          | Compile as available in the browser environment (default)                                                               |
+| `'web-worker'`   | compile as WebWorker                                                                                                    |
+| `'esX'`          | compile to the corresponding ECMAScript version, e.g. es5, es2020 (the latest version of ECMAScript is used by default) |
+| `'browserslist'` | Infer the target environment and ECMAScript version based on the configured browserslist                                |
+
+## Example
+
+Specify that the Compiler needs to compile to ECMAScript 5 code in the browser environment:
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['web', 'es5'],
+};
+```
+
+When specifying that the Compiler needs to be compiled for multiple platforms, an error is reported:
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['web', 'node'],
+};
+```
+
+{
+// TODO: add link to MultiCompiler
+// In this case, you can use MultiCompiler to package it in multiple configurations.
+}
+
+Use browserslist for target environment and ECMAScript version inference:
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['browserslist'],
+  builtins: {
+    browserslist: ['> 1%', 'last 2 versions', 'not ie <= 8'],
+  },
+};
+```
+
+{
+// TODO:
+// More information can be found in [builtins.browserslist](/zh/guide/builtins#browserslist).
+}

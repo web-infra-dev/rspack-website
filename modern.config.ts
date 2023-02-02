@@ -83,6 +83,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         text: getText('Module 模块', 'Module'),
         link: getLink('/config/module'),
       },
+      {
+        text: getText('Target 目标环境与兼容性', 'Target'),
+        link: getLink('/config/target'),
+      },
     ],
   };
 }

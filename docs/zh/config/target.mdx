@@ -1,0 +1,56 @@
+# Target 目标环境与兼容性
+
+用于配置 Rspack 输出产物的目标环境与 ECMAScript 版本的兼容性设定。
+
+- **类型：** `string[]`
+
+## string
+
+现在支持的字符串格式有：
+
+| 选项             | 描述                                                                            |
+| ---------------- | ------------------------------------------------------------------------------- |
+| `'node'`         | 编译为 Node.js 环境可用                                                         |
+| `'web'`          | 编译为浏览器环境可用（默认值）                                                  |
+| `'web-worker'`   | 编译为 WebWorker                                                                |
+| `'esX'`          | 编译为对应的 ECMAScript 版本，如 es5, es2020 （默认使用最新的 ECMAScript 版本） |
+| `'browserslist'` | 根据配置的 browserslist 完成目标环境 和 ECMAScript 版本的推断                   |
+
+## 示例
+
+指定 Compiler 需要编译为浏览器环境下的 ECMAScript 5 代码：
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['web', 'es5'],
+};
+```
+
+当指定 Compiler 需要编译为多个平台时，则会报错：
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['web', 'node'],
+};
+```
+
+{
+// TODO: add link to MultiCompiler
+// 遇到上述的这种情况，你可以用 MultiCompiler 分成多个配置进行打包。
+}
+
+使用 browserslist 进行目标环境和 ECMAScript 版本的推断：
+
+```ts title="rspack.config.js"
+module.exports = {
+  target: ['browserslist'],
+  builtins: {
+    browserslist: ['> 1%', 'last 2 versions', 'not ie <= 8'],
+  },
+};
+```
+
+{
+// TODO:
+// 更多信息可以参考 [builtins.browserslist](/zh/guide/builtins#browserslist)。
+}
