@@ -1,0 +1,142 @@
+# 从 webpack 迁移
+
+Rspack 虽然预期尽可能的兼容 Webpack 的常用 API, 但是无可避免的存在一些不同，或者相同的功能在 Rspack 中有更高性能的实现方式。
+
+## 配置迁移
+
+### 去除 babel-loader
+
+Rspack 已经内置了对 TypeScript 和 JSX 以及最新的 Javascript 语法的支持，这意味着如果你的 babel-loader 只是为了支持 TypeScript、JSX 以及更新的 Javascript 语法，那么完全可以去除 babel-loader。
+如果你的 babel-loader 是为了支持自定义的转换逻辑，那么这部分的 babel-loader 可以保留，但是我们不鼓励用户对大量的文件使用 babel-loader，因为这会导致严重的性能恶化。
+
+```diff
+ module.exports = {
+  module: {
+   rules: [
+-    {
+-       test: /\.tsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-typescript'],
+-         },
+-       }],
+-       test: /\.jsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-react'],
+-         },
+-       }],
+-     },
+    ],
+  },
+ };
+```
+
+Rspack 同时还默认支持了 JavaScript 的语法降级功能，这意味着你不需要再使用 babel-loader 来支持浏览器兼容性，你可以通过 target 来指定浏览器兼容性。
+
+```diff
+module.exports = {
++ target: [ 'es5'],
+   module: {
+   rules: [
+-    {
+-       test: /\.jsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-env'],
+-         },
+-       }],
+-     },
+    ],
+  },
+}
+```
+
+### 去除 css-loader 和 style-loader 和 mini-css-extract-plugin
+
+Rspack 参考 webpack5 内置支持了 css 模块类型 ，原生 css 模块类型内置了对 css、css hmr、css module 以及 css 提取功能的支持，这意味着 你不需要再 为 css 文件单独配置 css-loader 和 style-loader 和 mini-css-extract-plugin。
+
+```diff
+- const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+module.exports = {
+  module: {
+    rules: [
+-     {
+-       test: /\.css$/i,
+-       use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader , "css-loader"],
+-     },
++      {
++        test: /\.css$/i,
++        type: 'css', // this is enabled by default for .css, so you don't need to specify it
++      }
+    ],
+  },
+  plugins: []
+};
+```
+
+对于 [css-modules](https://github.com/css-modules/css-modules) 的功能，通过指明 css/module 作为模块类型即可开启。
+
+```diff
+
+module.exports = {
+  module: {
+    rules: [
++      {
++        test: /\.module\.css$/i,
++        type: 'css/module', // this is enabled by default for module.css, so you don't need to specify it
+      }
+    ]
+  }
+}
+```
+
+### 使用 Asset Modules 来代替 file-loader 和 url-loader
+
+Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Modules 来代替 file-loader 和 url-loader。
+
+```diff
+module.exports = {
+  module: {
+    rules: [
++      {
++        test: /\.(png|jpe?g|gif)$/i,
++        type: 'asset/resource',
++      },
+-      {
+-        test: /\.(png|jpe?g|gif)$/i,
+-        use: [{
+-          loader: 'file-loader',
+         }]
+-      }
+    ]
+  },
+}
+```
+
+### 使用 builtins.html 来代替 html-webpack-plugin
+
+Rspack 内置了对 html 的支持，这意味着你可以使用 builtins.html 来代替 html-webpack-plugin。
+
+```diff
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+  builtins: [
++    html: [
++      {
++        template: 'index.html',
++        filename: 'index.html',
++      }
++     ]
+  ],
+- plugins: [
+-    new HtmlWebpackPlugin({
+-      template: 'index.html',
+-      filename: 'index.html',
+-    }),
+-  ]
+}
+```

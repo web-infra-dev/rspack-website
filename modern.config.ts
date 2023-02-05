@@ -57,6 +57,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         text: getText('术语表', 'Glossary'),
         link: getLink('/guide/glossary'),
       },
+      {
+        text: getText('从 Webpack 迁移', 'Migrate From Webpack'),
+        link: getLink('/guide/migrate-from-webpack'),
+      },
     ],
     [getLink('/config/')]: [
       {
