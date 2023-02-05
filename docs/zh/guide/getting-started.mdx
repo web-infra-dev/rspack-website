@@ -52,7 +52,7 @@ import { answer } from './answer';
 function render() {
   document.getElementById(
     'root'
-  ).innerHTML = `the answer to the university is ${answer}`;
+  ).innerHTML = `the answer to the universe is ${answer}`;
 }
 render();
 ```
@@ -105,7 +105,7 @@ build: 21.388ms
 </html>
 ```
 
-在浏览器里打开 `dist/index.html`, 我们发现浏览器里正常渲染了 `the answer to the university is 42`
+在浏览器里打开 `dist/index.html`, 我们发现浏览器里正常渲染了 `the answer to the universe is 42`
 
 ### 添加三方依赖
 
@@ -122,7 +122,7 @@ import { answer } from './answer';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 const App = () => {
-  return <div>the answer to the university is {answer}</div>;
+  return <div>the answer to the universe is {answer}</div>;
 };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
@@ -201,7 +201,7 @@ Rspack 内置了对 HMR 的支持，对于 React 则是内置了 fast-refresh �
 export const answer = 'rspack';
 ```
 
-我们发现浏览器上的内容自动更新为 `the answer to the university is rspack`
+我们发现浏览器上的内容自动更新为 `the answer to the universe is rspack`
 
 ## 使用模块快速创建
 
