@@ -54,8 +54,8 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         link: getLink('/guide/getting-started'),
       },
       {
-        text: getText('功能', 'Features'),
-        link: getLink('/guide/features'),
+        text: getText('语言支持', 'Language Support'),
+        link: getLink('/guide/language-support'),
       },
       {
         text: getText('资源模块', 'Asset Module'),

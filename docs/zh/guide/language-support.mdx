@@ -1,4 +1,4 @@
-# 功能
+# 语言支持
 
 ## TypeScript
 
@@ -10,7 +10,7 @@ TypeScript 是 Rspack 的一等公民，Rspack 内置了对 TypeScript 的处理
 
 ### 仅转译(transpile-only)
 
-Rspack 仅会对源码进行转译，不会对源码进行类型检查，因此你需要使用其他工具（如：tsc）完成
+Rspack 仅会对源码进行转译，因此你需要使用其他工具（如：tsc）完成对源码的类型检查
 
 ### isolatedModules
 
@@ -86,7 +86,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loaders: [
+        use: [
           {
             loader: 'postcss-loader',
             options: {
@@ -103,7 +103,61 @@ module.exports = {
 };
 ```
 
-上述配置会将所有 `*.css` 文件被 postcss-loader 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
+上述配置会将所有 `*.css` 文件经过 postcss-loader 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
+
+### Less
+
+Rspack 已经完成了对 less-loader 的兼容，你可以这样配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'less-loader',
+            options: {
+              // ...
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+上述配置会将所有 `*.css` 文件经过 less-loader 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
+
+### Sass
+
+目前，Rspack 对于 Sass-loader 是通过 builtin-loaders 的形式支持的，你可以这样配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.sass$/,
+        use: [
+          {
+            builtinLoader: 'sass-loader',
+            options: {
+              // ...
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+上述配置会将所有 `*.sass` 文件经过 sass-loader 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
 
 ### CSS Modules
 

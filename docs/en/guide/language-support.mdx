@@ -1,4 +1,4 @@
-# Features
+# Language support
 
 ## TypeScript
 
@@ -78,7 +78,7 @@ If you plan to migrate from Webpack, then you can remove the css-loader or style
 
 ### PostCSS
 
-Rspack Loader interface is compatible with the postcss-loader's, which you can configure like this.
+Rspack is compatible with postcss-loader, which you can configure like this:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -86,7 +86,7 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        loaders: [
+        use: [
           {
             loader: 'postcss-loader',
             options: {
@@ -104,6 +104,60 @@ module.exports = {
 ```
 
 The above configuration will have all `*.css` files processed by the postcss-loader and the resulting results will be passed to Rspack for CSS post-processing.
+
+### Less
+
+Rspack is compatible with less-loader, which you can configure like this:
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'less-loader',
+            options: {
+              // ...
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+The above configuration runs all `*.css` files through the less-loader and passes the generated results to Rspack for CSS post-processing.
+
+### Sass
+
+Currently, Rspack supports the Sass-loader in the form of builtin-loaders, which you can configure like this
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.sass$/,
+        use: [
+          {
+            builtinLoader: 'sass-loader',
+            options: {
+              // ...
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+The above configuration runs all `*.sass` files through the sass-loader and passes the resulting results to Rspack for CSS post-processing.
 
 ### CSS Modules
 
