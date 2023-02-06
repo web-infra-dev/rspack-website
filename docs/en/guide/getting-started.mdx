@@ -43,7 +43,7 @@ $ pnpm install -D @rspack/cli
 
 ## Create First Bundle
 
-### create project
+### Create project
 
 First create an entry file `src/index.js` and a `src/answer.js`
 
@@ -107,7 +107,7 @@ At this point we have generated `main.js` and `main.js.map` files in the `dist` 
 
 Opening `dist/index.html` in the browser, we see that `the answer to the universe is 42` is rendered normally in the browser
 
-### add third party library
+### Add third party library
 
 Rspack can package not only local dependencies, but also third party dependencies, so let's refactor our application with React, first adding `react` as a dependency
 
@@ -144,7 +144,7 @@ module.exports = {
 };
 ```
 
-### add html support
+### Add html support
 
 rspack has built-in support for html, so you don't need to manually configure the path of the js bundle in html, you can use the html function in the following way
 
@@ -192,7 +192,7 @@ At this point we execute `npx rspack build` and we find that `dist/index.html` a
 </html>
 ```
 
-### experience HMR
+### Experience HMR
 
 Rspack has built-in support for HMR, and for React it has built-in support for fast-refresh, so you don't need to configure it, you can experience HMR for react with `npx rspack serve`.
 We modify the `src/answer.js`
@@ -203,7 +203,7 @@ export const answer = 'rspack';
 
 We find that the browser automatically updates to `the answer to the universe is rspack`
 
-## creating project using scaffolding
+## Creating project using scaffolding
 
 Rspack provides scaffolding to quickly create projects.
 
