@@ -94,7 +94,7 @@ module.exports = {
 }
 ```
 
-### 使用 Asset Modules 来代替 file-loader 和 url-loader
+### 使用 Asset Modules 来代替 file-loader、url-loader 和 raw-loader
 
 Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Modules 来代替 file-loader 和 url-loader。
 
@@ -106,11 +106,19 @@ module.exports = {
 +        test: /\.(png|jpe?g|gif)$/i,
 +        type: 'asset/resource',
 +      },
++      {
++        test: /^BUILD_ID$/,
++        type: 'asset/source'
++      },
 -      {
 -        test: /\.(png|jpe?g|gif)$/i,
 -        use: [{
 -          loader: 'file-loader',
-         }]
+-        }],
+-        test: /^BUILD_ID$/,
+-        use: [{
+-          loader: 'raw-loader',
+-        }]
 -      }
     ]
   },
