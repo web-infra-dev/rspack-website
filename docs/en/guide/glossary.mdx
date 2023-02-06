@@ -1,3 +1,59 @@
 # Glossary
 
 This index lists common terms used throughout the Rspack ecosystem.
+
+## Module
+
+Modules allow you to split your application into multiple files, and these files can share and reuse module content by importing and exporting, which helps you organize your code into independent parts and use good interfaces between them to communicate.
+
+## Module Type
+
+Module types are a attribute of modules that can be parsed and handled differently. We can tell Rspack how to handle modules by specifying their module type. For example, we can tell Rspack that the module is a JavaScript module by specifying the module type as JavaScript, and Rspack will use the JavaScript parser to parse the module. If the specified module type is CSS, then Rspack will use a CSS parser to parse the module.
+
+## Asset Module
+
+Asset module is a special module type used to process static resources, such as pictures, fonts, videos, etc.
+
+## Module Resolution
+
+Module resolution is the process of resolving a module specifier to a file path. For example, when we import a module, we need to specify the module specifier, and Rspack will use the module resolution algorithm to find the corresponding file path.
+
+## Module Graph
+
+Module graph is a data structure that represents the relationship between modules. It is a directed graph, and each node in the graph represents a module, and each edge represents the dependency relationship between modules.
+
+## Chunk
+
+Chunk is a group of modules that are bundled together. Rspack will bundle the modules that are related to each other into a chunk, and then generate a corresponding file.
+
+## Chunk Graph
+
+Chunk graph is a data structure that represents the relationship between chunks. It is a directed graph, and each node in the graph represents a chunk, and each edge represents the dependency relationship between chunks.
+
+## Code Splitting
+
+Code splitting is a technique that allows you to split your code into multiple chunks, and only load the necessary chunks when the application is running. This can help you reduce the size of the initial bundle and speed up the application load time.
+
+## Bundle Splitting
+
+Bundle Splitting is a technique that allows you to split or merge your code into multiple bundles, which is useful for parallel request and better browser caching, it's not used for reducing the initialize bundle size.
+
+## Tree Shaking
+
+Tree shaking is a technique that allows you to remove unused code from your bundle. It is a form of dead code elimination. Compilers like Rspack will accomplish this by analyzing the static structure of your code, and then removing the unused code.
+
+## Asset
+
+Asset is a resource that is used in your application, such as images, fonts, videos, etc. They typically end up as invalid files in your output directory and can also be transformed to base64 string and be inlined to output code.
+
+## NAPI-RS
+
+NAPI-RS is a framework for building pre-compiled Node.js addons in Rust. It simplifies the process of creating and publishing native Node.js addons by providing a high-level abstraction over the Node-API.
+
+## Plugin
+
+Plugin is a piece of code that can be used to extend the functionality of Rspack. It can be used to customize the build process, or to integrate with other tools. Rspack provides lots of hooks which you can use to customize the build process.
+
+## Loader
+
+Loader is used to transform module content. For example, we can use a loader to transform a TypeScript module into a JavaScript module, or to transform a CSS module into a JavaScript module that injects the CSS into the page.
