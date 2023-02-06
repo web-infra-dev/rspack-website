@@ -1,0 +1,142 @@
+# Migration from webpack
+
+While Rspack is expected to be as compatible as possible with Webpack's normal APIs, there are inevitably some differences or higher performance implementations of the same functionality in Rspack.
+
+## Configuring migration
+
+### Removing babel-loader
+
+Rspack already has built-in support for TypeScript and JSX as well as the latest Javascript syntax, which means that if your babel-loader is only designed to support TypeScript, JSX and the newer Javascript syntax, then you can remove the babel-loader altogether.
+If your babel-loader is designed to support custom conversion logic, then this part of the babel-loader can be kept, but we discourage users from using the babel-loader for large numbers of files, as it can cause serious performance deterioration.
+
+```diff
+ module.exports = {
+  module: {
+   rules: [
+-    {
+-       test: /\.tsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-typescript'],
+-         },
+-       }],
+-       test: /\.jsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-react'],
+-         },
+-       }],
+-     },
+    ],
+  },
+ };
+```
+
+Rspack also supports JavaScript syntax downgrading by default, which means you don't need to use babel-loader to support browser compatibility anymore, you can specify browser compatibility via target.
+
+```diff
+module.exports = {
++ target: [ 'es5'],
+   module: {
+   rules: [
+-    {
+-       test: /\.jsx?$/i,
+-       use: [{
+-         loader: 'babel-loader',
+-         options: {
+-           presets: ['@babel/preset-env'],
+-         },
+-       }],
+-     },
+    ],
+  },
+}
+```
+
+### Removing css-loader and style-loader and mini-css-extract-plugin
+
+The native css module type has built-in support for css, css hmr, css module, and css extraction, which means you don't need to configure a separate css-loader and style-loader and mini-css-extract-plugin for css files. extract-plugin.
+
+```diff
+- const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+module.exports = {
+  module: {
+    rules: [
+-     {
+-       test: /\.css$/i,
+-       use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader , "css-loader"],
+-     },
++      {
++        test: /\.css$/i,
++        type: 'css', // this is enabled by default for .css, so you don't need to specify it
++      }
+    ],
+  },
+  plugins: []
+};
+```
+
+For the [css-modules](https://github.com/css-modules/css-modules) function, it is enabled by specifying css/module as the module type.
+
+```diff
+
+module.exports = {
+  module: {
+    rules: [
++ {
++   test: /\.module\.css$/i,
++   type: 'css/module', // this is enabled by default for module.css,   so you don't need to specify it
++  }
+    ]
+  }
+}
+```
+
+### Using Asset Modules instead of file-loader and url-loader
+
+Rspack is aligned with webpack 5's Asset Modules, which means you can use Asset Modules instead of file-loader and url-loader.
+
+```diff
+module.exports = {
+  module: {
+    rules: [
++ {
++   test: /\. (png|jpe?g|gif)$/i,
++   type: 'asset/resource',
++ },
+- {
+-   test: /\. (png|jpe?g|gif)$/i,
+-   use: [{
+-        loader: 'file-loader',
+-   }]
+- }
+    ]
+  },
+}
+```
+
+### Using builtins.html instead of html-webpack-plugin
+
+Rspack has built-in support for html, which means you can use builtins.html instead of html-webpack-plugin.
+
+```diff
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+module.exports = {
+  builtins: [
++ html: [
++   {
++    template: 'index.html',
++    filename: 'index.html',
++   }
++ ]
+  ],
+- plugins: [
+-    new HtmlWebpackPlugin({
+-     template: 'index.html',
+-     filename: 'index.html',
+-    }),
+- ]
+}
+```

@@ -1,3 +1,236 @@
 # Getting Started
 
-TODO
+## Installation Guide
+
+First we create a directory, initialize npm, and then install @rspack/cli locally by doing the following:
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+$ mkdir rspack-demo
+$ cd rspack-demo
+$ npm init -y
+$ npm install -D @rspack/cli
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ mkdir rspack-demo
+$ cd rspack-demo
+$ npm init -y
+$ yarn add -D @rspack/cli
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ mkdir rspack-demo
+$ cd rspack-demo
+$ npm init -y
+$ pnpm install -D @rspack/cli
+```
+
+  </Tab>
+</Tabs>
+
+## Create First Bundle
+
+### Create project
+
+First create an entry file `src/index.js` and a `src/answer.js`
+
+```js title="src/index.js"
+import { answer } from './answer';
+function render() {
+  document.getElementById(
+    'root'
+  ).innerHTML = `the answer to the universe is ${answer}`;
+}
+render();
+```
+
+```js title="src/answer.js"
+export const answer = 42;
+```
+
+### Use Configuration file
+
+Rspack configures the bundle behavior by default via `rspack.config.js`. We can create a `rspack.config.js` file in the project root directory and configure the bundle behavior in it, as follows:
+
+```js title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: './src/index.js',
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+```
+
+We can perform the build with `npx rspack build`, and you can also customize the config file name with `npx rspack build -c <your-config-file>`. The output of the build is as follows.
+
+```sh
+$ npx rspack build
+  Asset      Size  Chunks             Chunk Names
+main.js  11.8 KiB    main  [emitted]  main
+Entrypoint main = main.js
+[151] ./src/index.js 155 bytes {main}
+[33] ./src/answer.js 25 bytes {main}
+build: 21.388ms
+```
+
+At this point we have generated `main.js` and `main.js.map` files in the `dist` directory, and we create the following `dist/index.html` in `dist` to verify that the generated product is working properly.
+
+```html title="dist/index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>hello rspack</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="./main.js"></script>
+  </body>
+</html>
+```
+
+Opening `dist/index.html` in the browser, we see that `the answer to the universe is 42` is rendered normally in the browser
+
+### Add third party library
+
+Rspack can package not only local dependencies, but also third party dependencies, so let's refactor our application with React, first adding `react` as a dependency
+
+```sh
+$ npm install --save react@18 react-dom@18
+```
+
+Rename `src/index.js` to `src/index.jsx` and refactor the code with `React`
+
+```jsx title="src/index.jsx"
+import { answer } from './answer';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+const App = () => {
+  return <div>the answer to the universe is {answer}</div>;
+};
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+```
+
+Rspack has built-in support for React, you don't need any configuration, but don't forget to change the entry in `rspack.config.js` to `src/index.jsx`.
+
+- rspack.config.js
+
+```js
+module.exports = {
+  entry: {
+    main: './src/index.jsx',
+  },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+};
+```
+
+### Add html support
+
+rspack has built-in support for html, so you don't need to manually configure the path of the js bundle in html, you can use the html function in the following way
+
+```js title="rspack.config.js"
+module.exports = {
+  entry: {
+    main: './src/index.jsx',
+  },
+  builtins: [
+    {
+      template: './src/index.html',
+    },
+  ],
+};
+```
+
+```html title="src/index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>hello rspack</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+At this point we execute `npx rspack build` and we find that `dist/index.html` automatically has the path of the js bundle in it.
+
+```html title="dist/index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/main.js" defer></script>
+  </body>
+</html>
+```
+
+### Experience HMR
+
+Rspack has built-in support for HMR, and for React it has built-in support for fast-refresh, so you don't need to configure it, you can experience HMR for react with `npx rspack serve`.
+We modify the `src/answer.js`
+
+```js title="src/answer.js"
+export const answer = 'rspack';
+```
+
+We find that the browser automatically updates to `the answer to the universe is rspack`
+
+## Creating project using scaffolding
+
+Rspack provides scaffolding to quickly create projects.
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+$ npm create rspack@latest
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ yarn create rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ pnpm create rspack@latest
+```
+
+  </Tab>
+</Tabs>
+
+Then just follow the prompts.
