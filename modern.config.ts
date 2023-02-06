@@ -58,6 +58,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         link: getLink('/guide/features'),
       },
       {
+        text: getText('资源模块', 'Asset Module'),
+        link: getLink('/guide/asset-module'),
+      },
+      {
         text: getText('术语表', 'Glossary'),
         link: getLink('/guide/glossary'),
       },

@@ -1,1 +1,156 @@
 # Features
+
+## TypeScript
+
+TypeScript is a first-class citizen of Rspack, and Rspack has the ability to handle TypeScript natively.
+
+By default, we treat files ending in `*.ts` as TypeScript module types, and Rspack will use SWC to transpile TypeScript to JavaScript without additional configuration.
+
+If you plan to migrate from Webpack, you can remove the babel-loader or ts-loader from your configuration to use Rspack's built-in TypeScript transpilation for better performance, as described in the [migration guide](/guide/migrate-from-webpack#removing-babel-loader).
+
+### Transpile-only
+
+Rspack will only transpile the source code, not type-check it, so you need to use other tools (e.g. tsc) to do type checking.
+
+### isolatedModules
+
+Rspack will transpile each module separately, so this implicitly means that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) is turned on by default.
+Some functions, such as const enum, are dependent on parsing the entire project, so they will not be available with isolated module transpilation. You can turn this option on in `tsconfig.json ` to make Rspack's module handling behavior consistent with that in IDE hints or type checking:
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "isolatedModules": true
+  }
+}
+```
+
+## JSX/TSX
+
+JSX/TSX is a first-class citizen of Rspack.
+
+By default, we treat files ending in `*.jsx` and `*.tsx` as JSX/TSX module types.
+
+{
+// TODO: link to builtin
+}
+If you are using another non-React Library, you can configure the JSX transpilation with the [builtins.react]() option. For example, Preact:
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    react: {
+      pragma: 'h',
+      pragmaFrag: 'Fragment',
+    },
+  },
+};
+```
+
+## Static resource handling
+
+Rspack supports handling of static resources, including images, fonts, videos, etc.
+
+You need to complete the relevant configuration in `rspack.config.js`.
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.png$/,
+        type: 'asset',
+      },
+    ],
+  },
+};
+```
+
+The above options will treat all `*.png` files as asset modules, for more information on handling them see [Asset Module](/guide/asset-module).
+
+## CSS
+
+CSS is a first-class citizen of Rspack. Rspack has the ability to handle CSS out-of-the-box, and you don't need additional configuration to use it.
+
+By default, we treat files ending in `*.css` as CSS module types and files ending in `*.module.css` as CSS Modules module types.
+
+If you plan to migrate from Webpack, then you can remove the css-loader or style-loader from your configuration to use Rspack's built-in CSS processing capabilities, as described in [migration guide](/guide/migrate-from-webpack#removing-css-loader-and-style-loader-and-mini-css-extract-plugin).
+
+### PostCSS
+
+Rspack Loader interface is compatible with the postcss-loader's, which you can configure like this.
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loaders: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                // ...
+              },
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+The above configuration will have all `*.css` files processed by the postcss-loader and the resulting results will be passed to Rspack for CSS post-processing.
+
+### CSS Modules
+
+A CSS Modules file can be referenced in Rspack, e.g.
+
+```ts title="index.module.css"
+.red {
+  color: red;
+}
+```
+
+This module will be converted to a JavaScript object, which you can reference in JavaScript:
+
+```ts title="index.js"
+import { red } from '. /index.module.css';
+document.getElementById('element').className = red;
+```
+
+{
+// TODO: link to builtin
+}
+
+For more information on configuring CSS Modules, see [builtins.css.modules]().
+
+## JSON
+
+JSON is a first-class citizen of Rspack and you can import it directly, e.g.
+
+```json title="example.json"
+{
+  "foo": "bar"
+}
+```
+
+```ts title="index.js"
+import json from '. /example.json';
+json.foo; // bar
+```
+
+## Node Polyfill
+
+Rspack does not automatically introduce polyfill for Node, if you need to use the corresponding functionality, you can choose to use the `@rspack/plugin-node-polyfill` plugin and add the corresponding configuration in `rspack.config.js`:
+
+```ts title="rspack.config.js"
+const NodePolyfill = require('@rspack/plugin-node-polyfill');
+
+module.exports = {
+  plugins: [new NodePolyfill()],
+};
+```

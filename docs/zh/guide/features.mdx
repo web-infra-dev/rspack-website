@@ -1,1 +1,156 @@
 # 功能
+
+## TypeScript
+
+TypeScript 是 Rspack 的一等公民，Rspack 内置了对 TypeScript 的处理能力。
+
+我们默认会将 `*.ts` 结尾的文件视为 TypeScript 模块类型。Rspack 将会使用 SWC 完成 TypeScript 到 JavaScript 的转译，无需额外的配置。
+
+如果你打算从 Webpack 进行迁移，那么你可以去除配置中的 babel-loader 或 ts-loader 以使用 Rspack 内置的 TypeScript 转译功能以达到更优的性能，详情可以参考[迁移指南](/guide/migrate-from-webpack#去除-babel-loader)。
+
+### 仅转译(transpile-only)
+
+Rspack 仅会对源码进行转译，不会对源码进行类型检查，因此你需要使用其他工具（如：tsc）完成
+
+### isolatedModules
+
+Rspack 会为每一个模块分开转译，因此，这隐式地开启了 [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules)。
+而某一些功能，如 const enum 则是依赖了对整个项目的分析，因此，这些功能将无法使用。你可以显示地在 `tsconfig.json` 中开启这个选项，以使得 Rspack 的模块处理行为与 IDE 提示或类型检查中保持一致。
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    "isolatedModules": true
+  }
+}
+```
+
+## JSX/TSX
+
+JSX/TSX 是 Rspack 的一等公民，Rspack 内置了对 JSX/TSX 的处理能力。
+
+我们默认会将 `*.jsx` 和 `*.tsx` 结尾的文件视为 JSX/TSX 模块类型。
+
+{
+// TODO: link to builtin
+}
+如果你使用了其他非 React 的 Library，可以通过 builtins.react 选项对 JSX 的转译进行配置。例如 Preact：
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    react: {
+      pragma: 'h',
+      pragmaFrag: 'Fragment',
+    },
+  },
+};
+```
+
+## 静态资源处理
+
+Rspack 支持对静态资源的处理，包括图片、字体、视频等。
+
+你需要在 `rspack.config.js` 中完成相关配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.png$/,
+        type: 'asset',
+      },
+    ],
+  },
+};
+```
+
+上述选项会将所有的 `*.png` 文件视为资源模块，更多关于资源文件的处理可以参考[资源模块](/guide/asset-module)。
+
+## CSS
+
+CSS 是 Rspack 的一等公民，Rspack 内置了对 CSS 的处理能力，你无需额外的配置即可使用。
+
+我们默认会将 `*.css` 结尾的文件视为 CSS 模块类型，将 `*.module.css` 结尾的文件视为 CSS Modules 模块类型。
+
+如果你打算从 Webpack 进行迁移，那么你可以去除配置中的 css-loader 或 style-loader 以使用 Rspack 内置的 CSS 处理能力，详情可以参考[迁移指南](/guide/migrate-from-webpack#去除-css-loader-和-style-loader-和-mini-css-extract-plugin)。
+
+### PostCSS
+
+Rspack 已经完成了对 postcss-loader 的兼容，你可以这样配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        loaders: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                // ...
+              },
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+上述配置会将所有 `*.css` 文件被 postcss-loader 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
+
+### CSS Modules
+
+Rspack 中可以引用一个 CSS Modules 文件，如：
+
+```ts title="index.module.css"
+.red {
+  color: red;
+}
+```
+
+这个模块将会被转换为一个 JavaScript 对象，你可以在 JavaScript 中引用它：
+
+```ts title="index.js"
+import { red } from './index.module.css';
+document.getElementById('element').className = red;
+```
+
+{
+// TODO: link to builtin
+}
+
+更多关于 CSS Modules 的配置可以参考 [builtins.css.modules]()。
+
+## JSON
+
+JSON 是 Rspack 的一等公民，你可以直接导入，例如：
+
+```json title="example.json"
+{
+  "foo": "bar"
+}
+```
+
+```ts title="index.js"
+import json from './example.json';
+json.foo; // bar
+```
+
+## Node Polyfill
+
+Rspack 不会自动引入 Node Polyfill，如果你需要使用相应功能，你可以选择使用 `@rspack/plugin-node-polyfill` 插件，并在 `rspack.config.js` 完成配置：
+
+```ts title="rspack.config.js"
+const NodePolyfill = require('@rspack/plugin-node-polyfill');
+
+module.exports = {
+  plugins: [new NodePolyfill()],
+};
+```
