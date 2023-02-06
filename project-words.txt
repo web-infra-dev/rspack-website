@@ -10,4 +10,6 @@ svgr
 Terser
 TypeScript
 Webpack
+NAPI
+NAPI-RS
 ruleparserdataurlcondition
