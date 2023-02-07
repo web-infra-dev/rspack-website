@@ -12,4 +12,5 @@ TypeScript
 Webpack
 NAPI
 NAPI-RS
+statoscope
 ruleparserdataurlcondition
