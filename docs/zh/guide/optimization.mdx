@@ -1,0 +1,18 @@
+# 生产优化
+
+## 包分析
+
+Rspack cli 支持使用`--analyze` 选项进行包分析。它在内部使用[webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) 实现包分析功能。
+
+```sh
+$ rspack build --analyze
+```
+
+你也可以生成 stats.json 文件，用其他包析工具进一步分析，如[bundle-stats](https://github.com/relative-ci/bundle-stats)或[statoscope](https://statoscope.tech/)
+
+``sh
+$ rspack build --json stats.json
+
+```
+
+```

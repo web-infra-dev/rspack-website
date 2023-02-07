@@ -62,6 +62,10 @@ function getSidebarConfig(lang: 'zh' | 'en') {
         link: getLink('/guide/asset-module'),
       },
       {
+        text: getText('生产环境优化', 'Production Optimization'),
+        link: getLink('guide/optimization'),
+      },
+      {
         text: getText('术语表', 'Glossary'),
         link: getLink('/guide/glossary'),
       },
