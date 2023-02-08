@@ -129,6 +129,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Optimization 优化', 'Optimization'),
         link: getLink('/config/optimization'),
       },
+      {
+        text: getText('Devtool 调试', 'Devtool'),
+        link: getLink('/config/devtool'),
+      },
     ],
   };
 }
