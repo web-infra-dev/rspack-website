@@ -14,7 +14,7 @@ hero:
       link: /zh/guide/introduction
     - theme: alt
       text: 快速开始
-      link: /zh/guide/getting-started
+      link: /zh/guide/quick-start
 
 features:
   - title: 'Fast'

@@ -1,5 +1,5 @@
 import path from 'path';
-import DocTools, { defineConfig } from '@modern-js/doc-tools';
+import DocTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -11,7 +11,7 @@ function getI18nHelper(lang: 'zh' | 'en') {
   return { getText, getLink };
 }
 
-function getNavConfig(lang: 'zh' | 'en') {
+function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
   const { getText, getLink } = getI18nHelper(lang);
   return [
     {
@@ -40,40 +40,50 @@ function getNavConfig(lang: 'zh' | 'en') {
   ];
 }
 
-function getSidebarConfig(lang: 'zh' | 'en') {
+function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
   const { getText, getLink } = getI18nHelper(lang);
 
   return {
     [getLink('/guide/')]: [
       {
-        text: getText('介绍', 'Introduction'),
-        link: getLink('/guide/introduction'),
+        collapsible: false,
+        text: getText('开始', 'Getting Started'),
+        items: [
+          getLink('/guide/introduction'),
+          getLink('/guide/quick-start'),
+          getLink('/guide/glossary'),
+        ],
       },
       {
-        text: getText('快速上手', 'Quick Start'),
-        link: getLink('/guide/getting-started'),
+        collapsible: false,
+        text: getText('特性', 'Features'),
+        items: [
+          getLink('/guide/language-support'),
+          getLink('/guide/asset-module'),
+          getLink('/guide/dev-server'),
+          getLink('/guide/tailwindcss'),
+        ],
       },
       {
-        text: getText('语言支持', 'Language Support'),
-        link: getLink('/guide/language-support'),
+        collapsible: false,
+        text: getText('优化', 'Optimization'),
+        items: [
+          getLink('/guide/optimization'),
+          getLink('/guide/code-splitting'),
+        ],
       },
       {
-        text: getText('资源模块', 'Asset Module'),
-        link: getLink('/guide/asset-module'),
+        collapsible: false,
+        text: getText('框架支持', 'Framework Support'),
+        items: [getLink('/guide/react'), getLink('/guide/solid')],
       },
       {
-        text: getText('生产环境优化', 'Production Optimization'),
-        link: getLink('guide/optimization'),
-      },
-      {
-        text: getText('术语表', 'Glossary'),
-        link: getLink('/guide/glossary'),
-      },
-      {
-        text: getText('从 Webpack 迁移', 'Migrate From Webpack'),
-        link: getLink('/guide/migrate-from-webpack'),
+        collapsible: false,
+        text: getText('迁移', 'Migration'),
+        items: [getLink('/guide/migrate-from-webpack')],
       },
     ],
+
     [getLink('/config/')]: [
       {
         text: getText('配置', 'Config'),
