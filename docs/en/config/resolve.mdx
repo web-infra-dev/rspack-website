@@ -1,0 +1,95 @@
+# Resolve
+
+Used to configure the Rspack module resolution logic.
+
+- **Type:** `Object`
+
+## resolve.alias
+
+- **Type:** `Record<string, false | string>`
+- **Default value:** `{}`
+
+Path alias, e.g.
+
+```
+{
+  "@": path.resolve(__dirname, '. /src')
+}
+```
+
+At this point, `require("@/a")` will attempt to resolve `<root>/src/a`.
+
+## resolve.aliasField
+
+- **Type:** `boolean`
+- **Default value:** `true`
+
+Whether to resolve according to the [package-browser-filed-spec](https://github.com/defunctzombie/package-browser-field-spec) rule.
+
+## resolve.conditionNames
+
+- **Type:** `string[]`
+- ** Default value:** `[]`
+
+Same as node's [conditionNames](https://nodejs.org/api/packages.html#conditional-exports) for the `exports` and `imports` fields in package.json.
+
+## resolve.extensions
+
+- **Type:** `string[]`
+- **default:** `[".tsx", ".jsx", ".ts", ".js", ".json", ".d.ts"]`
+
+Parse modules in order, e.g. `require('. /index')`, will try to parse `'. /index.tsx'`, `'. /index.jsx'`...
+
+## resolve.fallback
+
+- **Type:** `Record<string, false | string>`
+- ** Default value:** `{}`
+
+Redirect in case of failed parsing.
+
+## resolve.mainFields
+
+- **Type:** `string[]`
+- **Default:**
+  - `target` is `["browser", "module", "main"]` when it is web
+  - `["module", "main"]` for others
+
+Try to parse the fields in package.json, e.g.
+
+```json
+// package.json
+{
+  "name": "lib",
+  "module": "es/index.js"
+}
+```
+
+then `import value from 'lib'` results in `lib/es/index.js`.
+
+## resolve.mainFiles
+
+- **Type:** `string[]`
+- **default:** `["index"]`
+
+The filename suffix when resolving directories, e.g. `require('. /dir/')` will try to resolve `'. /dir/index'`.
+
+## resolve.modules
+
+- **Type:** `string[]`
+- **Default:** `["node_modules"]`
+
+The name of the directory to use when resolving dependencies.
+
+## resolve.preferRelative
+
+- **Type:** `boolean`
+- ** Default value:** `false`
+
+When enabled, `require('file')` will first look for the `. /file` file in the current directory, not `<modules>/file`.
+
+## resolve.tsConfigPath
+
+- **Type:** `string | undefined`
+- **Default value:** `undefined`
+
+Use `paths` and `baseUrl` of tsconfigPath, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).

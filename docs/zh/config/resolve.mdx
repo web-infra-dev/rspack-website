@@ -1,0 +1,95 @@
+# Resolve 模块解析
+
+用于配置 Rspack 模块解析逻辑。
+
+- **类型：** `Object`
+
+## resolve.alias
+
+- **类型：** `Record<string, false | string>`
+- **默认值：** `{}`
+
+路径别名，例如：
+
+```
+{
+  "@": path.resolve(__dirname, './src')
+}
+```
+
+此时，`require("@/a")` 会尝试解析 `<root>/src/a`.
+
+## resolve.aliasField
+
+- **类型：** `boolean`
+- **默认值：** `true`
+
+是否按照 [package-browser-filed-spec](https://github.com/defunctzombie/package-browser-field-spec) 规则解析。
+
+## resolve.conditionNames
+
+- **类型：** `string[]`
+- **默认值：** `[]`
+
+与 node 的 [conditionNames](https://nodejs.org/api/packages.html#conditional-exports) 相同，用于 package.json 中的 `exports` 和 `imports` 字段。
+
+## resolve.extensions
+
+- **类型：** `string[]`
+- **默认值：** `[".tsx", ".jsx", ".ts", ".js", ".json", ".d.ts"]`
+
+按照顺序解析模块，例如 `require('./index')`, 会依次尝试解析 `'./index.tsx'`, `'./index.jsx'`...
+
+## resolve.fallback
+
+- **类型：** `Record<string, false | string>`
+- **默认值：** `{}`
+
+解析失败时的重定向。
+
+## resolve.mainFields
+
+- **类型：** `string[]`
+- **默认值：**
+  - `target` 为 web 时为 `["browser", "module", "main"]`
+  - 其他则为 `["module", "main"]'`
+
+尝试解析 package.json 中的字段，例如：
+
+```json
+// package.json
+{
+  "name": "lib",
+  "module": "es/index.js"
+}
+```
+
+则 `import value from 'lib'` 的结果为 `lib/es/index.js`.
+
+## resolve.mainFiles
+
+- **类型：** `string[]`
+- **默认值：** `["index"]`
+
+解析目录时的文件名后缀，例如 `require('./dir/')` 会尝试解析 `'./dir/index'`.
+
+## resolve.modules
+
+- **类型：** `string[]`
+- **默认值：** `["node_modules"]`
+
+解析依赖时的目录名。
+
+## resolve.preferRelative
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+当开启时，`require('file')` 会首先寻找当前目录下的 `./file` 文件，而不是 `<modules>/file`.
+
+## resolve.tsConfigPath
+
+- **类型：** `string | undefined`
+- **默认值：** `undefined`
+
+使用 tsconfigPath 的 `paths` 和 `baseUrl`, 功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
