@@ -50,7 +50,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('开始', 'Getting Started'),
         items: [
           getLink('/guide/introduction'),
-          getLink('/guide/getting-started'),
+          getLink('/guide/quick-start'),
           getLink('/guide/glossary'),
         ],
       },
