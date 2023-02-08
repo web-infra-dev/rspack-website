@@ -1,1 +1,73 @@
 # Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.
+
+This chapter will show you how to use Tailwind CSS in Rspack.
+
+## Installation
+
+Installing Tailwind CSS as a PostCSS plugin is the most seamless way to integrate it with Rspack.
+
+Please install [tailwindcss](https://tailwindcss.com/), [postcss](https://postcss.org/) and [postcss-loader](https://www.npmjs.com/package/) in your project.
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+$ npm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ yarn add -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+$ pnpm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+</Tabs>
+
+## Configuration
+
+Once installed, you need to configure `postcss-loader` in `rspack.config.js` to handle CSS files, and then add `tailwindcss` to `postcssOptions.plugins`.
+
+Here is an example configuration for handling `.css` files, if you need to handle `.scss` or `.less` files, you can refer to this example for modifications.
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: {
+                  tailwindcss: {},
+                },
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+At this point, you have completed the build configuration required to use Tailwind CSS in Rspack.
+
+Next you can follow the steps in the [Tailwind CSS Documentation](https://tailwindcss.com/docs/installation/using-postcss) to add the required configuration and code for Tailwind CSS and start using it.
