@@ -117,6 +117,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Resolve 模块解析', 'Resolve'),
         link: getLink('/config/resolve'),
       },
+      {
+        text: getText('Externals 外部依赖', 'Externals'),
+        link: getLink('/config/externals'),
+      },
     ],
   };
 }
