@@ -113,6 +113,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Target 目标环境与兼容性', 'Target'),
         link: getLink('/config/target'),
       },
+      {
+        text: getText('Resolve 模块解析', 'Resolve'),
+        link: getLink('/config/resolve'),
+      },
     ],
   };
 }
