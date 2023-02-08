@@ -14,3 +14,5 @@ NAPI
 NAPI-RS
 statoscope
 ruleparserdataurlcondition
+tailwind
+tailwindcss
