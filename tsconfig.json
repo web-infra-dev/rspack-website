@@ -1,7 +1,13 @@
 {
   "extends": "@modern-js/tsconfig/base",
   "compilerOptions": {
-    "jsx": "preserve"
+    "jsx": "react-jsx"
   },
-  "include": ["./modern.config.ts"]
+  "include": [
+    "./modern.config.ts",
+    "./docs/**/*.tsx",
+    "./docs/**/*.ts",
+    "./components/**/*.ts",
+    "./components/**/*.tsx",
+  ]
 }
