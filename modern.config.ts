@@ -121,6 +121,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Snapshot 缓存快照', 'Snapshot'),
         link: getLink('/config/snapshot'),
       },
+      {
+        text: getText('Optimization 优化', 'Optimization'),
+        link: getLink('/config/optimization'),
+      },
     ],
   };
 }
