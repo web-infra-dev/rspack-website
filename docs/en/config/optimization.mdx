@@ -1,0 +1,27 @@
+import PropertyType from '../../../components/property-type.tsx';
+
+# Optimization
+
+Rspack will select appropriate optimization configuration based on the [`mode`](/config/mode). You can also customize the configuration via [`optimization`](/config/optimization).
+
+## optimization.removeAvailableModules
+
+<PropertyType type="bool" defaultValue="true" />
+
+A module can be removed from a Chunk if the module have been included in all of its parent Chunks.
+
+```
+EntryChunk(index.js, a.js, b.js)
+                                  \
+                                  ChunkFoo(b.js, c.js)
+                                  /
+EntryChunk2(index.js, a.js, b.js)
+```
+
+In the above example, `b.js` has already been included in `EntryChunk` and `EntryChunk2`, so `b.js` can be removed from `ChunkFoo`.
+
+:::info Inconsistent behaviors with Webpack
+
+- [Webpack](https://webpack.js.org/configuration/optimization/#optimizationremoveavailablemodules) only enable this optimization in `production` mode。
+
+:::
