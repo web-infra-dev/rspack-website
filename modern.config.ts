@@ -117,6 +117,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Resolve 模块解析', 'Resolve'),
         link: getLink('/config/resolve'),
       },
+      {
+        text: getText('Snapshot 缓存快照', 'Snapshot'),
+        link: getLink('/config/snapshot'),
+      },
     ],
   };
 }
