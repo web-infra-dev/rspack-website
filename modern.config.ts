@@ -118,6 +118,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/resolve'),
       },
       {
+        text: getText('Externals 外部依赖', 'Externals'),
+        link: getLink('/config/externals'),
+      },
+      {
         text: getText('Snapshot 缓存快照', 'Snapshot'),
         link: getLink('/config/snapshot'),
       },

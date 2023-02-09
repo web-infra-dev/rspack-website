@@ -1,0 +1,50 @@
+# Externals 外部依赖
+
+用于指示 Rspack 使用外部依赖在运行时进行加载，从而避免将这些库打包到产物中。
+
+- **类型：** `Record<string, string>`
+- **默认值：** `{}`
+
+## 示例
+
+### Target 为 web 时
+
+当 [target](/config/target) 配置为 `web` 时，默认使用 window 进行加载：
+
+```ts title="rspack.config.js"
+module.exports = {
+  externals: {
+    react: 'react',
+    'react-dom': 'reactDom',
+  },
+};
+```
+
+你可以在项目中直接使用 `react` 和 `react-dom`：
+
+```ts
+import React from 'react';
+import ReactDom from 'react-dom';
+```
+
+上述的 react 与 react-dom 不会被打入最终的包中，并会在运行时分别使用 `window.react` 与 `window.reactDom` 进行加载。
+
+### Target 为 node 时
+
+当 [target](/config/target) 配置为 `node` 时，默认使用 commonjs 加载逻辑进行加载：
+
+```ts title="rspack.config.js"
+module.exports = {
+  externals: {
+    'fs-extra': 'fs-extra',
+  },
+};
+```
+
+你可以在项目中直接使用 `fs-extra`：
+
+```ts
+import fs from 'fs-extra';
+```
+
+上述的 fs-extra 不会被打入最终的包中，并会在运行时使用 `require("fs-extra")` 进行加载。

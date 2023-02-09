@@ -1,0 +1,50 @@
+# Externals
+
+Used to instruct Rspack to use external dependencies and load them at runtime, thus avoiding the need to bundle these libraries into the final bundle.
+
+- **Type:** `Record<string, string>`
+- **Default:** `{}`
+
+## Example
+
+### Target set to web
+
+When [target](/config/target) is configured as `web`, the default is to use window for loading:
+
+```ts title="rspack.config.js"
+module.exports = {
+  externals: {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+  },
+};
+```
+
+You can use `react` and `react-dom` directly in your project:
+
+```ts
+import React from 'react';
+import ReactDom from 'react-dom';
+```
+
+The above react and react-dom will not be included in the final bundle and will be loaded at runtime using `window.React` and `window.ReactDOM`.
+
+### Target set to node
+
+When [target](/config/target) is configured as `node`, the CommonJS loading mechanism is used by default to load:
+
+```ts title="rspack.config.js"
+module.exports = {
+  externals: {
+    'fs-extra': 'fs-extra',
+  },
+};
+```
+
+You can use `fs-extra` directly in your project.
+
+```ts
+import fs from 'fs-extra';
+```
+
+The above fs-extra will not be included in the final bundle and will be loaded at runtime using ``require("fs-extra")`.
