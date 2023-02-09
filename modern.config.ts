@@ -114,6 +114,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/target'),
       },
       {
+        text: getText('Builtins 内置功能', 'Builtins'),
+        link: getLink('/config/builtins'),
+      },
+      {
         text: getText('Resolve 模块解析', 'Resolve'),
         link: getLink('/config/resolve'),
       },
