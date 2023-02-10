@@ -20,8 +20,8 @@ features:
   - title: 'Fast'
     details: 基于 Rust，构建速度极快，带给你极致的开发体验。
     icon: 🚀
-  - title: 'Webpack Compatible'
-    details: 兼容 Webpack 生态，无需从零构建你的生态。
+  - title: 'Webpack Interoperable'
+    details: 与 Webpack 生态有很好的兼容性，无需从零构建你的生态。
     icon: 📦
   - title: 'Batteries Included'
     details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持。
