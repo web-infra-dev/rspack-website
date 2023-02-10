@@ -20,8 +20,8 @@ features:
   - title: 'Fast'
     details: Based on Rust, the build speed is extremely fast, bringing you the ultimate development experience.
     icon: 🚀
-  - title: 'Webpack Compatible'
-    details: Compatible with the Webpack ecosystem, no need to build your ecosystem from scratch.
+  - title: 'Webpack Interoperable'
+    details: Interoperable well with the Webpack ecosystem, no need to build your ecosystem from scratch.
     icon: 📦
   - title: 'Batteries Included'
     details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
