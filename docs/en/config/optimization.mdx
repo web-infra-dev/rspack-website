@@ -25,3 +25,12 @@ In the above example, `b.js` has already been included in `EntryChunk` and `Entr
 - [Webpack](https://webpack.js.org/configuration/optimization/#optimizationremoveavailablemodules) only enable this optimization in `production` mode。
 
 :::
+
+## optimization.moduleIds
+
+<PropertyType type="'named' | 'deterministic'" />
+
+| 选项            | 描述                                                                                                                               |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `named`         | Use meaningful, easy-to-debug content as id. This option is enabled by default in development mode                                 |
+| `deterministic` | Use the hashed module identifier as the id to benefit from long-term caching. This option is enabled by default in production mode |
