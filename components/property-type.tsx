@@ -9,9 +9,11 @@ const PropertyType: FC<{ type: string; defaultValue?: string }> & {
         <li>
           <strong>Type:</strong> <code>{type}</code>
         </li>
-        <li>
-          <strong>Default value:</strong> <code>{defaultValue}</code>
-        </li>
+        {defaultValue && (
+          <li>
+            <strong>Default value:</strong> <code>{defaultValue}</code>
+          </li>
+        )}
       </ul>
     </>
   );
@@ -23,9 +25,11 @@ PropertyType.CN = ({ type, defaultValue }) => {
         <li>
           <strong>类型：</strong> <code>{type}</code>
         </li>
-        <li>
-          <strong>默认值：</strong> <code>{defaultValue}</code>
-        </li>
+        {defaultValue && (
+          <li>
+            <strong>默认值：</strong> <code>{defaultValue}</code>
+          </li>
+        )}
       </ul>
     </>
   );
