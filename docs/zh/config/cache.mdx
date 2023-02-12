@@ -1,0 +1,16 @@
+# Cache 缓存
+
+缓存生成的模块来改善构建速度
+
+- **类型：** `boolean`
+- **默认值：** [production 模式](config/mode#production)为 `false`, [development 模式](config/mode#development)为 `true`
+
+## 用法
+
+你可以在 `rspack.config.js` 中直接设置 cache:
+
+```ts title="rspack.config.js"
+module.exports = {
+  cache: false,
+};
+```

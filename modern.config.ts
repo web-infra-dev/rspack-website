@@ -126,6 +126,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/externals'),
       },
       {
+        text: getText('Cache 缓存', 'Cache'),
+        link: getLink('/config/cache'),
+      },
+      {
         text: getText('Snapshot 缓存快照', 'Snapshot'),
         link: getLink('/config/snapshot'),
       },
