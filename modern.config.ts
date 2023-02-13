@@ -21,12 +21,12 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('配置', 'Config'),
-      link: getLink('/config'),
+      link: getLink('/config/'),
       activeMatch: '/config',
     },
     {
       text: getText('API', 'API'),
-      link: getLink('/api'),
+      link: getLink('/api/'),
       activeMatch: '/api',
     },
     {
@@ -145,8 +145,12 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
     ],
     [getLink('/api/')]: [
       {
-        text: getText('command-line 命令行接口', 'command-line api'),
-        link: getLink('/api/command-line'),
+        text: getText('API 接口', 'API'),
+        link: getLink('/api'),
+      },
+      {
+        text: getText('Command-line 命令行接口', 'Command-line Interface'),
+        link: getLink('/api/cli'),
       },
     ],
   };
