@@ -164,12 +164,9 @@ module.exports = {
 用于标记匹配的模块的类型，这会影响 Rspack 内置对于该模块的处理方式。例如：当模块被标记为 `'typescript'` 则会使用 TS parser/generator 对模块进行处理。
 
 - `'javascript/auto'`: JavaScript 模块，支持的模块系统：CommonJS、ESM，暂没有对 AMD 模块支持的计划。
-- `'typescript'`: TypeScript 模块
-- `'json'`: JSON data 模块
-- `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`: 参考 Asset Module
-  {
-  //TODO: Add Link to asset module
-  }
+- `'typescript'`: TypeScript 模块。
+- `'json'`: JSON data 模块。
+- `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`: 参考[资源模块](/guide/asset-module)。
 
 ## Rule.use
 
