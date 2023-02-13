@@ -21,8 +21,13 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('配置', 'Config'),
-      link: getLink('/config'),
+      link: getLink('/config/'),
       activeMatch: '/config',
+    },
+    {
+      text: getText('API', 'API'),
+      link: getLink('/api/'),
+      activeMatch: '/api',
     },
     {
       text: getText('生态', 'Ecosystem'),
@@ -140,6 +145,16 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       {
         text: getText('Devtool 调试', 'Devtool'),
         link: getLink('/config/devtool'),
+      },
+    ],
+    [getLink('/api/')]: [
+      {
+        text: getText('API 接口', 'API'),
+        link: getLink('/api'),
+      },
+      {
+        text: getText('Command-line 命令行接口', 'Command-line Interface'),
+        link: getLink('/api/cli'),
       },
     ],
   };
