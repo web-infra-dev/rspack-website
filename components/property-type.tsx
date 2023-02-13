@@ -11,7 +11,7 @@ const PropertyType: FC<{ type: string; defaultValue?: string }> & {
         </li>
         {defaultValue && (
           <li>
-            <strong>Default value:</strong> <code>{defaultValue}</code>
+            <strong>Default:</strong> <code>{defaultValue}</code>
           </li>
         )}
       </ul>
