@@ -34,3 +34,43 @@ In the above example, `b.js` has already been included in `EntryChunk` and `Entr
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `named`         | Use meaningful, easy-to-debug content as id. This option is enabled by default in development mode                                 |
 | `deterministic` | Use the hashed module identifier as the id to benefit from long-term caching. This option is enabled by default in production mode |
+
+## optimization.minimize
+
+<PropertyType type="boolean" />
+
+- **Default:** `true` (development mode)
+- **Default:** `false` (production mode)
+
+Whether to minimize the bundle.
+
+## optimization.minimizer
+
+customize the minimizer.
+
+```js
+const minifyPlugin = require("@rspack/plugin-minify");
+module.exports = {
+	context: __dirname,
+	target: "node",
+	entry: {
+		main: "./index.js"
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [new minifyPlugin(
+          minifier: "terser"
+        )]
+	}
+};
+```
+
+## optimization.removeEmptyChunks
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Remove empty chunks generated in the compilation.
+
+## optimization.runtimeChunk
+
+<PropertyType type="boolean" defaultValue="true" />

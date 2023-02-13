@@ -34,3 +34,39 @@ EntryChunk2(index.js, a.js, b.js)
 | --------------- | ----------------------------------------------------------------------------------------- |
 | `named`         | 使用有意义、方便调试的内容当作模块 id 。此选项会在开发环境下默认开启。                    |
 | `deterministic` | 使用对模块标识符哈希后的数字当作模块 id ， 有益于长期缓存。此选项会在生产环境下默认开启。 |
+
+## optimization.minimize
+
+<PropertyType.CN type="boolean" />
+
+- **默认值：** `true` (生产模式)
+- **默认值：** `false` (开发模式)
+
+是否对产物进行压缩。
+
+## optimization.minimizer
+
+自定义压缩器。
+
+```js
+const minifyPlugin = require("@rspack/plugin-minify");
+module.exports = {
+	context: __dirname,
+	target: "node",
+	entry: {
+		main: "./index.js"
+	},
+	optimization: {
+		minimize: true,
+		minimizer: [new minifyPlugin(
+          minifier: "terser"
+        )]
+	}
+};
+```
+
+## optimization.removeEmptyChunks
+
+<PropertyType.CN type="boolean" defaultValue="true" />
+
+移除打包过程中产生的空 Chunk。
