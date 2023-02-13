@@ -14,9 +14,9 @@
 - **`'asset/inline'`**: 将资源转换为 DataURI，使用 Base64 编码，暂不支持编码配置。
 - **`'asset/resource'`**: 将资源转换为单独的文件，并且导出产物地址。
 - **`'asset'`**:
-  - 根据配置自动选择 `'asset/inline'` 或 `'asset/resource'`，取决于资源的体积
+  - 根据条件（如：资源的体积）自动选择 `'asset/inline'` 或 `'asset/resource'`。
   - 默认如果资源体积小于等于 8096 bytes，则使用 `'asset/inline'` 策略，否则使用 `'asset/resource'` 策略。
-- **`'asset/source'`**: 将资源文件专为字符串导出。
+- **`'asset/source'`**: 将资源文件转为字符串导出。
 
 ## 示例
 
