@@ -64,7 +64,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('特性', 'Features'),
         items: [
           getLink('/guide/language-support'),
-          getLink('/guide/asset-module'),
+          {
+            link: getLink('/guide/asset-module'),
+            text: getText('资源模块', 'Asset Module'),
+          },
           getLink('/guide/dev-server'),
           getLink('/guide/tailwindcss'),
         ],
