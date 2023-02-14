@@ -68,6 +68,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             link: getLink('/guide/asset-module'),
             text: getText('资源模块', 'Asset Module'),
           },
+          getLink('/guide/loader'),
           getLink('/guide/dev-server'),
           getLink('/guide/tailwindcss'),
         ],
