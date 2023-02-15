@@ -21,3 +21,4 @@ tailwindcss
 Terser
 TypeScript
 Webpack
+recognise
