@@ -1,1 +1,23 @@
 # React
+
+## Integrate SVGR
+
+[SVGR](https://react-svgr.com/) is an universal tool to transform SVG into React components.
+
+The way you use SVGR in Rspack is exactly the same as in webpack.
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
+    ],
+  },
+};
+```
+
+For detailed usage of SVGR, please refer to [SVGR Documentation - Webpack](https://react-svgr.com/docs/webpack/).
