@@ -1,1 +1,23 @@
 # React
+
+### 集成 SVGR
+
+[SVGR](https://react-svgr.com/) 是一个用于将 SVG 转换为 React 组件的工具，
+
+在 Rspack 中使用 SVGR 的方式与 webpack 中完全一致：
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack'],
+      },
+    ],
+  },
+};
+```
+
+对于 SVGR 的详细用法，请参考 [SVGR 文档 - Webpack](https://react-svgr.com/docs/webpack/)。
