@@ -17,3 +17,5 @@ ruleparserdataurlcondition
 tailwind
 tailwindcss
 nosources
+Desciption
+behaviours
