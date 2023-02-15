@@ -78,7 +78,7 @@ If you plan to migrate from Webpack, then you can remove the css-loader or style
 
 ### PostCSS
 
-Rspack is compatible with postcss-loader, which you can configure like this:
+Rspack is compatible with [postcss-loader](https://github.com/webpack-contrib/postcss-loader), which you can configure like this:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -103,11 +103,11 @@ module.exports = {
 };
 ```
 
-The above configuration will have all `*.css` files processed by the postcss-loader and the resulting results will be passed to Rspack for CSS post-processing.
+The above configuration will have all `*.css` files processed by the [postcss-loader](https://github.com/webpack-contrib/postcss-loader) and the resulting results will be passed to Rspack for CSS post-processing.
 
 ### Less
 
-Rspack is compatible with less-loader, which you can configure like this:
+Rspack is compatible with [less-loader](https://github.com/webpack-contrib/less-loader), which you can configure like this:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -130,11 +130,11 @@ module.exports = {
 };
 ```
 
-The above configuration runs all `*.css` files through the less-loader and passes the generated results to Rspack for CSS post-processing.
+The above configuration runs all `*.css` files through the [less-loader](https://github.com/webpack-contrib/less-loader) and passes the generated results to Rspack for CSS post-processing.
 
 ### Sass
 
-Currently, Rspack supports the Sass-loader in the form of builtin-loaders, which you can configure like this
+Rspack is compatible with [sass-loader](https://github.com/webpack-contrib/sass-loader), which you can configure like this:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -144,7 +144,7 @@ module.exports = {
         test: /\.sass$/,
         use: [
           {
-            builtinLoader: 'sass-loader',
+            loader: 'sass-loader',
             options: {
               // ...
             },
@@ -157,7 +157,7 @@ module.exports = {
 };
 ```
 
-The above configuration runs all `*.sass` files through the sass-loader and passes the resulting results to Rspack for CSS post-processing.
+The above configuration runs all `*.sass` files through the [sass-loader](https://github.com/webpack-contrib/sass-loader) and passes the resulting results to Rspack for CSS post-processing.
 
 ### CSS Modules
 
