@@ -205,7 +205,7 @@ export default defineConfig({
     },
     builderConfig: {
       dev: {
-        startUrl: true,
+        startUrl: false,
       },
     },
   },

@@ -16,7 +16,7 @@
   "nano-staged": {
     "*.{ts,tsx,js,jsx,md,mdx}": [
       "prettier --write",
-      "npx cspell"
+      "npx cspell --cache"
     ]
   },
   "dependencies": {
