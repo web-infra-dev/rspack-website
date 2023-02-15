@@ -71,7 +71,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/loader'),
           {
             link: getLink('/guide/plugin'),
-            text: getText('插件', 'Plugin'),
+            text: getText('Plugin', 'Plugin'),
           },
           getLink('/guide/dev-server'),
           getLink('/guide/tailwindcss'),
@@ -89,6 +89,17 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         collapsible: false,
         text: getText('框架支持', 'Framework Support'),
         items: [getLink('/guide/react'), getLink('/guide/solid')],
+      },
+      {
+        collapsible: false,
+        text: getText('兼容性', 'Compatibility'),
+        items: [
+          getLink('/guide/loader-compat'),
+          {
+            link: getLink('/guide/plugin-compat'),
+            text: getText('Plugin', 'Plugin'),
+          },
+        ],
       },
       {
         collapsible: false,
