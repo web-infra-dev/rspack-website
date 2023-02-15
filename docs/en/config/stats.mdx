@@ -1,0 +1,116 @@
+import PropertyType from '../../../components/property-type.tsx';
+
+# Stats
+
+Generate packaging information that can be used to analyze module dependencies and optimize compilation speed.
+
+:::info Output JSON file of stats
+
+- Using `@rspack/cli`, `rspack build --json stats.json`.
+- Using rspack's nodejs API, `stats.toJson(options)`、`stats.toString(options)`.
+
+:::
+
+<PropertyType type="boolean | string | Object" defaultValue="false" />
+
+## Stats Presets
+
+| Preset              | Desciption                                        |
+| ------------------- | ------------------------------------------------- |
+| `'normal'` (`true`) | Output by default value of stats options          |
+| `'none'` (`false`)  | Output nothing                                    |
+| `'verbose'`         | Output everything                                 |
+| `'errors-only'`     | Output only error-related information             |
+| `'errors-warnings'` | Output only error and warning related information |
+
+## Stats Options
+
+You can specify exactly which packing information to output, all the following fields are optional.
+
+### stats.assets
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to show the asset information.
+
+### stats.chunks
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to show the chunk information.
+
+### stats.modules
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to show the module information.
+
+### stats.entrypoints
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to show the entrypoints information.
+
+### stats.reasons
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats to add information about the reasons of why modules are included.
+
+### stats.hash
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to add information about the hash of the compilation.
+
+### stats.errors
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats whether to display the errors.
+
+### stats.errorsCount
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Add errors count.
+
+### stats.warnings
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Tells stats to add warnings.
+
+### stats.warningsCount
+
+<PropertyType type="boolean" defaultValue="true" />
+
+Add warnings count.
+
+### stats.all
+
+<PropertyType type="boolean" defaultValue="undefined" />
+
+Controlling whether all stats options are output.
+
+### stats.preset
+
+<PropertyType type="boolean" defaultValue="undefined" />
+
+Output according to preset values.
+
+## Extending stats behaviours
+
+If you want to use the preset output behavior but want to output more or less of individual fields, you can customize the output behavior of the fields after specifying preset or all.
+
+For example, only the error and the reason why the module was introduced are output.
+
+```js
+module.exports = {
+  // ...
+  stats: {
+    preset: 'errors-only',
+    reasons: true,
+  },
+};
+```

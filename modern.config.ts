@@ -149,6 +149,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Devtool 调试', 'Devtool'),
         link: getLink('/config/devtool'),
       },
+      {
+        text: getText('Stats 打包信息', 'Stats'),
+        link: getLink('/config/stats'),
+      },
     ],
     [getLink('/api/')]: [
       {
