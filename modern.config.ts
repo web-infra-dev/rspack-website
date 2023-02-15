@@ -69,6 +69,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             text: getText('资源模块', 'Asset Module'),
           },
           getLink('/guide/loader'),
+          {
+            link: getLink('/guide/plugin'),
+            text: getText('插件', 'Plugin'),
+          },
           getLink('/guide/dev-server'),
           getLink('/guide/tailwindcss'),
         ],
@@ -209,7 +213,7 @@ export default defineConfig({
     },
     builderConfig: {
       dev: {
-        startUrl: true,
+        startUrl: false,
       },
     },
   },
