@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Rspack
-  tagline: A Fast Rust-based Web Bundler.
+  tagline: A fast Rust-based web bundler.
   # TODO logo
   # image:
   #   src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
@@ -18,12 +18,12 @@ hero:
 
 features:
   - title: 'Fast'
-    details: Based on Rust, the build speed is extremely fast, bringing you the ultimate development experience.
+    details: Extremely fast build times by leveraging the Rust language for core operations.
     icon: 🚀
-  - title: 'Webpack Interoperable'
-    details: Interoperable well with the Webpack ecosystem, no need to build your ecosystem from scratch.
+  - title: 'Webpack compatible'
+    details: Configuration and plugin contracts designed to interoperate with the Webpack ecosystem.
     icon: 📦
-  - title: 'Batteries Included'
-    details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
+  - title: 'Batteries included'
+    details: Out-of-box support for Typescript, JSX, CSS, CSS Modules, SASS, and more.
     icon: 🎨
 ---

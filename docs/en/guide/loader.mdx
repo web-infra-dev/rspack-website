@@ -1,10 +1,10 @@
 # Loader
 
-Loader can transform file contents. You can use loader to transform non-first-class citizen supported files in Rspack to first-class citizen type to get Rspack support.
+In bundling terminology, a loader is like a plugin but tasked with transforming file contents. You can use loaders to transform arbitrary input files into file types that are natively supported by Rspack.
 
 :::tip
 
-Loader is a pre-processing of resources, while [Rule.type](/config/module#ruletype) is a post-processing of resources, which define the first-class citizen types supported by Rspack.
+A loader performs pre-processing of resources, whereas a configuration [Rule.type](/config/module#ruletype) describes post-processing of resources whose type is natively supported by Rspack.
 
 :::
 
@@ -32,13 +32,13 @@ module.exports = {
 };
 ```
 
-[less-loader](https://github.com/webpack-contrib/less-loader) can transform Less files to Rspack-supported CSS module types, so you can set the type to `'css'` to instruct Rspack to use the CSS handling tradition natively supported for post-processing
+[less-loader](https://github.com/webpack-contrib/less-loader) can transform Less files to Rspack-supported CSS module types, so you can set the type to `'css'` to instruct Rspack to use the CSS handling method that is natively supported for post-processing.
 
-### Using multiple Loaders
+### Combining multiple Loaders
 
 You can chain multiple loaders for a particular [Rule](/config/module#rule) match, with the loaders executed in right-to-left order.
 
-For example, you can use [less-loader](https://github.com/webpack-contrib/less-loader) to do the transformation between Less to CSS types and [postcss-loader](https://github.com/webpack-contrib/postcss-loader) for the transformed source code to perform a secondary transformation and eventually pass it to Rspack's CSS post-processor for further processing.
+For example, you can use [less-loader](https://github.com/webpack-contrib/less-loader) to do the transformation between Less to CSS types and [postcss-loader](https://github.com/webpack-contrib/postcss-loader) for the transformed source code to perform a secondary transformation, which will then get passed to Rspack's CSS post-processor for further processing.
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -88,11 +88,11 @@ module.exports = {
 };
 ```
 
-### Using custom loader
+### Using a custom loader
 
-You can use custom loader in Rspack, below we will write a simple banner loader as an example.
+You can use a custom loader with Rspack. In the example below, we'll use the loader to write a simple banner.
 
-The purpose of the banner loader is to add a banner comment to the header of each module, e.g. add a license message.
+The purpose of this loader is to prepend a banner comment as the header of each module, for example a license notice:
 
 ```js
 /**
@@ -116,9 +116,9 @@ module.exports = function (content) {
 };
 ```
 
-The first input to the Loader is the content of the file, where we can process the content of the file and return the processed content. Once written, we need to export this loader using CommonJS style.
+The first input to this loader is the content of the file, allowing us to process the file content and return the transformed result.  The script file must be imported using CommonJS `require()`.
 
-In the above example, we would add a banner annotation to the headers of all matching files, and if we wanted to match this behavior to all files ending in `js`, we could configure it like this:
+For example, to add a banner to all `*.js` files, the configuration might look like this:
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -126,7 +126,7 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: require.resolve('. /banner-loader.js'),
+        loader: require.resolve('./banner-loader.js'),
       },
     ],
   },

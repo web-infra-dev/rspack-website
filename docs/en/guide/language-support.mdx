@@ -2,20 +2,19 @@
 
 ## TypeScript
 
-TypeScript is a first-class citizen of Rspack, and Rspack has the ability to handle TypeScript natively.
+TypeScript is a first-class citizen with Rspack. TypeScript processing is natively implemented.
 
-By default, we treat files ending in `*.ts` as TypeScript module types, and Rspack will use SWC to transpile TypeScript to JavaScript without additional configuration.
+By default, we treat files ending in `*.ts` as TypeScript module types. Rspack will use [Speedy Web Compiler (SWC)](https://swc.rs/) to transpile TypeScript to JavaScript without additional configuration.
 
-If you plan to migrate from Webpack, you can remove the babel-loader or ts-loader from your configuration to use Rspack's built-in TypeScript transpilation for better performance, as described in the [migration guide](/guide/migrate-from-webpack#removing-babel-loader).
+If you're' migrating from Webpack, you can remove the `babel-loader` or `ts-loader` component from your configuration to use Rspack's built-in TypeScript transpilation for better performance, as described in the [migration guide](/guide/migrate-from-webpack#removing-babel-loader).
 
 ### Transpile-only
 
-Rspack will only transpile the source code, not type-check it, so you need to use other tools (e.g. tsc) to do type checking.
+For maximum speed, Rspack transpiles TypeScript source code without performing any type checking.  An external tool such as `tsc` must be used for type checking.
 
 ### isolatedModules
 
-Rspack will transpile each module separately, so this implicitly means that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) is turned on by default.
-Some functions, such as const enum, are dependent on parsing the entire project, so they will not be available with isolated module transpilation. You can turn this option on in `tsconfig.json ` to make Rspack's module handling behavior consistent with that in IDE hints or type checking:
+To maximize parallelism, Rspack will transpile each module separately.  This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
 
 ```json title="tsconfig.json"
 {
@@ -25,16 +24,14 @@ Some functions, such as const enum, are dependent on parsing the entire project,
 }
 ```
 
-## JSX/TSX
+## JSX and TSX
 
-JSX/TSX is a first-class citizen of Rspack.
-
-By default, we treat files ending in `*.jsx` and `*.tsx` as JSX/TSX module types.
+[JSX and TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) are first-class citizens with Rspack.  By default, files ending in `*.jsx` and `*.tsx` will be handled as JSX/TSX module types.
 
 {
 // TODO: link to builtin
 }
-If you are using another non-React Library, you can configure the JSX transpilation with the [builtins.react]() option. For example, Preact:
+If you are using renderer other than React, you can configure the JSX transpilation with the [builtins.react]() option. For example, if you are using the [Preact](https://preactjs.com/) renderer:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -51,7 +48,7 @@ module.exports = {
 
 Rspack supports handling of static resources, including images, fonts, videos, etc.
 
-You need to complete the relevant configuration in `rspack.config.js`.
+The relevant configuration is specified in `rspack.config.js`.
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -66,15 +63,15 @@ module.exports = {
 };
 ```
 
-The above options will treat all `*.png` files as asset modules, for more information on handling them see [Asset Module](/guide/asset-module).
+The example above will treat all `*.png` files as asset modules.  For more details, see [Asset modules](/guide/asset-module).
 
 ## CSS
 
-CSS is a first-class citizen of Rspack. Rspack has the ability to handle CSS out-of-the-box, and you don't need additional configuration to use it.
+CSS is a first-class citizen with Rspack. Rspack has the ability to handle CSS out-of-box, so additional configuration isn't required.
 
-By default, we treat files ending in `*.css` as CSS module types and files ending in `*.module.css` as CSS Modules module types.
+By default, files ending in `*.css` are treated as CSS module types. Files ending in `*.module.css` are treated as [CSS Modules](https://github.com/css-modules/css-modules) module types.
 
-If you plan to migrate from Webpack, then you can remove the css-loader or style-loader from your configuration to use Rspack's built-in CSS processing capabilities, as described in [migration guide](/guide/migrate-from-webpack#removing-css-loader-and-style-loader-and-mini-css-extract-plugin).
+If you're migrating from Webpack, you can remove the `css-loader` or `style-loader` components from your configuration to use Rspack's built-in CSS processing capabilities, as described in [migration guide](/guide/migrate-from-webpack#removing-css-loader-and-style-loader-and-mini-css-extract-plugin).
 
 ### PostCSS
 
@@ -103,7 +100,7 @@ module.exports = {
 };
 ```
 
-The above configuration will have all `*.css` files processed by the [postcss-loader](https://github.com/webpack-contrib/postcss-loader) and the resulting results will be passed to Rspack for CSS post-processing.
+The above configuration will have all `*.css` files processed by [postcss-loader](https://github.com/webpack-contrib/postcss-loader). The output will be passed to Rspack for CSS post-processing.
 
 ### Less
 
@@ -132,7 +129,7 @@ module.exports = {
 
 The above configuration runs all `*.css` files through the [less-loader](https://github.com/webpack-contrib/less-loader) and passes the generated results to Rspack for CSS post-processing.
 
-### Sass
+### SASS
 
 Rspack is compatible with [sass-loader](https://github.com/webpack-contrib/sass-loader), which you can configure like this:
 
@@ -161,7 +158,7 @@ The above configuration runs all `*.sass` files through the [sass-loader](https:
 
 ### CSS Modules
 
-A CSS Modules file can be referenced in Rspack, e.g.
+A "CSS Modules" file can be referenced in Rspack like this:
 
 ```ts title="index.module.css"
 .red {
@@ -169,7 +166,7 @@ A CSS Modules file can be referenced in Rspack, e.g.
 }
 ```
 
-This module will be converted to a JavaScript object, which you can reference in JavaScript:
+In the example above, the module will be converted to a JavaScript object, which you can reference in JavaScript:
 
 ```ts title="index.js"
 import { red } from '. /index.module.css';
@@ -184,7 +181,7 @@ For more information on configuring CSS Modules, see [builtins.css.modules]().
 
 ## JSON
 
-JSON is a first-class citizen of Rspack and you can import it directly, e.g.
+[JSON](https://en.wikipedia.org/wiki/JSON) is a first-class citizen with Rspack. You can import it directly, for example:
 
 ```json title="example.json"
 {
@@ -197,9 +194,9 @@ import json from '. /example.json';
 json.foo; // bar
 ```
 
-## Node Polyfill
+## Node polyfills
 
-Rspack does not automatically introduce polyfill for Node, if you need to use the corresponding functionality, you can choose to use the `@rspack/plugin-node-polyfill` plugin and add the corresponding configuration in `rspack.config.js`:
+Rspack does not automatically inject polyfills for Node. If you need to use the corresponding functionality, add the `@rspack/plugin-node-polyfill` plugin and corresponding configuration in `rspack.config.js`:
 
 ```ts title="rspack.config.js"
 const NodePolyfill = require('@rspack/plugin-node-polyfill');

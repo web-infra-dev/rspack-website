@@ -1,11 +1,11 @@
-# Asset Module
+# Asset modules
 
 Assets (e.g. images, fonts, videos, etc.) are first-class citizens of Rspack, which means you don't need any loader to process them.
 Unlike other module types, assets usually stand alone, so they are generated at the granularity of a module.
 
 :::tip Module and Chunk
 
-Other module types, such as JavaScript modules, are usually bundled into chunk(s) for final bundle generation. In the case of asset modules, it is almost impossible to be bundled, so they usually exist independently. This is one of the most straightforward reasons why it is called a "asset module".
+Other module types, such as JavaScript modules, are usually bundled into one or more chunks for final bundle generation. In the case of asset modules, it is almost impossible to be bundled, so they usually exist independently. This is one of the most straightforward reasons why it is called a "asset module."
 
 :::
 
@@ -99,9 +99,9 @@ module.exports = {
 };
 ```
 
-### Using optimizers as Loaders
+### Using optimizers as loaders
 
-There are times when we want to optimize a specific image, such as compressing the size of the image. We can still use these Loaders.
+There are times when we want to optimize a specific image, for example by compressing its size. We can still use these loaders.
 
 For example, optimizing all files ending in `.png` with [image-webpack-loader](https://github.com/tcoopman/image-webpack-loader):
 

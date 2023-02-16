@@ -1,8 +1,8 @@
-# Quick Start
+# Quick start
 
-## Installation Guide
+## Installation
 
-First we create a directory, initialize npm, and then install @rspack/cli locally by doing the following:
+We'll start by creating a project directory, generating an NPM `package.json`, and then installing `@rspack/cli` locally:
 
 import { Tabs, Tab } from '@theme';
 
@@ -41,18 +41,18 @@ $ pnpm install -D @rspack/cli
   </Tab>
 </Tabs>
 
-## Create First Bundle
+## Creating your first bundle
 
-### Create project
+### Adding some source files
 
-First create an entry file `src/index.js` and a `src/answer.js`
+First create an entry file `src/index.js` and helper file `src/answer.js`
 
 ```js title="src/index.js"
 import { answer } from './answer';
 function render() {
   document.getElementById(
     'root'
-  ).innerHTML = `the answer to the universe is ${answer}`;
+  ).innerHTML = `The answer to the universe is ${answer}.`;
 }
 render();
 ```
@@ -61,9 +61,9 @@ render();
 export const answer = 42;
 ```
 
-### Use Configuration file
+### Adding the configuration file
 
-Rspack configures the bundle behavior by default via `rspack.config.js`. We can create a `rspack.config.js` file in the project root directory and configure the bundle behavior in it, as follows:
+Rspack configures the bundle behavior by default via `rspack.config.js` whose structure is nearly identical to `webpack.config.js`. Put the `rspack.config.js` file in your project's root directory, for example:
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -77,7 +77,7 @@ module.exports = {
 };
 ```
 
-We can perform the build with `npx rspack build`, and you can also customize the config file name with `npx rspack build -c <your-config-file>`. The output of the build is as follows.
+A simple way to invoke the build is `npx rspack build`. You could also customize the config file name with `npx rspack build -c <your-config-file>`. The console output will look something like this:
 
 ```sh
 $ npx rspack build
@@ -89,7 +89,7 @@ Entrypoint main = main.js
 build: 21.388ms
 ```
 
-At this point we have generated `main.js` and `main.js.map` files in the `dist` directory, and we create the following `dist/index.html` in `dist` to verify that the generated product is working properly.
+At this point we have generated `main.js` and `main.js.map` files in the `dist` directory.  Our configuration should have also generated the following `dist/index.html` file:
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -105,17 +105,17 @@ At this point we have generated `main.js` and `main.js.map` files in the `dist` 
 </html>
 ```
 
-Opening `dist/index.html` in the browser, we see that `the answer to the universe is 42` is rendered normally in the browser
+Open `dist/index.html` in a web browser, and confirm that `The answer to the universe is 42.` is rendered successfully on the page.
 
-### Add third party library
+### Adding a third-party library
 
-Rspack can package not only local dependencies, but also third party dependencies, so let's refactor our application with React, first adding `react` as a dependency
+Rspack can package not only local dependencies, but also third-party dependencies. Let's refactor our application to use the [React](https://reactjs.org/) renderer. First, add `react` as a `package.json` dependency:
 
 ```sh
 $ npm install --save react@18 react-dom@18
 ```
 
-Rename `src/index.js` to `src/index.jsx` and refactor the code with `React`
+Rename `src/index.js` to `src/index.jsx`. Then refactor the code to use React:
 
 ```jsx title="src/index.jsx"
 import { answer } from './answer';
@@ -128,7 +128,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
-Rspack has built-in support for React, you don't need any configuration, but don't forget to change the entry in `rspack.config.js` to `src/index.jsx`.
+Rspack has built-in support for React, so you don't need any special configuration. But don't forget to change the `entry` in `rspack.config.js` to `src/index.jsx`:
 
 - rspack.config.js
 
@@ -144,9 +144,9 @@ module.exports = {
 };
 ```
 
-### Add html support
+### Add HTML support
 
-rspack has built-in support for html, so you don't need to manually configure the path of the js bundle in html, you can use the html function in the following way
+Rspack has built-in support for HTML, so you don't need to manually configure the path of the JavaScript bundle for the HTML file. You can use the HTML functionality like this:
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -166,7 +166,7 @@ module.exports = {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>hello rspack</title>
+    <title>Hello Rspack!</title>
   </head>
   <body>
     <div id="root"></div>
@@ -174,7 +174,7 @@ module.exports = {
 </html>
 ```
 
-At this point we execute `npx rspack build` and we find that `dist/index.html` automatically has the path of the js bundle in it.
+Now invoke `npx rspack build`. Confirm that `dist/index.html` was generated with the correct JavaScript path inserted automatically:
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -183,7 +183,7 @@ At this point we execute `npx rspack build` and we find that `dist/index.html` a
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Hello Rspack!</title>
   </head>
   <body>
     <div id="root"></div>
@@ -192,20 +192,21 @@ At this point we execute `npx rspack build` and we find that `dist/index.html` a
 </html>
 ```
 
-### Experience HMR
+### Hot Module Replacement (HMR)
 
-Rspack has built-in support for HMR, and for React it has built-in support for fast-refresh, so you don't need to configure it, you can experience HMR for react with `npx rspack serve`.
-We modify the `src/answer.js`
+Rspack has built-in support for HMR. If you're using React, this includes built-in support for fast-refresh, so you don't need to configure it.  
+
+To experience HMR, invoke `npx rspack serve`.  Next, make a change to the `src/answer.js` source file:
 
 ```js title="src/answer.js"
-export const answer = 'rspack';
+export const answer = 'Rspack';
 ```
 
-We find that the browser automatically updates to `the answer to the universe is rspack`
+You should observe that the web browser automatically updates to show `The answer to the universe is Rspack.`
 
 ## Creating project using scaffolding
 
-Rspack provides scaffolding to quickly create projects.
+Rspack also includes scaffolding to quickly create new projects.  Invoke the following command:
 
 <Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
   <Tab>
@@ -233,4 +234,4 @@ $ pnpm create rspack@latest
   </Tab>
 </Tabs>
 
-Then just follow the prompts.
+Then follow the input prompts in your shell window.
