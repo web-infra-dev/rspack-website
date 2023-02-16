@@ -1,1 +1,36 @@
 # Command Line Interface (CLI)
+
+@rspack/cli provides two common subcommands, serve and build, to simplify daily work. If you do not have @rspack/cli installed, please read the Quick Start (/guide/quick-start) section first.
+
+## Build
+
+Run the rspack build command, which will generate the build file in the dist directory.
+
+```sh
+$ rspack build # Read the rspack.config.js configuration file by default
+$ rspack build -c ./your.config.js
+```
+
+## Serve
+
+Running the rspack development server command will start a local development server that will listen for file changes and automatically refresh the browser.
+
+```sh
+$ rspack serve
+$ rspack serve -c ./your.config.js
+```
+
+## Flags
+
+By default rspack provides some common command line arguments, you can see all of them with --help.
+
+| Flags         |                                                            |
+| ------------- | ---------------------------------------------------------- |
+| -c, --config  | Specify the path to the configuration file                 |
+| -m, --mode    | Specify the build mode                                     |
+| --devtool     | controls whether sourcemap is generated                    |
+| --analyze     | enables or disables build analysis                         |
+| --w, --watch  | control whether to output the build results as a json file |
+| -w, --watch   | Listen for file changes                                    |
+| -h, --help    | Show help information                                      |
+| -v, --version | Show version number                                        |
