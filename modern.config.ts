@@ -179,6 +179,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Command-line 命令行接口', 'Command-line Interface'),
         link: getLink('/api/cli'),
       },
+      {
+        text: getText('Node.js 接口', 'Node.js API'),
+        link: getLink('/api/node-api'),
+      },
     ],
   };
 }

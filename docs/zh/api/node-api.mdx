@@ -1,0 +1,48 @@
+# Node.js 接口
+
+## 安装
+
+## `rspack()`
+
+## Compiler Instance
+
+## Run
+
+## Watching
+
+## Stats Object
+
+`stats` 对象会被作为 `rspack()` 回调函数的第二个参数传递，可以通过它获取到打包过程中的一些信息。
+
+### `stats.hasErrors()`
+
+判断打包过程中是否有错误，返回值为 true 或 false
+
+### `stats.hasWarnings()`
+
+判断打包过程中是否有警告，返回值为 true 或 false
+
+### `stats.toJson(options)`
+
+以 JSON 对象形式返回编译信息。options 可以是一个字符串或对象，所有可用的配置都可查询 [stats 文档](/config/stats)。
+
+```js
+rspack(config, (err, stats) => {
+  if (err) throw err;
+  const errorsInfo = stats.toJson('errors-only');
+  const assetsInfo = stats.toJson({ all: false, assets: true });
+});
+```
+
+### `stats.toString(options)`
+
+以格式化的字符串形式返回描述编译信息（CLI Build 或 Serve 时的输出就是通过该方法得到的）。
+
+配置对象与 `stats.toJson(options)` 一致，除了额外增加的一个 `colors` 选项用来控制返回的字符串是否带有控制台颜色。
+
+```js
+rspack(config, (err, stats) => {
+  if (err) throw err;
+  console.log(stats.toString({ preset: 'normal', colors: true }));
+});
+```

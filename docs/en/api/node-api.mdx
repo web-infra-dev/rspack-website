@@ -1,0 +1,48 @@
+# Node.js API
+
+## Installation
+
+## `rspack()`
+
+## Compiler Instance
+
+## Run
+
+## Watching
+
+## Stats Object
+
+The `stats` object is passed as the second argument to the `rspack()` callback function and can be used to obtain some information about the bunding.
+
+### `stats.hasErrors()`
+
+Determine if there are errors during the bundling, the return value is true or false.
+
+### `stats.hasWarnings()`
+
+Determine if there are warnings during the bundling, the return value is true or false.
+
+### `stats.toJson(options)`
+
+Returns bundled information as a JSON object. options can be a string or an object, and all available configurations can be queried in the [stats documentation](/config/stats).
+
+```js
+rspack(config, (err, stats) => {
+  if (err) throw err;
+  const errorsInfo = stats.toJson('errors-only');
+  const assetsInfo = stats.toJson({ all: false, assets: true });
+});
+```
+
+### `stats.toString(options)`
+
+Returns a description of the compiled information in the form of a formatted string (the output from CLI Build or Serve is also obtained by this method).
+
+The configuration object is the same as `stats.toJson(options)`, except that an additional `colors` option is added to control whether the returned string with console colors.
+
+```js
+rspack(config, (err, stats) => {
+  if (err) throw err;
+  console.log(stats.toString({ preset: 'normal', colors: true }));
+});
+```
