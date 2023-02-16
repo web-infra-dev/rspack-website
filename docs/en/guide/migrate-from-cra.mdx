@@ -1,0 +1,55 @@
+# Migrate from Create React App
+
+Since @rspack/cli has built-in support for Typescript, JSX, CSS, etc., it is relatively easy to migrate from the Create React App.
+
+## Updating dependencies
+
+First, we need to update the dependencies, uninstall all the Create React App dependencies, then install the @rspack/cli dependencies and update the corresponding startup scripts
+
+```diff title=package.json
+{
+  "dependencies": {
+- "react-scripts": "5.0.1",
++ "@rspack/cli": "latest",
++ "copy-webpack-plugin": "5.1.2"
+  },
+  "scripts": {
+- "start": "react-scripts start",
+- "build": "react-scripts build",
+- "test": "react-scripts test",
++ "start": "rspack serve",
++ "build": "rspack build",
+  }
+}
+```
+
+## Configure rspack.config.js
+
+Then, we need to create the rspack.config.js file in the root of the project to configure rspack-related options. @rspack/cli does not have all the CRA functionality built-in, so some additional options need to be configured as follows
+
+```js title=rspack.config.js
+const CopyPlugin = require('copy-webpack-plugin');
+/*
+ * @type {import('@rspack/cli').Configuration}
+ */
+module.exports = {
+  entry: {
+    main: '. /src/index.jsx', // Configure the project entry file
+  },
+  builtins: {
+    html: [
+      {
+        template: '. /index.html', // Align CRA to generate index.html
+      },
+    ],
+  },
+  plugins: [
+    new CopyPlugin([
+      {
+        from: 'public',
+        to: '.',
+      },
+    ]),
+  ], // Copy the files from the public directory to the dist directory, aligning the behavior of the CRA
+};
+```
