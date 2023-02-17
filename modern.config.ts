@@ -74,7 +74,6 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             text: getText('Plugin', 'Plugin'),
           },
           getLink('/guide/dev-server'),
-          getLink('/guide/tailwindcss'),
         ],
       },
       {
