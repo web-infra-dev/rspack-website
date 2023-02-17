@@ -52,7 +52,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
     [getLink('/guide/')]: [
       {
         collapsible: false,
-        text: getText('开始', 'Getting Started'),
+        text: getText('开始', 'Getting started'),
         items: [
           getLink('/guide/introduction'),
           getLink('/guide/quick-start'),
@@ -66,7 +66,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/language-support'),
           {
             link: getLink('/guide/asset-module'),
-            text: getText('资源模块', 'Asset Module'),
+            text: getText('资源模块', 'Asset modules'),
           },
           getLink('/guide/loader'),
           {
@@ -87,7 +87,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       },
       {
         collapsible: false,
-        text: getText('框架支持', 'Framework Support'),
+        text: getText('框架支持', 'Framework support'),
         items: [getLink('/guide/react'), getLink('/guide/solid')],
       },
       {
@@ -176,7 +176,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/api'),
       },
       {
-        text: getText('Command-line 命令行接口', 'Command-line Interface'),
+        text: getText('Command-line 命令行接口', 'Command-line interface'),
         link: getLink('/api/cli'),
       },
     ],

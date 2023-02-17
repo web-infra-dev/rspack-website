@@ -1,13 +1,12 @@
 # Migration from webpack
 
-While Rspack is expected to be as compatible as possible with Webpack's normal APIs, there are inevitably some differences or higher performance implementations of the same functionality in Rspack.
+While Rspack is aimed at maximizing compatibility with Webpack API contracts, some minor changes are necessary to accommodate differences in implementation, as well as enabling optimizations by replacing some plugins/loaders with Rspack's built-in equivalents.
 
-## Configuring migration
+## Removing babel-loader
 
-### Removing babel-loader
+Rspack already has built-in support for TypeScript and JSX as well as the latest ECMAScript syntaxes. If your configuration only uses `babel-loader` to support TypeScript, JSX, and modern ECMAScript, then you can remove `babel-loader` entirely.
 
-Rspack already has built-in support for TypeScript and JSX as well as the latest Javascript syntax, which means that if your babel-loader is only designed to support TypeScript, JSX and the newer Javascript syntax, then you can remove the babel-loader altogether.
-If your babel-loader is designed to support custom conversion logic, then this part of the babel-loader can be kept, but we discourage users from using the babel-loader for large numbers of files, as it can cause serious performance deterioration.
+Alternatively, if your configuration relies on `babel-loader` for custom conversion logic, it should be kept. However, we recommend to avoid `babel-loader` if possible because it can cause significant performance degradation for large projects.
 
 ```diff
  module.exports = {
@@ -34,7 +33,7 @@ If your babel-loader is designed to support custom conversion logic, then this p
  };
 ```
 
-Rspack also supports JavaScript syntax downgrading by default, which means you don't need to use babel-loader to support browser compatibility anymore, you can specify browser compatibility via target.
+Rspack also supports JavaScript syntax downgrading by default. This means you don't need to use `babel-loader` to support browser compatibility anymore. Specify your browser compatibility via target as in this example:
 
 ```diff
 module.exports = {
@@ -55,9 +54,9 @@ module.exports = {
 }
 ```
 
-### Removing css-loader and style-loader and mini-css-extract-plugin
+## Removing css-loader and style-loader and mini-css-extract-plugin
 
-The native css module type has built-in support for css, css hmr, css module, and css extraction, which means you don't need to configure a separate css-loader and style-loader and mini-css-extract-plugin for css files. extract-plugin.
+Rspack's native CSS Module type has built-in support for CSS, CSS HMR, CSS Modules, and CSS extraction. This eliminates the need for `css-loader`, `style-loader`, and `mini-css-extract-plugin` for handling CSS files:
 
 ```diff
 - const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -78,7 +77,7 @@ module.exports = {
 };
 ```
 
-For the [css-modules](https://github.com/css-modules/css-modules) function, it is enabled by specifying css/module as the module type.
+Rspack's [css-modules](https://github.com/css-modules/css-modules) functionality is enabled by specifying `css/module`` as the module type:
 
 ```diff
 
@@ -94,9 +93,9 @@ module.exports = {
 }
 ```
 
-### Using Asset Modules instead of file-loader and url-loader
+## Using asset modules instead of file-loader and url-loader
 
-Rspack is aligned with webpack 5's Asset Modules, which means you can use Asset Modules instead of file-loader and url-loader.
+Rspack is aligned with Webpack 5's "asset modules," which should be used instead of `file-loader` and `url-loader`.
 
 ```diff
 module.exports = {
@@ -117,9 +116,9 @@ module.exports = {
 }
 ```
 
-### Using builtins.html instead of html-webpack-plugin
+## Using builtins.html instead of html-webpack-plugin
 
-Rspack has built-in support for html, which means you can use builtins.html instead of html-webpack-plugin.
+Rspack has built-in support for HTML. This means you can use ` builtins.html`` instead of  `html-webpack-plugin`:
 
 ```diff
 const HtmlWebpackPlugin = require('html-webpack-plugin')
