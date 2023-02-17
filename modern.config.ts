@@ -104,7 +104,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       {
         collapsible: false,
         text: getText('迁移', 'Migration'),
-        items: [getLink('/guide/migrate-from-webpack')],
+        items: [
+          getLink('/guide/migrate-from-webpack'),
+          getLink('/guide/migrate-from-cra'),
+        ],
       },
     ],
 

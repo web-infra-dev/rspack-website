@@ -1,0 +1,55 @@
+# 从 Create React App 迁移
+
+因为 @rspack/cli 本身就内置了 Typescript、JSX、CSS 等支持，因此从 Create React App 迁移过来就相对较为简单。
+
+## 更新依赖
+
+首先，我们需要更新依赖，将 Create React App 的依赖全部卸载，然后安装 @rspack/cli 依赖，并更新对应的启动脚本
+
+```diff title=package.json
+{
+  "dependencies": {
+-    "react-scripts": "5.0.1",
++    "@rspack/cli": "latest",
++    "copy-webpack-plugin": "5.1.2"
+  },
+  "scripts": {
+-    "start": "react-scripts start",
+-    "build": "react-scripts build",
+-    "test": "react-scripts test",
++    "start": "rspack serve",
++    "build": "rspack build",
+  }
+}
+```
+
+## 配置 rspack.config.js
+
+然后，我们需要在项目根目录下创建 rspack.config.js 文件，用于配置 rspack 的相关选项， @rspack/cli 并未内置所有 CRA 的功能，因此还需要额外配置一些选项，具体配置如下：
+
+```js title=rspack.config.js
+const CopyPlugin = require('copy-webpack-plugin');
+/*
+ * @type {import('@rspack/cli').Configuration}
+ */
+module.exports = {
+  entry: {
+    main: './src/index.jsx', // 配置项目入口文件
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html', // 对齐 CRA 生成index.html
+      },
+    ],
+  },
+  plugins: [
+    new CopyPlugin([
+      {
+        from: 'public',
+        to: '.',
+      },
+    ]),
+  ], // 将 public 目录下的文件复制到 dist 目录下，对齐 CRA 的行为
+};
+```
