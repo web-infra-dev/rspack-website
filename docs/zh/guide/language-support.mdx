@@ -182,6 +182,79 @@ document.getElementById('element').className = red;
 
 更多关于 CSS Modules 的配置可以参考 [builtins.css.modules]()。
 
+### Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) 是一个功能类优先的 CSS 框架，它集成了一系列样式类，它们能直接在脚本标记语言中组合起来，构建出任何设计。
+
+将 Tailwind CSS 作为 PostCSS 插件安装，是将其与 Rspack 整合的最佳方式。
+
+#### 安装 Tailwind CSS
+
+在你的项目中安装 [tailwindcss](https://tailwindcss.com/)、[postcss](https://postcss.org/) 和 [postcss-loader](https://www.npmjs.com/package/postcss-loader) 这三个依赖：
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn add -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+</Tabs>
+
+#### 配置 Tailwind CSS
+
+安装完成后，你需要在 `rspack.config.js` 中配置 `postcss-loader` 来处理 CSS 文件，然后在 `postcssOptions.plugins` 中添加 `tailwindcss`。
+
+下面是一个处理 `.css` 文件的配置示例，如果你需要处理 `.scss` 或 `.less` 文件，可以参考该示例进行修改。
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: {
+                  tailwindcss: {},
+                },
+              },
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+到此为止，你已经完成了在 Rspack 中使用 Tailwind CSS 所需的构建配置。
+
+接下来你可以按照 [Tailwind CSS 官方文档](https://tailwindcss.com/docs/installation/using-postcss) 中的步骤，添加 Tailwind CSS 所需的配置和代码，即可开始使用。
+
 ## JSON
 
 JSON 是 Rspack 的一等公民，你可以直接导入，例如：

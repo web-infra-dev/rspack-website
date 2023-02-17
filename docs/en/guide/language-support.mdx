@@ -10,11 +10,11 @@ If you're migrating from Webpack, you can remove the `babel-loader` or `ts-loade
 
 ### Transpile-only
 
-For maximum speed, Rspack transpiles TypeScript source code without performing any type checking.  An external tool such as `tsc` must be used for type checking.
+For maximum speed, Rspack transpiles TypeScript source code without performing any type checking. An external tool such as `tsc` must be used for type checking.
 
 ### isolatedModules
 
-To maximize parallelism, Rspack will transpile each module separately.  This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
+To maximize parallelism, Rspack will transpile each module separately. This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
 
 ```json title="tsconfig.json"
 {
@@ -26,7 +26,7 @@ To maximize parallelism, Rspack will transpile each module separately.  This imp
 
 ## JSX and TSX
 
-[JSX and TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) are first-class citizens with Rspack.  By default, files ending in `*.jsx` and `*.tsx` will be handled as JSX/TSX module types.
+[JSX and TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) are first-class citizens with Rspack. By default, files ending in `*.jsx` and `*.tsx` will be handled as JSX/TSX module types.
 
 {
 // TODO: link to builtin
@@ -63,7 +63,7 @@ module.exports = {
 };
 ```
 
-The example above will treat all `*.png` files as asset modules.  For more details, see [Asset modules](/guide/asset-module).
+The example above will treat all `*.png` files as asset modules. For more details, see [Asset modules](/guide/asset-module).
 
 ## CSS
 
@@ -178,6 +178,79 @@ document.getElementById('element').className = red;
 }
 
 For more information on configuring CSS Modules, see [builtins.css.modules]().
+
+### Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) is a utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.
+
+Installing Tailwind CSS as a PostCSS plugin is the most seamless way to integrate it with Rspack.
+
+#### Install Tailwind CSS
+
+Please install [tailwindcss](https://tailwindcss.com/), [postcss](https://postcss.org/) and [postcss-loader](https://www.npmjs.com/package/) in your project.
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn add -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm install -D tailwindcss postcss postcss-loader
+```
+
+  </Tab>
+</Tabs>
+
+#### Configure Tailwind CSS
+
+Once installed, you need to configure `postcss-loader` in `rspack.config.js` to handle CSS files, and then add `tailwindcss` to `postcssOptions.plugins`.
+
+Here is an example configuration for handling `.css` files, if you need to handle `.scss` or `.less` files, you can refer to this example for modifications.
+
+```ts title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: {
+                  tailwindcss: {},
+                },
+              },
+            },
+          },
+        ],
+        type: 'css',
+      },
+    ],
+  },
+};
+```
+
+At this point, you have completed the build configuration required to use Tailwind CSS in Rspack.
+
+Next you can follow the steps in the [Tailwind CSS Documentation](https://tailwindcss.com/docs/installation/using-postcss) to add the required configuration and code for Tailwind CSS and start using it.
 
 ## JSON
 
