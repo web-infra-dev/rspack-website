@@ -9,16 +9,16 @@ First, we need to update the dependencies, uninstall all the Create React App de
 ```diff title=package.json
 {
   "dependencies": {
-- "react-scripts": "5.0.1",
-+ "@rspack/cli": "latest",
-+ "copy-webpack-plugin": "5.1.2"
+-   "react-scripts": "5.0.1",
++   "@rspack/cli": "latest",
++   "copy-webpack-plugin": "5.1.2"
   },
   "scripts": {
-- "start": "react-scripts start",
-- "build": "react-scripts build",
-- "test": "react-scripts test",
-+ "start": "rspack serve",
-+ "build": "rspack build",
+-   "start": "react-scripts start",
+-   "build": "react-scripts build",
+-   "test": "react-scripts test",
++   "start": "rspack serve",
++   "build": "rspack build",
   }
 }
 ```
