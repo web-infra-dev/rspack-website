@@ -8,7 +8,7 @@ Rspack 是一个基于 Rust 的高性能构建引擎，其提供了对 Webpack �
 
 ### 和 Vite 的区别
 
-Vite 很好的解决了开发体验问题，但是对于生产环境构建的体验问题并没有很好解决，一方面其生产环境优化相比于 webpack 仍然有一定差距，难以适用于一些对拆包策略敏感的应用，另外对于一些大型应用，生产环境构建耗时也是个非常敏感的指标，受限于底层 rollup 的性能问题，其生产环境构建的性能仍然难以满足一些大型复杂应用要求。
+[Vite](https://vitejs.dev/) 提供了很好的开发者体验，但其在生产构建中对 [Rollup](https://rollupjs.org/) 的依赖面临着与其他基于 JavaScript 的工具链同样的性能问题。 rollup 相比于 webpack 的一些平衡取舍这里同样适用，如 rollup 缺失了 webpack 对于拆包的灵活性，即缺失了 "optimization.splitChunks" 提供的很多功能。
 
 ### 和 esbuild 的区别
 
