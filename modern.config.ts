@@ -73,6 +73,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             link: getLink('/guide/plugin'),
             text: getText('Plugin', 'Plugin'),
           },
+          getLink('/guide/module-resolution'),
           getLink('/guide/dev-server'),
           getLink('/guide/tailwindcss'),
         ],
