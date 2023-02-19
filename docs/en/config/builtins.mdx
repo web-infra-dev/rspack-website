@@ -246,6 +246,26 @@ type BuiltinsReact = {
 
 ## builtins.decorator
 
+This configuration can be used to control decorator transform behavior, `false` means to turn off transform.
+
+- **Type：**
+
+```ts
+type BuiltinsDecorator =
+  | boolean
+  | {
+      legacy?: boolean;
+      emitMetadata?: boolean;
+    };
+```
+
+- **Default：** `true`
+
+| Name           | Type      | Default | Description                                                                                                   |
+| -------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
+| `legacy`       | `boolean` | true    | use the [legacy (stage 1)](https://github.com/tc39/proposal-decorators) class decorators syntax and behavior. |
+| `emitMetadata` | `boolean` | true    | whether to keep metadata information.                                                                         |
+
 ## builtins.css
 
 {/* ## builtins.postcss */}
@@ -254,6 +274,26 @@ type BuiltinsReact = {
 
 ## builtins.progress
 
+This configuration can be used to control progress, `false` means to turn off progress.
+
+- **Type：**
+
+```ts
+type BuiltinsProgress = boolean | { prefix?: string };
+```
+
+- **Default：** `false`
+
+| Name     | Type     | Default  | Description                             |
+| -------- | -------- | -------- | --------------------------------------- |
+| `prefix` | `string` | 'Rspack' | the text displayed before the progress. |
+
 {/* ## builtins.noEmitAssets */}
 
 ## builtins.devFriendlySplitChunks
+
+Whether to enable the development-friendly split chunks algorithm.
+
+- **Type：** `boolean`
+
+- **Default：** `false`
