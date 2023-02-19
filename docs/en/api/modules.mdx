@@ -1,0 +1,74 @@
+## Modules
+
+While rspack supports multiple module syntaxes, we recommend following a single syntax for consistency and to avoid odd behaviors/bugs.
+
+### ES6(Recommended)
+
+Rspack support ES6 module syntax natively, you can use static `import`、 `export` and `import()` syntax.
+
+### CommonJS
+
+Rspack is also support `CommonJS` syntax natively, you can use `require` and `module.exports` syntax.
+
+### Webpack
+
+Aside from the module syntaxes described above, rspack also support some webpack-specific methods.
+
+#### require.context
+
+```ts
+require.context(
+  (directory: String),
+  (includeSubdirs: Boolean) /* optional, default true */,
+  (filter: RegExp) /* optional, default /^\.\/.*$/, any file */,
+  (mode: String) /* optional, 'sync' | 'eager' | 'weak' | 'lazy' | 'lazy-once', default 'sync' */
+);
+```
+
+Specify a whole group of dependencies using a path to the `directory`, an option to `includeSubdirs`, a filter for more fine grained control of the modules included, and a mode to define the way how loading will work.
+If mode is set to 'lazy', the underlying modules will be loaded asynchronously.
+
+## Module Variables
+
+### module.hot(webpack-specific)
+
+Indicates whether or not Hot Module Replacement is enabled and provides an interface to the process. See the [HMR API page](/api/hmr) for details.
+
+### import.meta.webpackHot(webpack-specific)
+
+An alias for `module.hot`, however `import.meta.webpackHot` can be used in strict ESM while module.hot can't.
+
+### \_\_dirname (NodeJS)
+
+Depending on the configuration option `node.__dirname`:
+
+- false: Not defined
+- mock: equal to '/'
+- true: node.js \_\_dirname
+  If used inside an expression that is parsed by the Parser, the configuration option is treated as true.
+
+### \_\_resourceQuery(webpack-specific)
+
+The resource query of the current module. If the following require call was made, then the query string would be available in file.js.
+
+```ts
+require('file.js?test');
+```
+
+file.js
+
+```ts
+__resourceQuery === '?test';
+```
+
+### **webpack_modules**(webpack-specific)
+
+Access to the internal object of all modules.
+
+### **webpack_hash**(webpack-specific)
+
+It provides access to the hash of the compilation.
+
+### **webpack_public_path**(webpack-specific)
+
+Equals the configuration option's output.publicPath.
