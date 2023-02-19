@@ -1,3 +1,18 @@
-# Loader
+# Loader 兼容
 
-该索引列出了完成 Rspack 兼容性测试的 Loader 列表。
+该索引列出了完成 Rspack 兼容性测试的 Loader 列表。你可以在 [loader-compat](https://github.com/modern-js-dev/rspack/blob/main/examples/loader-compat/rspack.config.js) 查看相关 loader 兼容性例子。
+
+| Loader         | 兼容性 | 替代                                              | 备注                                  |
+| -------------- | ------ | ------------------------------------------------- | ------------------------------------- |
+| babel-loader   | 兼容   | 内部使用 swc 实现了 babel-loader 的大部分转换功能 | babel-loader 对性能影响较大，谨慎使用 |
+| sass-loader    | 兼容   |                                                   |                                       |
+| less-loader    | 兼容   |                                                   |                                       |
+| postcss-loader | 兼容   |                                                   |                                       |
+| yaml-loader    | 兼容   |                                                   |                                       |
+| json-loader    | 兼容   |                                                   |                                       |
+| stylus-loader  | 兼容   |                                                   |                                       |
+| @mdx-js/loader | 兼容   |                                                   |                                       |
+| @svgr/webpack  | 兼容   |                                                   |                                       |
+| raw-loader     | 兼容   | type:asset/source                                 |                                       |
+| url-loader     | 兼容   | type:asset/resource                               |                                       |
+| css-loader     | 不兼容 | type:css                                          |                                       |
