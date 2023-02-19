@@ -39,7 +39,7 @@ By default, the `'asset/inline'` mechanism is applied if the asset size is less 
 
 If you wish to modify this behavior, you can use [`module.parser.asset.dataUrlCondition`](/config/module#moduleparserasset) to modify the global configuration, or use [`Rule.parser. dataUrlCondition`](/config/module#ruleparserdataurlcondition) to configure it separately for a specific eligible module.
 
-### Replace `url-loader` with ``type: 'asset/inline'`
+### Replace `url-loader` with `type: 'asset/inline'`
 
 ```diff title="rspack.config.js"
 module.exports = {

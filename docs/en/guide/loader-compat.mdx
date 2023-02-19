@@ -1,3 +1,18 @@
-# Loader gallery
+# Loader Compat
 
-This page lists the loaders that successfully completed Rspack's compatibility test.
+This index lists the Loader that have passed the compatibility test for Rspack. You can check out the examples of compatible loaders in [loader-compat](https://github.com/modern-js-dev/rspack/blob/main/examples/loader-compat/rspack.config.js).
+
+| Loader         | Compatibility | Alternative                                                                                     | Remarks                                               |
+| -------------- | ------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| babel-loader   | Compatible    | swc has been used internally to implement babel-loader with most of its conversion capabilities | Be cautious of the performance impact of babel-loader |
+| sass-loader    | Compatible    |                                                                                                 |                                                       |
+| less-loader    | Compatible    |                                                                                                 |                                                       |
+| postcss-loader | Compatible    |                                                                                                 |                                                       |
+| yaml-loader    | Compatible    |                                                                                                 |                                                       |
+| json-loader    | Compatible    |                                                                                                 |                                                       |
+| stylus-loader  | Compatible    |                                                                                                 |                                                       |
+| @mdx-js/loader | Compatible    |                                                                                                 |                                                       |
+| @svgr/webpack  | Compatible    |                                                                                                 |                                                       |
+| raw-loader     | Compatible    | type:asset/source                                                                               |                                                       |
+| url-loader     | Compatible    | type:asset/resource                                                                             |                                                       |
+| css-loader     | Incompatible  | type:css                                                                                        |                                                       |
