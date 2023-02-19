@@ -6,7 +6,7 @@ Rspack 会根据 [`mode`](/config/mode) 来选择合适的优化配置。同时�
 
 ## optimization.removeAvailableModules
 
-<PropertyType.CN type="boolean" defaultValue="true" />
+<PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 如果一个 Chunk 的模块都已经被包含在其所有的父 Chunk 中，那么这个模块就可以被移除。
 
@@ -67,7 +67,7 @@ module.exports = {
 
 ## optimization.removeEmptyChunks
 
-<PropertyType.CN type="boolean" defaultValue="true" />
+<PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 移除打包过程中产生的空 Chunk。
 
@@ -75,7 +75,10 @@ module.exports = {
 
 <PropertyType.CN
   type="boolean | 'flag'"
-  defaultValue="当 production mode 时为 true，development mode 为 false "
+  defaultValueList={[
+    { defaultValue: 'true', mode: '（生产模式）' },
+    { defaultValue: 'false', mode: '（开发模式）' },
+  ]}
 />
 
 ```json

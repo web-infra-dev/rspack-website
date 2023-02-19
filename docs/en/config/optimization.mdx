@@ -6,7 +6,7 @@ Rspack will select appropriate optimization configuration based on the [`mode`](
 
 ## optimization.removeAvailableModules
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 A module can be removed from a Chunk if the module have been included in all of its parent Chunks.
 
@@ -67,19 +67,22 @@ module.exports = {
 
 ## optimization.removeEmptyChunks
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 Remove empty chunks generated in the compilation.
 
 ## optimization.runtimeChunk
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 ## optimization.sideEffects
 
 <PropertyType
   type="boolean | 'flag'"
-  defaultValue="true for production mode and false for development mode"
+  defaultValueList={[
+    { defaultValue: 'true', mode: '(production mode)' },
+    { defaultValue: 'false', mode: '(development mode)' },
+  ]}
 />
 
 ```json
