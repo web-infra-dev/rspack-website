@@ -1,1 +1,38 @@
 # SolidJS
+
+得益于 rspack 对 babel-loader 的良好兼容， 在 rspack 里使用 SolidJS 是非常简单的。只需要 babel-loader 配合 solidjs 的 solid-preset 即可。rspack 内置了一个 solidjs 的[示例](https://github.com/modern-js-dev/rspack/tree/main/examples/solid)可供参考。
+
+```js title="rspack.config.js"
+/**
+ * @type {import('@rspack/cli').Configuration}
+ */
+module.exports = {
+  context: __dirname,
+  entry: {
+    main: './src/index.jsx',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [['solid']],
+              plugins: ['solid-refresh/babel'],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html',
+      },
+    ],
+  },
+};
+```
