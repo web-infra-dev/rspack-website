@@ -22,3 +22,5 @@ Terser
 TypeScript
 Webpack
 recognise
+sockjs
+spdy

@@ -169,6 +169,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Stats 打包信息', 'Stats'),
         link: getLink('/config/stats'),
       },
+      {
+        text: getText('DevServer 开发服务器', 'DevServer'),
+        link: getLink('/config/devServer'),
+      },
     ],
     [getLink('/api/')]: [
       {
