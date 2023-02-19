@@ -183,6 +183,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Node.js 接口', 'Node.js API'),
         link: getLink('/api/node-api'),
       },
+      {
+        text: getText('Loader 接口', 'Loader API'),
+        link: getLink('/api/loader-api'),
+      },
     ],
   };
 }
