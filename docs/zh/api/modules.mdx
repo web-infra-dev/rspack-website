@@ -30,7 +30,7 @@ require.context(
 
 ## 模块变量
 
-### module.hot (webpack-specific)
+### module.hot (webpack 专用)
 
 指示是否启用了热模块替换，并提供一个接口给这个过程。详情见[HMR API](/api/hmr)页面。
 
@@ -47,7 +47,7 @@ require.context(
 - true: node.js \_\_dirname
   如果在一个被解析器解析的表达式里面使用，配置选项会被视为真。
 
-### __resourceQuery (webpack-specific)
+### __resourceQuery (webpack 专用)
 
 当前模块的资源查询。如果进行了下面的 require 调用，那么查询字符串将在 file.js 中出现。
 
@@ -69,6 +69,6 @@ __resourceQuery === '?test';
 
 它提供对编译的哈希值的访问。
 
-### **webpack_public_path** (webpack-specific)
+### **webpack_public_path** (webpack 专用)
 
 等于配置选项的 output.publicPath。
