@@ -6,7 +6,7 @@ Rspack will select appropriate optimization configuration based on the [`mode`](
 
 ## optimization.removeAvailableModules
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 A module can be removed from a Chunk if the module have been included in all of its parent Chunks.
 
@@ -67,10 +67,61 @@ module.exports = {
 
 ## optimization.removeEmptyChunks
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 Remove empty chunks generated in the compilation.
 
 ## optimization.runtimeChunk
 
-<PropertyType type="boolean" defaultValue="true" />
+<PropertyType type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
+
+## optimization.sideEffects
+
+<PropertyType
+  type="boolean | 'flag'"
+  defaultValueList={[
+    { defaultValue: 'true', mode: '(production mode)' },
+    { defaultValue: 'false', mode: '(development mode)' },
+  ]}
+/>
+
+```json
+{
+  "name": "npm module",
+  "version": "1.0.0",
+  "sideEffects": ["**/src/*.js"]
+}
+```
+
+Tells rspack to recognise the sideEffects flag in package.json or rules to skip over modules which are flagged to contain no side effects when exports are not used.
+
+`optimization.sideEffects` dependends on `builtins.treeShaking` to be enabled。
+This configuration has a build time cost, but eliminating modules has positive impact on performance because of less code generation. Effect of this optimization depends on your codebase.
+
+**rspack.config.js**
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    sideEffects: true,
+  },
+};
+```
+
+If you only want rspack use the manual `sideEffects` flag via (package.json and module.rule.sideEffects) and don't analyse code:
+
+**rspack.config.js**
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    sideEffects: 'flag',
+  },
+};
+```
+
+:::info Tip
+When `optimization.sideEffects` is true , rspack will also flag modules as side effect free when they contain only side effect free statements.
+:::

@@ -6,7 +6,7 @@ Rspack 会根据 [`mode`](/config/mode) 来选择合适的优化配置。同时�
 
 ## optimization.removeAvailableModules
 
-<PropertyType.CN type="boolean" defaultValue="true" />
+<PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 如果一个 Chunk 的模块都已经被包含在其所有的父 Chunk 中，那么这个模块就可以被移除。
 
@@ -67,6 +67,58 @@ module.exports = {
 
 ## optimization.removeEmptyChunks
 
-<PropertyType.CN type="boolean" defaultValue="true" />
+<PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
 移除打包过程中产生的空 Chunk。
+
+## optimization.sideEffects
+
+<PropertyType.CN
+  type="boolean | 'flag'"
+  defaultValueList={[
+    { defaultValue: 'true', mode: '（生产模式）' },
+    { defaultValue: 'false', mode: '（开发模式）' },
+  ]}
+/>
+
+```json
+{
+  "name": "npm module",
+  "version": "1.0.0",
+  "sideEffects": ["**/src/*.js"]
+}
+```
+
+告诉 rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则) ,
+当模块导出都未被使用且模块本身没有副作用时跳过模块及其子树。
+
+`optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。
+这种配置项开启后有额外的构建时间开销，但移除模块对性能有积极影响，因为这意味着更少的代码生成。这种优化的效果取决于你的代码库。
+
+**rspack.config.js**
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    sideEffects: true,
+  },
+};
+```
+
+如果你只想使用 通过(package.json 和 `module.rule.sideEffects`) 配置的 `sideEffects`，而不想分析代码:
+
+**rspack.config.js**
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    sideEffects: 'flag',
+  },
+};
+```
+
+:::info Tip
+`optimization.sideEffects` 为 `true` 时， rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
+:::
