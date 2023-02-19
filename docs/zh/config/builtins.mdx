@@ -18,20 +18,20 @@ _Builtins_ 提供的内置功能在未来可能会发生变化，或被更好的
 - **类型：**
 
 ```ts
-export type EmotionConfig = 
+export type EmotionConfig =
   | boolean
   | {
-    sourceMap?: boolean;
-    autoLabel?: "never" | "dev-only" | "always";
-    labelFormat?: string;
-    importMap?: {
-      [packageName: string]: {
-        [exportName: string]: {
-          canonicalImport?: [string, string];
+      sourceMap?: boolean;
+      autoLabel?: 'never' | 'dev-only' | 'always';
+      labelFormat?: string;
+      importMap?: {
+        [packageName: string]: {
+          [exportName: string]: {
+            canonicalImport?: [string, string];
+          };
         };
       };
     };
-  };
 ```
 
 - **默认值：** `false`
@@ -49,8 +49,8 @@ module.exports = {
     main: './src/index.js',
   },
   builtins: {
-    emotion: true
-  }
+    emotion: true,
+  },
 };
 ```
 
@@ -62,10 +62,12 @@ module.exports = {
 - **默认值：** `'dev-only'`
 
 这个配置项用于：
+
 - 生成 label 值，这样由 `css` 或者 `styled` 生成的样式中会包含原来的名字，方便调试。
 - 注意样式名中非单词字符将被删除。比如 `iconStyles$1` 会变成 `iconStyles1`，因为 `$` 不是合法的 [CSS 类名选择器](https://stackoverflow.com/questions/448981/which-characters-are-valid-in-css-class-names-selectors#449000)。
 
 不同的配置项会产生不同的产物代码：
+
 - `'dev-only'`：只在 Rspack 的 development 模式下开启，在 production 模式下关闭以减小存储占用。
 - `'always'`：无论什么模式下都开启该特效。
 - `'never'`：无论什么模式下都禁用该特性。
@@ -78,6 +80,7 @@ module.exports = {
 此选项仅在 `'autoLabel'` 设置为 `'dev-only'` 或 `'always'` 时有效。允许你自定义添加的 `label` 的结构。通过字符串定义，其中可变部分用方括号 `'[]'` 括起来。例如对于标签: `'my-classname——[local]'`，其中 `'[local]'` 将被替换为样式变量的名称。
 
 允许的值:
+
 - `'[local]'` - CSS 或样式表达式所在的文件名称
 - `'[filename]'` - CSS 或样式表达式所在的文件名称(不带扩展名)。
 - `'[dirname]'` - 包含 CSS 或样式表达式所在文件的目录名。
@@ -95,15 +98,181 @@ module.exports = {
 - **类型：**
 
 ```ts
-export type ImportMap = undefined | {
-  [packageName: string]: {
-    [exportName: string]: {
-      canonicalImport?: [string, string];
+export type ImportMap =
+  | undefined
+  | {
+      [packageName: string]: {
+        [exportName: string]: {
+          canonicalImport?: [string, string];
+        };
+      };
     };
-  };
-};
 ```
 
 - **默认值：** `undefined`
 
 此选项允许你告诉 Rspack 它应该查看哪些 import 语句，确定应该转换什么，因此如果你重导出 emotion 的方法，仍然可以转换。
+
+## builtins.html
+
+该配置可以快速创建与 rspack 产物关联的 html 文件。
+
+- **类型：**
+
+```ts
+type BuiltinsHtml = Array<{
+  title?: string;
+  filename?: string;
+  template?: string;
+  templateParameters?: Record<string, string>;
+  inject?: 'head' | 'body';
+  publicPath?: string;
+  scriptLoading?: 'blocking' | 'defer' | 'module';
+  chunks?: string[];
+  excludedChunks?: string[];
+  sri?: 'sha256' | 'sha384' | 'sha512';
+  minify?: boolean;
+  favicon?: string;
+  meta?: Record<string, string | Record<string, string>>;
+}>;
+```
+
+- **默认值：** `[]`
+
+| 名称                 | 类型                                             | 默认值       | 描述                                                                                          |
+| -------------------- | ------------------------------------------------ | ------------ | --------------------------------------------------------------------------------------------- |
+| `title`              | `string\|undefined`                              | undefined    | 构建 html 的标题                                                                              |
+| `filename`           | `string`                                         | 'index.html' | 输出的文件名，可以指定子目录，例如 `pages/index.html`                                         |
+| `template`           | `string\|undefined`                              | undefined    | 模版文件路径，支持 ejs                                                                        |
+| `templateParameters` | `Record<string, string>`                         | \{\}         | 传递给模版的参数                                                                              |
+| `inject`             | `'head'\|'body'\|undefined`                      | undefined    | 产物注入位置                                                                                  |
+| `publicPath`         | `string`                                         | ''           | script 和 link 标签的 publicPath                                                              |
+| `scriptLoading`      | `'blocking'\|'defer'\|'module'`                  | 'defer'      | 现代浏览器支持使用 defer 来异步加载 js，设置为 module 则会添加 `type="module"` 同时使用 defer |
+| `chunks`             | `string[]\|undefined`                            | undefined    | 配置需要注入的 chunk，默认注入所有 chunk                                                      |
+| `excludedChunks`     | `string[]\|undefined`                            | undefined    | 配置需要跳过注入的 chunk                                                                      |
+| `sri`                | `'sha256'\|'sha384'\|'sha512'\|undefined`        | undefined    | sri hash 算法，默认不开启 sri                                                                 |
+| `minify`             | `boolean`                                        | false        | 是否启用压缩                                                                                  |
+| `favicon`            | `string\|undefined`                              | undefined    | 配置 html 图标                                                                                |
+| `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | 配置需要注入 html 的 meta                                                                     |
+
+## builtins.minify
+
+TODO
+
+- **类型：**
+
+```ts
+type BuiltinsMinify =
+  | boolean
+  | {
+      passes?: number;
+      enable?: boolean;
+      dropConsole?: boolean;
+      pureFuncs?: Array<string>;
+    };
+```
+
+| 名称     | 类型                | 默认值    | 描述 |
+| -------- | ------------------- | --------- | ---- |
+| `passes` | `number\|undefined` | undefined |      |
+
+## builtins.polyfill
+
+当 [target](config/target) 为 browserslist 时此选项有效，当开启时 rspack 将会根据代码自动注入 polyfill。
+
+- **类型：** `boolean`
+- **默认值：** `true`
+
+## builtins.define
+
+此选项将会在编辑时将代码中的变量替换为其他值或表达式。
+
+- **类型：** `Record<string, string | undefined>`
+- **默认值：** `{}`
+
+### 示例
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    define: {
+      'process.env.NODE_ENV': "'development'",
+      API_PREFIX: '/api',
+      UNDEFINED: undefined,
+      UNDEFINED_STRING: 'undefined',
+    },
+  },
+};
+```
+
+输入代码：
+
+```ts
+if (process.env.NODE_ENV === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('API_PREFIX/test');
+
+console.log(UNDEFINED === UNDEFINED_STRING);
+```
+
+输出代码：
+
+```ts
+if ('development' === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('/api/test');
+
+console.log(undefined === undefined);
+```
+
+## builtins.react
+
+此选项可以用来配置 react 相关代码的转换。
+
+- **类型：**
+
+```ts
+type BuiltinsReact = {
+  runtime?: 'automatic' | 'classic';
+  importSource?: string;
+  pragma?: string;
+  pragmaFrag?: string;
+  throwIfNamespace?: boolean;
+  development?: boolean;
+  useBuiltins?: boolean;
+  useSpread?: boolean;
+  refresh?: boolean;
+};
+```
+
+- **默认值：** `{}`
+
+| 名称               | 类型                     | 默认值                | 描述                                                                                                                   |
+| ------------------ | ------------------------ | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `runtime`          | `'automatic'\|'classic'` | 'automatic'           | automatic 会自动导入 JSX 运行时模块，classic 会使用 `React.createElement` 来进行转换                                   |
+| `importSource`     | `string`                 | 'react'               | 当 runtime 为 automatic 时，自动导入的库名称                                                                           |
+| `pragma`           | `string`                 | 'React.createElement' | 当 runtime 为 classic 时，编译 JSX 表达式时所替换的函数名                                                              |
+| `pragmaFrag`       | `string`                 | 'React.Fragment'      | 编译 JSX fragments 时所使用的组件名                                                                                    |
+| `throwIfNamespace` | `boolean`                | true                  | 当使用 xml 命名空间(例如 <f:image />)时是否抛出错误                                                                    |
+| `development`      | `boolean`                | false                 | 是否为开发者模式，开发者模式将会在 JSX 元素上导出 `__self` 和 `__source` 以供类似于 React Developer Tools 这类工具使用 |
+| `useBuiltins`      | `boolean`                | false                 | 是否使用 `Object.assign()` 代替 `_extends`                                                                             |
+| `useSpread`        | `boolean`                | false                 | 是否使用 `Object.assign()` 代替扩展操作符                                                                              |
+| `refresh`          | `boolean`                | false                 | 是否启动 react-refresh 相关转换                                                                                        |
+
+## builtins.decorator
+
+## builtins.css
+
+{/* ## builtins.postcss */}
+
+{/* ## builtins.treeShaking */}
+
+## builtins.progress
+
+{/* ## builtins.noEmitAssets */}
+
+## builtins.devFriendlySplitChunks
