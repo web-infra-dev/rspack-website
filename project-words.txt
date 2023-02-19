@@ -13,6 +13,7 @@ Rspack
 ruleparserdataurlcondition
 Rust
 statoscope
+solidjs
 svgr
 swcpack
 tailwind

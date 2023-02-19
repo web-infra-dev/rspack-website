@@ -1,1 +1,38 @@
 # SolidJS
+
+Thanks to the good compatibility of rspack with the babel-loader, it is very easy to use SolidJS in rspack. All you need is babel-loader and solidjs babel preset.rspack provides solidjs [example](https://github.com/modern-js-dev/rspack/tree/main/examples/solid) for reference.
+
+```js title="rspack.config.js"
+/**
+ * @type {import('@rspack/cli').Configuration}
+ */
+module.exports = {
+  context: __dirname,
+  entry: {
+    main: './src/index.jsx',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [['solid']],
+              plugins: ['solid-refresh/babel'],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html',
+      },
+    ],
+  },
+};
+```
