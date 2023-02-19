@@ -73,7 +73,10 @@ module.exports = {
 
 ## optimization.sideEffects
 
-<PropertyType.CN type="boolean | 'flag'" defaultValue="true" />
+<PropertyType.CN
+  type="boolean | 'flag'"
+  defaultValue="当 production mode 时为 true，development mode 为 false "
+/>
 
 ```json
 {
@@ -100,7 +103,8 @@ module.exports = {
 };
 ```
 
-如果你只想使用手动的 `sideEffects` 配置 通过(package.json 和 module.rule.sideEffects)，而不想分析代码:
+如果你只想使用 通过(package.json 和 `module.rule.sideEffects`) 配置的 `sideEffects`，而不想分析代码:
+
 **rspack.config.js**
 
 ```js
@@ -113,5 +117,5 @@ module.exports = {
 ```
 
 :::info Tip
-`optimization.sideEffects : true` 时， rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
+`optimization.sideEffects` 为 `true` 时， rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
 :::

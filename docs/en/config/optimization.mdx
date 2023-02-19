@@ -77,7 +77,10 @@ Remove empty chunks generated in the compilation.
 
 ## optimization.sideEffects
 
-<PropertyType type="boolean | 'flag'" defaultValue="true" />
+<PropertyType
+  type="boolean | 'flag'"
+  defaultValue="true for production mode and false for development mode"
+/>
 
 ```json
 {
@@ -104,6 +107,7 @@ module.exports = {
 ```
 
 If you only want rspack use the manual `sideEffects` flag via (package.json and module.rule.sideEffects) and don't analyse code:
+
 **rspack.config.js**
 
 ```js
