@@ -115,6 +115,8 @@ This option allows you to tell Rspack what imports it should look at to determin
 
 ## builtins.html
 
+This configuration simplifies creation of HTML files to serve your rspack bundles.
+
 - **Type：**
 
 ```ts
@@ -142,7 +144,7 @@ type BuiltinsHtml = Array<{
 | `title`              | `string\|undefined`                              | undefined    | The title to use for the generated HTML document.                                                                                                                                                                                 |
 | `filename`           | `string`                                         | 'index.html' | The file to write the HTML to. Defaults to `index.html`. You can specify a subdirectory here too (eg: pages/index.html).                                                                                                          |
 | `template`           | `string\|undefined`                              | undefined    | The template file path.                                                                                                                                                                                                           |
-| `templateParameters` | `Record<string, string>`                         | {}           | Allows to overwrite the parameters used in the template.                                                                                                                                                                          |
+| `templateParameters` | `Record<string, string>`                         | \{\}         | Allows to overwrite the parameters used in the template.                                                                                                                                                                          |
 | `inject`             | `'head'\|'body'\|undefined`                      | undefined    | The script and link tag inject position in `template`.                                                                                                                                                                            |
 | `publicPath`         | `string`                                         | ''           | The publicPath used for script and link tags.                                                                                                                                                                                     |
 | `scriptLoading`      | `'blocking'\|'defer'\|'module'`                  | 'defer'      | Modern browsers support non blocking javascript loading ('defer') to improve the page startup performance. Setting to 'module' adds attribute type="module". This also implies "defer", since modules are automatically deferred. |
@@ -150,26 +152,24 @@ type BuiltinsHtml = Array<{
 | `excludedChunks`     | `string[]\|undefined`                            | undefined    | Allows you to skip some chunks.                                                                                                                                                                                                   |
 | `sri`                | `'sha256'\|'sha384'\|'sha512'\|undefined`        | undefined    | sri hash algorithm, disabled by default.                                                                                                                                                                                          |
 | `minify`             | `boolean`                                        | false        | Controls whether to minify the output.                                                                                                                                                                                            |
-| `favicon`            | `string`                                         | ''           | Adds the given favicon path to the output HTML.                                                                                                                                                                                   |
-| `meta`               | `Record<string, string\|Record<string, string>>` | '{}'         | Allows to inject meta-tags.                                                                                                                                                                                                       |
-
-This configuration simplifies creation of HTML files to serve your rspack bundles.
+| `favicon`            | `string\|undefined`                              | undefined    | Adds the given favicon path to the output HTML.                                                                                                                                                                                   |
+| `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | Allows to inject meta-tags.                                                                                                                                                                                                       |
 
 ## builtins.minify
 
 ## builtins.polyfill
 
+When [target](config/target) is `browserslist`, auto inject polyfill code.
+
 - **Type：** `boolean`
 - **Default：** `true`
 
-When [target](config/target) is `browserslist`, auto inject polyfill code.
-
 ## builtins.define
+
+Replaces variables in your code with other values or expressions at compile time.
 
 - **Type：** `Record<string, string | undefined>`
 - **Default：** `{}`
-
-Replaces variables in your code with other values or expressions at compile time.
 
 ### Example
 
@@ -212,6 +212,8 @@ console.log(undefined === undefined);
 
 ## builtins.react
 
+This configuration can control the code transformation about react.
+
 - **Type：**
 
 ```ts
@@ -242,18 +244,16 @@ type BuiltinsReact = {
 | `useSpread`        | `boolean`                | false                 | Use `Object.assign()` instead of `spreading props`.                                                                                              |
 | `refresh`          | `boolean`                | false                 | Enable react-refresh related transform.                                                                                                          |
 
-This configuration can control the code transformation about react
-
 ## builtins.decorator
 
 ## builtins.css
 
-## builtins.postcss
+{/* ## builtins.postcss */}
 
-## builtins.treeShaking
+{/* ## builtins.treeShaking */}
 
 ## builtins.progress
 
-## builtins.noEmitAssets
+{/* ## builtins.noEmitAssets */}
 
 ## builtins.devFriendlySplitChunks
