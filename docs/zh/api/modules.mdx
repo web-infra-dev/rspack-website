@@ -38,7 +38,7 @@ require.context(
 
 `module.hot`的别名，但是`import.meta.webpackHot`可以在严格的 ESM 中使用，而 module.hot 不能。
 
-### \_\_dirname (NodeJS)
+### __dirname (NodeJS)
 
 取决于配置选项`node.__dirname`。
 
@@ -47,7 +47,7 @@ require.context(
 - true: node.js \_\_dirname
   如果在一个被解析器解析的表达式里面使用，配置选项会被视为真。
 
-### \_\_resourceQuery (webpack-specific)
+### __resourceQuery (webpack-specific)
 
 当前模块的资源查询。如果进行了下面的 require 调用，那么查询字符串将在 file.js 中出现。
 
