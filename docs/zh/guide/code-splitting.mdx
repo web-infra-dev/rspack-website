@@ -12,9 +12,7 @@ Rspack 支持代码分割特性，允许让你对代码进行分割，控制生�
 
 这是最简单直观分离代码的方式。但这种方式需要我们手动对 Rspack 进行配置，并暗藏一些隐患，我们将会解决这些问题。我们先来看看如何从通过多个入口起点分割出多个 Chunk 。
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -32,16 +30,12 @@ const config = {
 module.exports = config;
 ```
 
-**index.js**
-
-```js
+```js title=index.js
 import './shared';
 console.log('index.js');
 ```
 
-**another-module.js**
-
-```js
+```js title=another-module.js
 import './shared';
 console.log('another-module');
 ```
@@ -70,9 +64,7 @@ Entrypoint index = index.bundle.js
 
 SplitChunksPlugin 插件可以将公共的依赖模块提提取到一个新生成的 chunk。让我们使用这个插件，将之前的示例中重复的 `shared.js` 模块去除：
 
-**rspack.config.js**
-
-```diff
+```diff title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -122,7 +114,7 @@ Entrypoint index = another~index.bundle.js index.bundle.js
 
 在我们开始之前，先从上述示例的配置中移除掉多余的 entry 和 optimization.splitChunks，因为接下来的演示中并不需要它们：
 
-```diff
+```diff title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -147,9 +139,7 @@ module.exports = config;
 
 现在，我们将不在 `index.js` 中静态导入 `shared.js`，而是通过 `import()` 来动态导入它，从而分离出一个新的 chunk：
 
-**index.js**
-
-```diff
+```diff title=index.js
 - import './shared'
 + import('./shared')
 console.log('index.js')

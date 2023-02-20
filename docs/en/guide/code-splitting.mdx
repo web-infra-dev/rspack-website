@@ -12,9 +12,7 @@ There are three general approaches to Code Splitting available:
 
 This is the simplest and most intuitive way to split the code. However, this approach requires us to manually configure the Rspack and contains some pitfalls that we will address. Let's start by looking at how to split multiple Chunks from multiple entry points.
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -32,16 +30,12 @@ const config = {
 module.exports = config;
 ```
 
-**index.js**
-
-```js
+```js title=index.js
 import './shared';
 console.log('index.js');
 ```
 
-**another-module.js**
-
-```js
+```js title=another-module.js
 import './shared';
 console.log('another-module');
 ```
@@ -70,9 +64,7 @@ The first of these two points is certainly a problem for our example, and in the
 
 The SplitChunksPlugin can extract shared modules into a new generated chunk. Let's use this plugin to remove the duplicated `shared.js` module in the previous example:
 
-**rspack.config.js**
-
-```diff
+```diff title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -122,7 +114,7 @@ Rspack use the `import()` syntax that conforms to the ECMAScript proposal for dy
 
 Before we begin, let's remove the redundant entry and optimization.splitChunks from the configuration of the above example, as they are not needed for the rest of the demonstration.
 
-```diff
+```diff title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
@@ -147,9 +139,7 @@ module.exports = config;
 
 Now, instead of import `shared.js` statically in `index.js`, we will import it dynamically via `import()`, thus split it into a new chunk.
 
-**index.js**
-
-```diff
+```diff title=index.js
 - import './shared'
 + import('./shared')
 console.log('index.js')
