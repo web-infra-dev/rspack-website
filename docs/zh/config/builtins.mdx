@@ -113,6 +113,13 @@ export type ImportMap =
 
 此选项允许你告诉 Rspack 它应该查看哪些 import 语句，确定应该转换什么，因此如果你重导出 emotion 的方法，仍然可以转换。
 
+## builtins.presetEnv
+
+通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。
+
+- **类型：** `string[] | undefined`
+- **默认值：** `undefined`
+
 ## builtins.html
 
 该配置可以快速创建与 rspack 产物关联的 html 文件。
