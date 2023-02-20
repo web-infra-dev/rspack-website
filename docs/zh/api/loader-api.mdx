@@ -4,7 +4,7 @@ Rspack Loader 在设计时就是为了复用 Webpack Loader，我们已兼容了
 
 ## 'Raw' Loader
 
-默认情况下，资源文件会被转化为 UTF-8 字符串，然后传给 loader。通过设置 `raw` 为 `true`，loader 可以接收原始的 `Buffer`。每一个 loader 都可以用 `String` 或者 `Buffer` 的形式传递它的处理结果。complier 将会把它们在 loader 之间相互转换。
+默认情况下，资源文件会被转化为 UTF-8 字符串，然后传给 loader。通过设置 `raw` 为 `true`，loader 可以接收原始的 `Buffer`。每一个 loader 都可以用 `String` 或者 `Buffer` 的形式传递它的处理结果。Compiler 将会把它们在 loader 之间相互转换。
 
 ```js
 module.exports = function (content) {
@@ -82,11 +82,11 @@ config 中配置的项目所在的目录
 
 - `context` 必须是一个目录的绝对路径。此目录用作解析的起始位置。
 - `request` 是要被解析的 request。
-- `callback` 是一个给出解析路径的回调函数。
+- `callback` 是一个处理解析路径的回调函数。
 
 ## `this.mode`
 
-当 webpack 运行时读取 `mode` 的值
+当 webpack 运行时读取 [`mode`](../config/mode) 的值
 
 可能的值为：`'production'`、`'development'`、`'none'`
 
@@ -96,7 +96,7 @@ config 中配置的项目所在的目录
 
 ## `this.resourcePath`
 
-当前模块的路径字符串，不包括 query 参数。比如 `'/abc/resource.js?query#hash'` 中的 `'/abc/resource.js'`。
+当前模块的路径字符串，不包括 query 和 fragment 参数。比如 `'/abc/resource.js?query#hash'` 中的 `'/abc/resource.js'`。
 
 ## `this.resourceQuery`
 

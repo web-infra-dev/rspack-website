@@ -1,10 +1,10 @@
 # Loader API
 
-Rspack Loader is designed to reuse the Webpack Loader, we are compatible with most of the Webpack Loader API, the rest of the API is still being implemented, so most of the Webpack Loader can already run in Rspack.
+Rspack loader is designed to reuse the webpack loader, it is compatible with most of the webpack loader API, the rest of the API is still being implemented, so most of the webpack loader can already run in rspack.
 
 ## 'Raw' Loader
 
-By default, resource files are converted to UTF-8 strings and passed to the loader. loaders can receive raw `Buffer` by setting `raw` to `true`. Each loader can pass its processing results as `String` or `Buffer`, and the complier will convert them to and from the loader.
+By default, resource files are converted to UTF-8 strings and passed to the loader. loaders can receive raw `Buffer` by setting `raw` to `true`. Each loader can pass its processing results as `String` or `Buffer`, and the rspack compiler will convert them to and from the loader.
 
 ```js
 module.exports = function (content) {
@@ -36,13 +36,13 @@ Removes all dependencies of the loader result.
 
 ## `this.async()`
 
-Tells Rspack that this loader will be called asynchronously. Returns `this.callback`.
+Tells rspack that this loader will be called asynchronously. Returns `this.callback`.
 
 ## `this.callback(err: Error | null, content: string | Buffer, sourceMap?: SourceMap, meta?: any)`
 
-Tell Rspack the result of the Loader processing.
+Tell rspack the result of the Loader processing.
 
-The first parameter must be `Error` or `null`, which marks the current module as a compilation failure, the second parameter is a `string` or `Buffer`, which indicates the contents of the file after the module has been processed by the loader, the third parameter is a source map that can be processed by the loader, and the fourth parameter is ignored by Rspack and can be anything (e.g. some metadata).
+The first parameter must be `Error` or `null`, which marks the current module as a compilation failure, the second parameter is a `string` or `Buffer`, which indicates the contents of the file after the module has been processed by the loader, the third parameter is a source map that can be processed by the loader, and the fourth parameter is ignored by rspack and can be anything (e.g. some metadata).
 
 ## `this.cacheable(flag: boolean = true)`
 
@@ -58,7 +58,7 @@ The directory where the project is configured in config
 
 ## `this.emitError(err: Error)`
 
-Emit an error. Unlike `throw` and `this.callback(err)` in the loader, it does not mark the current module as a compilation failure, it just adds an error to Rspack's Compilation and displays it on the command line at the end of this compilation.
+Emit an error. Unlike `throw` and `this.callback(err)` in the loader, it does not mark the current module as a compilation failure, it just adds an error to rspack's Compilation and displays it on the command line at the end of this compilation.
 
 ## `this.emitWarning(warning: Error)`
 
@@ -86,7 +86,7 @@ Resolve a request.
 
 ## `this.mode`
 
-The value of `mode` is read when webpack is run.
+The value of [`mode`](../config/mode) is read when webpack is run.
 
 The possible values are: `'production'`, `'development'`, `'none'`
 
@@ -96,7 +96,7 @@ The path string of the current module. For example `'/abc/resource.js?query#hash
 
 ## `this.resourcePath`
 
-The path string of the current module, excluding the query parameter. For example `'/abc/resource.js?query#hash'` in `'/abc/resource.js'`.
+The path string of the current module, excluding the query and fragment parameters. For example `'/abc/resource.js?query#hash'` in `'/abc/resource.js'`.
 
 ## `this.resourceQuery`
 
