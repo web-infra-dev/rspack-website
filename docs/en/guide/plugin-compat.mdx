@@ -1,3 +1,14 @@
-# Plugin gallery
+# Plugin compat
 
-This page lists the plugins that successfully completed Rspack's compatibility test.
+This index lists the plugins that have been verified by compatibility tests with Rspack.
+
+| Plugin                  | Compatibility        | Alternative                                                           | Remarks                                                                                                |
+| ----------------------- | -------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| html-webpack-plugin     | Incompatible         | [builtins.html](/config/builtins#builtinshtml) or @rspack/plugin-html | Currently does not support childCompiler related functionality in html-webpack-plugin                  |
+| DefinePlugin            | Incompatible         | [builtins.define](/config/builtins#builtinsdefine)                    |                                                                                                        |
+| copy-webpack-plugin     | Partially compatible | [builtins.copy](/config/builtinscopy)                                 | Not currently compatible with the latest version, but is compatible with copy-webpack-plugin@5 version |
+| mini-css-extract-plugin | Incompatible         | [type="css"](/guide/language-support#css)                             |                                                                                                        |
+| terser-webpack-plugin   | Incompatible         | [builtins.minify](/config/builtins#builtinsminify)                    |                                                                                                        |
+| webpackbar              | Incompatible         | [builtins.progress](/config/builtins#builtinsprogress)                |                                                                                                        |
+| webpack-bundle-analyzer | Compatible           |                                                                       | built-in support, enabled with --analyze flag                                                          |
+| webpack-stats-plugin    | Compatible           |                                                                       |                                                                                                        |

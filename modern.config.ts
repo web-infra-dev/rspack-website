@@ -95,10 +95,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('兼容性', 'Compatibility'),
         items: [
           getLink('/guide/loader-compat'),
-          {
-            link: getLink('/guide/plugin-compat'),
-            text: getText('Plugin', 'Plugin'),
-          },
+          getLink('/guide/plugin-compat'),
         ],
       },
       {
