@@ -1,5 +1,64 @@
 # React
 
+Rspack has built-in support for JSX, which allows you to use JSX syntax directly in .jsx and .tsx files in your project. If you need to use JSX in .js or .ts files, you will need to configure it as follows:
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        type: 'jsx',
+      },
+      {
+        test: /\.ts$/,
+        type: 'tsx',
+      },
+    ],
+  },
+};
+```
+
+## Emotion
+
+Rspack has built-in support for emotion, which allows you to use emotion syntax directly in .jsx and .tsx files in your project. You can use emotion functionality through the following configuration:
+
+```js title=rspack.config.js
+module.exports = {
+  builtins: {
+    emotion: true,
+    react: {
+      importSource: '@emotion/react',
+    },
+  },
+};
+```
+
+```js title=src/index.tsx
+import { css } from '@emotion/react';
+
+export function Button({ children }) {
+  return (
+    <button
+      css={css`
+        background: hotpink;
+        &:hover {
+          background: purple;
+        }
+      `}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+Other CSS-in-JS solutions can be used by configuring the babel-loader.
+
+## Fast Refresh
+
+Rspack enables [Fast Refresh](https://reactnative.dev/docs/fast-refresh) functionality by default during development, allowing you to use it directly in your project. You can also disable the react-refresh feature through [builtins.react.react-refresh](config/builtins#builtinsreact).
+
 ## Integrating SVGR
 
 [SVGR](https://react-svgr.com/) is an universal tool for transforming [Scalable Vector Graphics (SVG)](https://en.wikipedia.org/wiki/SVG) files into React components.
