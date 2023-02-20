@@ -1,6 +1,6 @@
 ## 模块
 
-虽然 rspack 支持多种模块语法，但我们建议遵循单一的语法，以保持一致性并避免奇怪的行为/bug。
+虽然 rspack 支持多种模块语法，但我们建议遵循单一的语法，以保持一致性并避免奇怪的行为。
 
 ### ES6(推荐)
 
@@ -8,7 +8,7 @@ Rspack 原生支持 ES6 模块语法，你可以使用静态的`import`、`expor
 
 ### CommonJS
 
-Rspack 也支持`CommonJS'语法，你可以使用`require'和`module.exports'语法。
+Rspack 也支持`CommonJS`语法，你可以使用`require`和`module.exports`语法。
 
 ### Webpack
 
@@ -25,8 +25,8 @@ require.context(
 );
 ```
 
-使用 "directory "的路径、"includeSubdirs "的选项、对包含的模块进行更精细控制的过滤器以及定义加载方式的模式来指定整个依赖关系组。
-如果模式被设置为 "lazy"，底层模块将被异步加载。
+使用 `directory` 的路径、`includeSubdirs`的选项、对包含的模块进行更精细控制的过滤器以及定义加载方式的模式来指定整个依赖关系组。
+如果模式被设置为 `lazy`，底层模块将被异步加载。
 
 ## 模块变量
 
