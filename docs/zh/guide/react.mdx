@@ -1,5 +1,67 @@
 # React
 
+## JSX
+
+Rspack 内置了对 JSX 的支持，你可以直接在项目中的.jsx 和 .tsx 中使用 JSX 语法。
+如果你需要在 .js 或者 .ts 文件中使用 jsx，则需要如下配置：
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        type: 'jsx',
+      },
+      {
+        test: /\.ts$/,
+        type: 'tsx',
+      },
+    ],
+  },
+};
+```
+
+## emotion
+
+Rspack 内置了对 emotion 的支持，你可以直接在项目中的 .jsx 和 .tsx 中使用 emotion 语法。通过如下配置使用 emotion 功能。
+
+```js title=rspack.config.js
+module.exports = {
+  builtins: {
+    emotion: true,
+    react: {
+      importSource: '@emotion/react',
+    },
+  },
+};
+```
+
+```js title=src/index.tsx
+import { css } from '@emotion/react';
+
+export function Button({ children }) {
+  return (
+    <button
+      css={css`
+        background: hotpink;
+        &:hover {
+          background: purple;
+        }
+      `}
+    >
+      {children}
+    </button>
+  );
+}
+```
+
+其他的 CSS-in-JS 方案，则可以通过配置 babel-loader 进行使用。
+
+## Fast Refresh
+
+Rspack 在 dev 下默认开启了 [Fast Refresh](https://reactnative.dev/docs/fast-refresh) 功能，你可以直接在项目中使用。你也可以通过 [builtins.react.react-refresh](config/builtins#builtinsreact) 来禁用 react-refresh 功能
+
 ## 集成 SVGR
 
 [SVGR](https://react-svgr.com/) 是一个用于将 SVG 转换为 React 组件的工具，
