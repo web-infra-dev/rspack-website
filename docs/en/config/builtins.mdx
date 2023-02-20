@@ -113,6 +113,13 @@ export type ImportMap =
 
 This option allows you to tell Rspack what imports it should look at to determine what it should transform so if you re-export Emotion's exports, you can still use the Babel transforms
 
+## builtins.presetEnv
+
+Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`.
+
+- **Type：** `string[] | undefined`
+- **Default：** `undefined`
+
 ## builtins.html
 
 This configuration simplifies creation of HTML files to serve your rspack bundles.
