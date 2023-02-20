@@ -44,6 +44,18 @@ module.exports = {
 };
 ```
 
+### Node polyfills
+
+Rspack does not automatically inject polyfills for Node. If you need to use the corresponding functionality, add the `@rspack/plugin-node-polyfill` plugin and corresponding configuration in `rspack.config.js`:
+
+```ts title="rspack.config.js"
+const NodePolyfill = require('@rspack/plugin-node-polyfill');
+
+module.exports = {
+  plugins: [new NodePolyfill()],
+};
+```
+
 ## Static resource handling
 
 Rspack supports handling of static resources, including images, fonts, videos, etc.
@@ -265,16 +277,4 @@ Next you can follow the steps in the [Tailwind CSS Documentation](https://tailwi
 ```ts title="index.js"
 import json from '. /example.json';
 json.foo; // bar
-```
-
-## Node polyfills
-
-Rspack does not automatically inject polyfills for Node. If you need to use the corresponding functionality, add the `@rspack/plugin-node-polyfill` plugin and corresponding configuration in `rspack.config.js`:
-
-```ts title="rspack.config.js"
-const NodePolyfill = require('@rspack/plugin-node-polyfill');
-
-module.exports = {
-  plugins: [new NodePolyfill()],
-};
 ```

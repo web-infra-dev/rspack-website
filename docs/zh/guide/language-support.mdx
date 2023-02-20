@@ -47,6 +47,18 @@ module.exports = {
 };
 ```
 
+### Node Polyfill
+
+Rspack 不会自动引入 Node Polyfill，如果你需要使用相应功能，你可以选择使用 `@rspack/plugin-node-polyfill` 插件，并在 `rspack.config.js` 完成配置：
+
+```ts title="rspack.config.js"
+const NodePolyfill = require('@rspack/plugin-node-polyfill');
+
+module.exports = {
+  plugins: [new NodePolyfill()],
+};
+```
+
 ## 静态资源处理
 
 Rspack 支持对静态资源的处理，包括图片、字体、视频等。
@@ -268,16 +280,4 @@ JSON 是 Rspack 的一等公民，你可以直接导入，例如：
 ```ts title="index.js"
 import json from './example.json';
 json.foo; // bar
-```
-
-## Node Polyfill
-
-Rspack 不会自动引入 Node Polyfill，如果你需要使用相应功能，你可以选择使用 `@rspack/plugin-node-polyfill` 插件，并在 `rspack.config.js` 完成配置：
-
-```ts title="rspack.config.js"
-const NodePolyfill = require('@rspack/plugin-node-polyfill');
-
-module.exports = {
-  plugins: [new NodePolyfill()],
-};
 ```
