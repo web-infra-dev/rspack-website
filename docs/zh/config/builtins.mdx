@@ -193,7 +193,7 @@ type BuiltinsMinifyOptions = {
 
 此选项将会在编辑时将代码中的变量替换为其他值或表达式。
 
-- **类型：** `Record<string, string | undefined>`
+- **类型：** `Record<string, string | boolean | undefined>`
 - **默认值：** `{}`
 
 ### 示例
@@ -204,6 +204,8 @@ module.exports = {
     define: {
       'process.env.NODE_ENV': "'development'",
       API_PREFIX: '/api',
+      TRUE: true,
+      TRUE_STRING: 'true',
       UNDEFINED: undefined,
       UNDEFINED_STRING: 'undefined',
     },
@@ -220,6 +222,7 @@ if (process.env.NODE_ENV === 'development') {
 
 fetch('API_PREFIX/test');
 
+console.log(TRUE === TRUE_STRING);
 console.log(UNDEFINED === UNDEFINED_STRING);
 ```
 
@@ -232,6 +235,7 @@ if ('development' === 'development') {
 
 fetch('/api/test');
 
+console.log(true === true);
 console.log(undefined === undefined);
 ```
 
