@@ -115,16 +115,33 @@ This option allows you to tell Rspack what imports it should look at to determin
 
 ## builtins.presetEnv
 
-Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`.
+This option allows your code to run on older versions of browsers by querying all the browsers that need to be supported through [browserslist](https://github.com/browserslist/browserslist#queries).
+If the source code uses APIs that are not supported by these browsers, the same APIs can be provided to these browsers by globally injecting core-js.
+If the source code uses syntax that is not supported by these browsers, the syntax will also be converted into syntax supported by the browsers.
 
-- **Type：** `string[] | undefined`
-- **Default：** `undefined`
+- **Type:**
+
+```ts
+type PresetEnv = undefined | {
+  mode?: "usage" | "entry",
+  targets?: string[],
+  coreJs?: string
+}
+```
+
+- **Default:** `undefined`
+
+| Name      | Type                           | Default   | Description |
+| --------- | ------------------------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `targets` | `string[]\|undefined`          | undefined | Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`.                                     |
+| `mode`    | `'entry'\|'usage'\|undefined`  | undefined | This option determine the behavior of polyfill injection, `'entry'` means that inject all polyfill that matches your needs, according to [browserslist](https://github.com/browserslist/browserslist) query, `'usage'` means only injects polyfills that source code uses, set this to `undefined` will not inject polyfill at all. |
+| `coreJs`  | `string`                       | undefined | This option specify the version of core-js |
 
 ## builtins.html
 
 This configuration simplifies creation of HTML files to serve your rspack bundles.
 
-- **Type：**
+- **Type:**
 
 ```ts
 type BuiltinsHtml = Array<{
@@ -144,7 +161,7 @@ type BuiltinsHtml = Array<{
 }>;
 ```
 
-- **Default：** `[]`
+- **Default:** `[]`
 
 | Name                 | Type                                             | Default      | Description                                                                                                                                                                                                                       |
 | -------------------- | ------------------------------------------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -186,15 +203,15 @@ type BuiltinsMinifyOptions = {
 
 When [target](config/target) is `browserslist`, auto inject polyfill code.
 
-- **Type：** `boolean`
-- **Default：** `true`
+- **Type:** `boolean`
+- **Default:** `true`
 
 ## builtins.define
 
 Replaces variables in your code with other values or expressions at compile time.
 
-- **Type：** `Record<string, string | boolean | undefined>`
-- **Default：** `{}`
+- **Type:** `Record<string, string | boolean | undefined>`
+- **Default:** `{}`
 
 ### Example
 
@@ -243,7 +260,7 @@ console.log(undefined === undefined);
 
 This configuration can control the code transformation about react.
 
-- **Type：**
+- **Type:**
 
 ```ts
 type BuiltinsReact = {
@@ -259,7 +276,7 @@ type BuiltinsReact = {
 };
 ```
 
-- **Default：** `{}`
+- **Default:** `{}`
 
 | Name               | Type                     | Default               | Description                                                                                                                                      |
 | ------------------ | ------------------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -277,7 +294,7 @@ type BuiltinsReact = {
 
 This configuration can be used to control decorator transform behavior, `false` means to turn off transform.
 
-- **Type：**
+- **Type:**
 
 ```ts
 type BuiltinsDecorator =
@@ -288,7 +305,7 @@ type BuiltinsDecorator =
     };
 ```
 
-- **Default：** `true`
+- **Default:** `true`
 
 | Name           | Type      | Default | Description                                                                                                   |
 | -------------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
@@ -305,13 +322,13 @@ type BuiltinsDecorator =
 
 This configuration can be used to control progress, `false` means to turn off progress.
 
-- **Type：**
+- **Type:**
 
 ```ts
 type BuiltinsProgress = boolean | { prefix?: string };
 ```
 
-- **Default：** `false`
+- **Default:** `false`
 
 | Name     | Type     | Default  | Description                             |
 | -------- | -------- | -------- | --------------------------------------- |
@@ -323,6 +340,6 @@ type BuiltinsProgress = boolean | { prefix?: string };
 
 Whether to enable the development-friendly split chunks algorithm.
 
-- **Type：** `boolean`
+- **Type:** `boolean`
 
-- **Default：** `false`
+- **Default:** `false`
