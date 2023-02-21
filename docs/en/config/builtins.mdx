@@ -162,7 +162,25 @@ type BuiltinsHtml = Array<{
 | `favicon`            | `string\|undefined`                              | undefined    | Adds the given favicon path to the output HTML.                                                                                                                                                                                   |
 | `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | Allows to inject meta-tags.                                                                                                                                                                                                       |
 
-## builtins.minify
+## builtins.minifyOptions
+
+Set built-in minimizer options.
+
+- **Type：**
+
+```ts
+type BuiltinsMinifyOptions = {
+  passes?: number;
+  dropConsole?: boolean;
+  pureFuncs?: Array<string>;
+};
+```
+
+| Name          | Type            | Default | Description                                                                                            |
+| ------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------ |
+| `passes`      | `number`        | 1       | The maximum number of times to run compress.                                                           |
+| `dropConsole` | `boolean`       | false   | Pass true to discard calls to console.\* functions.                                                    |
+| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and rspack will assume that those functions do not produce side effects |
 
 ## builtins.polyfill
 
