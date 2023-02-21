@@ -193,7 +193,7 @@ When [target](config/target) is `browserslist`, auto inject polyfill code.
 
 Replaces variables in your code with other values or expressions at compile time.
 
-- **Type：** `Record<string, string | undefined>`
+- **Type：** `Record<string, string | boolean | undefined>`
 - **Default：** `{}`
 
 ### Example
@@ -204,6 +204,8 @@ module.exports = {
     define: {
       'process.env.NODE_ENV': "'development'",
       API_PREFIX: '/api',
+      TRUE: true,
+      TRUE_STRING: 'true',
       UNDEFINED: undefined,
       UNDEFINED_STRING: 'undefined',
     },
@@ -220,6 +222,7 @@ if (process.env.NODE_ENV === 'development') {
 
 fetch('API_PREFIX/test');
 
+console.log(TRUE === TRUE_STRING);
 console.log(UNDEFINED === UNDEFINED_STRING);
 ```
 
@@ -232,6 +235,7 @@ if ('development' === 'development') {
 
 fetch('/api/test');
 
+console.log(true === true);
 console.log(undefined === undefined);
 ```
 
