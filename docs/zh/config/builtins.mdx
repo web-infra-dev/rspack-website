@@ -162,26 +162,25 @@ type BuiltinsHtml = Array<{
 | `favicon`            | `string\|undefined`                              | undefined    | 配置 html 图标                                                                                |
 | `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | 配置需要注入 html 的 meta                                                                     |
 
-## builtins.minify
+## builtins.minifyOptions
 
-TODO
+设置内置压缩器配置。
 
 - **类型：**
 
 ```ts
-type BuiltinsMinify =
-  | boolean
-  | {
-      passes?: number;
-      enable?: boolean;
-      dropConsole?: boolean;
-      pureFuncs?: Array<string>;
-    };
+type BuiltinsMinifyOptions = {
+  passes?: number;
+  dropConsole?: boolean;
+  pureFuncs?: Array<string>;
+};
 ```
 
-| 名称     | 类型                | 默认值    | 描述 |
-| -------- | ------------------- | --------- | ---- |
-| `passes` | `number\|undefined` | undefined |      |
+| 名称          | 类型            | 默认值 | 描述                                         |
+| ------------- | --------------- | ------ | -------------------------------------------- |
+| `passes`      | `number`        | 1      | 运行压缩的最大次数                           |
+| `dropConsole` | `boolean`       | false  | 是否移除对 console.\* 函数的调用             |
+| `pureFuncs`   | `Array<string>` | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句 |
 
 ## builtins.polyfill
 
