@@ -1,15 +1,15 @@
-# TreeShaking
+# Tree Shaking
 
-Rspack supports TreeShaking, which is a term commonly used within a JavaScript context to describe the removal of dead code.
+Rspack supports tree shaking, which is a term commonly used within a JavaScript context to describe the removal of dead code.
 
 It relies on the import and export statements to detect if code modules are exported and imported for use between JavaScript files.
 
-TreeShaking will be enable when you set `mode` into `production`, but also you could enable it in `development` mode
+tree shaking will be enable when you set `mode` into `production`, but also you could enable it in `development` mode
 by setting `builtins.treeShaking` to `true`
 
 For better illustration, I will using `development` mode in this section.
 
-## Basic TreeShaking
+## Basic tree shaking
 
 ```js title=rspack.config.js
 /**
