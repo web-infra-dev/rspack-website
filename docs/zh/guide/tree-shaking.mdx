@@ -1,14 +1,14 @@
-# TreeShaking
+# Tree shaking
 
-Rspack 支持 TreeShaking，这是在 JavaScript 上下文中常用的术语，用于描述死代码的删除。
+Rspack 支持 tree shaking，这是在 JavaScript 上下文中常用的术语，用于描述死代码的删除。
 
 它依赖于 import 和 export 语句来检测代码模块是否被导出和导入以在 JavaScript 文件之间使用。
 
-当您将 `mode` 设置为 `production` 时，将启用 TreeShaking。但是您还可以通过将 `builtins.treeShaking` 设置为 `true` 来在 **development** 模式下启用它。
+当您将 `mode` 设置为 `production` 时，将启用 tree shaking。但是您还可以通过将 `builtins.treeShaking` 设置为 `true` 来在 **development** 模式下启用它。
 
 为了更好地说明，本节将使用**development**模式。
 
-## Basic TreeShaking
+## Basic tree shaking
 
 ```js title=rspack.config.js
 /**
@@ -51,8 +51,8 @@ export function cube(x) {
 }
 ```
 
-请注意，我们没有从 **src/math.js** 模块导入 `square` 方法。该函数是所谓的“死代码”，表示应该删除未使用的导出。现在让我们构建我们的简单项目
-这将产生以下构建结果：
+注意到，我们没有从 **src/math.js** 模块导入 `square` 方法。该函数是“死代码”，表示应该删除未使用的导出。现在让我们构建我们的项目
+将产生以下构建结果：
 
 ```js
 // ...
@@ -104,7 +104,7 @@ var __webpack_modules__ = {
 // ...
 ```
 
-正如您所看到的，如果我们不启用 treeShaking，则所有代码都保持不变，除了包了一层运行时代码。
+正如您所看到的，如果我们不启用 treeShaking，则所有代码都保持不变，只是将所有的代码都报了运行时代码。
 现在，我们启用 builtins.treeShaking
 
 ```diff title=rspack.config.js
@@ -126,12 +126,12 @@ const config = {
 module.exports = config;
 ```
 
-Then, the `square` function got dropped.
+`square` 函数将会被删除
 
 ## SideEffects
 
-在一个 100% ESM 模块化的世界里，识别副作用是很直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用, cjs, esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 rspack 的编译器。
-这是通过 "sideEffects" package.json 属性来实现的。
+在一个 100% ESM 模块化的世界里，识别副作用是比较直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用, cjs, esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 rspack 的编译器。
+该功能通常由 "sideEffects" package.json 属性来完成的。
 
 ```json title=package.json
 {
@@ -142,10 +142,10 @@ Then, the `square` function got dropped.
 
 sideEffects 字段支持以下值：
 
-- false 这个包中的所有文件都没有副作用。
-- string 匹配包含副作用文件的 glob。
+- **false** 这个包中的所有文件都没有副作用。
+- **string** 匹配包含副作用文件的 glob。
 - **Array\<string\>** 匹配包含副作用文件的 glob 数组。
-- undefined 当你没有在 package.json 的 sideEffects 字段中提供任何值时，这是 sideEffects 的默认值。当 `optimization.sideEffects` 为 true 时 (在 mode 为 production 时是默认值), rspack 将尝试分析代码是否具有副作用，否则 rspack 将默认包中的所有模块均有副作用。
+- **undefined** 当你不设置 `package.json` 的 `sideEffects` 时的默认值。 当 `optimization.sideEffects` 为 true 时, rspack 将尝试分析代码是否具有副作用，当 `optimization.sideEffects` 为 'flag' 时, rspack 将默认包中的所有模块均有副作用。
 
 这次，我们使用一个更复杂的示例。
 
@@ -201,7 +201,7 @@ export const addRandomDate = (a) => a + randomDate;
 export const add = (a, b) => a + b;
 ```
 
-虽然 `random` 变量仍然需要，因为它在模块初始化时期包含副作用。
+`random` 变量在默认情况下是需要被保留的，因为它在模块初始化时期包含副作用。
 但是，由于 package.json 中包含了 sideEffects 字段，且值为 false，除此之外在 add.js 中没有使用任何导出变量，因此整个模块都可以被跳过，subtract.js 同理。
 
 ```js
@@ -263,8 +263,8 @@ var __webpack_modules__ = {
 }
 ```
 
-rspack 将尝试安全地分析代码，并仅在所有顶级语句均为 sideEffectFree 时标记模块为 sideEffectFree。
-正如我们所看到的，**math/index.js**、**math/subtract.js** 和 **math/multiply.js** 都是 sideEffectFree 的，而 math/add.js 不是，因为 `const randomDate = Date.now()` 含有副作用。当我们重新构建项目时，您可以看到差异如下：
+rspack 将尝试安全地分析代码，并仅在所有顶级语句均没有副作用时标记模块为无副作用。
+正如我们所看到的，**math/index.js**、**math/subtract.js** 和 **math/multiply.js** 都没有副作用，而 math/add.js 不是，因为 `const randomDate = Date.now()` 含有副作用。当我们重新构建项目时，您可以看到差异如下：
 
 ```diff
 //...
@@ -307,8 +307,8 @@ console.log((0, _indexJs.multiply)(2, 3));
 // ...
 ```
 
-`module.rule.sideEffects` 比 package.json 中的 `sideEffects` 优先级更高, 我们可以使用 `module.rule.sideEffects` 来覆盖某些模块的 `sideEffects` 标识.
-我们知道，只有在使用 `addRandomDate` 时初始化的副作用才有意义，因此我们可以安全地覆盖它，我们可以更改我们的 rspack.config.js:
+由于`module.rule.sideEffects` 比 package.json 中的 `sideEffects` 优先级更高, 我们可以使用 `module.rule.sideEffects` 来覆盖某些模块的 `sideEffects` 标识.
+我们知道，只有在`addRandomDate` 导出被使用时, 初始化的副作用才有意义，而当前项目中该变量并没有被使用，因此我们可以安全地覆盖它，我们修改 rspack.config.js:
 
 ```diff title=rspack.config.js
 /**
@@ -340,4 +340,4 @@ const config = {
 module.exports = config;
 ```
 
-我们得到和之前相同的结果，整个 **math/add.js** 模块都被省略了。
+重新构建项目，我们得到和之前相同的结果，整个 **math/add.js** 模块都被省略了。
