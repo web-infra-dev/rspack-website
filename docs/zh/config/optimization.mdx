@@ -266,16 +266,6 @@ module.exports = {
 
 拆分前必须共享模块的最小 chunks 数。
 
-{/* splitChunks.hidePathInfo isn't supported yet. */}
-{/\* ### splitChunks.hidePathInfo
-
-- **类型：** `boolean`
-- **默认值：** `false`
-
-为由 maxSize 分割的部分创建名称时，阻止公开路径信息。
-
-\*/}
-
 ### splitChunks.minSize
 
 - **类型：** `number`
@@ -318,15 +308,6 @@ module.exports = {
 `splitChunks.minRemainingSize` 仅在剩余单个 chunk 时生效。
 
 :::
-
-{/\* ### splitChunks.layer
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.layer
-
-- **类型：** `number`
-- **默认值：** `0`
-
-按模块层将模块分配给缓存组。 \*/}
 
 ### splitChunks.maxSize
 
