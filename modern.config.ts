@@ -1,5 +1,5 @@
 import path from 'path';
-import DocTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
+import docTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -208,9 +208,7 @@ export default defineConfig({
     root: path.join(__dirname, 'docs'),
     title: 'Rspack',
     description: 'A high-performance bundler based on Rust',
-    // TODO logo
-    // logo: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-2x-text-0104.png',
-    icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-1x-0104.png',
+    icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
     themeConfig: {
       footer: {
@@ -248,5 +246,5 @@ export default defineConfig({
       },
     },
   },
-  plugins: [DocTools()],
+  plugins: [docTools()],
 });
