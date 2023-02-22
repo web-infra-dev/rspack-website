@@ -83,6 +83,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         items: [
           getLink('/guide/optimization'),
           getLink('/guide/code-splitting'),
+          getLink('/guide/tree-shaking'),
         ],
       },
       {
