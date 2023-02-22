@@ -107,6 +107,11 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/migrate-from-cra'),
         ],
       },
+      {
+        collapsible: false,
+        text: getText('其他', 'Misc'),
+        items: [getLink('/misc/roadmap')],
+      },
     ],
 
     [getLink('/config/')]: [
