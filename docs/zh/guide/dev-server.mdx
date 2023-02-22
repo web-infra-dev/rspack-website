@@ -1,1 +1,34 @@
-# 开发服务器
+# DevServer
+
+Rspack 内置了 devServer 用于开发调试，其内置了 HMR、代理服务器等功能。
+
+### HMR
+
+Rspack 在 dev 模式下默认开启了 HMR, 你也可以在 `rspack.config.js` 中配置 `devServer.hot` 选项来关闭 HMR。
+
+```js
+module.exports = {
+  devServer: {
+    hot: false,
+  },
+};
+```
+
+### Proxy
+
+Rspack 内置了一个简单的代理服务器，你可以在 `rspack.config.js` 中配置 `devServer.proxy` 选项来开启代理服务器。 devServer 内部使用了 [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) 来实现代理功能。例如我们可以通过如下方式将 `/api` 代理到 `http://localhost:3000`。
+
+```js
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
+  },
+};
+```
+
+更多关于 devServer 的配置项请参考 [devServer](/config/devServer.html)。
