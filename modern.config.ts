@@ -173,6 +173,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('DevServer 开发服务器', 'DevServer'),
         link: getLink('/config/devServer'),
       },
+      {
+        text: getText('Experiments 实验功能', 'Experiments'),
+        link: getLink('/config/experiments'),
+      },
     ],
     [getLink('/api/')]: [
       {
