@@ -15,7 +15,11 @@ root
 
 ## Contributing
 
-This site is built with [Modern.js Doc](https://github.com/modern-js-dev/modern.js), the document content can be written using markdown or mdx.
+This website is built with [Modern.js Doc](https://modernjs.dev/doc-tools), the document content can be written using markdown or mdx syntax. You can refer to the [Modern.js Doc Website](https://modernjs.dev/doc-tools) for detailed usage.
+
+The source code of Modern.js Doc can be found in [this folder](https://github.com/modern-js-dev/modern.js/tree/main/packages/solutions/doc-tools).
+
+If you have any problems using the Modern.js Doc, please create a new issue at [Modern.js Issues](https://github.com/modern-js-dev/modern.js/issues).
 
 ### Install pnpm
 
