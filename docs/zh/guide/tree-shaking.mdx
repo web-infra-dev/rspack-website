@@ -51,11 +51,11 @@ export function cube(x) {
 }
 ```
 
-注意到，我们没有从 **src/math.js** 模块导入 `square` 方法。该函数是“死代码”，表示应该删除未使用的导出。现在让我们构建我们的项目
+注意到，我们没有从 **src/math.js** 模块导入 `square` 方法。该函数是“死代码”，表示应该被删除的未使用的导出。现在构建我们的项目
 将产生以下构建结果：
 
 ```js
-// ...
+// ... 省略一些不重要的代码
 var __webpack_modules__ = {
   './src/index.js': function (module, exports, __webpack_require__) {
     'use strict';
@@ -104,7 +104,7 @@ var __webpack_modules__ = {
 // ...
 ```
 
-正如您所看到的，如果我们不启用 treeShaking，则所有代码都保持不变，只是将所有的代码都报了运行时代码。
+正如您所看到的，如果我们不启用 treeShaking，所有代码都保持不变，只是将代码包裹了一层运行时代码。
 现在，我们启用 builtins.treeShaking
 
 ```diff title=rspack.config.js
@@ -126,7 +126,7 @@ const config = {
 module.exports = config;
 ```
 
-`square` 函数将会被删除
+重新构建项目后，`square` 函数将会被删除
 
 ## SideEffects
 
@@ -308,7 +308,7 @@ console.log((0, _indexJs.multiply)(2, 3));
 ```
 
 由于`module.rule.sideEffects` 比 package.json 中的 `sideEffects` 优先级更高, 我们可以使用 `module.rule.sideEffects` 来覆盖某些模块的 `sideEffects` 标识.
-我们知道，只有在`addRandomDate` 导出被使用时, 初始化的副作用才有意义，而当前项目中该变量并没有被使用，因此我们可以安全地覆盖它，我们修改 rspack.config.js:
+由于初始化的副作用只在使用 addRandomDate 时才有意义，因此我们可以安全地覆盖它。为此，我们可以对 rspack.config.js 进行以下修改：
 
 ```diff title=rspack.config.js
 /**
@@ -340,4 +340,4 @@ const config = {
 module.exports = config;
 ```
 
-重新构建项目，我们得到和之前相同的结果，整个 **math/add.js** 模块都被省略了。
+重新构建项目，我们得到和之前相同的结果，整个 **math/add.js** 模块都被删除了。
