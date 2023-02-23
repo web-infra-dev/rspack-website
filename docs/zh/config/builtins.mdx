@@ -75,7 +75,7 @@ module.exports = {
 #### labelFormat
 
 - **类型：** `string`
-- **默认值：** `"[local]"`
+- **默认值：** `'[local]'`
 
 此选项仅在 `'autoLabel'` 设置为 `'dev-only'` 或 `'always'` 时有效。允许你自定义添加的 `label` 的结构。通过字符串定义，其中可变部分用方括号 `'[]'` 括起来。例如对于标签: `'my-classname——[local]'`，其中 `'[local]'` 将被替换为样式变量的名称。
 
@@ -125,7 +125,7 @@ export type ImportMap =
 
 ```ts
 type PresetEnv = undefined | {
-  mode?: "usage" | "entry",
+  mode?: 'usage' | 'entry',
   targets?: string[],
   coreJs?: string,
 }
