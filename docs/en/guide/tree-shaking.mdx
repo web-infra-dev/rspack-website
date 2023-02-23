@@ -134,7 +134,7 @@ Rebuilding the project, the `square` function got dropped.
 
 ## SideEffects
 
-In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet(In real project we using different kinds of format of package cjs, esm, umd and so on.), so in the mean time, it's necessary to provide hints to rspack's compiler on the "pureness" of your code.
+In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet (In real project we using different kinds of format of package cjs, esm, umd and so on.), so in the mean time, it's necessary to provide hints to rspack's compiler on the "pureness" of your code.
 The way this is accomplished is the "sideEffects" package.json property.
 
 ```json title=package.json
