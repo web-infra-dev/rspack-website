@@ -66,6 +66,7 @@ export const answer = 42;
 Rspack 默认通过 `rspack.config.js` 来配置打包行为，我们可以在项目根目录下创建一个 `rspack.config.js` 文件，然后在里面配置打包行为，如下:
 
 ```js title="rspack.config.js"
+const path = require('path');
 module.exports = {
   entry: {
     main: './src/index.js',

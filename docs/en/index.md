@@ -24,6 +24,6 @@ features:
     details: Targeted interoperability the Webpack ecosystem, no need to build your ecosystem from scratch.
     icon: 📦
   - title: 'Batteries included'
-    details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
+    details: Out-of-the-box support for TypeScript, JSX, CSS, CSS Modules, Sass, and more.
     icon: 🎨
 ---

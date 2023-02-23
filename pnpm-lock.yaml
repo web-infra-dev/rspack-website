@@ -6,6 +6,7 @@ specifiers:
   '@types/node': ^18.11.18
   '@types/react': ^18.0.27
   '@vercel/edge': ^0.1.2
+  case-police: 0.5.10
   husky: ^8.0.3
   nano-staged: ^0.8.0
   prettier: ^2.8.3
@@ -19,6 +20,7 @@ devDependencies:
   '@modern-js/tsconfig': 2.5.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
+  case-police: 0.5.10
   husky: 8.0.3
   nano-staged: 0.8.0
   prettier: 2.8.3
@@ -2877,6 +2879,11 @@ packages:
 
   /caniuse-lite/1.0.30001455:
     resolution: {integrity: sha512-h5n7WkDmyHlvHhVFDMC1OFUuWKoht7xuom/kL8b8uJzfMmB068adJgj3B0/n5PtnrK6rEqY8FE/D9m38aRdWhw==}
+    dev: true
+
+  /case-police/0.5.10:
+    resolution: {integrity: sha512-TCfzHZhQ4n6mfDIfN7si8US5KWilP7onSs8Y7Y0ki5h82ery9q9TJhfXYk6rIynr5kLuyCXCC13TWM0Qu0RtUw==}
+    hasBin: true
     dev: true
 
   /ccount/2.0.1:

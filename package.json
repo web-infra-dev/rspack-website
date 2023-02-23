@@ -8,7 +8,8 @@
     "dev": "modern dev",
     "build": "modern build",
     "format": "prettier docs/**/*.{md,mdx} --write",
-    "spell": "npx cspell docs/**/*.{ts,tsx,js,jsx,md,mdx}"
+    "spell": "npx cspell docs/**/*.{ts,tsx,js,jsx,md,mdx}",
+    "caseCheck": "npx case-police docs/**/*.{md,mdx}"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +31,7 @@
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
     "prettier": "^2.8.3",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "case-police": "0.5.10"
   }
 }
