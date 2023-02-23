@@ -4,7 +4,7 @@
 // TODO: A glossary is usually alphabetized
 }
 
-Below are some common terms used with Rspack and Webpack.
+Below are some common terms used with rspack and webpack.
 
 ## module
 
@@ -12,7 +12,7 @@ An application can be split into multiple files called modules, which may be Jav
 
 ## module type
 
-A module's type determines how it will be parsed and handled by the bundler. For example, we can tell Rspack that the module is a JavaScript module by specifying the module type as JavaScript, and Rspack will use the JavaScript parser to parse the module. If the specified module type is CSS, then Rspack will use a CSS parser to parse the module.
+A module's type determines how it will be parsed and handled by the bundler. For example, we can tell rspack that the module is a JavaScript module by specifying the module type as JavaScript, and rspack will use the JavaScript parser to parse the module. If the specified module type is CSS, then rspack will use a CSS parser to parse the module.
 
 ## asset module
 
@@ -20,7 +20,7 @@ An "asset module" is a special module type used to process static resources, suc
 
 ## module resolution
 
-Module resolution is the process of calculating the file path indicated by a module specifier. For example, an import statement includes a module specifier, and Rspack will use the module resolution algorithm to find the corresponding file path.
+Module resolution is the process of calculating the file path indicated by a module specifier. For example, an import statement includes a module specifier, and rspack will use the module resolution algorithm to find the corresponding file path.
 
 ## module graph
 
@@ -34,7 +34,7 @@ In bundling terminology, a chunk is a group of modules that get combined into a 
 
 Chunk graph is a data structure that represents the relationship between chunks. It is a directed graph, and each node in the graph represents a chunk, and each edge represents the dependency relationship between chunks.
 
-## code Splitting
+## code splitting
 
 Code Splitting is a technique that allows you to split your code into multiple chunks, and only load the necessary chunks when the application is running. This can help you reduce the size of the initial bundle and speed up the application load time.
 
@@ -48,7 +48,7 @@ Bundle splitting is a technique that allows you to split or merge your code into
 
 ## tree shaking
 
-Tree shaking is a technique that allows you to remove unused code from your bundle. It a form of compiler dead code elimination, with a focus on minimizing processing of dead code. Compilers like Rspack will accomplish this by analyzing the static structure of your code, and then removing the unused code.
+Tree shaking is a technique that allows you to remove unused code from your bundle. It a form of compiler dead code elimination, with a focus on minimizing processing of dead code. Compilers like rspack will accomplish this by analyzing the static structure of your code, and then removing the unused code.
 
 ## asset
 
@@ -60,7 +60,7 @@ NAPI-RS is a framework for building pre-compiled Node.js addons in Rust. It simp
 
 ## plugin
 
-A plugin is a program module that can be used to extend the functionality of Rspack by means of extensibility hooks. It can be used to customize the build process, or to integrate with other tools. Rspack provides lots of hooks which you can use to customize the build process.
+A plugin is a program module that can be used to extend the functionality of rspack by means of extensibility hooks. It can be used to customize the build process, or to integrate with other tools. Rspack provides lots of hooks which you can use to customize the build process.
 
 ## loader
 
