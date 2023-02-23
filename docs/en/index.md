@@ -18,12 +18,12 @@ hero:
 
 features:
   - title: 'Fast'
-    details: Extremely fast build times by leveraging the Rust language for core operations.
+    details: Based on Rust, the build speed is extremely fast, bringing you the ultimate development experience.
     icon: 🚀
-  - title: 'Webpack compatible'
-    details: Configuration and plugin contracts designed to interoperate with the Webpack ecosystem.
+  - title: 'Webpack Interoperable'
+    details: Targeted interoperability the Webpack ecosystem, no need to build your ecosystem from scratch.
     icon: 📦
   - title: 'Batteries included'
-    details: Out-of-box support for Typescript, JSX, CSS, CSS Modules, SASS, and more.
+    details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
     icon: 🎨
 ---
