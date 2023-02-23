@@ -6,7 +6,7 @@ Rspack 虽然预期尽可能的兼容 Webpack 的常用 API, 但是无可避免�
 
 ### 去除 babel-loader
 
-Rspack 已经内置了对 TypeScript 和 JSX 以及最新的 Javascript 语法的支持，这意味着如果你的 babel-loader 只是为了支持 TypeScript、JSX 以及更新的 Javascript 语法，那么完全可以去除 babel-loader。
+Rspack 已经内置了对 TypeScript 和 JSX 以及最新的 JavaScript 语法的支持，这意味着如果你的 babel-loader 只是为了支持 TypeScript、JSX 以及更新的 JavaScript 语法，那么完全可以去除 babel-loader。
 如果你的 babel-loader 是为了支持自定义的转换逻辑，那么这部分的 babel-loader 可以保留，但是我们不鼓励用户对大量的文件使用 babel-loader，因为这会导致严重的性能恶化。
 
 ```diff
