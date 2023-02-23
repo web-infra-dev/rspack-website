@@ -25,4 +25,6 @@ recognise
 sockjs
 spdy
 builtinspresetenv
+Zack Jackson
+viktoriialurie
 Zack

@@ -1,18 +1,20 @@
 # Roadmap
 
-We expect to support some of the features listed below in the future, but we do not guarantee that all of the features listed below will be supported in the next release, nor do we guarantee that they will be implemented in the order listed below.
+While we do expect to support the features listed below in the future, we do not guarantee that all of the features listed below will be supported, in the next release, if at all. Additionally we do not guarantee that they will be implemented in the order listed below.
 
-### Support for more community plugins and loader
+### Performance Improvement
 
-As webpack contains a large number of api, we will be supporting some of the most frequently used loaders and plugins based on feedback from the community.
+### Support for more community plugins and loaders
+
+As webpack contains a large number of apis, we will be working to support the most frequently used loaders and plugins based on feedback from the community first.
 
 ### Module Federation support
 
-Module Federation is a widely used webpack feature with a rich ecosystem and we will be working with the author of Module Federation [Zack Jackson](https://github.com/ScriptedAlchemy) to develop this feature.
+Module Federation is a widely used webpack feature with a rich ecosystem and we will be working with the author of Module Federation [Zack Jackson](https://github.com/ScriptedAlchemy) together with the Module Federation core team and their product owner @viktoriialurie, to develop support for module federation.
 
 ### Vue and Svelte support
 
-Vue and Svelte are two very popular front-end frameworks that are more complex to support than React and rely on more internal webpack api. We expect to complete support for both frameworks in the future to support the full vue and svelte ecosystem.
+From what we have seen, Vue and Svelte are two very popular front-end frameworks that are more complex to support than React. They rely on more internal webpack apis. We expect to complete full support for both frameworks in the near future. Our desire is to support the full Vue and Svelte ecosystems.
 
 ### Lazy Compilation support
 
