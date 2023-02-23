@@ -1,14 +1,14 @@
-## 模块
+# 模块
 
 虽然 rspack 支持多种模块语法，但我们建议遵循单一的语法，以保持一致性并避免奇怪的行为。
 
 ### ES6(推荐)
 
-Rspack 原生支持 ES6 模块语法，你可以使用静态的`import`、`export`和`import()`语法。
+Rspack 原生支持 ES6 模块语法，你可以使用静态的 `import`、`export`和`import()` 语法。
 
 ### CommonJS
 
-Rspack 也支持`CommonJS`语法，你可以使用`require`和`module.exports`语法。
+Rspack 也支持 `CommonJS` 语法，你可以使用 `require` 和 `module.exports` 语法。
 
 ### Webpack
 
@@ -25,7 +25,7 @@ require.context(
 );
 ```
 
-使用 `directory` 的路径、`includeSubdirs`的选项、对包含的模块进行更精细控制的过滤器以及定义加载方式的模式来指定整个依赖关系组。
+使用 `directory` 的路径、`includeSubdirs` 的选项、对包含的模块进行更精细控制的过滤器以及定义加载方式的模式来指定整个依赖关系组。
 如果模式被设置为 `lazy`，底层模块将被异步加载。
 
 ## 模块变量
@@ -38,16 +38,16 @@ require.context(
 
 `module.hot`的别名，但是`import.meta.webpackHot`可以在严格的 ESM 中使用，而 module.hot 不能。
 
-### __dirname (NodeJS)
+### \_\_dirname (NodeJS)
 
 取决于配置选项`node.__dirname`。
 
 - false: 未定义
-- mock: 等于'/'
+- mock: 等于 '/'
 - true: node.js \_\_dirname
   如果在一个被解析器解析的表达式里面使用，配置选项会被视为真。
 
-### __resourceQuery (webpack 专用)
+### \_\_resourceQuery (webpack 专用)
 
 当前模块的资源查询。如果进行了下面的 require 调用，那么查询字符串将在 file.js 中出现。
 
@@ -55,9 +55,7 @@ require.context(
 require('file.js?test');
 ```
 
-file.js
-
-```ts
+```ts title="file.js"
 __resourceQuery === '?test';
 ```
 
