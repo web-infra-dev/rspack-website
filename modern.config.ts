@@ -254,9 +254,15 @@ export default defineConfig({
         },
       ],
     },
+    globalStyles: path.join(__dirname, './src/tailwind.css'),
     builderConfig: {
       dev: {
         startUrl: false,
+      },
+      tools: {
+        postcss: (config, { addPlugins }) => {
+          addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
+        },
       },
     },
   },
