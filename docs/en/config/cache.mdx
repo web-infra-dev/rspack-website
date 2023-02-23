@@ -1,13 +1,13 @@
 # Cache
 
-Cache the generated modules to improve build speed.
+Cache the generated modules to improve build speed, rspack currently only supports memory cache.
 
 - **Type:** `boolean`
 - **Default:** [production mode](config/mode#production) is `false`, [development mode](config/mode#development) is `true`
 
 ## Usage
 
-You can set the cache directly in `rspack.config.js`:
+You can disable the cache directly in `rspack.config.js`:
 
 ```ts title="rspack.config.js"
 module.exports = {
