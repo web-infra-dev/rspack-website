@@ -4,6 +4,7 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "src",
     "./modern.config.ts",
     "./docs/**/*.tsx",
     "./docs/**/*.ts",
