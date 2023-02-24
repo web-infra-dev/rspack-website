@@ -316,7 +316,42 @@ type BuiltinsDecorator =
 | `legacy`       | `boolean` | true   | 是否使用[历史（第 1 阶段）](https://github.com/tc39/proposal-decorators)类装饰器的语法和行为 |
 | `emitMetadata` | `boolean` | true   | 是否保留 metadata 信息                                                                       |
 
-{/* ## builtins.css */}
+## builtins.css
+
+此选项可以用来配置默认 css 打包策略。
+
+- **类型：**
+
+```ts
+type BuiltinsCss = {
+  modules?: BuiltinsCssModules;
+};
+```
+
+### builtins.css.modules
+
+css modules 配置
+
+- **类型：**
+
+```ts
+type BuiltinsCssModules = {
+  localsConvention?:
+    | 'asIs'
+    | 'camelCase'
+    | 'camelCaseOnly'
+    | 'dashes'
+    | 'dashesOnly';
+  localIdentName?: string;
+  exportsOnly?: boolean;
+};
+```
+
+| 名称               | 类型                                                                   | 默认值                                                          | 描述                                                                                                                                                                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                          | `asIs` 类名将按原样导出。<br/> `camelCase` 类名将被驼峰化，原始类名仍然可用。<br/> `camelCaseOnly` 类名将被驼峰化，原始类名不可用。<br/> `dashes` 只有类名中的破折号会被驼峰化，原始类名仍然可用。<br/> `dashesOnly` 只有类名中的破折号会被驼峰化，原始类名不可用。 |
+| `localIdentName`   | `string`                                                               | 生产环境: '[hash]'<br/>开发环境: '[path][name][ext]\_\_[local]" | 最终产物里的类名生成规则，支持以下模版字符：<br/>`hash` 字符串 hash<br/>`hash:<length>` 截取一定长度的 hash<br/>`path` 文件与基础目录的相对路径<br/>`name` 文件名称<br/>`ext` 文件后缀名<br/>`local` 原始类名                                                       |
+| `exportsOnly`      | `boolean`                                                              | false                                                           | 只输出 js 对象，不输出 css 文件。常在 SSR 场景下使用                                                                                                                                                                                                                |
 
 {/* ## builtins.postcss */}
 

@@ -314,7 +314,42 @@ type BuiltinsDecorator =
 | `legacy`       | `boolean` | true    | Use the [legacy (stage 1)](https://github.com/tc39/proposal-decorators) class decorators syntax and behavior. |
 | `emitMetadata` | `boolean` | true    | Whether to keep metadata information.                                                                         |
 
-{/* ## builtins.css */}
+## builtins.css
+
+This configuration can be used to control how rspack handles css.
+
+- **Type:**
+
+```ts
+type BuiltinsCss = {
+  modules?: BuiltinsCssModules;
+};
+```
+
+### builtins.css.modules
+
+css modules options.
+
+- **Type:**
+
+```ts
+type BuiltinsCssModules = {
+  localsConvention?:
+    | 'asIs'
+    | 'camelCase'
+    | 'camelCaseOnly'
+    | 'dashes'
+    | 'dashesOnly';
+  localIdentName?: string;
+  exportsOnly?: boolean;
+};
+```
+
+| Name               | Type                                                                   | Default                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                               | `asIs` Class names will be exported as is.<br/> `camelCase` Class names will be camelized, the original class name will not to be removed from the locals.<br/> `camelCaseOnly` Class names will be camelized, the original class name will be removed from the locals.<br/> `dashes` Only dashes in class names will be camelized.<br/> `dashesOnly` Dashes in class names will be camelized, the original class name will be removed from the locals. |
+| `localIdentName`   | `string`                                                               | production: '[hash]'<br/>development: '[path][name][ext]\_\_[local]" | The generated local ident name. Supported template strings: <br/>`hash` hash string.<br/>`hash:<length>` hash with hash settings.<br/>`path` the path of the resource relative to the **context** option.<br/>`name` the basename of the resource.<br/>`ext` extension with leading `.`.<br/>`local` original class.                                                                                                                                    |
+| `exportsOnly`      | `boolean`                                                              | false                                                                | Only export js object, without css file. Useful in SSR.                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 {/* ## builtins.postcss */}
 
