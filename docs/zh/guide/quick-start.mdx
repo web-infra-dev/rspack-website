@@ -67,6 +67,7 @@ Rspack 默认通过 `rspack.config.js` 来配置打包行为，我们可以在�
 
 ```js title="rspack.config.js"
 const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.js',
@@ -134,6 +135,8 @@ Rspack 内置了对 React 的支持，你无需任何配置，但是别忘了将
 - rspack.config.js
 
 ```js
+const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.jsx',
