@@ -2,7 +2,7 @@
 
 ## rspack documentation
 
-Unless otherwise noted, the content of the documents referred to at the following links on this site is derived from the [official webpack documentation](https://webpack.js.org/) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license.
+Unless otherwise noted, the content of the documents referred to at the following links on this site is derived from the [official webpack documentation](https://github.com/webpack/webpack.js.org) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license.
 
 - [/config](/config)
 - [/guide](/guide/introduction)

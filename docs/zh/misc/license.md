@@ -2,7 +2,7 @@
 
 ## rspack documentation
 
-除非另有说明，本站下列地址所指向的文档内容源自 [webpack 官方文档](https://webpack.js.org/)，遵循 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh) 许可协议。
+除非另有说明，本站下列地址所指向的文档内容源自 [webpack 中文文档](https://github.com/docschina/webpack.js.org)，遵循 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh) 许可协议。
 
 - [/config](/config)
 - [/guide](/guide/introduction)
