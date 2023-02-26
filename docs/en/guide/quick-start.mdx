@@ -66,6 +66,8 @@ export const answer = 42;
 Rspack configures the bundle behavior by default via `rspack.config.js` whose structure is nearly identical to `webpack.config.js`. Put the `rspack.config.js` file in your project's root directory, for example:
 
 ```js title="rspack.config.js"
+const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.js',
@@ -89,7 +91,7 @@ Entrypoint main = main.js
 build: 21.388ms
 ```
 
-At this point we have generated `main.js` and `main.js.map` files in the `dist` directory.  Our configuration should have also generated the following `dist/index.html` file:
+At this point we have generated `main.js` and `main.js.map` files in the `dist` directory. Our configuration should have also generated the following `dist/index.html` file:
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -133,6 +135,8 @@ Rspack has built-in support for React, so you don't need any special configurati
 - rspack.config.js
 
 ```js
+const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.jsx',
@@ -194,9 +198,9 @@ Now invoke `npx rspack build`. Confirm that `dist/index.html` was generated with
 
 ### Hot Module Replacement (HMR)
 
-Rspack has built-in support for HMR. If you're using React, this includes built-in support for fast-refresh, so you don't need to configure it.  
+Rspack has built-in support for HMR. If you're using React, this includes built-in support for fast-refresh, so you don't need to configure it.
 
-To experience HMR, invoke `npx rspack serve`.  Next, make a change to the `src/answer.js` source file:
+To experience HMR, invoke `npx rspack serve`. Next, make a change to the `src/answer.js` source file:
 
 ```js title="src/answer.js"
 export const answer = 'Rspack';
@@ -206,7 +210,7 @@ You should observe that the web browser automatically updates to show `The answe
 
 ## Creating project using scaffolding
 
-Rspack also includes scaffolding to quickly create new projects.  Invoke the following command:
+Rspack also includes scaffolding to quickly create new projects. Invoke the following command:
 
 <Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
   <Tab>
