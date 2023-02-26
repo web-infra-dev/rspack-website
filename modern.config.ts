@@ -202,7 +202,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/api/modules'),
       },
       {
-        text: getText('Hot Module ReplaceMent', 'Hot Module ReplaceMent'),
+        text: getText('Hot Module Replacement', 'Hot Module Replacement'),
         link: getLink('/api/hmr'),
       },
       {
