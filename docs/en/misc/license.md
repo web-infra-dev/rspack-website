@@ -2,12 +2,12 @@
 
 ## rspack documentation
 
-Unless otherwise noted, the content of the documents referred to at the following links on this site is derived from the [official webpack documentation](https://webpack.js.org/) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh) license.
+Unless otherwise noted, the content of the documents referred to at the following links on this site is derived from the [official webpack documentation](https://webpack.js.org/) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license.
 
 - [/config](/config)
 - [/guide](/guide/introduction)
 
-The content of the documents on this site, including but not limited to the addresses below, is from [rspack-website contributors](https://github.com/modern-js-dev/rspack-website/network/dependencies) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.zh) license.
+The content of the documents on this site, including but not limited to the addresses below, is from [rspack-website contributors](https://github.com/modern-js-dev/rspack-website/network/dependencies) and is licensed under the [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.en) license.
 
 - [/config/experiments](/config/experiments)
 - [/guide/introduction](/guide/introduction)
