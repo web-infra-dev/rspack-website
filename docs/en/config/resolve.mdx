@@ -7,7 +7,7 @@ Used to configure the Rspack module resolution logic.
 ## resolve.alias
 
 - **Type:** `Record<string, false | string>`
-- **Default value:** `{}`
+- **Default:** `{}`
 
 Path alias, e.g.
 
@@ -22,14 +22,14 @@ At this point, `require("@/a")` will attempt to resolve `<root>/src/a`.
 ## resolve.aliasField
 
 - **Type:** `boolean`
-- **Default value:** `true`
+- **Default:** `true`
 
 Whether to resolve according to the [package-browser-filed-spec](https://github.com/defunctzombie/package-browser-field-spec) rule.
 
 ## resolve.conditionNames
 
 - **Type:** `string[]`
-- ** Default value:** `[]`
+- **Default:** `[]`
 
 Same as node's [conditionNames](https://nodejs.org/api/packages.html#conditional-exports) for the `exports` and `imports` fields in package.json.
 
@@ -43,7 +43,7 @@ Parse modules in order, e.g. `require('. /index')`, will try to parse `'. /index
 ## resolve.fallback
 
 - **Type:** `Record<string, false | string>`
-- ** Default value:** `{}`
+- **Default:** `{}`
 
 Redirect in case of failed parsing.
 
@@ -83,13 +83,13 @@ The name of the directory to use when resolving dependencies.
 ## resolve.preferRelative
 
 - **Type:** `boolean`
-- ** Default value:** `false`
+- **Default:** `false`
 
 When enabled, `require('file')` will first look for the `. /file` file in the current directory, not `<modules>/file`.
 
 ## resolve.tsConfigPath
 
 - **Type:** `string | undefined`
-- **Default value:** `undefined`
+- **Default:** `undefined`
 
 Use `paths` and `baseUrl` of tsconfigPath, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
