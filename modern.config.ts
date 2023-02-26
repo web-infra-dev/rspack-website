@@ -110,7 +110,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       {
         collapsible: false,
         text: getText('其他', 'Misc'),
-        items: [getLink('/misc/roadmap')],
+        items: [getLink('/misc/roadmap'), getLink('/misc/license')],
       },
     ],
 
