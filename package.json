@@ -9,7 +9,8 @@
     "build": "modern build",
     "format": "prettier docs/**/*.{md,mdx} --write",
     "spell": "npx cspell docs/**/*.{ts,tsx,js,jsx,md,mdx}",
-    "caseCheck": "npx case-police docs/**/*.{md,mdx}"
+    "caseCheck": "npx case-police docs/**/*.{md,mdx}",
+    "preview": "modern preview"
   },
   "keywords": [],
   "author": "",

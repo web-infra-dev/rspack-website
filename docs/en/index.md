@@ -3,11 +3,11 @@ pageType: home
 
 hero:
   name: Rspack
-  text: A fast Rust-based web bundler.
+  text: A fast Rust-based web bundler
   tagline: Build a high-performance frontend toolchain.
   # TODO logo
   image:
-    src: https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/logo.png
+    src: /logo.png
     alt: logo
   actions:
     - theme: brand

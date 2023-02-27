@@ -7,7 +7,7 @@ hero:
   tagline: 打造高性能的前端工具链
   # TODO logo
   image:
-    src: https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/logo.png
+    src: /logo.png
     alt: logo
   actions:
     - theme: brand
