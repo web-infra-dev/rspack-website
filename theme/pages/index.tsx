@@ -10,7 +10,7 @@ export function HomeLayout() {
     <div>
       {/* Landing Page */}
       <div
-        className="relative"
+        className="relative border-b"
         style={{
           background: 'var(--modern-home-bg)',
           minHeight: 'calc(100vh - var(--modern-nav-height))',
