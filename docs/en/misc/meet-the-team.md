@@ -4,8 +4,8 @@ The development of Rspack is led by a dedicated team who work full-time at Byted
 
 ## Team members
 
-- [zoolsher](https://github.com/zoolsher): Manager
-- [hardfist](https://github.com/hardfist): Tech lead of Rspack team
+- [zoolsher](https://github.com/zoolsher)
+- [hardfist](https://github.com/hardfist)
 - [ahabhgk](https://github.com/ahabhgk)
 - [bvanjoi](https://github.com/bvanjoi)
 - [Boshen](https://github.com/Boshen)

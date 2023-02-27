@@ -4,8 +4,8 @@ Rspack 的开发是由 Bytedance 的 Rspack 团队和社区贡献者驱动。
 
 ## 成员
 
-- [zoolsher](https://github.com/zoolsher): Manager
-- [hardfist](https://github.com/hardfist): Rspack 团队技术主管
+- [zoolsher](https://github.com/zoolsher)
+- [hardfist](https://github.com/hardfist)
 - [ahabhgk](https://github.com/ahabhgk)
 - [bvanjoi](https://github.com/bvanjoi)
 - [Boshen](https://github.com/Boshen)
