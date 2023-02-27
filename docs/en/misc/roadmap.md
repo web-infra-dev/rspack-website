@@ -22,6 +22,6 @@ From what we have seen, Vue and Svelte are two very popular front-end frameworks
 
 Although Rspack currently has good performance, there is still a lot of room to improve performance for projects with a large number of pages, and Lazy Compilation is a good way to improve performance.
 
-### Persisten Cache Support
+### Persistent Cache Support
 
 Persisten Cache can significantly optimize the performance of a project's warm compilation. Even though Rspack is currently able to achieve good performance on most projects, Persisten Cache can still provide a significant performance boost on some very large projects, and we plan to support this feature in the future.
