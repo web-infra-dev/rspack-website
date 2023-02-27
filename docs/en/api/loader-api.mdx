@@ -4,7 +4,7 @@ Rspack loader is designed to reuse the webpack loader, it is compatible with mos
 
 ## 'Raw' Loader
 
-By default, resource files are converted to UTF-8 strings and passed to the loader. loaders can receive raw `Buffer` by setting `raw` to `true`. Each loader can pass its processing results as `String` or `Buffer`, and the rspack compiler will convert them to and from the loader.
+By default, resource files are converted to UTF-8 strings and passed to the loader. loaders can receive raw `Buffer` by setting `raw` to `true`. Each loader can pass its processing results as `String` or `Buffer`, and the Rspack compiler will convert them to and from the loader.
 
 ```js
 module.exports = function (content) {
@@ -36,13 +36,13 @@ Removes all dependencies of the loader result.
 
 ## `this.async()`
 
-Tells rspack that this loader will be called asynchronously. Returns `this.callback`.
+Tells Rspack that this loader will be called asynchronously. Returns `this.callback`.
 
 ## `this.callback(err: Error | null, content: string | Buffer, sourceMap?: SourceMap, meta?: any)`
 
-Tell rspack the result of the Loader processing.
+Tell Rspack the result of the Loader processing.
 
-The first parameter must be `Error` or `null`, which marks the current module as a compilation failure, the second parameter is a `string` or `Buffer`, which indicates the contents of the file after the module has been processed by the loader, the third parameter is a source map that can be processed by the loader, and the fourth parameter is ignored by rspack and can be anything (e.g. some metadata).
+The first parameter must be `Error` or `null`, which marks the current module as a compilation failure, the second parameter is a `string` or `Buffer`, which indicates the contents of the file after the module has been processed by the loader, the third parameter is a source map that can be processed by the loader, and the fourth parameter is ignored by Rspack and can be anything (e.g. some metadata).
 
 ## `this.cacheable(flag: boolean = true)`
 
