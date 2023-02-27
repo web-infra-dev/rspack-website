@@ -201,13 +201,6 @@ type BuiltinsMinifyOptions = {
 | `dropConsole` | `boolean`       | false   | Pass true to discard calls to console.\* functions.                                                    |
 | `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and rspack will assume that those functions do not produce side effects |
 
-## builtins.polyfill
-
-When [target](config/target) is `browserslist`, auto inject polyfill code.
-
-- **Type:** `boolean`
-- **Default:** `true`
-
 ## builtins.define
 
 Replaces variables in your code with other values or expressions at compile time.
