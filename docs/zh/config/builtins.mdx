@@ -203,13 +203,6 @@ type BuiltinsMinifyOptions = {
 | `dropConsole` | `boolean`       | false  | 是否移除对 console.\* 函数的调用             |
 | `pureFuncs`   | `Array<string>` | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句 |
 
-## builtins.polyfill
-
-当 [target](config/target) 为 browserslist 时此选项有效，当开启时 rspack 将会根据代码自动注入 polyfill。
-
-- **类型：** `boolean`
-- **默认值：** `true`
-
 ## builtins.define
 
 此选项将会在编辑时将代码中的变量替换为其他值或表达式。
