@@ -220,10 +220,11 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
 export default defineConfig({
   doc: {
     root: path.join(__dirname, 'docs'),
-    title: 'Rspack',
+    title: 'rspack',
     description: 'A high-performance bundler based on Rust',
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
+    globalStyles: path.join(__dirname, 'theme', 'index.css'),
     themeConfig: {
       footer: {
         message: '© 2023 Bytedance Inc. All Rights Reserved.',
@@ -238,7 +239,7 @@ export default defineConfig({
       locales: [
         {
           lang: 'en',
-          title: 'Rspack',
+          title: 'rspack',
           description: 'A high-performance bundler based on Rust',
           nav: getNavConfig('en'),
           sidebar: getSidebarConfig('en'),
@@ -246,7 +247,7 @@ export default defineConfig({
         },
         {
           lang: 'zh',
-          title: 'Rspack',
+          title: 'rspack',
           description: '基于 Rust 的高性能模块打包工具',
           nav: getNavConfig('zh'),
           sidebar: getSidebarConfig('zh'),
@@ -254,7 +255,6 @@ export default defineConfig({
         },
       ],
     },
-    globalStyles: path.join(__dirname, './src/tailwind.css'),
     builderConfig: {
       dev: {
         startUrl: false,
