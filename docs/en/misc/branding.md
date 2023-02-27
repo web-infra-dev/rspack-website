@@ -9,4 +9,4 @@ When used standalone, Rspack should always be written as Rspack, not rspack or R
 ## Logo
 
 Rspack Logo is Designed by [Zeng Jialong](https://zengjialong.com/).
-[Rspack Logo](/logo.png)
+![Rspack Logo](/logo.png)
