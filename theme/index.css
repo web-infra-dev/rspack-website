@@ -1,0 +1,22 @@
+:root {
+  --modern-c-brand: #e18a3b;
+  --modern-c-brand-dark: #d17b2c;
+  --modern-c-brand-darker: #c26c1d;
+  --modern-c-brand-light: #f2a65a;
+  --modern-c-brand-lighter: #f2a65a;
+  --modern-c-brand-tint: rgba(250, 192, 61, 0.15);
+  --modern-code-title-bg: rgba(250, 192, 61, 0.15);
+  --modern-code-block-bg: rgba(214, 188, 70, 0.05);
+}
+
+:root {
+}
+
+.dark {
+  --modern-code-title-bg: rgba(128, 128, 128, 0.2);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}

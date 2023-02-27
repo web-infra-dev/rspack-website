@@ -2,12 +2,13 @@
 pageType: home
 
 hero:
-  name: Rspack
-  tagline: 基于 Rust 的高性能模块打包工具
+  name: rspack
+  text: 基于 Rust 的高性能模块打包工具
+  tagline: 打造高性能的前端工具链
   # TODO logo
-  # image:
-  #   src: https://lf3-static.bytednsdoc.com/obj/eden-cn/zq-uylkvT/ljhwZthlaukjlkulzlp/logo-4x-01042.png
-  #   alt: logo
+  image:
+    src: https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/logo.png
+    alt: logo
   actions:
     - theme: brand
       text: 介绍
@@ -17,13 +18,28 @@ hero:
       link: /zh/guide/quick-start
 
 features:
-  - title: 'Fast'
-    details: 基于 Rust，构建速度极快，带给你极致的开发体验。
+  - title: 启动速度极快
+    details: 基于 Rust，项目启动速度极快，带给你极致的开发体验。
     icon: 🚀
-  - title: 'Webpack Interoperable'
-    details: 与 Webpack 生态有良好的兼容性，无需从零构建你的生态。
+    link: /zh/guide/introduction
+  - title: 闪电般的 HMR
+    details: 内置增量编译机制，HMR 速度极快，完全胜任大型项目的开发。
+    icon: ⚡
+    link: /zh/guide/introduction
+  - title: 兼容 webpack
+    details: 针对 webpack 的架构和生态进行兼容，无需从头搭建生态。
     icon: 📦
-  - title: 'Batteries Included'
+    link: /zh/guide/loader-compat
+  - title: 内置常见构建能力
     details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持。
     icon: 🎨
+    link: /guide/language-support
+  - title: 默认生产优化
+    details: 默认内置多种优化策略，如 Tree Shaking、代码压缩等等。
+    icon: 🛠️
+    link: /zh/guide/optimization
+  - title: '框架无关'
+    details: 不和任何前端框架绑定，保证足够的灵活性。
+    icon: 🎯
+    link: /zh/guide/react
 ---

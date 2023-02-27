@@ -9,5 +9,6 @@
     "./docs/**/*.ts",
     "./components/**/*.ts",
     "./components/**/*.tsx",
+    "./theme/**/*"
   ]
 }

@@ -20,7 +20,10 @@
     ]
   },
   "dependencies": {
-    "@vercel/edge": "^0.1.2"
+    "@vercel/edge": "^0.1.2",
+    "date-fns": "^2.29.3",
+    "framer-motion": "^10.0.0",
+    "react-intersection-observer": "^9.4.3"
   },
   "devDependencies": {
     "@modern-js/doc-tools": "0.0.0-next-20230220115239",
