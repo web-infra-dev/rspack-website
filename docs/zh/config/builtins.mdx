@@ -75,7 +75,7 @@ module.exports = {
 #### labelFormat
 
 - **类型：** `string`
-- **默认值：** `"[local]"`
+- **默认值：** `'[local]'`
 
 此选项仅在 `'autoLabel'` 设置为 `'dev-only'` 或 `'always'` 时有效。允许你自定义添加的 `label` 的结构。通过字符串定义，其中可变部分用方括号 `'[]'` 括起来。例如对于标签: `'my-classname——[local]'`，其中 `'[local]'` 将被替换为样式变量的名称。
 
@@ -119,25 +119,27 @@ export type ImportMap =
 当源代码中使用了这些浏览器中不支持的 API，则可以通过全局注入 [core-js](https://github.com/zloirock/core-js) 来为这些浏览器提供同样的 API。
 如果源代码中使用了这些浏览器中不支持的语法，也会将这些语法转换成浏览器支持的语法。
 
-当该配置项中的 `mode` 不为 undefined 时，请确保项目中依赖了 (core-js)[https://github.com/zloirock/core-js.git]。
+当该配置项中的 `mode` 不为 undefined 时，请确保项目中依赖了 [core-js](https://github.com/zloirock/core-js)。
 
 - **类型：**
 
 ```ts
-type PresetEnv = undefined | {
-  mode?: "usage" | "entry",
-  targets?: string[],
-  coreJs?: string,
-}
+type PresetEnv =
+  | undefined
+  | {
+      mode?: 'usage' | 'entry';
+      targets?: string[];
+      coreJs?: string;
+    };
 ```
 
 - **默认值：** `undefined`
 
-| 名称      | 类型                            | 默认值     | 描述 |
-| --------- | ------------------------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `targets` | `string[]\|undefined`          | undefined | 通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。|
-| `mode`    | `'entry'\|'usage'\|undefined`  | undefined | 该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，`'usage'` 代表只注入当前代码中需要的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。 |
-| `coreJs`  | `string`                       | undefined | 该配置指定注入的 core-js 的版本 |
+| 名称      | 类型                          | 默认值    | 描述                                                                                                                                                                                                                                                                                       |
+| --------- | ----------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `targets` | `string[]\|undefined`         | undefined | 通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。 |
+| `mode`    | `'entry'\|'usage'\|undefined` | undefined | 该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，`'usage'` 代表只注入当前代码中需要的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。                        |
+| `coreJs`  | `string`                      | undefined | 该配置指定注入的 core-js 的版本                                                                                                                                                                                                                                                            |
 
 ## builtins.html
 
@@ -200,13 +202,6 @@ type BuiltinsMinifyOptions = {
 | `passes`      | `number`        | 1      | 运行压缩的最大次数                           |
 | `dropConsole` | `boolean`       | false  | 是否移除对 console.\* 函数的调用             |
 | `pureFuncs`   | `Array<string>` | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句 |
-
-## builtins.polyfill
-
-当 [target](config/target) 为 browserslist 时此选项有效，当开启时 rspack 将会根据代码自动注入 polyfill。
-
-- **类型：** `boolean`
-- **默认值：** `true`
 
 ## builtins.define
 
@@ -314,7 +309,42 @@ type BuiltinsDecorator =
 | `legacy`       | `boolean` | true   | 是否使用[历史（第 1 阶段）](https://github.com/tc39/proposal-decorators)类装饰器的语法和行为 |
 | `emitMetadata` | `boolean` | true   | 是否保留 metadata 信息                                                                       |
 
-{/* ## builtins.css */}
+## builtins.css
+
+此选项可以用来配置默认 css 打包策略。
+
+- **类型：**
+
+```ts
+type BuiltinsCss = {
+  modules?: BuiltinsCssModules;
+};
+```
+
+### builtins.css.modules
+
+css modules 配置
+
+- **类型：**
+
+```ts
+type BuiltinsCssModules = {
+  localsConvention?:
+    | 'asIs'
+    | 'camelCase'
+    | 'camelCaseOnly'
+    | 'dashes'
+    | 'dashesOnly';
+  localIdentName?: string;
+  exportsOnly?: boolean;
+};
+```
+
+| 名称               | 类型                                                                   | 默认值                                                          | 描述                                                                                                                                                                                                                                                                |
+| ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                          | `asIs` 类名将按原样导出。<br/> `camelCase` 类名将被驼峰化，原始类名仍然可用。<br/> `camelCaseOnly` 类名将被驼峰化，原始类名不可用。<br/> `dashes` 只有类名中的破折号会被驼峰化，原始类名仍然可用。<br/> `dashesOnly` 只有类名中的破折号会被驼峰化，原始类名不可用。 |
+| `localIdentName`   | `string`                                                               | 生产环境: '[hash]'<br/>开发环境: '[path][name][ext]\_\_[local]" | 最终产物里的类名生成规则，支持以下模版字符：<br/>`hash` 字符串 hash<br/>`hash:<length>` 截取一定长度的 hash<br/>`path` 文件与基础目录的相对路径<br/>`name` 文件名称<br/>`ext` 文件后缀名<br/>`local` 原始类名                                                       |
+| `exportsOnly`      | `boolean`                                                              | false                                                           | 只输出 js 对象，不输出 css 文件。常在 SSR 场景下使用                                                                                                                                                                                                                |
 
 {/* ## builtins.postcss */}
 
@@ -345,3 +375,96 @@ type BuiltinsProgress = boolean | { prefix?: string };
 - **类型：** `boolean`
 
 - **默认值：** `false`
+
+## builtins.copy
+
+将已存在的单个文件或整个目录复制到产物目录。
+
+- **类型：**
+
+```ts
+export type CopyConfig = {
+  patterns:
+    | string[] // 如果传入字符串，会被视作 { from: `你传入的字符串` }
+    | {
+        from: string;
+        to?: string; // 默认根据 from 推断
+        context?: string; // 默认 rspack 配置中的 context
+        toType?: 'dir' | 'file' | 'template'; // 默认根据 from 推断
+        noErrorOnMissing?: boolean; // 默认 false
+        force?: boolean; // 默认 false
+        priority?: number; // 默认 0
+        globOptions?: {
+          caseSensitiveMatch?: boolean; // 默认 true
+          dot?: boolean; // 默认 true
+        };
+      }[];
+};
+```
+
+- **默认值：** `undefined`
+
+| 名称               | 类型                        | 默认值    | 描述                                                                                                                                  |
+| ------------------ | --------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`             | `string`                    | undefined | 复制的源路径，可以是绝对路径、相对路径、glob 查询字符串，可以是文件或目录。若传入相对路径，则是相对于 `context` 配置。                |
+| `to`               | `string`                    | undefined | 复制的目的地，可以是绝对路径、相对路径或者是 rspack 的模版字符串，例如 `'[name].[hash][ext]'`。当不指定 `to` 时，则相当于是产物目录。 |
+| `context`          | `string`                    | undefined | 该配置决定怎样匹配 `from` 路径，以及复制后的结构。                                                                                    |
+| `toType`           | `'dir'\|'file'\|'template'` | undefined | 指定 `to` 的类型，可以是目录，文件或 rspack 的模版名，若不指定则会自动推断。                                                          |
+| `noErrorOnMissing` | `boolean`                   | false     | 当没有找到对应的文件或目录时，忽略错误。                                                                                              |
+| `force`            | `boolean`                   | false     | 当产物中已经有相应的文件时，是否覆写。                                                                                                |
+| `priority`         | `number`                    | 0         | 当设置 `force` 为 `true` 时，如果匹配到同样的文件，优先级高的会覆写优先级的。                                                         |
+| `globOptions`      | `object`                    | undefined | glob 查询选项，`caseSensitiveMatch` 决定是否大小写敏感，`dot` 决定是否匹配以 . 开头的文件。                                           |
+
+### 示例
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'file.txt',
+        },
+      ],
+    },
+  },
+};
+```
+
+以上面的配置运行结果会是：`"dist/file.txt"`。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'directory',
+        },
+      ],
+    },
+  },
+};
+```
+
+以上面的配置运行结果会是 `directory` 目录下的所有文件平铺在产物目录中。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'directory/**/*',
+          to: 'newdirectory',
+        },
+      ],
+    },
+  },
+};
+```
+
+以上面的配置运行结果会是 `directory` 目录被移动到产物目录中的 `newdirectory` 目录，例如 `dist/newdirectory/directory/foo`。

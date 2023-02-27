@@ -1,4 +1,4 @@
-## Modules
+# Modules
 
 While rspack supports multiple module syntaxes, we recommend following a single syntax for consistency and to avoid odd behaviors/bugs.
 
@@ -38,7 +38,7 @@ Indicates whether or not Hot Module Replacement is enabled and provides an inter
 
 An alias for `module.hot`, however `import.meta.webpackHot` can be used in strict ESM while module.hot can't.
 
-### __dirname (NodeJS)
+### \_\_dirname (NodeJS)
 
 Depending on the configuration option `node.__dirname`:
 
@@ -47,7 +47,7 @@ Depending on the configuration option `node.__dirname`:
 - true: node.js \_\_dirname
   If used inside an expression that is parsed by the Parser, the configuration option is treated as true.
 
-### __resourceQuery(webpack-specific)
+### \_\_resourceQuery (webpack-specific)
 
 The resource query of the current module. If the following require call was made, then the query string would be available in file.js.
 
@@ -55,9 +55,7 @@ The resource query of the current module. If the following require call was made
 require('file.js?test');
 ```
 
-file.js
-
-```ts
+```ts title="file.js"
 __resourceQuery === '?test';
 ```
 

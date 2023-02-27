@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* It seems tailwind have style `dispaly: list-style` by default */
+
+summary {
+    display: block;
+}

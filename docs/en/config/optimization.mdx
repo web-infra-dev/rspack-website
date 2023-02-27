@@ -22,7 +22,7 @@ In the above example, `b.js` has already been included in `EntryChunk` and `Entr
 
 :::info Inconsistent behaviors with Webpack
 
-- [Webpack](https://webpack.js.org/configuration/optimization/#optimizationremoveavailablemodules) only enable this optimization in `production` mode。
+- [Webpack](https://webpack.js.org/configuration/optimization/#optimizationremoveavailablemodules) only enable this optimization in `production` mode.
 
 :::
 
@@ -95,7 +95,7 @@ Remove empty chunks generated in the compilation.
 
 Tells rspack to recognise the sideEffects flag in package.json or rules to skip over modules which are flagged to contain no side effects when exports are not used.
 
-`optimization.sideEffects` dependends on `builtins.treeShaking` to be enabled。
+`optimization.sideEffects` dependends on `builtins.treeShaking` to be enabled.
 This configuration has a build time cost, but eliminating modules has positive impact on performance because of less code generation. Effect of this optimization depends on your codebase.
 
 **rspack.config.js**
@@ -190,7 +190,7 @@ module.exports = {
 
 :::warning
 
-When files paths are processed by webpack, they always contain `/` on Unix systems and `\` on Windows. That's why using `[\\/]` in `{cacheGroup}.test` fields is necessary to represent a path separator. `/` or `\` in `{cacheGroup}.test` will cause issues when used cross-platform.
+When files paths are processed by webpack, they always contain `/` on UNIX systems and `\` on Windows. That's why using `[\\/]` in `{cacheGroup}.test` fields is necessary to represent a path separator. `/` or `\` in `{cacheGroup}.test` will cause issues when used cross-platform.
 
 :::
 

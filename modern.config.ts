@@ -110,7 +110,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       {
         collapsible: false,
         text: getText('其他', 'Misc'),
-        items: [getLink('/misc/roadmap')],
+        items: [getLink('/misc/roadmap'), getLink('/misc/license')],
       },
     ],
 
@@ -202,7 +202,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/api/modules'),
       },
       {
-        text: getText('Hot Module ReplaceMent', 'Hot Module ReplaceMent'),
+        text: getText('Hot Module Replacement', 'Hot Module Replacement'),
         link: getLink('/api/hmr'),
       },
       {
@@ -255,9 +255,15 @@ export default defineConfig({
         },
       ],
     },
+    globalStyles: path.join(__dirname, './src/tailwind.css'),
     builderConfig: {
       dev: {
         startUrl: false,
+      },
+      tools: {
+        postcss: (config, { addPlugins }) => {
+          addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
+        },
       },
     },
   },

@@ -1,13 +1,13 @@
-# Tree Shaking
+# Tree shaking
 
 Rspack supports tree shaking, which is a term commonly used within a JavaScript context to describe the removal of dead code.
 
 It relies on the import and export statements to detect if code modules are exported and imported for use between JavaScript files.
 
-tree shaking will be enable when you set `mode` into `production`, but also you could enable it in `development` mode
-by setting `builtins.treeShaking` to `true`
+Tree shaking will be enable when you set `mode` into `production`, but also you could enable it in `development` mode
+by setting `builtins.treeShaking` to `true`.
 
-For better illustration, I will using `development` mode in this section.
+Using `development` mode in this section for better illustration.
 
 ## Basic tree shaking
 
@@ -53,11 +53,11 @@ export function cube(x) {
 ```
 
 Note that we did not import the `square` method from the **src/math.js** module. That function is what's known as "dead code",
-meaning an unused export that should be dropped. Now let's build our simple project.
-This will yield the following build result:
+meaning an unused export that should be dropped. Now let's build the project.
+This will yield the following result:
 
 ```js
-// ...
+// ...skipping some trivial code
 var __webpack_modules__ = {
   './src/index.js': function (module, exports, __webpack_require__) {
     'use strict';
@@ -130,11 +130,11 @@ const config = {
 module.exports = config;
 ```
 
-Then, the `square` function got dropped.
+Rebuilding the project, the `square` function got dropped.
 
 ## SideEffects
 
-In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet, so in the mean time it's necessary to provide hints to rspack's compiler on the "pureness" of your code.
+In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet (In real project we using different kinds of format of package cjs, esm, umd and so on.), so in the mean time, it's necessary to provide hints to rspack's compiler on the "pureness" of your code.
 The way this is accomplished is the "sideEffects" package.json property.
 
 ```json title=package.json
@@ -206,7 +206,7 @@ export const addRandomDate = (a) => a + randomDate;
 export const add = (a, b) => a + b;
 ```
 
-Although, the `random` variable would still be needed because it includes a side effect that runs during the module's initialization.
+The `random` variable would still be needed because it includes a side effect that runs during the module's initialization.
 However, because the package.json includes the `sideEffects` field and the value is `false`, and there are no export variable used in
 **add.js**, so the whole module could be skipped, same for **subtract.js**
 
@@ -260,8 +260,7 @@ var __webpack_modules__ = {
 
 You could override some modules sideEffects by using `module.rule.sideEffects`.
 Why do we need such feature?
-We still use the example above. Consider if the author of package `math` forgot to add
-`sideEffects` field in package.json:
+Considering if the author of package `math` forgot to add `sideEffects` field in package.json:
 
 ```diff title=node_modules/math/package.json
 {
@@ -271,8 +270,8 @@ We still use the example above. Consider if the author of package `math` forgot 
 ```
 
 Then rspack will try to analyze the code safely and only mark the module is sideEffectFree when
-all toplevel statements are sideEffectFree. As we can see, `math/index.js`, `math/subtract.js` and `math/multiply.js` is sideEffectFree
-while `math/add.js` is not, because of `const randomDate = Date.now()`. When we rebuild the project,
+all toplevel statements are sideEffectFree. As you can see, `math/index.js`, `math/subtract.js` and `math/multiply.js` is sideEffectFree
+while `math/add.js` is not, because of `const randomDate = Date.now()`. When rebuilding the project,
 you could see the diff:
 
 ```diff
@@ -317,8 +316,7 @@ console.log((0, _indexJs.multiply)(2, 3));
 ```
 
 That's not what we expect, then we could use `module.rule.sideEffects`, because it has higher priority than `sideEffects` in package.json.
-As we know the initialization sideEffect is only meaningful when `addRandomDate` is used, so we could override it safely,
-we could change our `rspack.config.js`:
+Since the initialization side effect is only meaningful when addRandomDate is utilized, we can safely override it. To do so, we can make the following modification to our rspack.config.js:
 
 ```diff title=rspack.config.js
 /**
@@ -350,4 +348,4 @@ const config = {
 module.exports = config;
 ```
 
-Then, we could got the same result as before, the whole **math/add.js** got dropped.
+Rebuilding the project, we could got the same result as before, the whole **math/add.js** module got dropped.

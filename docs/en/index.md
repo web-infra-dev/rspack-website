@@ -27,9 +27,8 @@ features:
   - title: Webpack Interoperable
     details: Compatible with the architecture and ecology of webpack, no need to build the ecology from scratch.
     icon: 📦
-    link: /zh/guide/loader-compat
-  - title: Batteries Included
-    details: Out-of-the-box support for Typescript, JSX, CSS, CSS Modules, Sass, and more.
+  - title: 'Batteries included'
+    details: Out-of-the-box support for TypeScript, JSX, CSS, CSS Modules, Sass, and more.
     icon: 🎨
     link: /guide/language-support
   - title: Production Optimization

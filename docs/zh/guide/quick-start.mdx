@@ -1,6 +1,38 @@
 # 快速上手
 
-## 安装指南
+## 使用脚手架快速创建
+
+Rspack 提供了脚手架用来快速创建项目：
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npm create rspack@latest
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn create rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm create rspack@latest
+```
+
+  </Tab>
+</Tabs>
+
+然后按照提示操作即可。
+
+## 手动安装指南
 
 首先我们创建一个目录，初始化 npm ，然后在本地安装 @rspack/cli，通过如下方式进行安装:
 
@@ -10,10 +42,10 @@ import { Tabs, Tab } from '@theme';
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ npm install -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+npm install -D @rspack/cli
 ```
 
   </Tab>
@@ -21,10 +53,10 @@ $ npm install -D @rspack/cli
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ yarn add -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+yarn add -D @rspack/cli
 ```
 
   </Tab>
@@ -32,10 +64,10 @@ $ yarn add -D @rspack/cli
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ pnpm install -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+pnpm install -D @rspack/cli
 ```
 
   </Tab>
@@ -66,6 +98,8 @@ export const answer = 42;
 Rspack 默认通过 `rspack.config.js` 来配置打包行为，我们可以在项目根目录下创建一个 `rspack.config.js` 文件，然后在里面配置打包行为，如下:
 
 ```js title="rspack.config.js"
+const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.js',
@@ -80,7 +114,7 @@ module.exports = {
 我们通过 `npx rspack build` 执行构建, 你也可以通过 `npx rspack build -c <your-config-file>` 来自定义配置文件名。build 的输出结果如下：
 
 ```sh
-$ npx rspack build
+npx rspack build
   Asset      Size  Chunks             Chunk Names
 main.js  11.8 KiB    main  [emitted]  main
 Entrypoint main = main.js
@@ -112,7 +146,7 @@ build: 21.388ms
 Rspack 不仅可以打包本地依赖，也可以打包三方依赖，我们现在用 React 来重构我们的应用，首先添加 `react` 作为依赖
 
 ```sh
-$ npm install --save react@18 react-dom@18
+npm install --save react@18 react-dom@18
 ```
 
 将 `src/index.js` 重命名为 `src/index.jsx` 并使用 `React` 重构代码
@@ -133,6 +167,8 @@ Rspack 内置了对 React 的支持，你无需任何配置，但是别忘了将
 - rspack.config.js
 
 ```js
+const path = require('path');
+
 module.exports = {
   entry: {
     main: './src/index.jsx',
@@ -153,11 +189,9 @@ module.exports = {
   entry: {
     main: './src/index.jsx',
   },
-  builtins: [
-    {
-      template: './src/index.html',
-    },
-  ],
+  builtins: {
+    html: [{ template: './src/index.html' }],
+  },
 };
 ```
 
@@ -174,7 +208,7 @@ module.exports = {
 </html>
 ```
 
-此时我们执行`npx rspack build`，我们发现 `dist/index.html` 里自动带上了 js 的地址。
+此时我们执行 `npx rspack build`，我们发现 `dist/index.html` 里自动带上了 js 的地址。
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -194,7 +228,7 @@ module.exports = {
 
 ### 体验 HMR
 
-Rspack 内置了对 HMR 的支持，对于 React 则是内置了 fast-refresh 的支持，你无需配置，通过`npx rspack serve`即可体验 react 的 HMR，
+Rspack 内置了对 HMR 的支持，对于 React 则是内置了 fast-refresh 的支持，你无需配置，通过 `npx rspack serve` 即可体验 react 的 HMR，
 我们修改 `src/answer.js`
 
 ```js title="src/answer.js"
@@ -202,35 +236,3 @@ export const answer = 'rspack';
 ```
 
 我们发现浏览器上的内容自动更新为 `the answer to the universe is rspack`
-
-## 使用脚手架快速创建
-
-Rspack 提供了脚手架用来快速创建项目：
-
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
-  <Tab>
-
-```sh
-$ npm create rspack@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-$ yarn create rspack
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-$ pnpm create rspack@latest
-```
-
-  </Tab>
-</Tabs>
-
-然后按照提示操作即可。

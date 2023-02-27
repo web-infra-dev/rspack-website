@@ -1,20 +1,20 @@
 # Target 目标环境与兼容性
 
-用于配置 Rspack 输出产物的目标环境与 ECMAScript 版本的兼容性设定。
+用于配置 Rspack 输出产物的目标环境和 Rspack runtime 代码的 ECMAScript 版本。
 
-- **类型：** `string|string[]`
+- **类型：** `string | string[]`
 
 ## string
 
 现在支持的字符串格式有：
 
-| 选项             | 描述                                                                           |
-| ---------------- | ------------------------------------------------------------------------------ |
-| `'node'`         | 编译为 Node.js 环境可用                                                        |
-| `'web'`          | 编译为浏览器环境可用（默认值）                                                 |
-| `'web-worker'`   | 编译为 WebWorker                                                               |
-| `'esX'`          | 编译 rspack runtime 为对应的 ECMAScript 版本，如 es5, es2020 （默认使用 es5 ） |
-| `'browserslist'` | 根据配置的 browserslist 完成 ECMAScript 版本的推断                             |
+| 选项             | 描述                                                                                                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `'node'`         | 编译为 Node.js 环境可用                                                                                                                                               |
+| `'web'`          | 编译为浏览器环境可用（默认值）                                                                                                                                        |
+| `'web-worker'`   | 编译为 WebWorker                                                                                                                                                      |
+| `'esX'`          | 编译 rspack runtime 为对应的 ECMAScript 版本，当前支持 `es3`, `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020`, `es2021`, `es2022` （默认使用 es5 ） |
+| `'browserslist'` | 根据配置的 browserslist 完成 ECMAScript 版本的推断                                                                                                                    |
 
 :::warning 指定用户代码的 ECMAScript 版本
 
