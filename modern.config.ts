@@ -228,7 +228,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
 export default defineConfig({
   doc: {
     root: path.join(__dirname, 'docs'),
-    title: 'rspack',
+    title: 'Rspack',
     description: 'A high-performance bundler based on Rust',
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
