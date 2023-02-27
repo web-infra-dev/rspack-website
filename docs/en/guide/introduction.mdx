@@ -8,11 +8,11 @@ Rspack was created to solve performance challenges encountered while bundling la
 
 ## Compared with Vite
 
-[Vite](https://vitejs.dev/) offers a great developer experience, but its reliance on [Rollup](https://rollupjs.org/) for production builds faces similar performance costs as other JavaScript-based algorithms. The same tradeoffs of Webpack versus Rollup also apply, for example flexibility of the `optimization.splitChunks` feature.
+[Vite](https://vitejs.dev/) offers a great developer experience, but its reliance on [Rollup](https://rollupjs.org/) for production builds faces similar performance costs as other JavaScript-based algorithms. The same tradeoffs of Webpack versus Rollup also apply, for example flexibility of the [optimization.splitChunks](/config/optimization#optimizationsplitchunks) feature.
 
 ## Compared with esbuild
 
-[esbuild](https://esbuild.github.io/) achieves very good performance by implementing nearly all operations in Golang except for some JavaScript plugins. However, esbuild's feature set is not as complete as Webpack, for example with respect to JavaScript Hot Module Replacement (HMR) and incremental compilation, and also the `optimization.splitChunks` feature.
+[esbuild](https://esbuild.github.io/) achieves very good performance by implementing nearly all operations in Golang except for some JavaScript plugins. However, esbuild's feature set is not as complete as Webpack, for example with respect to JavaScript Hot Module Replacement (HMR) and incremental compilation, and also the [optimization.splitChunks](/config/optimization#optimizationsplitchunks) feature.
 
 ## Compared with Turbopack
 
