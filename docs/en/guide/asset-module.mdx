@@ -20,7 +20,7 @@ Other module types, such as JavaScript modules, are usually bundled into one or 
 
 ## Example
 
-### Use `type: 'asset'` to automatically select a mechanism based on conditions
+### Using `type: 'asset'` to automatically select a mechanism based on conditions
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -39,7 +39,7 @@ By default, the `'asset/inline'` mechanism is applied if the asset size is less 
 
 If you wish to modify this behavior, you can use [`module.parser.asset.dataUrlCondition`](/config/module#moduleparserasset) to modify the global configuration, or use [`Rule.parser. dataUrlCondition`](/config/module#ruleparserdataurlcondition) to configure it separately for a specific eligible module.
 
-### Replace `url-loader` with `type: 'asset/inline'`
+### Replacing `url-loader` with `type: 'asset/inline'`
 
 ```diff title="rspack.config.js"
 module.exports = {
@@ -59,7 +59,7 @@ module.exports = {
 };
 ```
 
-### Replace `file-loader` with `type: 'asset/resource'`
+### Replacing `file-loader` with `type: 'asset/resource'`
 
 ```diff title="rspack.config.js"
 module.exports = {
@@ -79,7 +79,7 @@ module.exports = {
 };
 ```
 
-### Replace `raw-loader` with `type: 'asset/source'`
+### Replacing `raw-loader` with `type: 'asset/source'`
 
 ```diff title="rspack.config.js"
 module.exports = {
