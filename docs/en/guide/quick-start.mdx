@@ -1,6 +1,38 @@
 # Quick start
 
-## Installation
+## Creating project using scaffolding
+
+Rspack also includes scaffolding to quickly create new projects. Invoke the following command:
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npm create rspack@latest
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn create rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm create rspack@latest
+```
+
+  </Tab>
+</Tabs>
+
+Then follow the input prompts in your terminal.
+
+## Manual installation
 
 We'll start by creating a project directory, generating an NPM `package.json`, and then installing `@rspack/cli` locally:
 
@@ -10,10 +42,10 @@ import { Tabs, Tab } from '@theme';
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ npm install -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+npm install -D @rspack/cli
 ```
 
   </Tab>
@@ -21,10 +53,10 @@ $ npm install -D @rspack/cli
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ yarn add -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+yarn add -D @rspack/cli
 ```
 
   </Tab>
@@ -32,10 +64,10 @@ $ yarn add -D @rspack/cli
   <Tab>
 
 ```sh
-$ mkdir rspack-demo
-$ cd rspack-demo
-$ npm init -y
-$ pnpm install -D @rspack/cli
+mkdir rspack-demo
+cd rspack-demo
+npm init -y
+pnpm install -D @rspack/cli
 ```
 
   </Tab>
@@ -82,7 +114,7 @@ module.exports = {
 A simple way to invoke the build is `npx rspack build`. You could also customize the config file name with `npx rspack build -c <your-config-file>`. The console output will look something like this:
 
 ```sh
-$ npx rspack build
+npx rspack build
   Asset      Size  Chunks             Chunk Names
 main.js  11.8 KiB    main  [emitted]  main
 Entrypoint main = main.js
@@ -114,7 +146,7 @@ Open `dist/index.html` in a web browser, and confirm that `The answer to the uni
 Rspack can package not only local dependencies, but also third-party dependencies. Let's refactor our application to use the [React](https://reactjs.org/) renderer. First, add `react` as a `package.json` dependency:
 
 ```sh
-$ npm install --save react@18 react-dom@18
+npm install --save react@18 react-dom@18
 ```
 
 Rename `src/index.js` to `src/index.jsx`. Then refactor the code to use React:
@@ -207,35 +239,3 @@ export const answer = 'Rspack';
 ```
 
 You should observe that the web browser automatically updates to show `The answer to the universe is Rspack.`
-
-## Creating project using scaffolding
-
-Rspack also includes scaffolding to quickly create new projects. Invoke the following command:
-
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
-  <Tab>
-
-```sh
-$ npm create rspack@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-$ yarn create rspack
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-$ pnpm create rspack@latest
-```
-
-  </Tab>
-</Tabs>
-
-Then follow the input prompts in your shell window.
