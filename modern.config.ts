@@ -89,7 +89,11 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       {
         collapsible: false,
         text: getText('框架支持', 'Framework support'),
-        items: [getLink('/guide/react'), getLink('/guide/solid')],
+        items: [
+          getLink('/guide/react'),
+          getLink('/guide/solid'),
+          getLink('/guide/vue'),
+        ],
       },
       {
         collapsible: false,
