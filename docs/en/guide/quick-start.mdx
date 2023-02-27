@@ -8,7 +8,7 @@ Rspack also includes scaffolding to quickly create new projects. Invoke the foll
   <Tab>
 
 ```sh
-npm create rspack@latest
+npm create Rspack@latest
 ```
 
   </Tab>
@@ -16,7 +16,7 @@ npm create rspack@latest
   <Tab>
 
 ```sh
-yarn create rspack
+yarn create Rspack
 ```
 
   </Tab>
@@ -24,7 +24,7 @@ yarn create rspack
   <Tab>
 
 ```sh
-pnpm create rspack@latest
+pnpm create Rspack@latest
 ```
 
   </Tab>
@@ -42,8 +42,8 @@ import { Tabs, Tab } from '@theme';
   <Tab>
 
 ```sh
-mkdir rspack-demo
-cd rspack-demo
+mkdir Rspack-demo
+cd Rspack-demo
 npm init -y
 npm install -D @rspack/cli
 ```
@@ -53,8 +53,8 @@ npm install -D @rspack/cli
   <Tab>
 
 ```sh
-mkdir rspack-demo
-cd rspack-demo
+mkdir Rspack-demo
+cd Rspack-demo
 npm init -y
 yarn add -D @rspack/cli
 ```
@@ -64,8 +64,8 @@ yarn add -D @rspack/cli
   <Tab>
 
 ```sh
-mkdir rspack-demo
-cd rspack-demo
+mkdir Rspack-demo
+cd Rspack-demo
 npm init -y
 pnpm install -D @rspack/cli
 ```
@@ -111,10 +111,10 @@ module.exports = {
 };
 ```
 
-A simple way to invoke the build is `npx rspack build`. You could also customize the config file name with `npx rspack build -c <your-config-file>`. The console output will look something like this:
+A simple way to invoke the build is `npx Rspack build`. You could also customize the config file name with `npx Rspack build -c <your-config-file>`. The console output will look something like this:
 
 ```sh
-npx rspack build
+npx Rspack build
   Asset      Size  Chunks             Chunk Names
 main.js  11.8 KiB    main  [emitted]  main
 Entrypoint main = main.js
@@ -130,7 +130,7 @@ At this point we have generated `main.js` and `main.js.map` files in the `dist` 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>hello rspack</title>
+    <title>hello Rspack</title>
   </head>
   <body>
     <div id="root"></div>
@@ -210,7 +210,7 @@ module.exports = {
 </html>
 ```
 
-Now invoke `npx rspack build`. Confirm that `dist/index.html` was generated with the correct JavaScript path inserted automatically:
+Now invoke `npx Rspack build`. Confirm that `dist/index.html` was generated with the correct JavaScript path inserted automatically:
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -232,7 +232,7 @@ Now invoke `npx rspack build`. Confirm that `dist/index.html` was generated with
 
 Rspack has built-in support for HMR. If you're using React, this includes built-in support for fast-refresh, so you don't need to configure it.
 
-To experience HMR, invoke `npx rspack serve`. Next, make a change to the `src/answer.js` source file:
+To experience HMR, invoke `npx Rspack serve`. Next, make a change to the `src/answer.js` source file:
 
 ```js title="src/answer.js"
 export const answer = 'Rspack';

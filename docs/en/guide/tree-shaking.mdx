@@ -134,7 +134,7 @@ Rebuilding the project, the `square` function got dropped.
 
 ## SideEffects
 
-In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet (In real project we using different kinds of format of package cjs, esm, umd and so on.), so in the mean time, it's necessary to provide hints to rspack's compiler on the "pureness" of your code.
+In a 100% ESM module world, identifying side effects is straightforward. However, we aren't there quite yet (In real project we using different kinds of format of package cjs, esm, umd and so on.), so in the mean time, it's necessary to provide hints to Rspack's compiler on the "pureness" of your code.
 The way this is accomplished is the "sideEffects" package.json property.
 
 ```json title=package.json
@@ -149,8 +149,8 @@ The sideEffects field supports the following values:
 - `false` All files in this package have no side effects.
 - `string` A glob matching files that includes side effects.
 - `Array<string>` An array of globs matching files that include side effects.
-- `undefined` This is the default value of `sideEffects` when you don't provide any value to `sideEffects` field of `package.json`, When the `undefined` is set, rspack will try to analyse if the code has sideEffects when `optimization.sideEffects` is `true`
-  (which is the default value when `mode` is `production`), or rspack will treat all the modules in package has `sideEffect`
+- `undefined` This is the default value of `sideEffects` when you don't provide any value to `sideEffects` field of `package.json`, When the `undefined` is set, Rspack will try to analyse if the code has sideEffects when `optimization.sideEffects` is `true`
+  (which is the default value when `mode` is `production`), or Rspack will treat all the modules in package has `sideEffect`
 
 This time, we use a more complicated demo.
 
@@ -269,7 +269,7 @@ Considering if the author of package `math` forgot to add `sideEffects` field in
 }
 ```
 
-Then rspack will try to analyze the code safely and only mark the module is sideEffectFree when
+Then Rspack will try to analyze the code safely and only mark the module is sideEffectFree when
 all toplevel statements are sideEffectFree. As you can see, `math/index.js`, `math/subtract.js` and `math/multiply.js` is sideEffectFree
 while `math/add.js` is not, because of `const randomDate = Date.now()`. When rebuilding the project,
 you could see the diff:

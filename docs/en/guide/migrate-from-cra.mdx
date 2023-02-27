@@ -17,15 +17,15 @@ First, we need to update the dependencies, uninstall all the Create React App de
 -   "start": "react-scripts start",
 -   "build": "react-scripts build",
 -   "test": "react-scripts test",
-+   "start": "rspack serve",
-+   "build": "rspack build",
++   "start": "Rspack serve",
++   "build": "Rspack build",
   }
 }
 ```
 
 ## Configure rspack.config.js
 
-Then, we need to create the rspack.config.js file in the root of the project to configure rspack-related options. @rspack/cli does not have all the CRA functionality built-in, so some additional options need to be configured as follows
+Then, we need to create the rspack.config.js file in the root of the project to configure Rspack-related options. @rspack/cli does not have all the CRA functionality built-in, so some additional options need to be configured as follows
 
 ```js title=rspack.config.js
 const CopyPlugin = require('copy-webpack-plugin');

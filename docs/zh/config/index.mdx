@@ -37,13 +37,13 @@ module.exports = config;
 
 Rspack 命令行支持通过 `--config` 选项来指定配置文件的名称。
 
-例如，你需要在执行 build 时使用 `rspack.prod.config.js` 文件，可以在 `package.json` 中添加如下配置：
+例如，你需要在执行 build 时使用 `Rspack.prod.config.js` 文件，可以在 `package.json` 中添加如下配置：
 
 ```json title="package.json"
 {
   "scripts": {
-    "dev": "rspack serve",
-    "build": "rspack build --config rspack.prod.config.js"
+    "dev": "Rspack serve",
+    "build": "Rspack build --config Rspack.prod.config.js"
   }
 }
 ```
@@ -51,7 +51,7 @@ Rspack 命令行支持通过 `--config` 选项来指定配置文件的名称。
 你也可以将 `--config` 选项缩写为 `-c`：
 
 ```bash
-$ rspack build -c rspack.prod.config.js
+$ Rspack build -c Rspack.prod.config.js
 ```
 
 ## 导出配置函数

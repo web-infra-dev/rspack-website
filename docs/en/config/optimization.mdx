@@ -93,7 +93,7 @@ Remove empty chunks generated in the compilation.
 }
 ```
 
-Tells rspack to recognise the sideEffects flag in package.json or rules to skip over modules which are flagged to contain no side effects when exports are not used.
+Tells Rspack to recognise the sideEffects flag in package.json or rules to skip over modules which are flagged to contain no side effects when exports are not used.
 
 `optimization.sideEffects` dependends on `builtins.treeShaking` to be enabled.
 This configuration has a build time cost, but eliminating modules has positive impact on performance because of less code generation. Effect of this optimization depends on your codebase.
@@ -109,7 +109,7 @@ module.exports = {
 };
 ```
 
-If you only want rspack use the manual `sideEffects` flag via (package.json and module.rule.sideEffects) and don't analyse code:
+If you only want Rspack use the manual `sideEffects` flag via (package.json and module.rule.sideEffects) and don't analyse code:
 
 **rspack.config.js**
 
@@ -123,7 +123,7 @@ module.exports = {
 ```
 
 :::info Tip
-When `optimization.sideEffects` is true , rspack will also flag modules as side effect free when they contain only side effect free statements.
+When `optimization.sideEffects` is true , Rspack will also flag modules as side effect free when they contain only side effect free statements.
 :::
 
 ## optimization.splitChunks
@@ -147,7 +147,7 @@ When trying to fulfill the last two conditions, bigger chunks are preferred.
 
 ### Configuration
 
-rspack provides a set of options for developers that want more control over this functionality.
+Rspack provides a set of options for developers that want more control over this functionality.
 
 :::warning
 

@@ -37,13 +37,13 @@ module.exports = config;
 
 You can specify the name of the configuration file using the `--config` option.
 
-For example, if you need to use the `rspack.prod.config.js` file when running build, you can add the following scripts to `package.json`:
+For example, if you need to use the `Rspack.prod.config.js` file when running build, you can add the following scripts to `package.json`:
 
 ```json title="package.json"
 {
   "scripts": {
-    "dev": "rspack serve",
-    "build": "rspack build --config rspack.prod.config.js"
+    "dev": "Rspack serve",
+    "build": "Rspack build --config Rspack.prod.config.js"
   }
 }
 ```
@@ -51,7 +51,7 @@ For example, if you need to use the `rspack.prod.config.js` file when running bu
 You can also abbreviate the `--config` option to `-c`:
 
 ```bash
-$ rspack build -c rspack.prod.config.js
+$ Rspack build -c Rspack.prod.config.js
 ```
 
 ## Exporting a Configuration Function

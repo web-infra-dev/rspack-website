@@ -17,15 +17,15 @@
 -    "start": "react-scripts start",
 -    "build": "react-scripts build",
 -    "test": "react-scripts test",
-+    "start": "rspack serve",
-+    "build": "rspack build",
++    "start": "Rspack serve",
++    "build": "Rspack build",
   }
 }
 ```
 
 ## 配置 rspack.config.js
 
-然后，我们需要在项目根目录下创建 rspack.config.js 文件，用于配置 rspack 的相关选项， @rspack/cli 并未内置所有 CRA 的功能，因此还需要额外配置一些选项，具体配置如下：
+然后，我们需要在项目根目录下创建 rspack.config.js 文件，用于配置 Rspack 的相关选项， @rspack/cli 并未内置所有 CRA 的功能，因此还需要额外配置一些选项，具体配置如下：
 
 ```js title=rspack.config.js
 const CopyPlugin = require('copy-webpack-plugin');

@@ -2,7 +2,7 @@
 
 ## Stats Object
 
-`stats` 对象会被作为 `rspack()` 回调函数的第二个参数传递，可以通过它获取到打包过程中的一些信息。
+`stats` 对象会被作为 `Rspack()` 回调函数的第二个参数传递，可以通过它获取到打包过程中的一些信息。
 
 ### `stats.hasErrors()`
 
@@ -17,7 +17,7 @@
 以 JSON 对象形式返回编译信息。options 可以是一个字符串或对象，所有可用的配置都可查询 [stats 文档](/config/stats)。
 
 ```js
-rspack(config, (err, stats) => {
+Rspack(config, (err, stats) => {
   if (err) throw err;
   const errorsInfo = stats.toJson('errors-only');
   const assetsInfo = stats.toJson({ all: false, assets: true });
@@ -31,7 +31,7 @@ rspack(config, (err, stats) => {
 配置对象与 `stats.toJson(options)` 一致，除了额外增加的一个 `colors` 选项用来控制返回的字符串是否带有控制台颜色。
 
 ```js
-rspack(config, (err, stats) => {
+Rspack(config, (err, stats) => {
   if (err) throw err;
   console.log(stats.toString({ preset: 'normal', colors: true }));
 });

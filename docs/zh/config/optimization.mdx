@@ -89,7 +89,7 @@ module.exports = {
 }
 ```
 
-告诉 rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则) ,
+告诉 Rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则) ,
 当模块导出都未被使用且模块本身没有副作用时跳过模块及其子树。
 
 `optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。
@@ -120,7 +120,7 @@ module.exports = {
 ```
 
 :::info Tip
-`optimization.sideEffects` 为 `true` 时， rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
+`optimization.sideEffects` 为 `true` 时， Rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
 :::
 
 ## optimization.splitChunks
@@ -133,7 +133,7 @@ Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行�
 
 默认情况下，它只会影响到按需加载的 chunks，因为初始 chunks 会影响到项目的 HTML 文件中的脚本标签。
 
-rspack 将根据以下条件自动拆分 chunks：
+Rspack 将根据以下条件自动拆分 chunks：
 
 - 新的 chunk 可以被共享，或者模块来自于 `node_modules` 文件夹
 - 新的 chunk 体积大于 20kb（在进行 min+gz 之前的体积）
@@ -143,7 +143,7 @@ rspack 将根据以下条件自动拆分 chunks：
 
 ### 配置
 
-rspack 为希望对该功能进行更多控制的开发者提供了一组选项。
+Rspack 为希望对该功能进行更多控制的开发者提供了一组选项。
 
 :::warning
 
@@ -419,7 +419,7 @@ module.exports = {
 - **类型：** `boolean`
 - **默认值：** `false`
 
-告诉 rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
+告诉 Rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.idHint
 

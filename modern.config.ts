@@ -232,7 +232,7 @@ export default defineConfig({
         {
           icon: 'github',
           mode: 'link',
-          content: 'https://github.com/modern-js-dev/rspack',
+          content: 'https://github.com/modern-js-dev/Rspack',
         },
       ],
       locales: [

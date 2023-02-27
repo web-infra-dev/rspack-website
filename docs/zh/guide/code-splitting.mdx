@@ -145,7 +145,7 @@ module.exports = config;
 console.log('index.js')
 ```
 
-让我们执行 `rspack build` 看看， `shared.js` 被单独分割到 `src_shared_js.bundle.js` 中了。
+让我们执行 `Rspack build` 看看， `shared.js` 被单独分割到 `src_shared_js.bundle.js` 中了。
 
 ```diff
 ...
@@ -165,5 +165,5 @@ build: 67.303ms
 Rspack 内置了类似 [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer) 插件的功能，你可以通过在构建的时候添加 `--analyze` 参数来启用它。
 
 ```
-rspack build --analyze
+Rspack build --analyze
 ```

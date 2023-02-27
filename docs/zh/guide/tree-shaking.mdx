@@ -130,7 +130,7 @@ module.exports = config;
 
 ## SideEffects
 
-在一个 100% ESM 模块化的世界里，识别副作用是比较直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用, cjs, esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 rspack 的编译器。
+在一个 100% ESM 模块化的世界里，识别副作用是比较直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用, cjs, esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 Rspack 的编译器。
 该功能通常由 "sideEffects" package.json 属性来完成的。
 
 ```json title=package.json
@@ -145,7 +145,7 @@ sideEffects 字段支持以下值：
 - **false** 这个包中的所有文件都没有副作用。
 - **string** 匹配包含副作用文件的 glob。
 - **Array\<string\>** 匹配包含副作用文件的 glob 数组。
-- **undefined** 当你不设置 `package.json` 的 `sideEffects` 时的默认值。 当 `optimization.sideEffects` 为 true 时, rspack 将尝试分析代码是否具有副作用，当 `optimization.sideEffects` 为 'flag' 时, rspack 将默认包中的所有模块均有副作用。
+- **undefined** 当你不设置 `package.json` 的 `sideEffects` 时的默认值。 当 `optimization.sideEffects` 为 true 时, Rspack 将尝试分析代码是否具有副作用，当 `optimization.sideEffects` 为 'flag' 时, Rspack 将默认包中的所有模块均有副作用。
 
 这次，我们使用一个更复杂的示例。
 
@@ -264,7 +264,7 @@ var __webpack_modules__ = {
 }
 ```
 
-rspack 将尝试安全地分析代码，并仅在所有顶级语句均没有副作用时标记模块为无副作用。
+Rspack 将尝试安全地分析代码，并仅在所有顶级语句均没有副作用时标记模块为无副作用。
 正如我们所看到的，**math/index.js**、**math/subtract.js** 和 **math/multiply.js** 都没有副作用，而 math/add.js 不是，因为 `const randomDate = Date.now()` 含有副作用。当我们重新构建项目时，您可以看到差异如下：
 
 ```diff

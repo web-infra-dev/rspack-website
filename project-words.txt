@@ -8,8 +8,8 @@ NAPI
 NAPI-RS
 nosources
 Rollup
-rspack
 Rspack
+rspack
 ruleparserdataurlcondition
 Rust
 statoscope

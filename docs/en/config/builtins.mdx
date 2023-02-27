@@ -7,7 +7,7 @@ Used to set the built-in functions provided by Rspack.
 
 :::warning Stability Warning
 
-The built-in functionality provided by _builtins_ may change in the future or be replaced with a better solution, so please note the changes to the builtins when you upgrade and we will highlight them in the [Release Notes](https://github.com/modern-js-dev/rspack/releases).
+The built-in functionality provided by _builtins_ may change in the future or be replaced with a better solution, so please note the changes to the builtins when you upgrade and we will highlight them in the [Release Notes](https://github.com/modern-js-dev/Rspack/releases).
 
 :::
 
@@ -141,7 +141,7 @@ type PresetEnv =
 
 ## builtins.html
 
-This configuration simplifies creation of HTML files to serve your rspack bundles.
+This configuration simplifies creation of HTML files to serve your Rspack bundles.
 
 - **Type:**
 
@@ -199,7 +199,7 @@ type BuiltinsMinifyOptions = {
 | ------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------ |
 | `passes`      | `number`        | 1       | The maximum number of times to run compress.                                                           |
 | `dropConsole` | `boolean`       | false   | Pass true to discard calls to console.\* functions.                                                    |
-| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and rspack will assume that those functions do not produce side effects |
+| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and Rspack will assume that those functions do not produce side effects |
 
 ## builtins.define
 
@@ -309,7 +309,7 @@ type BuiltinsDecorator =
 
 ## builtins.css
 
-This configuration can be used to control how rspack handles css.
+This configuration can be used to control how Rspack handles css.
 
 - **Type:**
 
@@ -387,7 +387,7 @@ export type CopyConfig = {
     | {
         from: string;
         to?: string; // Determin based on `from`
-        context?: string; // Default to `context` in rspack config
+        context?: string; // Default to `context` in Rspack config
         toType?: 'dir' | 'file' | 'template'; // Determine based on `from`
         noErrorOnMissing?: boolean; // Default to false
         force?: boolean; // Default to false
@@ -407,7 +407,7 @@ export type CopyConfig = {
 | `from`             | `string`                    | undefined | The source path of the copy operation, which can be an absolute path, a relative path, or a glob search string. It can refer to a file or a directory. If a relative path is passed, it is relative to the `context` configuration. |
 | `to`               | `string`                    | undefined | The destination of the copy operation, which can be an absolute path, a relative path, or a template string, such as `'[name].[hash][ext]'`. If not specified, it is equal to output path.                                          |
 | `context`          | `string`                    | undefined | This configuration determines how the "from" path is matched and the resulting structure after copying.                                                                                                                             |
-| `toType`           | `'dir'\|'file'\|'template'` | undefined | Specify the type of `to`, which can be a directory, a file, or a template name in rspack. If not specified, it will be automatically inferred.                                                                                      |
+| `toType`           | `'dir'\|'file'\|'template'` | undefined | Specify the type of `to`, which can be a directory, a file, or a template name in Rspack. If not specified, it will be automatically inferred.                                                                                      |
 | `noErrorOnMissing` | `boolean`                   | false     | Ignore error if there are missing files or directories.                                                                                                                                                                             |
 | `force`            | `boolean`                   | false     | Wether to overwrite the asset if it already exist                                                                                                                                                                                   |
 | `priority`         | `number`                    | 0         | When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.                                                                                                |
