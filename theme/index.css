@@ -1,3 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* It seems tailwind have style `dispaly: list-style` by default */
+
+summary {
+  display: block;
+}
+
 :root {
   --modern-c-brand: #e18a3b;
   --modern-c-brand-dark: #d17b2c;

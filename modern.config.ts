@@ -255,7 +255,6 @@ export default defineConfig({
         },
       ],
     },
-    globalStyles: path.join(__dirname, './src/tailwind.css'),
     builderConfig: {
       dev: {
         startUrl: false,
