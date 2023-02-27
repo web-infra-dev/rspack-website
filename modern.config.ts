@@ -118,6 +118,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/misc/roadmap'),
           getLink('/misc/meet-the-team'),
           getLink('/misc/license'),
+          getLink('/misc/branding'),
         ],
       },
     ],
