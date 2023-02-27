@@ -236,7 +236,7 @@ export default defineConfig({
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     themeConfig: {
       footer: {
-        message: '© 2023 Bytedance Inc. All Rights Reserved.',
+        message: '© 2023 ByteDance Inc. All Rights Reserved.',
       },
       socialLinks: [
         {

@@ -97,7 +97,7 @@ The purpose of this loader is to prepend a banner comment as the header of each 
 ```js
 /**
  * MIT Licensed
- * Copyright (c) 2022-present Bytedance, Inc. and its affiliates.
+ * Copyright (c) 2022-present ByteDance, Inc. and its affiliates.
  * https://github.com/modern-js-dev/rspack/blob/main/LICENSE
  */
 ```
@@ -107,7 +107,7 @@ Create a new `banner-loader.js` file under the root of the project with the foll
 ```js title="banner-loader.js"
 const BANNER = `/**
  * MIT Licensed
- * Copyright (c) 2022-present Bytedance, Inc. and its affiliates.
+ * Copyright (c) 2022-present ByteDance, Inc. and its affiliates.
  * https://github.com/modern-js-dev/rspack/blob/main/LICENSE
  */`;
 
@@ -116,7 +116,7 @@ module.exports = function (content) {
 };
 ```
 
-The first input to this loader is the content of the file, allowing us to process the file content and return the transformed result.  The script file must be imported using CommonJS `require()`.
+The first input to this loader is the content of the file, allowing us to process the file content and return the transformed result. The script file must be imported using CommonJS `require()`.
 
 For example, to add a banner to all `*.js` files, the configuration might look like this:
 

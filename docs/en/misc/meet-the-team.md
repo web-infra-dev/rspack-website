@@ -1,6 +1,6 @@
 # Meet the team
 
-The development of Rspack is led by a dedicated team who work full-time at Bytedance. Additionally, contributions are received from people all over the world.
+The development of Rspack is led by a dedicated team who work full-time at ByteDance. Additionally, contributions are received from people all over the world.
 
 ## Team members
 

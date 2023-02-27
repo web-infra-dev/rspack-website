@@ -1,6 +1,6 @@
 # 团队
 
-Rspack 的开发是由 Bytedance 的 Rspack 团队和社区贡献者驱动。
+Rspack 的开发是由 ByteDance 的 Rspack 团队和社区贡献者驱动。
 
 ## 成员
 
