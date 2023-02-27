@@ -8,5 +8,6 @@ When used standalone, Rspack should always be written as Rspack, not rspack or R
 
 ## Logo
 
-Rspack Logo is Designed by [Zeng Jialong](https://zengjialong.com/).
+Rspack logo is a small crab as fast as lightning, representing fast compilation of Rspack.
+
 ![Rspack Logo](/logo.png)
