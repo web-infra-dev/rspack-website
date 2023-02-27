@@ -25,7 +25,7 @@
   filter: blur(60px);
   top: -200px;
   transform: translateX(-50%);
-  zindex: 0;
+  z-index: 0;
 }
 
 :global(.dark) .mask {
