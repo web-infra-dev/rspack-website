@@ -9,7 +9,7 @@ Rspack 的开发是由 Bytedance 的 Rspack 团队和社区贡献者驱动。
 - [ahabhgk](https://github.com/ahabhgk)
 - [bvanjoi](https://github.com/bvanjoi)
 - [Boshen](https://github.com/Boshen)
-- [h-a-n-a](https://github.com/h-a-n-a)
+- [Hana](https://github.com/h-a-n-a)
 - [hyf0](https://github.com/hyf0)
 - [IWANABETHATGUY](https://github.com/IWANABETHATGUY)
 - [jerrykingxyz](https://github.com/jerrykingxyz)
