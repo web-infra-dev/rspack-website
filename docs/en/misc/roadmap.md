@@ -4,7 +4,7 @@ While we do expect to support the features listed below in the future, we do not
 
 ### Performance Improvement
 
-There is still a lot of room for performance optimization and we will continue to work on this in the future with upstream projects such as [swc](https://github.com/swc-project/swc) and [NAPI-RS](https://github.com/napi-rs/napi-rs).
+There is still room for performance optimization and we will continue to work on this in the future with upstream projects such as [swc](https://github.com/swc-project/swc) and [NAPI-RS](https://github.com/napi-rs/napi-rs).
 
 ### Support for more community plugins and loaders
 
