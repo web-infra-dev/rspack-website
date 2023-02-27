@@ -373,3 +373,96 @@ Whether to enable the development-friendly split chunks algorithm.
 - **Type:** `boolean`
 
 - **Default:** `false`
+
+## builtins.copy
+
+Copies individual files or entire directories, which already exist, to the build directory.
+
+- **Type:**
+
+```ts
+export type CopyConfig = {
+  patterns:
+    | string[] // If input is string, it's the same as { from: `your input string` }
+    | {
+        from: string;
+        to?: string; // Determin based on `from`
+        context?: string; // Default to `context` in rspack config
+        toType?: 'dir' | 'file' | 'template'; // Determine based on `from`
+        noErrorOnMissing?: boolean; // Default to false
+        force?: boolean; // Default to false
+        priority?: number; // Default to 0
+        globOptions?: {
+          caseSensitiveMatch?: boolean; // Default to true
+          dot?: boolean; // Default to true
+        };
+      }[];
+};
+```
+
+- **Default:** `undefined`
+
+| Name               | Type                        | Default   | Description                                                                                                                                                                                                                         |
+| ------------------ | --------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`             | `string`                    | undefined | The source path of the copy operation, which can be an absolute path, a relative path, or a glob search string. It can refer to a file or a directory. If a relative path is passed, it is relative to the `context` configuration. |
+| `to`               | `string`                    | undefined | The destination of the copy operation, which can be an absolute path, a relative path, or a template string, such as `'[name].[hash][ext]'`. If not specified, it is equal to output path.                                          |
+| `context`          | `string`                    | undefined | This configuration determines how the "from" path is matched and the resulting structure after copying.                                                                                                                             |
+| `toType`           | `'dir'\|'file'\|'template'` | undefined | Specify the type of `to`, which can be a directory, a file, or a template name in rspack. If not specified, it will be automatically inferred.                                                                                      |
+| `noErrorOnMissing` | `boolean`                   | false     | Ignore error if there are missing files or directories.                                                                                                                                                                             |
+| `force`            | `boolean`                   | false     | Wether to overwrite the asset if it already exist                                                                                                                                                                                   |
+| `priority`         | `number`                    | 0         | When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.                                                                                                |
+| `globOptions`      | `object`                    | undefined | The configuration for glob queries: `caseSensitiveMatch` determines whether the matching is case sensitive, and `dot` determines whether files starting with . are matched.                                                         |
+
+### Example
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'file.txt',
+        },
+      ],
+    },
+  },
+};
+```
+
+The result of running with the above configuration would be: `"dist/file.txt"`.
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'directory',
+        },
+      ],
+    },
+  },
+};
+```
+
+The result of running with the above configuration would be: files and directories inside `directory` will be placed at output path.
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  builtins: {
+    copy: {
+      patterns: [
+        {
+          from: 'directory/**/*',
+          to: 'newdirectory',
+        },
+      ],
+    },
+  },
+};
+```
+
+The result of running with the above configuration would be that the `directory` folder is moved to the `newdirectory` folder within the output folder, for example `dist/newdirectory/directory/foo`.
