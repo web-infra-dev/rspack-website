@@ -2,7 +2,7 @@
 pageType: home
 
 hero:
-  name: rspack
+  name: Rspack
   text: 基于 Rust 的高性能模块打包工具
   tagline: 打造高性能的前端工具链
   # TODO logo

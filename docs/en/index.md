@@ -2,7 +2,7 @@
 pageType: home
 
 hero:
-  name: rspack
+  name: Rspack
   text: A fast Rust-based web bundler.
   tagline: Build a high-performance frontend toolchain.
   # TODO logo
