@@ -36,22 +36,6 @@
   }
 }
 
-.mask {
-  position: absolute;
-  background-image: conic-gradient(
-    from 180deg at 50% 50%,
-    var(--modern-c-brand) 0deg,
-    180deg,
-    #42d392 1turn
-  );
-  width: 500px;
-  height: 500px;
-  borderradius: 100%;
-  mixblendmode: normal;
-  filter: blur(80px);
-  opacity: 0.05;
-}
-
 @media (max-width: 768px) {
   .progress-bar-container,
   .progress-bar-inner-container {
