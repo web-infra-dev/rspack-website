@@ -1,7 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@headlessui/react': ^1.7.12
   '@modern-js/doc-tools': 0.0.0-next-20230220115239
   '@modern-js/tsconfig': 2.5.0
   '@types/node': ^18.11.18
@@ -16,7 +15,6 @@ specifiers:
   typescript: ^4.9.4
 
 dependencies:
-  '@headlessui/react': 1.7.12
   '@vercel/edge': 0.1.2
   date-fns: 2.29.3
   framer-motion: 10.0.0
@@ -1432,16 +1430,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /@headlessui/react/1.7.12:
-    resolution: {integrity: sha512-FhSx5V+Qp0GvbTpaxyS+ymGDDNntCacClWsk/d8Upbr19g3AsPbjfPk4+m2CgJGcuCB5Dz7LpUIOAbvQTyjL2g==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: ^16 || ^17 || ^18
-      react-dom: ^16 || ^17 || ^18
-    dependencies:
-      client-only: 0.0.1
-    dev: false
 
   /@headlessui/react/1.7.7_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==}
@@ -3017,6 +3005,7 @@ packages:
 
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
+    dev: true
 
   /clone-deep/0.2.4:
     resolution: {integrity: sha512-we+NuQo2DHhSl+DP6jlUiAhyAjBQrYnpOk15rN6c6JSPScjiCLh8IbSU+VTcph6YS3o7mASE8a0+gbZ7ChLpgg==}
