@@ -8,5 +8,6 @@ Rspack 在独立使用的情况下都应该是写作 Rspack, 而不是 rspack �
 
 ## Logo
 
-Rspack Logo 由[曾家龙](https://zengjialong.com/) 设计。
+Rspack 的 Logo 是一个如闪电一样迅速的小螃蟹，代表了 Rspack 的快速编译。
+
 ![Rspack Logo](/logo.png)
