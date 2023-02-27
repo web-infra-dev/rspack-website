@@ -141,7 +141,7 @@ type PresetEnv =
 
 ## builtins.html
 
-This configuration simplifies creation of HTML files to serve your rspack bundles.
+This configuration simplifies creation of HTML files to serve your Rspack bundles.
 
 - **Type:**
 
@@ -199,7 +199,7 @@ type BuiltinsMinifyOptions = {
 | ------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------ |
 | `passes`      | `number`        | 1       | The maximum number of times to run compress.                                                           |
 | `dropConsole` | `boolean`       | false   | Pass true to discard calls to console.\* functions.                                                    |
-| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and rspack will assume that those functions do not produce side effects |
+| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and Rspack will assume that those functions do not produce side effects |
 
 ## builtins.define
 
@@ -309,7 +309,7 @@ type BuiltinsDecorator =
 
 ## builtins.css
 
-This configuration can be used to control how rspack handles css.
+This configuration can be used to control how Rspack handles css.
 
 - **Type:**
 
@@ -387,7 +387,7 @@ export type CopyConfig = {
     | {
         from: string;
         to?: string; // Determin based on `from`
-        context?: string; // Default to `context` in rspack config
+        context?: string; // Default to `context` in Rspack config
         toType?: 'dir' | 'file' | 'template'; // Determine based on `from`
         noErrorOnMissing?: boolean; // Default to false
         force?: boolean; // Default to false

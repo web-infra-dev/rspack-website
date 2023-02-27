@@ -89,7 +89,7 @@ module.exports = {
 }
 ```
 
-告诉 rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则) ,
+告诉 Rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则) ,
 当模块导出都未被使用且模块本身没有副作用时跳过模块及其子树。
 
 `optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。
@@ -120,7 +120,7 @@ module.exports = {
 ```
 
 :::info Tip
-`optimization.sideEffects` 为 `true` 时， rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
+`optimization.sideEffects` 为 `true` 时， Rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
 :::
 
 ## optimization.splitChunks
@@ -419,7 +419,7 @@ module.exports = {
 - **类型：** `boolean`
 - **默认值：** `false`
 
-告诉 rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
+告诉 Rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.idHint
 

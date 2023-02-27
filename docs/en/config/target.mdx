@@ -1,6 +1,6 @@
 # Target
 
-Used to configure the target environment of rspack output and the ECMAScript version of rspack runtime code.
+Used to configure the target environment of Rspack output and the ECMAScript version of Rspack runtime code.
 
 - **Type:** `string | string[]`
 
@@ -13,12 +13,12 @@ The following options are now supported:
 | `'node'`         | Compile as available for Node.js environments                                                                                                                                                            |
 | `'web'`          | Compile as available in the browser environment (default)                                                                                                                                                |
 | `'web-worker'`   | Compile as WebWorker                                                                                                                                                                                     |
-| `'esX'`          | Compile rspack runtime to the corresponding ECMAScript version. Currently supports `es3`, `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020`, `es2021`, `es2022` (es5 is used by default) |
+| `'esX'`          | Compile Rspack runtime to the corresponding ECMAScript version. Currently supports `es3`, `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020`, `es2021`, `es2022` (es5 is used by default) |
 | `'browserslist'` | Infer the ECMAScript version based on the configured browserslist                                                                                                                                        |
 
 :::warning Specifies the ECMAScript version of the user code
 
-The `esX` in the `target` configuration can only specify the ECMAScript version of the code in the rspack runtime. If you want to specify the ECMAScript version of the user code, you can directly use browserslist, more information can be found in [builtins.presetEnv](config/builtins#builtinspresetenv).
+The `esX` in the `target` configuration can only specify the ECMAScript version of the code in the Rspack runtime. If you want to specify the ECMAScript version of the user code, you can directly use browserslist, more information can be found in [builtins.presetEnv](config/builtins#builtinspresetenv).
 
 :::
 
