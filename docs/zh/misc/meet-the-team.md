@@ -14,3 +14,7 @@ Rspack 的开发是由 ByteDance 的 Rspack 团队和社区贡献者驱动。
 - [IWANABETHATGUY](https://github.com/IWANABETHATGUY)
 - [jerrykingxyz](https://github.com/jerrykingxyz)
 - [underfin](https://github.com/underfin)
+- [neverland](https://github.com/chenjiahan)
+- [JSerFeng](https://github.com/JSerFeng)
+- [9aoy](https://github.com/9aoy)
+- [sanyuan0704](https://github.com/sanyuan0704)
