@@ -1,6 +1,6 @@
 # 模块
 
-虽然 rspack 支持多种模块语法，但我们建议遵循单一的语法，以保持一致性并避免 bug。
+虽然 Rspack 支持多种模块语法，但我们建议遵循单一的语法，以保持一致性并避免 bug。
 
 ### ES6(推荐)
 
@@ -43,13 +43,13 @@ require.context(
 
 - false: 未定义
 - mock: 等于'/'
-- true: node.js __dirname
+- true: node.js \_\_dirname
 
 如果在一个被 Parser 解析的表达式内部使用，则配置选项会被当作 true 处理。
 
 ### \_\_resourceQuery (webpack 专用)
 
-当前模块的资源查询(resource query) 。如果进行了如下的 require 调用，那么查询字符串(query string)在file.js 中可访问。
+当前模块的资源查询(resource query) 。如果进行了如下的 require 调用，那么查询字符串(query string)在 file.js 中可访问。
 
 ```ts
 require('file.js?test');
