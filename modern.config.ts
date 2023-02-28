@@ -258,8 +258,8 @@ export default defineConfig({
     description: 'A high-performance bundler based on Rust',
     logo: {
       light:
-        'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2018.png',
-      dark: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-dark-2020.png',
+        'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2027.png',
+      dark: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-dark-2027.png',
     },
     lang: 'en',
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
