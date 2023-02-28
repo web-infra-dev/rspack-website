@@ -256,7 +256,11 @@ export default defineConfig({
     root: path.join(__dirname, 'docs'),
     title: 'Rspack',
     description: 'A high-performance bundler based on Rust',
-    icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
+    logo: {
+      light:
+        'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2018.png',
+      dark: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-dark-2020.png',
+    },
     lang: 'en',
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     themeConfig: {
