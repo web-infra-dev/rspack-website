@@ -14,3 +14,7 @@ The development of Rspack is led by a dedicated team who work full-time at ByteD
 - [IWANABETHATGUY](https://github.com/IWANABETHATGUY)
 - [jerrykingxyz](https://github.com/jerrykingxyz)
 - [underfin](https://github.com/underfin)
+- [neverland](https://github.com/chenjiahan)
+- [JSerFeng](https://github.com/JSerFeng)
+- [9aoy](https://github.com/9aoy)
+- [sanyuan0704](https://github.com/sanyuan0704)
