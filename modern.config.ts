@@ -33,12 +33,37 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
       text: getText('生态', 'Ecosystem'),
       items: [
         {
+          text: 'Rspack Sources',
+          link: 'https://github.com/modern-js-dev/rspack-sources',
+        },
+        {
           text: 'Modern.js',
           link: 'https://modernjs.dev/',
         },
+      ],
+    },
+    {
+      text: getText('关于', 'About'),
+      items: [
         {
-          text: 'Modern.js Builder',
-          link: 'http://modernjs.dev/builder/',
+          text: getText('团队', 'Team'),
+          link: getLink('/misc/meet-the-team'),
+        },
+        {
+          text: getText('发布日志', 'Releases'),
+          link: 'https://github.com/modern-js-dev/rspack/releases',
+        },
+        {
+          text: getText('开发计划', 'Roadmap'),
+          link: getLink('/misc/roadmap'),
+        },
+        {
+          text: getText('贡献指南', 'Contributing Guide'),
+          link: 'https://github.com/modern-js-dev/rspack/blob/main/CONTRIBUTING.md',
+        },
+        {
+          text: getText('品牌指南', 'Branding Guideline'),
+          link: getLink('/misc/branding'),
         },
       ],
     },
