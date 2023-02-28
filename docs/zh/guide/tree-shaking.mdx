@@ -4,9 +4,7 @@ Rspack 支持 tree shaking，这是在 JavaScript 上下文中常用的术语，
 
 它依赖于 import 和 export 语句来检测代码模块是否被导出和导入以在 JavaScript 文件之间使用。
 
-当您将 `mode` 设置为 `production` 时，将启用 tree shaking。但是您还可以通过将 `builtins.treeShaking` 设置为 `true` 来在 **development** 模式下启用它。
-
-为了更好地说明，本节将使用 **development** 模式。
+当您将 `mode` 设置为 `production` 时，将启用 tree shaking。
 
 ## Basic tree shaking
 
@@ -105,22 +103,22 @@ var __webpack_modules__ = {
 ```
 
 正如您所看到的，如果我们不启用 treeShaking，所有代码都保持不变，只是将代码包裹了一层运行时代码。
-现在，我们启用 builtins.treeShaking
+现在，我们切换到 `production` 模式，重新构建项目, 为了让产物更加可读，我们同时关闭 `minimize` 选项 以及切换 `moduleIds` 为 `named`, 同时为了和后面章节对比，我们关闭 `sideEffects.builtins`。
 
 ```diff title=rspack.config.js
 /**
  * @type {import('@rspack/core').Configuration}
  */
 const config = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     index: './src/index.js',
   },
-  output: {
-  },
-+  builtins: {
-+    treeShaking: true
-+  }
++ optimization: {
++   sideEffects: false,
++   moduleIds: 'named',
++   minimize: false
++ }
 };
 
 module.exports = config;
@@ -154,15 +152,13 @@ sideEffects 字段支持以下值：
  * @type {import('@rspack/core').Configuration}
  */
 const config = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     index: './src/index.js',
   },
-  builtins: {
-    treeShaking: true,
-  },
   optimization: {
-    sideEffects: true,
+    moduleIds: 'named',
+    minimize: false,
   },
 };
 module.exports = config;
@@ -316,18 +312,13 @@ console.log((0, _indexJs.multiply)(2, 3));
  * @type {import('@rspack/core').Configuration}
  */
 const config = {
-  mode: 'development',
+  mode: 'production',
   entry: {
     index: './src/index.js',
   },
-  module: {
-    rules:
-  },
-  builtins: {
-    treeShaking: true
-  },
   optimization: {
-    sideEffects: true
+    minimize: false,
+    moduleIds: 'named'
   },
 +  module: {
 +    rules: [
