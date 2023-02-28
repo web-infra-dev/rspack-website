@@ -466,3 +466,24 @@ module.exports = {
 ```
 
 The result of running with the above configuration would be that the `directory` folder is moved to the `newdirectory` folder within the output folder, for example `dist/newdirectory/directory/foo`.
+
+## builtins.relay
+
+Converted `graphql` call expression to corresponding `require` call expression.
+
+- **Type:**
+
+```ts
+export type RelayConfig =
+  | undefined
+  | boolean
+  | {
+      artifactDirectory?: string;
+      language: 'javascript' | 'typescript' | 'flow'; // Default to 'javascript'
+    };
+```
+
+- **Default:** `undefined`
+
+When this configuration is set to `true`, rspack will attempt to locate `relay.config.json`, `relay.config.js`, and `package.json` files under the [context](/config/context) directory in order, as detailed in the [relay-compiler](https://github.com/facebook/relay/tree/main/packages/relay-compiler) documentation. If none of these files are found, rspack will use the default configuration.
+If specific configuration is passed, rspack will not attempt to locate any `relay` config file, but use the received configuration directly.
