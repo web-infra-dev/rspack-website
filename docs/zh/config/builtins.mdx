@@ -468,3 +468,24 @@ module.exports = {
 ```
 
 以上面的配置运行结果会是 `directory` 目录被移动到产物目录中的 `newdirectory` 目录，例如 `dist/newdirectory/directory/foo`。
+
+## builtins.relay
+
+将项目中的 `graphql` 调用转换成相对应的 `require`。
+
+- **类型：**
+
+```ts
+export type RelayConfig =
+  | undefined
+  | boolean
+  | {
+      artifactDirectory?: string;
+      language: 'javascript' | 'typescript' | 'flow'; // 默认 'javascript'
+    };
+```
+
+- **默认值：** `undefined`
+
+当该配置为 `true` 时，Rspack 会从依次尝试寻找 [context](/config/context) 目录下的 `relay.config.json`，`relay.config.js` 以及 `package.json`，详情可以参考 [relay-compiler](https://github.com/facebook/relay/tree/main/packages/relay-compiler) 文档，如果没找到则会使用默认配置。
+如果传入具体的配置则不会尝试查找任何 `relay` 配置文件，而是直接使用传入的配置。
