@@ -50,12 +50,12 @@ function useFooterData() {
       title: t('ecosystem'),
       items: [
         {
-          title: 'Modern.js',
-          link: 'https://modernjs.dev',
+          title: 'Rspack Sources',
+          link: 'https://github.com/modern-js-dev/rspack-sources',
         },
         {
-          title: 'Modern.js Builder',
-          link: 'https://modernjs.dev/builder',
+          title: 'Modern.js',
+          link: 'https://modernjs.dev',
         },
       ],
     },

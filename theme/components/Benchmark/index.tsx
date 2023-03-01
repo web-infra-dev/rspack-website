@@ -65,18 +65,20 @@ export function Benchmark() {
                   key={info.name}
                   className="flex flex-center justify-start m-4 flex-col sm:flex-row"
                 >
-                  <p className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500">
-                    {info.name}
-                  </p>
                   {inView && (
-                    <NoSSR>
-                      <ProgressBar
-                        value={info.time}
-                        max={Math.max(
-                          ...performanceInfoList.map((info) => info.time)
-                        )}
-                      />
-                    </NoSSR>
+                    <>
+                      <p className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500">
+                        {info.name}
+                      </p>
+                      <NoSSR>
+                        <ProgressBar
+                          value={info.time}
+                          max={Math.max(
+                            ...performanceInfoList.map((info) => info.time)
+                          )}
+                        />
+                      </NoSSR>
+                    </>
                   )}
                 </div>
               ))}
