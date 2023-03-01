@@ -157,13 +157,3 @@ Entrypoint index = index.bundle.js
 [./src/shared.js] 24 bytes {src_shared_js}
 build: 67.303ms
 ```
-
-## Bundle analysis
-
-In order to understand the output more easily, we can use some tools to analyze the results of Rspack output.
-
-Rspack has a builtin plugin similar to [`webpack-bundle-analyzer`](https://github.com/webpack-contrib/webpack-bundle-analyzer), You can enable it by adding the `--analyze` parameter to the build.
-
-```
-rspack build --analyze
-```
