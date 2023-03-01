@@ -176,7 +176,7 @@ console.log(multiply(2, 3));
 
 ```json title=node_modules/math/package.json
 {
-  "name": "math"
+  "name": "math",
   "sideEffects": false
 }
 ```
@@ -259,7 +259,8 @@ Considering if the author of package `math` forgot to add `sideEffects` field in
 
 ```diff title=node_modules/math/package.json
 {
-  "name": "math"
++ "name": "math"
+- "name": "math",
 - "sideEffects": false
 }
 ```
