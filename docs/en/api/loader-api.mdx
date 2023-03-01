@@ -1,6 +1,6 @@
 # Loader API
 
-Rspack loader is designed to reuse the webpack loader, it is compatible with most of the webpack loader API, the rest of the API is still being implemented, so most of the webpack loader can already run in rspack.
+Rspack loader is designed to reuse the webpack loader, it is compatible with most of the webpack loader API, the rest of the API is still being implemented, so most of the webpack loader can already run in Rspack.
 
 ## 'Raw' Loader
 
@@ -58,7 +58,7 @@ The directory where the project is configured in config
 
 ## `this.emitError(err: Error)`
 
-Emit an error. Unlike `throw` and `this.callback(err)` in the loader, it does not mark the current module as a compilation failure, it just adds an error to rspack's Compilation and displays it on the command line at the end of this compilation.
+Emit an error. Unlike `throw` and `this.callback(err)` in the loader, it does not mark the current module as a compilation failure, it just adds an error to Rspack's Compilation and displays it on the command line at the end of this compilation.
 
 ## `this.emitWarning(warning: Error)`
 

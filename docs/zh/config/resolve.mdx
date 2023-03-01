@@ -64,14 +64,14 @@
 }
 ```
 
-则 `import value from 'lib'` 的结果为 `lib/es/index.js`.
+则 `import value from 'lib'` 的结果为 `lib/es/index.js`。
 
 ## resolve.mainFiles
 
 - **类型：** `string[]`
 - **默认值：** `["index"]`
 
-解析目录时的文件名后缀，例如 `require('./dir/')` 会尝试解析 `'./dir/index'`.
+解析目录时的文件名后缀，例如 `require('./dir/')` 会尝试解析 `'./dir/index'`。
 
 ## resolve.modules
 
@@ -85,11 +85,11 @@
 - **类型：** `boolean`
 - **默认值：** `false`
 
-当开启时，`require('file')` 会首先寻找当前目录下的 `./file` 文件，而不是 `<modules>/file`.
+当开启时，`require('file')` 会首先寻找当前目录下的 `./file` 文件，而不是 `<modules>/file`。
 
 ## resolve.tsConfigPath
 
 - **类型：** `string | undefined`
 - **默认值：** `undefined`
 
-使用 tsconfigPath 的 `paths` 和 `baseUrl`, 功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
+使用 tsconfigPath 的 `paths` 和 `baseUrl`, 功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。

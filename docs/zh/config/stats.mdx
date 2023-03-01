@@ -34,13 +34,13 @@ import PropertyType from '../../../components/property-type.tsx';
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出产物相关信息
+是否输出产物相关信息。
 
 ### stats.chunks
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出 Chunk 相关信息
+是否输出 Chunk 相关信息。
 
 ### stats.modules
 
@@ -52,43 +52,43 @@ import PropertyType from '../../../components/property-type.tsx';
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出入口 ChunkGroup 相关信息
+是否输出入口 ChunkGroup 相关信息。
 
 ### stats.reasons
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出模块被引入的原因
+是否输出模块被引入的原因。
 
 ### stats.hash
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出本次构建的 hash
+是否输出本次构建的 hash。
 
 ### stats.errors
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出本次构建产生的错误
+是否输出本次构建产生的错误。
 
 ### stats.errorsCount
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出本次构建产生的错误的数量
+是否输出本次构建产生的错误的数量。
 
 ### stats.warnings
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出本次构建产生的警告
+是否输出本次构建产生的警告。
 
 ### stats.warningsCount
 
 <PropertyType.CN type="boolean" defaultValueList={[{ defaultValue: 'true' }]} />
 
-是否输出本次构建产生的警告的数量
+是否输出本次构建产生的警告的数量。
 
 ### stats.all
 
@@ -112,7 +112,7 @@ import PropertyType from '../../../components/property-type.tsx';
 
 如果你想使用预设的输出行为，但又想多输出或少输出个别字段，可以在指定 preset 或 all 之后对字段的输出行为进行自定义。
 
-比如，只输出错误和模块被引入的原因。
+举例来说，只输出错误和模块被引入的原因：
 
 ```js title=rspack.config.js
 module.exports = {

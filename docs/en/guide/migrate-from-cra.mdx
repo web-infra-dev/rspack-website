@@ -1,6 +1,6 @@
 # Migrate from Create React App
 
-Since @rspack/cli has built-in support for TypeScript, JSX, CSS, etc., it is relatively easy to migrate from the Create React App.
+Since `@rspack/cli` has built-in support for TypeScript, JSX, CSS, etc., it is relatively easy to migrate from the Create React App.
 
 ## Updating dependencies
 
@@ -25,7 +25,7 @@ First, we need to update the dependencies, uninstall all the Create React App de
 
 ## Configure rspack.config.js
 
-Then, we need to create the rspack.config.js file in the root of the project to configure rspack-related options. @rspack/cli does not have all the CRA functionality built-in, so some additional options need to be configured as follows
+Then, we need to create the `rspack.config.js` file in the root of the project to configure rspack-related options. `@rspack/cli` does not have all the CRA functionality built-in, so some additional options need to be configured as follows
 
 ```js title=rspack.config.js
 const CopyPlugin = require('copy-webpack-plugin');
