@@ -1,19 +1,5 @@
 # Production optimization
 
-## Bundle analysis
-
-Rspack's Command Line Interface (CLI) supports bundle analysis out-of-box via the `--analyze` option. It uses [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) behind the scenes.
-
-```sh
-$ rspack build --analyze
-```
-
-You can also generate a `stats.json` file for further analysis with other bundle analysis tools like [bundle-stats](https://github.com/relative-ci/bundle-stats) or [statoscope](https://statoscope.tech/):
-
-```sh
-$ rspack build --json stats.json
-```
-
 ## Minification
 
 Rspack uses the built-in minimizer to compress js and css code by default, which can be configured by [builtins.minifyOptions](config/builtins#builtinsminifyoptions). If the built-in minimizer cannot meet your needs, you can use [optimization.minimizer](config/optimization#optimizationminimizer) to set a custom minimizer.
