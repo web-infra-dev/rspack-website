@@ -68,7 +68,7 @@ function useFooterData() {
         },
         {
           title: 'Discord',
-          link: 'https://discord.com',
+          link: 'https://discord.gg/ab2Rv4BXwf',
         },
       ],
     },
