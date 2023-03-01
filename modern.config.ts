@@ -106,7 +106,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         collapsible: false,
         text: getText('优化', 'Optimization'),
         items: [
-          getLink('/guide/optimization'),
+          getLink('/guide/production'),
           getLink('/guide/code-splitting'),
           getLink('/guide/tree-shaking'),
           getLink('/guide/analysis'),
