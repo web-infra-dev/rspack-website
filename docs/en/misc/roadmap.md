@@ -12,7 +12,7 @@ As webpack contains a large number of apis, we will be working to support the mo
 
 ### Module Federation support
 
-Module Federation is a widely used webpack feature with a rich ecosystem and we will be working with the author of Module Federation [Zack Jackson](https://github.com/ScriptedAlchemy) together with the Module Federation core team and their product owner @viktoriialurie, to develop support for module federation.
+Module Federation is a widely used webpack feature with a rich ecosystem and we plan to support module federation in the future.
 
 ### Vue and Svelte support
 
