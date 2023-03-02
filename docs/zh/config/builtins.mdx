@@ -129,7 +129,7 @@ export type ImportMap =
 type PresetEnv =
   | undefined
   | {
-      mode?: 'usage' | 'entry';
+      mode?: 'entry'; // 在不久的将来会支持 `usage` 模式
       targets?: string[];
       coreJs?: string;
     };
@@ -137,11 +137,11 @@ type PresetEnv =
 
 - **默认值：** `undefined`
 
-| 名称      | 类型                          | 默认值    | 描述                                                                                                                                                                                                                                                                                       |
-| --------- | ----------------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `targets` | `string[]\|undefined`         | undefined | 通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。 |
-| `mode`    | `'entry'\|'usage'\|undefined` | undefined | 该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，`'usage'` 代表只注入当前代码中需要的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。                        |
-| `coreJs`  | `string`                      | undefined | 该配置指定注入的 core-js 的版本                                                                                                                                                                                                                                                            |
+| 名称      | 类型                  | 默认值    | 描述                                                                                                                                                                                                                                                                                       |
+| --------- | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `targets` | `string[]\|undefined` | undefined | 通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。 |
+| `mode`    | `'entry'\|undefined`  | undefined | 该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。                                                                       |
+| `coreJs`  | `string`              | undefined | 该配置指定注入的 core-js 的版本                                                                                                                                                                                                                                                            |
 
 ## builtins.html
 
