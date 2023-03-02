@@ -303,6 +303,27 @@ export default defineConfig({
           addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
         },
       },
+      html: {
+        tags: [
+          // Configure Google Analytics
+          {
+            tag: 'script',
+            attrs: {
+              async: true,
+              src: 'https://www.googletagmanager.com/gtag/js?id=G-XKKCNZZNJD',
+            },
+          },
+          {
+            tag: 'script',
+            children: `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XKKCNZZNJD');`,
+          },
+        ],
+      },
     },
   },
   plugins: [docTools()],
