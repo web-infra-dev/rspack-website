@@ -1,6 +1,4 @@
-# 生产优化
-
-## 包分析
+# 包分析
 
 Rspack CLI 支持使用`--analyze` 选项进行包分析。它在内部使用 [webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer) 实现包分析功能。
 
@@ -13,7 +11,3 @@ $ rspack build --analyze
 ```sh
 $ rspack build --json stats.json
 ```
-
-## 代码压缩
-
-Rspack 默认使用内置的压缩器对 js 和 css 代码进行压缩，可以使用 [builtins.minifyOptions](config/builtins#builtinsminifyoptions) 来进行配置。若内置压缩器无法满足需求，可以使用 [optimization.minimizer](config/optimization#optimizationminimizer) 设置自定义压缩器。
