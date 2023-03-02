@@ -37,11 +37,16 @@ Alternatively, if your configuration relies on `babel-loader` for custom convers
  };
 ```
 
-Rspack also supports JavaScript syntax downgrading by default. This means you don't need to use `babel-loader` to support browser compatibility anymore. Specify your browser compatibility via target as in this example:
+Rspack also supports JavaScript syntax downgrading by default. This means you don't need to use `babel-loader` to support browser compatibility anymore. Specify your browser compatibility via [target](/config/target) and [builtins.presetEnv](/config/builtins#builtinspresetenv) as in this example:
 
 ```diff
  module.exports = {
-+  target: ['es5'],
++  builtins: {
++    presetEnv: {
++      targets: ['es5'],
++    },
++  },
++  target: ['web', 'es5'],
    module: {
      rules: [
 -      {
@@ -120,18 +125,12 @@ Rspack is aligned with Webpack 5's "asset modules," which should be used instead
 +      },
 -      {
 -        test: /\.(png|jpe?g|gif)$/i,
--        use: [
--          {
--            loader: "file-loader",
--          },
--        ],
+-        use: ["file-loader"],
+-      },
+-      {
 -        test: /^BUILD_ID$/,
--        use: [
--          {
--            loader: "raw-loader",
--          },
--        ],
-       },
+-        use: ["raw-loader"],
+-      },
      ],
    },
  };
@@ -159,5 +158,5 @@ Rspack has built-in support for HTML. This means you can use `builtins.html` ins
 -      filename: "index.html",
 -    }),
 -  ],
--};
+ };
 ```
