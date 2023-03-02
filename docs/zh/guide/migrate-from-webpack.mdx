@@ -38,11 +38,16 @@ Rspack 已经内置了对 TypeScript 和 JSX 以及最新的 JavaScript 语法�
  };
 ```
 
-Rspack 同时还默认支持了 JavaScript 的语法降级功能，这意味着你不需要再使用 babel-loader 来支持浏览器兼容性，你可以通过 target 来指定浏览器兼容性。
+Rspack 同时还默认支持了 JavaScript 的语法降级功能，这意味着你不需要再使用 babel-loader 来支持浏览器兼容性，你可以通过 [target](/config/target) 和 [builtins.presetEnv](/config/builtins#builtinspresetenv) 来指定浏览器兼容性。
 
 ```diff
  module.exports = {
-+  target: ['es5'],
++  builtins: {
++    presetEnv: {
++      targets: ['es5'],
++    },
++  },
++  target: ['web', 'es5'],
    module: {
      rules: [
 -      {
@@ -121,18 +126,12 @@ Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Mo
 +      },
 -      {
 -        test: /\.(png|jpe?g|gif)$/i,
--        use: [
--          {
--            loader: "file-loader",
--          },
--        ],
+-        use: ["file-loader"],
+-      },
+-      {
 -        test: /^BUILD_ID$/,
--        use: [
--          {
--            loader: "raw-loader",
--          },
--        ],
-       },
+-        use: ["raw-loader",],
+-      },
      ],
    },
  };
@@ -160,5 +159,5 @@ Rspack 内置了对 html 的支持，这意味着你可以使用 builtins.html �
 -      filename: "index.html",
 -    }),
 -  ],
--};
+ };
 ```

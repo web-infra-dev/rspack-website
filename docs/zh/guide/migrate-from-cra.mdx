@@ -9,16 +9,16 @@
 ```diff title=package.json
 {
   "dependencies": {
--    "react-scripts": "5.0.1",
+-    "react-scripts": "5.0.1"
 +    "@rspack/cli": "latest",
 +    "copy-webpack-plugin": "5.1.2"
   },
   "scripts": {
 -    "start": "react-scripts start",
 -    "build": "react-scripts build",
--    "test": "react-scripts test",
+-    "test": "react-scripts test"
 +    "start": "rspack serve",
-+    "build": "rspack build",
++    "build": "rspack build"
   }
 }
 ```
@@ -53,3 +53,21 @@ module.exports = {
   ], // 将 public 目录下的文件复制到 dist 目录下，对齐 CRA 的行为
 };
 ```
+
+## 迁移 eject 后的 CRA
+
+eject 后的 CRA 也算一个配置较为复杂的 webpack 项目，以下列举了迁移时主要做的几件事，详细的代码可以参考 [rspack-migration-showcase/pull/6](https://github.com/modern-js-dev/rspack-migration-showcase/pull/6)。
+
+- 将 webpack 相关包替换为 Rspack 对应的包，并将调用的代码进行替换
+  - webpack -> @rspack/core
+  - webpack-dev-server -> @rspack/dev-server
+  - html-webpack-plugin -> @rspack/plugin-html
+- 将 Rspack 已内置支持的配置替换掉
+  - style-loader、css-loader、MiniCssExtractPlugin 等 CSS 相关功能在 Rspack 中已内置支持
+  - TerserWebpackPlugin、CssMinimizerPlugin 等代码压缩功能在 Rspack 中已内置支持，production 模式下默认开启
+  - DefinePlugin 在 Rspack 中可通过 [builtins.define](config/builtins#builtinsdefine) 进行替代
+  - ReactRefreshWebpackPlugin 在 Rspack 中已内置支持，可通过 [builtins.react.refresh](config/builtins#config/builtins#builtinsreact) 开启或关闭
+- 去掉 Rspack 目前还不完整支持的配置
+  - cache 目前 Rspack 仅支持内存缓存，并会在 development 模式下默认开启
+  - resolve.plugins 目前 Rspack 还不支持
+  - CaseSensitivePathsPlugin、ESLintPlugin 等在 Rspack 中目前并不支持
