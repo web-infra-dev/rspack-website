@@ -125,7 +125,7 @@ If the source code uses syntax that is not supported by these browsers, the synt
 type PresetEnv =
   | undefined
   | {
-      mode?: 'usage' | 'entry';
+      mode?: 'entry'; // `usage` mode will be supported in the near future
       targets?: string[];
       coreJs?: string;
     };
@@ -133,11 +133,11 @@ type PresetEnv =
 
 - **Default:** `undefined`
 
-| Name      | Type                          | Default   | Description                                                                                                                                                                                                                                                                                                                         |
-| --------- | ----------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `targets` | `string[]\|undefined`         | undefined | Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`.                                     |
-| `mode`    | `'entry'\|'usage'\|undefined` | undefined | This option determine the behavior of polyfill injection, `'entry'` means that inject all polyfill that matches your needs, according to [browserslist](https://github.com/browserslist/browserslist) query, `'usage'` means only injects polyfills that source code uses, set this to `undefined` will not inject polyfill at all. |
-| `coreJs`  | `string`                      | undefined | This option specify the version of core-js                                                                                                                                                                                                                                                                                          |
+| Name      | Type                  | Default   | Description                                                                                                                                                                                                                                                                                     |
+| --------- | --------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `targets` | `string[]\|undefined` | undefined | Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`. |
+| `mode`    | `'entry'\|undefined`  | undefined | This option determine the behavior of polyfill injection, `'entry'` means that inject all polyfill that matches your needs, according to [browserslist](https://github.com/browserslist/browserslist) query, set this to `undefined` will not inject polyfill at all.                           |
+| `coreJs`  | `string`              | undefined | This option specify the version of core-js                                                                                                                                                                                                                                                      |
 
 ## builtins.html
 
