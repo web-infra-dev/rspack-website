@@ -10,34 +10,61 @@ import styles from './index.module.scss';
 
 // 场景条件
 // 冷启动/热更新
-// 项目模块数量
-// TODO: 增加不同场景条件下的 benchmark 数据
-const performanceInfoList = [
-  {
-    name: 'rspack',
-    // 单位为 s
-    time: 1.3,
-  },
-  {
-    name: 'webpack',
-    // 单位为 s
-    time: 12,
-  },
-];
+const BENChMARK_DATA = {
+  coldStart: [
+    {
+      name: 'rspack',
+      // 单位为 s
+      time: 4.2,
+    },
+    {
+      name: 'webpack (with SWC)',
+      time: 34.8,
+    },
+  ],
+  coldBuild: [
+    {
+      name: 'rspack',
+      time: 24.1,
+    },
+    {
+      name: 'webpack (with SWC)',
+      time: 69.4,
+    },
+  ],
+  hmrRoot: [
+    {
+      name: 'rspack',
+      time: 0.37,
+    },
+    {
+      name: 'webpack (with SWC)',
+      time: 1.45,
+    },
+  ],
+  hmrLeaf: [
+    {
+      name: 'rspack',
+      time: 0.42,
+    },
+    {
+      name: 'webpack (with SWC)',
+      time: 1.35,
+    },
+  ],
+};
 
 export function Benchmark() {
   const t = useI18n();
-  const SCENE = [t('coldStart'), t('hmr')];
-  const LEVEL = [10, 100, 1000, 10000];
-  // TODO: 针对不同的 SCENE(冷启动/热更新) 和 LEVEL(项目模块数量) 来展示不同的 benchmark 数据
-  const [activeScene, setActiveScene] = useState(SCENE[0]);
-  const [activeLevel, setActiveLevel] = useState(LEVEL[0]);
+  const SCENE = ['coldStart', 'coldBuild', 'hmrRoot', 'hmrLeaf'];
+  const [activeScene, setActiveScene] =
+    useState<keyof typeof BENChMARK_DATA>('coldStart');
   const { ref, inView } = useInView();
   const variants = {
     initial: { y: 50, opacity: 0 },
     animate: { y: 0, opacity: 1, transition: { duration: 0.5 } },
   };
-
+  const performanceInfoList = BENChMARK_DATA[activeScene];
   return (
     <motion.div
       ref={ref}
@@ -57,7 +84,14 @@ export function Benchmark() {
       </div>
       <div className="flex flex-col items-center my-4 z-1">
         {/* <h2 className="font-bold text-2xl mb-5">超快的编译速度!</h2> */}
-        <Tabs values={SCENE}>
+        <Tabs
+          values={SCENE.map((item) => ({
+            label: t(item as keyof typeof BENChMARK_DATA),
+          }))}
+          onChange={(index) =>
+            setActiveScene(SCENE[index] as keyof typeof BENChMARK_DATA)
+          }
+        >
           {SCENE.map((scene) => (
             <Tab key={scene}>
               {performanceInfoList.map((info) => (
@@ -67,7 +101,7 @@ export function Benchmark() {
                 >
                   {inView && (
                     <>
-                      <p className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500">
+                      <p className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500 min-w-180px">
                         {info.name}
                       </p>
                       <NoSSR>
@@ -85,7 +119,7 @@ export function Benchmark() {
             </Tab>
           ))}
         </Tabs>
-        <div className="flex flex-center">
+        {/* <div className="flex flex-center">
           <p className="mr-2 font-medium">{t('moduleCount')}</p>
           <MenuGroup defaultLabel={activeLevel.toString()}>
             {LEVEL.map((level) => (
@@ -97,7 +131,7 @@ export function Benchmark() {
               </div>
             ))}
           </MenuGroup>
-        </div>
+        </div> */}
       </div>
     </motion.div>
   );

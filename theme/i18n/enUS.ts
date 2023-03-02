@@ -1,6 +1,8 @@
 export const EN_US = {
   coldStart: 'Cold Start',
-  hmr: 'HMR',
+  coldBuild: 'Cold Build',
+  hmrRoot: 'HMR(Root Changed)',
+  hmrLeaf: 'HMR(Leaf Changed)',
   moduleCount: 'Module Count',
   guide: 'Guide',
   quickStart: 'Quick Start',
