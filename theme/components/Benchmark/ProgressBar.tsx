@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 
 export function formatTime(time: number, totalTime: number) {
   if (totalTime < 1000) {
-    return `${time}ms`;
+    return `${time.toFixed(0)}ms`;
   } else {
     return `${(time / 1000).toFixed(1)}s`;
   }
@@ -19,19 +19,6 @@ export function ProgressBar({ value, max }: { value: number; max: number }) {
     initial: { width: 0 },
     animate: { width: '100%' },
   };
-  useEffect(() => {
-    const intervalTime = TOTAL_TIME < 1000 ? 10 : 100;
-    const timer = setInterval(() => {
-      if (elapsedTime < TOTAL_TIME) {
-        setElapsedTime((prev) => prev + intervalTime);
-      } else {
-        clearInterval(timer);
-      }
-    }, intervalTime);
-    return () => {
-      clearInterval(timer);
-    };
-  }, [elapsedTime, setElapsedTime]);
   const formattedTime = formatTime(elapsedTime, TOTAL_TIME);
   return (
     <div
@@ -51,6 +38,10 @@ export function ProgressBar({ value, max }: { value: number; max: number }) {
           initial="initial"
           animate="animate"
           variants={variants}
+          onUpdate={(latest: { width: string }) => {
+            const width = parseFloat(latest.width);
+            setElapsedTime((width / 100) * TOTAL_TIME);
+          }}
           transition={{ duration: value, ease: 'linear' }}
         />
       </div>
