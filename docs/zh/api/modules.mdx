@@ -4,11 +4,11 @@
 
 ### ES6(推荐)
 
-Rspack 原生支持 ES6 模块语法，可以使用静态的`import`、`export`和`import()`语法。
+Rspack 原生支持 ES6 模块语法，可以使用静态的 `import`、`export` 和 `import()` 语法。
 
 ### CommonJS
 
-Rspack 也支持`CommonJS`语法，可以使用`require`和`module.exports`语法。
+Rspack 也支持 `CommonJS` 语法，可以使用 `require` 和 `module.exports` 语法。
 
 ### Webpack
 
@@ -20,7 +20,7 @@ Rspack 也支持`CommonJS`语法，可以使用`require`和`module.exports`语�
 require.context(
   (directory: String),
   (includeSubdirs: Boolean) /*可选，默认为true */,
-  (filter: RegExp) /*可选的，默认为/^\.\/.*$/ */。
+  (filter: RegExp) /* 可选的，默认为/^\.\/.*$/ */。
   (mode: String) /* 可选的, 'sync' | 'eager' | 'weak' | 'lazy' | 'lazy-once', 默认 'sync' */
 );
 ```
@@ -39,11 +39,11 @@ require.context(
 
 ### \_\_dirname (NodeJS)
 
-配置选项`node.__dirname`。
+配置选项 `node.__dirname`。
 
-- false: 未定义
-- mock: 等于'/'
-- true: node.js \_\_dirname
+- `false`: 未定义
+- `mock`: 等于 `'/'`
+- `true`: node.js \_\_dirname
 
 如果在一个被 Parser 解析的表达式内部使用，则配置选项会被当作 true 处理。
 
@@ -69,4 +69,4 @@ __resourceQuery === '?test';
 
 ### **webpack_public_path** (webpack 专用)
 
-等于配置选项的 [`output.publicPath`](/config/output#outputpublicpath)。
+等于配置选项的 [output.publicPath](/config/output#outputpublicpath)。

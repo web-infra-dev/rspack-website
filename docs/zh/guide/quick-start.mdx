@@ -139,17 +139,17 @@ build: 21.388ms
 </html>
 ```
 
-在浏览器里打开 `dist/index.html`, 我们发现浏览器里正常渲染了 `the answer to the universe is 42`
+在浏览器里打开 `dist/index.html`, 我们发现浏览器里正常渲染了 `the answer to the universe is 42`。
 
 ### 添加三方依赖
 
-Rspack 不仅可以打包本地依赖，也可以打包三方依赖，我们现在用 React 来重构我们的应用，首先添加 `react` 作为依赖
+Rspack 不仅可以打包本地依赖，也可以打包三方依赖，我们现在用 React 来重构我们的应用，首先添加 `react` 作为依赖：
 
 ```sh
 npm install --save react@18 react-dom@18
 ```
 
-将 `src/index.js` 重命名为 `src/index.jsx` 并使用 `React` 重构代码
+将 `src/index.js` 重命名为 `src/index.jsx` 并使用 `React` 重构代码：
 
 ```jsx title="src/index.jsx"
 import { answer } from './answer';
@@ -180,7 +180,7 @@ module.exports = {
 
 ### 添加 html 支持
 
-rspack 内置了对 html 的支持，无需自己手动的在 html 里配置产物 js 的地址，通过如下方式使用 html 功能
+rspack 内置了对 html 的支持，无需自己手动的在 html 里配置产物 js 的地址，通过如下方式使用 html 功能：
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -206,7 +206,7 @@ module.exports = {
 </html>
 ```
 
-此时我们执行 `npx rspack build`，我们发现 `dist/index.html` 里自动带上了 js 的地址。
+此时我们执行 `npx rspack build`，我们发现 `dist/index.html` 里自动带上了 js 的地址：
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
@@ -233,4 +233,4 @@ Rspack 内置了对 HMR 的支持，对于 React 则是内置了 fast-refresh �
 export const answer = 'rspack';
 ```
 
-我们发现浏览器上的内容自动更新为 `the answer to the universe is rspack`
+我们发现浏览器上的内容自动更新为 `the answer to the universe is rspack`。
