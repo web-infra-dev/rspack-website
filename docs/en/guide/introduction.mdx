@@ -1,3 +1,5 @@
+import compare from '../../public/compare.png';
+
 # Introduction
 
 Rspack is a high-performance rust-based JavaScript bundler offers strong interoperability with the Webpack ecosystem and lower-cost integration, enabling optimized performance and efficient collaboration between the two tools.
@@ -5,6 +7,18 @@ Rspack is a high-performance rust-based JavaScript bundler offers strong interop
 ## Why Rspack?
 
 Rspack was created to solve performance challenges encountered while bundling large scale web applications at ByteDance. Its speed comes from leveraging the [Rust](https://www.rust-lang.org/) programming language to optimize critical operations such as parsing and minification. Webpack interoperability is achieved by implementing the front end in TypeScript, using the [NAPI-RS](https://napi.rs/) framework. Rspack builds upon components from the [Speedy Web Compiler (SWC)](https://swc.rs/) project, and could also be viewed as a quicker route to fulfilling the aspirations of `swcpack` by relaxing the 100% Rust requirement.
+
+## Compared with Webpack
+
+[Webpack](https://webpack.js.org/) is currently the most mature build tool, with an active ecosystem, flexible configuration and rich features, but its most criticized is its performance problems, especially on some large projects, the build time can reach several minutes, Rspack introduces several important performance optimizations to solve performance problems
+
+- **Rust language efficiency:** The Rust programming language was specifically designed to prioritize performance, topping benchmarks for both speed and memory management. It also provides many compiler safeguards to avoid common pitfalls of other native languages such as C++.
+
+- **Highly parallelized architecture:** Webpack is limited by JavaScript's weak support for multithreading. By contrast, Rspack's native code takes full advantage of modern multi-core CPUs.
+
+- **Built-in implementations of essential bundling features:** Webpack's hook system famously enables a vast landscape of loaders and plugins contributed by the community. Unfortunately these third-party packages can frequently lead to performance bottlenecks, perhaps because the authors did not have deep knowledge of Webpack internals, or simply because the hook system by nature limits interaction of algorithms. Rspack provides built-in implementations of key bundling features to improve performance.
+
+- **Optimized Hot Module Replacement (HMR):** No matter how large your project is, ensuring a great experience for HMR places even steeper demands for build times than ordinary bundling. Rspack incorporates a specialized incremental compilation strategy to address this requirement.
 
 ## Compared with Vite
 
@@ -18,14 +32,8 @@ Rspack was created to solve performance challenges encountered while bundling la
 
 [Turbopack](https://turbo.build/) is implemented in Rust like Rspack, but Turbopack started over with a redesigned architecture and configuration. This brings some benefits, but presents a steeper migration cost for projects that rely on Webpack and its extensive ecosystem.
 
-## Compared with Webpack
+### Tradeoffs
 
-Rspack introduces several important performance optimizations:
+Essentially, it's a trade-off between development performance, build performance, production optimization and configuration flexibility. That's why we created Rspack to strike a balance between these features.
 
-- **Rust language efficiency:** The Rust programming language was specifically designed to prioritize performance, topping benchmarks for both speed and memory management. It also provides many compiler safeguards to avoid common pitfalls of other native languages such as C++.
-
-- **Highly parallelized architecture:** Webpack is limited by JavaScript's weak support for multithreading. By contrast, Rspack's native code takes full advantage of modern multi-core CPUs.
-
-- **Built-in implementations of essential bundling features:** Webpack's hook system famously enables a vast landscape of loaders and plugins contributed by the community. Unfortunately these third-party packages can frequently lead to performance bottlenecks, perhaps because the authors did not have deep knowledge of Webpack internals, or simply because the hook system by nature limits interaction of algorithms. Rspack provides built-in implementations of key bundling features to improve performance.
-
-- **Optimized Hot Module Replacement (HMR):** No matter how large your project is, ensuring a great experience for HMR places even steeper demands for build times than ordinary bundling. Rspack incorporates a specialized incremental compilation strategy to address this requirement.
+<img src={compare} />
