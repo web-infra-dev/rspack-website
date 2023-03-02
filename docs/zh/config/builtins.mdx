@@ -489,3 +489,65 @@ export type RelayConfig =
 
 当该配置为 `true` 时，Rspack 会从依次尝试寻找 [context](/config/context) 目录下的 `relay.config.json`，`relay.config.js` 以及 `package.json`，详情可以参考 [relay-compiler](https://github.com/facebook/relay/tree/main/packages/relay-compiler) 文档，如果没找到则会使用默认配置。
 如果传入具体的配置则不会尝试查找任何 `relay` 配置文件，而是直接使用传入的配置。
+
+## builtins.pluginImport
+
+移植自 [babel-plugin-import](https://github.com/umijs/babel-plugin-import)，配置基本保持一致。
+
+但不能使用函数进行配置，例如 `customName`，`customStyleName` 等，这是因为这些函数必须由 Rust 调用，这种调用会造成一些性能劣化，受到 [modularize_imports](https://crates.io/crates/modularize_imports) 的启发，简单的函数逻辑其实可以通过模版来代替，因此 `customName`，`customStyleName` ，这些配置可以传入字符串作为模版来代替函数，提高性能。
+
+我们以下面代码为例说明:
+
+```ts
+import { MyButton as Btn } from 'foo';
+```
+
+添加以下配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'foo',
+        customName: 'foo/es/{{ member }}',
+      },
+    ],
+  },
+};
+```
+
+其中的 `{{ member }}` 会被替换为相应的引入成员，转换后:
+
+```ts
+import Btn from 'foo/es/MyButton';
+```
+
+可以看出配置 `customName: "foo/es/{{ member }}"` 的效果等同于配置 `` customName: (member) => `foo/es/${member}` ``，但是不会有 Node-API 的调用开销。
+
+这里使用到的模版是 [handlebars](https://handlebarsjs.com)，模版配置中还内置了一些有用的辅助函数，还是以上面的导入语句为例：
+
+配置如下：
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'foo',
+        customName: 'foo/es/{{ kebabCase member }}',
+      },
+    ],
+  },
+};
+```
+
+会转换成下面的结果:
+
+```ts
+import Btn from 'foo/es/my-button';
+```
+
+除了 `kebabCase` 以外还有 `camelCase`，`snakeCase`，`upperCase`，`lowerCase` 可以使用。
+
+其他配置可以直接查看 [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import)。

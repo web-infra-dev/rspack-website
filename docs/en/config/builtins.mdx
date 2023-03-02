@@ -487,3 +487,63 @@ export type RelayConfig =
 
 When this configuration is set to `true`, Rspack will attempt to locate `relay.config.json`, `relay.config.js`, and `package.json` files under the [context](/config/context) directory in order, as detailed in the [relay-compiler](https://github.com/facebook/relay/tree/main/packages/relay-compiler) documentation. If none of these files are found, Rspack will use the default configuration.
 If specific configuration is passed, Rspack will not attempt to locate any `relay` config file, but use the received configuration directly.
+
+## builtins.pluginImport
+
+Ported from [babel-plugin-import](https://github.com/umijs/babel-plugin-import), configurations are basically the same.
+
+Function can't be used in configurations, such as `customName`, `customStyleName`, they will cause some performance overhead as these functions must be called from `Rust` , inspired by [modularize_imports](https://crates.io/crates/modularize_imports), some simple function can be replaced by template string instead. Therefore, the function type configuration such as `customName`, `customStyleName` can be passed in strings as templates to replace functions and improve performance.
+
+For example:
+
+```ts
+import { MyButton as Btn } from 'foo';
+```
+
+Apply following configurations:
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'foo',
+        customName: 'foo/es/{{ member }}',
+      },
+    ],
+  },
+};
+```
+
+`{{ member }}` will be replaced by the imported specifier:
+
+```ts
+import Btn from 'foo/es/MyButton';
+```
+
+Template `customName: 'foo/es/{{ member }}'` is the same as `` customName: (member) => `foo/es/${member}`  ``, but template string has no performance overhead of Node-API.
+
+The template used here is [handlebars](https://handlebarsjs.com). There are some useful builtin helpers, Take the above import statement as an example:
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'foo',
+        customName: 'foo/es/{{ kebabCase member }}',
+      },
+    ],
+  },
+};
+```
+
+Transformed to:
+
+```ts
+import Btn from 'foo/es/my-button';
+```
+
+In addition to `kebabCase`, there are `cameraCase`, `snakeCase`, `upperCase` and `lowerCase` can be used as well.
+
+You can check the document of [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) for other configurations.
