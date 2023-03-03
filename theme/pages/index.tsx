@@ -1,6 +1,6 @@
 import { HomeHero } from '../components/HomeHero';
 import { HomeFeature } from '../components/HomeFeatures';
-import { usePageData } from '@modern-js/doc-tools/runtime';
+import { NoSSR, usePageData } from '@modern-js/doc-tools/runtime';
 import { Benchmark } from '../components/Benchmark';
 import { HomeFooter } from '../components/HomeFooter/index';
 
@@ -23,7 +23,9 @@ export function HomeLayout() {
         </div>
       </div>
       {/* Benchmark Page */}
-      <Benchmark />
+      <NoSSR>
+        <Benchmark />
+      </NoSSR>
       {/* Footer */}
       <HomeFooter />
     </div>
