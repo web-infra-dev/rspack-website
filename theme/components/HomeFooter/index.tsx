@@ -51,7 +51,7 @@ function useFooterData() {
       items: [
         {
           title: 'Rspack Sources',
-          link: 'https://github.com/modern-js-dev/rspack-sources',
+          link: 'https://github.com/web-infra-dev/rspack-sources',
         },
         {
           title: 'Modern.js',
@@ -64,7 +64,7 @@ function useFooterData() {
       items: [
         {
           title: 'GitHub',
-          link: 'https://github.com/modern-js-dev/rspack',
+          link: 'https://github.com/web-infra-dev/rspack',
         },
         {
           title: 'Discord',
