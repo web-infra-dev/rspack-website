@@ -12,7 +12,7 @@
 
 ### Module Federation 支持
 
-Module Federation 是一个广受使用的 webpack 特性，有着丰富的生态，我们将和 Module Federation 的作者 [Zack Jackson](https://github.com/ScriptedAlchemy) 一起合作开发该功能。
+Module Federation 是一个广受使用的 webpack 特性，有着丰富的生态，我们未来计划实现该功能。
 
 ### Vue 和 Svelte 支持
 

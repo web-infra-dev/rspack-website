@@ -9,16 +9,16 @@ First, we need to update the dependencies, uninstall all the Create React App de
 ```diff title=package.json
 {
   "dependencies": {
--   "react-scripts": "5.0.1",
+-   "react-scripts": "5.0.1"
 +   "@rspack/cli": "latest",
 +   "copy-webpack-plugin": "5.1.2"
   },
   "scripts": {
 -   "start": "react-scripts start",
 -   "build": "react-scripts build",
--   "test": "react-scripts test",
+-   "test": "react-scripts test"
 +   "start": "rspack serve",
-+   "build": "rspack build",
++   "build": "rspack build"
   }
 }
 ```
@@ -53,3 +53,21 @@ module.exports = {
   ], // Copy the files from the public directory to the dist directory, aligning the behavior of the CRA
 };
 ```
+
+## migrate ejected CRA to Rspack
+
+After ejecting the CRA is also considered a more complex webpack project configuration, the following lists the main things to do when migrating, the detailed code can be referred to [rspack-migration-showcase/pull/6](https://github.com/modern-js-dev/rspack-migration-showcase/pull/6)。
+
+- Replace the webpack package with the corresponding Rspack package and replace the calling code
+  - webpack -> @rspack/core
+  - webpack-dev-server -> @rspack/dev-server
+  - html-webpack-plugin -> @rspack/plugin-html
+- Replaces the configuration that Rspack already has built-in support for
+  - CSS-related functions such as style-loader, css-loader, MiniCssExtractPlugin, etc. have built-in support in Rspack
+  - TerserWebpackPlugin, CssMinimizerPlugin and other code compression features have built-in support in Rspack, and are enabled by default in production mode.
+  - DefinePlugin can be replaced in Rspack by [builtins.define](config/builtins#builtinsdefine)
+  - ReactRefreshWebpackPlugin has built-in support in Rspack and can be turned on or off with [builtins.react.refresh](config/builtins#config/builtins#builtinsreact)
+- Remove configurations that are not currently fully supported by Rspack
+  - Currently cache in Rspack only supports memory caching, and it is enabled by default in development mode
+  - resolve.plugins is not currently supported by Rspack
+  - CaseSensitivePathsPlugin, ESLintPlugin, etc. are not currently supported in Rspack
