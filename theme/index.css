@@ -36,3 +36,8 @@ button:focus-visible {
 [disabled] {
   cursor: not-allowed;
 }
+
+[role='tablist'] {
+  max-width: 100vw;
+  padding: 0 10px;
+}
