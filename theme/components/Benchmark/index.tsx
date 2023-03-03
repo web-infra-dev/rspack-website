@@ -22,16 +22,6 @@ const BENChMARK_DATA = {
       time: 34.8,
     },
   ],
-  coldBuild: [
-    {
-      name: 'rspack',
-      time: 24.1,
-    },
-    {
-      name: 'webpack (with SWC)',
-      time: 69.4,
-    },
-  ],
   hmrRoot: [
     {
       name: 'rspack',
@@ -52,11 +42,21 @@ const BENChMARK_DATA = {
       time: 1.35,
     },
   ],
+  coldBuild: [
+    {
+      name: 'rspack',
+      time: 24.1,
+    },
+    {
+      name: 'webpack (with SWC)',
+      time: 69.4,
+    },
+  ],
 };
 
 export function Benchmark() {
   const t = useI18n();
-  const SCENE = ['coldStart', 'coldBuild', 'hmrRoot', 'hmrLeaf'];
+  const SCENE = ['coldStart', 'hmrRoot', 'hmrLeaf', 'coldBuild'];
   const [activeScene, setActiveScene] =
     useState<keyof typeof BENChMARK_DATA>('coldStart');
   const { ref, inView } = useInView();
