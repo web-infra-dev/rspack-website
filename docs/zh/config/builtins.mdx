@@ -551,3 +551,51 @@ import Btn from 'foo/es/my-button';
 除了 `kebabCase` 以外还有 `camelCase`，`snakeCase`，`upperCase`，`lowerCase` 可以使用。
 
 其他配置可以直接查看 [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import)。
+
+### 示例
+
+以经典的 4 版本的 [ant-design](https://4x.ant.design/) 为例，我们只需要如下配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'antd',
+        style: '{{member}}/style/index.css',
+      },
+    ],
+  },
+};
+```
+
+上面的配置会将 `import { Button } from 'antd';` 转换成
+
+```ts
+import Button from 'antd/es/button';
+import 'antd/es/button/style/index.css';
+```
+
+然后就可以在页面中看到样式文件自动被引入并且生效了。
+
+当然如果你已经配置了对 `less` 的支持，也可以直接使用如下配置：
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'antd',
+        style: true,
+      },
+    ],
+  },
+};
+```
+
+上面的配置会将 `import { Button } from 'antd';` 转换成：
+
+```ts
+import Button from 'antd/es/button';
+import 'antd/es/button/style';
+```

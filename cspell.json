@@ -8,7 +8,9 @@
       "addWords": true
     }
   ],
-  "dictionaries": ["project-words"],
+  "dictionaries": [
+    "project-words"
+  ],
   "ignorePaths": [
     "node_modules",
     "/project-words.txt",
@@ -16,5 +18,8 @@
     "pnpm-lock.yaml"
   ],
   "caseSensitive": true,
-  "allowCompoundWords": true
+  "allowCompoundWords": true,
+  "ignoreWords": [
+    "antd"
+  ]
 }
