@@ -547,3 +547,51 @@ import Btn from 'foo/es/my-button';
 In addition to `kebabCase`, there are `cameraCase`, `snakeCase`, `upperCase` and `lowerCase` can be used as well.
 
 You can check the document of [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) for other configurations.
+
+### Example
+
+Taking the classic 4.x version of [ant-design](https://4x.ant.design/) as an example, we only need to configure it as follows:
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'antd',
+        style: '{{member}}/style/index.css',
+      },
+    ],
+  },
+};
+```
+
+The above configuration will transform `import { Button } from 'antd'`; to:
+
+```ts
+import Button from 'antd/es/button';
+import 'antd/es/button/style/index.css';
+```
+
+Then you can see the style file is automatically imported and applied on the page.
+
+Of course, if you have already configured support for `less`, you can simply use the following configuration:
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    pluginImport: [
+      {
+        libraryName: 'antd',
+        style: true,
+      },
+    ],
+  },
+};
+```
+
+The above configuration will transform `import { Button } from 'antd';` to:
+
+```ts
+import Button from 'antd/es/button';
+import 'antd/es/button/style';
+```
