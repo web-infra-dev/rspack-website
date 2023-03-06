@@ -37,11 +37,13 @@ In the above example, `b.js` has already been included in `EntryChunk` and `Entr
 
 ## optimization.minimize
 
-<PropertyType type="boolean" />
-
-- **Default:** `true` (development mode)
-- **Default:** `false` (production mode)
-
+<PropertyType
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
 Whether to minimize the bundle.
 
 ## optimization.minimizer
