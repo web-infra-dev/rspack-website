@@ -6,11 +6,11 @@
 
 ## 不使用 babel-loader 的话，如何实现兼容性降级编译?
 
-Rspack 内部使用 swc 进行代码的降级编译，因此无需通过 babel-loader 来进行代码的降级编译。
+Rspack 内部使用 SWC 进行代码的降级编译(可以通过[preset](/config/builtins#builtinspresetenv))，因此无需通过 babel-loader 来进行代码的降级编译。
 
 ## Rspack 对 Webpack API 是 100% 兼容吗？
 
-不是，Rspack 目标也**不是** 完全兼容 100% 的 Webpack API，根据二八定律的原则，我们会优先实现在社区和业务中高频使用的那些 API。
+不是，Rspack 目标也**不是**完全兼容 100% 的 Webpack API，根据二八定律的原则，我们会优先实现在社区和业务中高频使用的那些 API。
 
 ## Rspack 会计划支持 wasm 方案来支持浏览器端的构建吗？
 
@@ -18,11 +18,11 @@ Rspack 内部使用 swc 进行代码的降级编译，因此无需通过 babel-l
 
 ## 什么时候会支持 Vue
 
-计划支持中，预计下个双月完成支持
+计划支持中，预计 4-6 月完成支持
 
-## Rspack 相比 Webpack + swc-loader 有什么优势
+## Rspack 相比 Webpack + SWC-loader 有什么优势
 
-即使是 webpack + swc-loader 解决了 babel-loader 的性能问题，但是 webpack 本身仍然存在较多的性能瓶颈，如 make，seal 等阶段都是单线程的，但是 Rspack 突破了这些限制, 因此 Rspack 比 webpack + swc-loader 有更好的性能表现，尤其是在多核场景。
+即使是 webpack + SWC-loader 解决了 babel-loader 的性能问题，但是 webpack 本身仍然存在较多的性能瓶颈，如 make，seal 等阶段都是单线程的，但是 Rspack 突破了这些限制, 因此 Rspack 比 webpack + SWC-loader 有更好的性能表现，尤其是在多核场景。
 
 ## 自定义插件和自定义 Loader 需要使用 Rust 进行开发吗？
 
@@ -34,4 +34,4 @@ Rspack 内部使用 swc 进行代码的降级编译，因此无需通过 babel-l
 
 ## Rspack 现在可以用于线上环境了吗？线上产物和 webpack 的差异在哪？
 
-可以，目前已经在多个内部项目中落地了生产环境，我们目标运行时是完全对齐 webpack(意味着你很难从产物里判断是 Webpack 还是 Rspack 产物)，但是目前离完整对齐还有一点差异,我们将在下个双月完成 Runtime 的完整对齐。
+可以，目前已经在多个内部项目中落地了生产环境，我们目标是运行时完全对齐 webpack(意味着你很难从产物里判断是 Webpack 还是 Rspack 产物)，但是目前离完整对齐还有一点差异,我们将在下个双月完成 Runtime 的完整对齐。

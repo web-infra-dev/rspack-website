@@ -6,7 +6,7 @@ There will be some performance loss, but according to our business landing situa
 
 ## How to achieve compatibility fallback compilation without using babel-loader?
 
-Rspack internally uses swc to perform code downgrade compilation, so there is no need to use babel-loader to perform code downgrade compilation.
+Rspack internally uses SWC to perform code downgrade compilation which you can configure by [presetEnv](/config/builtins#builtinspresetenv), so there is no need to use babel-loader to perform code downgrade compilation.
 
 ## Is Rspack 100% compatible with Webpack API?
 
@@ -18,11 +18,11 @@ We plan to support it. We are exploring the wasm solution together with the NAPI
 
 ## When will Rspack support Vue?
 
-It is planned to be supported, and it is expected to be completed in the next bi-month.
+Plan in progress, expected to complete support between April and June.
 
-## What are the advantages of Rspack compared to Webpack + swc-loader?
+## What are the advantages of Rspack compared to Webpack + SWC-loader?
 
-Even if webpack + swc-loader solves the performance problem of babel-loader, webpack itself still has many performance bottlenecks, such as the make and seal stages, which are single-threaded. However, Rspack breaks through these limitations, so Rspack has better performance than webpack + swc-loader, especially in multi-core scenarios.
+Even if webpack + SWC-loader solves the performance problem of babel-loader, webpack itself still has many performance bottlenecks, such as the make and seal stages, which are single-threaded. However, Rspack breaks through these limitations, so Rspack has better performance than webpack + SWC-loader, especially in multi-core scenarios.
 
 ## Do custom plugins and custom loaders need to be developed using Rust?
 
