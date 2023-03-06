@@ -8,8 +8,8 @@ There are a lot of giant JavaScript applications inside ByteDance. They have ver
 
 - Dev startup performance. `npm run dev` is a daily script for developers that may run many times. Reducing the cost of them to one minute from ten minutes is really life-saving.
 - Build performance. `npm run build` is common in CI/CD environments and determines the efficiency of launch. Many giant applications in ByteDance are built in 20 ~ 30 minutes. If we can reduce it to 3~5 minutes, developers will be really productive.
-- Flexible configuration. Giant projects always have complex configurations and can't be standardised. Back in time, we migrated some of the projects to other build tools to improve build performance, and the hardest part is changing the configuration.
-- Production optimization. We tried various solutions in the community and webpack gave the best result in production optimization like chunk-spliting, tree-shaking, etc. A better chunk strategy can help web apps get better metrics performance.
+- Flexible configuration. Giant projects always have complex configurations and can't be standardized. Back in time, we migrated some of the projects to other build tools to improve build performance, and the hardest part is changing the configuration.
+- Production optimization. We tried various solutions in the community and webpack gave the best result in production optimization like chunk-splitting, tree-shaking, etc. A better chunk strategy can help web apps get better metrics performance.
 
 In conclusion, we decided to build our own bundler, which is `Rspack`.
 
@@ -41,7 +41,7 @@ Rspack can not be shipped today without the inspiration and support of various p
 
 ## Future plans
 
-### Improve basic capcabilities
+### Improve basic capabilities
 
 Keep building Rspack will be our top priority. Compared with webpack, Rspack is still a baby, lacking complex features. Please keep sending us feedback on feature requests. We will finish them step by step.
 
