@@ -37,10 +37,13 @@ EntryChunk2(index.js, a.js, b.js)
 
 ## optimization.minimize
 
-<PropertyType.CN type="boolean" />
-
-- **默认值：** `true` (生产模式)
-- **默认值：** `false` (开发模式)
+<PropertyType.CN
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
 
 是否对产物进行压缩。
 
