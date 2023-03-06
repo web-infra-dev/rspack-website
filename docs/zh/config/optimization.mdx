@@ -355,7 +355,7 @@ module.exports = {
 
 ### splitChunks.name
 
-- **类型：** `boolean: (module, chunks, cacheGroupKey) => string`
+- **类型：** `boolean | (module, chunks, cacheGroupKey) => string`
 - **默认值：** `false`
 
 每个 cacheGroup 也可以使用：`splitChunks.cacheGroups.{cacheGroup}.name`。

@@ -1,3 +1,5 @@
+import PropertyType from '../../../components/property-type.tsx';
+
 # Builtins 内置功能
 
 用于设置 Rspack 提供的内置功能。
@@ -354,13 +356,13 @@ type BuiltinsCssModules = {
 
 此选项可以用来配置进度条，false 表示不显示进度条。
 
-- **类型：**
-
-```ts
-type BuiltinsProgress = boolean | { prefix?: string };
-```
-
-- **默认值：** `false`
+<PropertyType.CN
+  type="boolean | { prefix?: string }"
+  defaultValueList={[
+    { defaultValue: 'false', mode: 'production' },
+    { defaultValue: 'true', mode: 'development' },
+  ]}
+/>
 
 | 名称     | 类型     | 默认值   | 描述             |
 | -------- | -------- | -------- | ---------------- |

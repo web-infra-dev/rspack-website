@@ -1,3 +1,5 @@
+import PropertyType from '../../../components/property-type.tsx';
+
 # Builtins
 
 Used to set the built-in functions provided by Rspack.
@@ -352,13 +354,13 @@ type BuiltinsCssModules = {
 
 This configuration can be used to control progress, `false` means to turn off progress.
 
-- **Type:**
-
-```ts
-type BuiltinsProgress = boolean | { prefix?: string };
-```
-
-- **Default:** `false`
+<PropertyType
+  type="boolean | { prefix?: string }"
+  defaultValueList={[
+    { defaultValue: 'false', mode: 'production' },
+    { defaultValue: 'true', mode: 'development' },
+  ]}
+/>
 
 | Name     | Type     | Default  | Description                             |
 | -------- | -------- | -------- | --------------------------------------- |

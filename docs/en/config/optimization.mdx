@@ -361,7 +361,7 @@ The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` w
 
 ### splitChunks.name
 
-- **Type:** `boolean: (module, chunks, cacheGroupKey) => string`
+- **Type:** `boolean | (module, chunks, cacheGroupKey) => string`
 - **Default:：** `false`
 
 Also available for each cacheGroup: `splitChunks.cacheGroups.{cacheGroup}.name`.
