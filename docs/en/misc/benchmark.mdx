@@ -1,0 +1,39 @@
+# Benchmark
+
+To run this benchmark yourself, clone [web-infra-dev/bundler-benchmark](https://github.com/web-infra-dev/bundler-benchmark) and then use this command from the root:
+
+```bash
+./scripts/bench-all.sh ${platform} # `platform` is used to uniquely identify the generated benchmark data.
+```
+
+# Case
+
+## all
+
+A combination of `atlaskit-editor`, `common-libs`, `common-libs-chunks`, `rome`
+
+## atlaskit-editor
+
+Basic react application with `@atlaskit/editor-core`
+
+## common-libs
+
+A combination of some widely used libraries in Javascript ecosystem.
+
+## common-libs-chunks
+
+Same as `common-libs`, but using async `import()` syntax to force bundler generate multiple chunks.
+
+## rome
+
+the old Rome code base (prior to their Rust rewrite) to approximate a large TypeScript codebase.
+
+## react-components-10000
+
+10000 react components (each component only have basic skeleton, complicated logic maybe lead a rerender time may greater than hmr time) to test hot module replacement performance of each devServer of bundler.
+
+# Metrics
+
+- dev-cold: the time it takes for the development build to complete without caching.
+- production-build: the time it takes for the production build to complete without caching.
+- hmr: the time it takes for the development server rebuild the project when an update is applied to a source file.
