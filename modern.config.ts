@@ -65,6 +65,10 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           text: getText('品牌指南', 'Branding Guideline'),
           link: getLink('/misc/branding'),
         },
+        {
+          text: getText('发布公告', 'Announcing Rspack'),
+          link: getLink('/misc/announcement'),
+        },
       ],
     },
   ];
@@ -146,6 +150,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/misc/meet-the-team'),
           getLink('/misc/license'),
           getLink('/misc/branding'),
+          getLink('/misc/announcement'),
         ],
       },
     ],
