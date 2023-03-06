@@ -107,7 +107,7 @@ var __webpack_modules__ = {
 ```
 
 正如您所看到的，如果我们不启用 treeShaking，所有代码都保持不变，只是将代码包裹了一层运行时代码。
-现在，我们切换到 `production` 模式，重新构建项目, 为了让产物更加可读，我们同时关闭 `minimize` 选项 以及切换 `moduleIds` 为 `named`, 为了和后面章节对比，我们关闭 `optimization.sideEffects`。
+现在，我们切换到 `production` 模式，重新构建项目，为了让产物更加可读，我们同时关闭 `minimize` 选项 以及切换 `moduleIds` 为 `named`，为了和后面章节对比，我们关闭 `optimization.sideEffects`。
 
 ```diff title=rspack.config.js
 /**
@@ -132,7 +132,7 @@ module.exports = config;
 
 ## SideEffects
 
-在一个 100% ESM 模块化的世界里，识别副作用是比较直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用, cjs, esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 Rspack 的编译器。
+在一个 100% ESM 模块化的世界里，识别副作用是比较直接的。然而，我们还没有达到那个阶段 (在实际的生产代码中有各种格式的代码混用，cjs、esm 和 umd 等等)，所以在此期间，需要在你的代码中提供“纯度”方面的提示给 Rspack 的编译器。
 该功能通常由 "sideEffects" package.json 属性来完成的。
 
 ```json title=package.json
@@ -147,7 +147,7 @@ sideEffects 字段支持以下值：
 - **false** 这个包中的所有文件都没有副作用。
 - **string** 匹配包含副作用文件的 glob。
 - **Array\<string\>** 匹配包含副作用文件的 glob 数组。
-- **undefined** 当你不设置 `package.json` 的 `sideEffects` 时的默认值。 当 `optimization.sideEffects` 为 true 时, Rspack 将尝试分析代码是否具有副作用，当 `optimization.sideEffects` 为 'flag' 时, Rspack 将默认包中的所有模块均有副作用。
+- **undefined** 当你不设置 `package.json` 的 `sideEffects` 时的默认值。当 `optimization.sideEffects` 为 true 时，Rspack 将尝试分析代码是否具有副作用，当 `optimization.sideEffects` 为 'flag' 时，Rspack 将默认包中的所有模块均有副作用。
 
 这次，我们使用一个更复杂的示例。
 
@@ -308,7 +308,7 @@ console.log((0, _indexJs.multiply)(2, 3));
 // ...
 ```
 
-由于`module.rule.sideEffects` 比 package.json 中的 `sideEffects` 优先级更高, 我们可以使用 `module.rule.sideEffects` 来覆盖某些模块的 `sideEffects` 标识.
+由于`module.rule.sideEffects` 比 package.json 中的 `sideEffects` 优先级更高，我们可以使用 `module.rule.sideEffects` 来覆盖某些模块的 `sideEffects` 标识.
 由于初始化的副作用只在使用 addRandomDate 时才有意义，因此我们可以安全地覆盖它。为此，我们可以对 rspack.config.js 进行以下修改：
 
 ```diff title=rspack.config.js
