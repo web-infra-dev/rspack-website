@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 type DefaultValue = {
   defaultValue: string;
-  mode?: string;
+  mode?: 'development' | 'production' | 'none';
 };
 const PropertyType: FC<{ type: string; defaultValueList?: DefaultValue[] }> & {
   CN: FC<{ type: string; defaultValueList?: DefaultValue[] }>;
@@ -12,16 +12,30 @@ const PropertyType: FC<{ type: string; defaultValueList?: DefaultValue[] }> & {
         <li>
           <strong>Type:</strong> <code>{type}</code>
         </li>
-        {defaultValueList?.length &&
-          defaultValueList.length > 0 &&
-          defaultValueList.map(({ defaultValue, mode }) => {
-            return (
-              <li>
-                <strong>Default: </strong> <code>{defaultValue}</code>
-                {mode && <span style={{ marginLeft: '4px' }}>{mode}</span>}
-              </li>
-            );
-          })}
+        {defaultValueList?.length && defaultValueList.length > 0 && (
+          <li>
+            <strong>Default: </strong>
+            {defaultValueList.map(({ defaultValue, mode }, index) => {
+              return (
+                <span>
+                  {index > 0 && <span>, </span>}
+                  {mode && (
+                    <>
+                      <a
+                        style={{ marginLeft: '4px' }}
+                        href={`/config/mode.html#${mode}`}
+                      >
+                        {mode} mode
+                      </a>{' '}
+                      <span>is</span>
+                    </>
+                  )}
+                  <code style={{ marginLeft: '4px' }}>{defaultValue}</code>
+                </span>
+              );
+            })}
+          </li>
+        )}
       </ul>
     </>
   );
@@ -33,22 +47,30 @@ PropertyType.CN = ({ type, defaultValueList }) => {
         <li>
           <strong>类型：</strong> <code>{type}</code>
         </li>
-        {defaultValueList?.length &&
-          defaultValueList.length > 0 &&
-          defaultValueList.map(({ defaultValue, mode }) => {
-            return (
-              <li>
-                <strong>默认值: </strong> <code>{defaultValue}</code>
-                {mode && <span style={{ marginLeft: '4px' }}>{mode}</span>}
-              </li>
-            );
-          })}
-        {/* {defaultValue && (
+        {defaultValueList?.length && defaultValueList.length > 0 && (
           <li>
-            <strong>默认值：</strong> <code>{defaultValue}</code>
-            <span></span>
+            <strong>默认值: </strong>
+            {defaultValueList.map(({ defaultValue, mode }, index) => {
+              return (
+                <span>
+                  {index > 0 && <span>, </span>}
+                  {mode && (
+                    <>
+                      <a
+                        style={{ marginLeft: '4px' }}
+                        href={`/config/mode.html#${mode}`}
+                      >
+                        {mode} 模式
+                      </a>{' '}
+                      <span>为</span>
+                    </>
+                  )}
+                  <code style={{ marginLeft: '4px' }}>{defaultValue}</code>
+                </span>
+              );
+            })}
           </li>
-        )} */}
+        )}
       </ul>
     </>
   );
