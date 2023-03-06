@@ -65,5 +65,5 @@ Webpack has already accumulated very rich test cases, and in the future Rspack w
 
 ## Trial
 
-Quick start: [https://rspack.org](https://rspack.org)
+Quick start: [https://rspack.dev](https://rspack.dev)
 Codebase: [github.com/web-infra-dev/rspack](github.com/web-infra-dev/rspack)

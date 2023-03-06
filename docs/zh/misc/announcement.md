@@ -65,5 +65,5 @@ Rspack 作为一个底层依赖解决了我们自己在工作中遇到的很多�
 
 ## 试用
 
-快速开始: [https://rspack.org](https://rspack.org)
+快速开始: [https://rspack.dev](https://rspack.dev)
 Codebase: [github.com/web-infra-dev/rspack](github.com/web-infra-dev/rspack)
