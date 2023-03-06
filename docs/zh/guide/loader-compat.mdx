@@ -2,17 +2,17 @@
 
 该索引列出了完成 Rspack 兼容性测试的 Loader 列表。你可以在 [loader-compat](https://github.com/web-infra-dev/rspack/blob/main/examples/loader-compat/rspack.config.js) 查看相关 loader 兼容性例子。
 
-| Loader         | 兼容性 | 替代                                              | 备注                                  |
-| -------------- | ------ | ------------------------------------------------- | ------------------------------------- |
-| babel-loader   | 兼容   | 内部使用 swc 实现了 babel-loader 的大部分转换功能 | babel-loader 对性能影响较大，谨慎使用 |
-| sass-loader    | 兼容   |                                                   |                                       |
-| less-loader    | 兼容   |                                                   |                                       |
-| postcss-loader | 兼容   |                                                   |                                       |
-| yaml-loader    | 兼容   |                                                   |                                       |
-| json-loader    | 兼容   |                                                   |                                       |
-| stylus-loader  | 兼容   |                                                   |                                       |
-| @mdx-js/loader | 兼容   |                                                   |                                       |
-| @svgr/webpack  | 兼容   |                                                   |                                       |
-| raw-loader     | 兼容   | [type:"asset/source"](/guide/asset-module)        |                                       |
-| url-loader     | 兼容   | [type:"asset/resource"](/guide/asset-module)      |                                       |
-| css-loader     | 不兼容 | [type:"css"](/guide/language-support.html#css)    |                                       |
+| Loader                                                                        | 兼容性 | 替代                                              | 备注                                  |
+| ----------------------------------------------------------------------------- | ------ | ------------------------------------------------- | ------------------------------------- |
+| [babel-loader](https://github.com/babel/babel-loader)                         | 兼容   | 内部使用 swc 实现了 babel-loader 的大部分转换功能 | babel-loader 对性能影响较大，谨慎使用 |
+| [sass-loader](https://github.com/webpack-contrib/sass-loader)                 | 兼容   |                                                   |                                       |
+| [less-loader](https://github.com/webpack-contrib/less-loader)                 | 兼容   |                                                   |                                       |
+| [postcss-loader](https://github.com/webpack-contrib/postcss-loader)           | 兼容   |                                                   |                                       |
+| [yaml-loader](https://github.com/eemeli/yaml-loader)                          | 兼容   |                                                   |                                       |
+| [json-loader](https://github.com/webpack-contrib/json-loader)                 | 兼容   |                                                   |                                       |
+| [stylus-loader](https://github.com/webpack-contrib/stylus-loader)             | 兼容   |                                                   |                                       |
+| [@mdx-js/loader](https://github.com/mdx-js/mdx/tree/main/packages/loader)     | 兼容   |                                                   |                                       |
+| [@svgr/webpack](https://github.com/gregberge/svgr/tree/main/packages/webpack) | 兼容   |                                                   |                                       |
+| [raw-loader](https://github.com/webpack-contrib/raw-loader)                   | 兼容   | [type:"asset/source"](/guide/asset-module)        |                                       |
+| [url-loader](https://github.com/webpack-contrib/url-loader)                   | 兼容   | [type:"asset/resource"](/guide/asset-module)      |                                       |
+| [css-loader](https://github.com/webpack-contrib/css-loader)                   | 不兼容 | [type:"css"](/guide/language-support.html#css)    |                                       |
