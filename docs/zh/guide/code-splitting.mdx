@@ -1,3 +1,7 @@
+import WebpackLicense from '../../../components/webpack-license';
+
+<WebpackLicense from="https://webpack.docschina.org/guides/code-splitting/" />
+
 # 代码分割
 
 Rspack 支持代码分割特性，允许让你对代码进行分割，控制生成的资源体积来获取资源加载性能的提升。
@@ -55,7 +59,7 @@ Entrypoint index = index.bundle.js
 
 正如前面提到的，这种方式存在一些隐患：
 
-- 如果多个入口起点导入链之间包含一些重复的模块，那么这些重复模块会被重复添加到各个入口 Chunk 中。 `shared.js` 的代码会被同时打包到 `index.bundle.js` 和 `another.bundle.js` 中。
+- 如果多个入口起点导入链之间包含一些重复的模块，那么这些重复模块会被重复添加到各个入口 Chunk 中。`shared.js` 的代码会被同时打包到 `index.bundle.js` 和 `another.bundle.js` 中。
 - 这种方法不够灵活，并且不能动态地将程序逻辑中的代码拆分出来。
 
 以上两点中，第一点对我们的示例来说无疑是个问题，在下一章节我们会讲述如何移除重复的模块。

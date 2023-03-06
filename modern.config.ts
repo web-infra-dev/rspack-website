@@ -34,7 +34,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
       items: [
         {
           text: 'Rspack Sources',
-          link: 'https://github.com/modern-js-dev/rspack-sources',
+          link: 'https://github.com/web-infra-dev/rspack-sources',
         },
         {
           text: 'Modern.js',
@@ -51,7 +51,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
         },
         {
           text: getText('发布日志', 'Releases'),
-          link: 'https://github.com/modern-js-dev/rspack/releases',
+          link: 'https://github.com/web-infra-dev/rspack/releases',
         },
         {
           text: getText('开发计划', 'Roadmap'),
@@ -59,7 +59,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
         },
         {
           text: getText('贡献指南', 'Contributing Guide'),
-          link: 'https://github.com/modern-js-dev/rspack/blob/main/CONTRIBUTING.md',
+          link: 'https://github.com/web-infra-dev/rspack/blob/main/CONTRIBUTING.md',
         },
         {
           text: getText('品牌指南', 'Branding Guideline'),
@@ -273,7 +273,7 @@ export default defineConfig({
         {
           icon: 'github',
           mode: 'link',
-          content: 'https://github.com/modern-js-dev/rspack',
+          content: 'https://github.com/web-infra-dev/rspack',
         },
       ],
       locales: [

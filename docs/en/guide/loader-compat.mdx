@@ -1,18 +1,18 @@
 # Loader compat
 
-This index lists the Loader that have been verified by the compatibility test for Rspack. You can check out the examples of compatible loaders in [loader-compat](https://github.com/modern-js-dev/rspack/blob/main/examples/loader-compat/rspack.config.js).
+This index lists the Loader that have been verified by the compatibility test for Rspack. You can check out the examples of compatible loaders in [loader-compat](https://github.com/web-infra-dev/rspack/blob/main/examples/loader-compat/rspack.config.js).
 
-| Loader         | Compatibility | Alternative                                                                                     | Remarks                                               |
-| -------------- | ------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| babel-loader   | Compatible    | swc has been used internally to implement babel-loader with most of its conversion capabilities | Be cautious of the performance impact of babel-loader |
-| sass-loader    | Compatible    |                                                                                                 |                                                       |
-| less-loader    | Compatible    |                                                                                                 |                                                       |
-| postcss-loader | Compatible    |                                                                                                 |                                                       |
-| yaml-loader    | Compatible    |                                                                                                 |                                                       |
-| json-loader    | Compatible    |                                                                                                 |                                                       |
-| stylus-loader  | Compatible    |                                                                                                 |                                                       |
-| @mdx-js/loader | Compatible    |                                                                                                 |                                                       |
-| @svgr/webpack  | Compatible    |                                                                                                 |                                                       |
-| raw-loader     | Compatible    | [type:"asset/source"](/guide/asset-module)                                                      |                                                       |
-| url-loader     | Compatible    | [type:"asset/resource"](asset-module)                                                           |                                                       |
-| css-loader     | Incompatible  | [type:"css"](/guide/language-support#css)                                                       |                                                       |
+| Loader                                                                        | Compatibility | Alternative                                                                                     | Remarks                                               |
+| ----------------------------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [babel-loader](https://github.com/babel/babel-loader)                         | Compatible    | swc has been used internally to implement babel-loader with most of its conversion capabilities | Be cautious of the performance impact of babel-loader |
+| [sass-loader](https://github.com/webpack-contrib/sass-loader)                 | Compatible    |                                                                                                 |                                                       |
+| [less-loader](https://github.com/webpack-contrib/less-loader)                 | Compatible    |                                                                                                 |                                                       |
+| [postcss-loader](https://github.com/webpack-contrib/postcss-loader)           | Compatible    |                                                                                                 |                                                       |
+| [yaml-loader](https://github.com/eemeli/yaml-loader)                          | Compatible    |                                                                                                 |                                                       |
+| [json-loader](https://github.com/webpack-contrib/json-loader)                 | Compatible    |                                                                                                 |                                                       |
+| [stylus-loader](https://github.com/webpack-contrib/stylus-loader)             | Compatible    |                                                                                                 |                                                       |
+| [@mdx-js/loader](https://github.com/mdx-js/mdx/tree/main/packages/loader)     | Compatible    |                                                                                                 |                                                       |
+| [@svgr/webpack](https://github.com/gregberge/svgr/tree/main/packages/webpack) | Compatible    |                                                                                                 |                                                       |
+| [raw-loader](https://github.com/webpack-contrib/raw-loader)                   | Compatible    | [type:"asset/source"](/guide/asset-module)                                                      |                                                       |
+| [url-loader](https://github.com/webpack-contrib/url-loader)                   | Compatible    | [type:"asset/resource"](asset-module)                                                           |                                                       |
+| [css-loader](https://github.com/webpack-contrib/css-loader)                   | Incompatible  | [type:"css"](/guide/language-support#css)                                                       |                                                       |
