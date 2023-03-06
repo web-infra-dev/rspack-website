@@ -141,6 +141,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         collapsible: false,
         text: getText('其他', 'Misc'),
         items: [
+          getLink('/misc/FAQ'),
           getLink('/misc/roadmap'),
           getLink('/misc/meet-the-team'),
           getLink('/misc/license'),
