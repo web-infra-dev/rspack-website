@@ -8,7 +8,7 @@ Rspack 支持 tree shaking，这是在 JavaScript 上下文中常用的术语，
 
 它依赖于 import 和 export 语句来检测代码模块是否被导出和导入以在 JavaScript 文件之间使用。
 
-当您将 `mode` 设置为 `production` 时，将启用 tree shaking。
+当你将 `mode` 设置为 `production` 时，Rspack 将默认启用 tree shaking。
 
 ## Basic tree shaking
 
@@ -106,7 +106,7 @@ var __webpack_modules__ = {
 // ...
 ```
 
-正如您所看到的，如果我们不启用 treeShaking，所有代码都保持不变，只是将代码包裹了一层运行时代码。
+正如你所看到的，如果我们不启用 treeShaking，所有代码都保持不变，只是将代码包裹了一层运行时代码。
 现在，我们切换到 `production` 模式，重新构建项目，为了让产物更加可读，我们同时关闭 `minimize` 选项 以及切换 `moduleIds` 为 `named`，为了和后面章节对比，我们关闭 `optimization.sideEffects`。
 
 ```diff title=rspack.config.js
@@ -252,7 +252,7 @@ var __webpack_modules__ = {
 
 ## module.rule.sideEffects
 
-您可以使用 module.rule.sideEffects 覆盖某些模块的 sideEffects 选项。
+你可以使用 `module.rule.sideEffects` 覆盖某些模块的 sideEffects 选项。
 
 为什么我们需要这样的功能呢？我们仍然使用上面的例子，假设 math 包的作者忘记在 package.json 中添加 sideEffects 选项：
 
@@ -265,7 +265,8 @@ var __webpack_modules__ = {
 ```
 
 Rspack 将尝试安全地分析代码，并仅在所有顶级语句均没有副作用时标记模块为无副作用。
-正如我们所看到的，**math/index.js**、**math/subtract.js** 和 **math/multiply.js** 都没有副作用，而 math/add.js 不是，因为 `const randomDate = Date.now()` 含有副作用。当我们重新构建项目时，您可以看到差异如下：
+
+正如我们所看到的，**math/index.js**、**math/subtract.js** 和 **math/multiply.js** 都没有副作用，而 math/add.js 不是，因为 `const randomDate = Date.now()` 含有副作用。当我们重新构建项目时，你可以看到差异如下：
 
 ```diff
 //...

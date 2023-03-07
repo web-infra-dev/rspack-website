@@ -13,22 +13,22 @@ import styles from './index.module.scss';
 const BENChMARK_DATA = {
   coldStart: [
     {
-      name: 'rspack',
+      name: 'Rspack',
       // 单位为 s
       time: 4.2,
     },
     {
-      name: 'webpack (with SWC)',
+      name: 'Webpack (with SWC)',
       time: 34.8,
     },
   ],
   hmrRoot: [
     {
-      name: 'rspack',
+      name: 'Rspack',
       time: 0.37,
     },
     {
-      name: 'webpack (with SWC)',
+      name: 'Webpack (with SWC)',
       time: 1.45,
     },
   ],

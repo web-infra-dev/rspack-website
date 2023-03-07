@@ -1,6 +1,6 @@
 # Loader
 
-Loader 可以对文件内容进行转换，你可以借助 loader 将 Rspack 中非一等公民支持的文件转换为一等公民类型以获得 Rspack 的支持。
+Loader 可以对文件内容进行转换，你可以借助 Loader，将 Rspack 中非一等公民支持的文件转换为一等公民类型，以被 Rspack 所正确识别。
 
 :::tip
 
@@ -12,7 +12,7 @@ Loader 属于对资源的前处理，而 [Rule.type](/config/module#ruletype) �
 
 ### 使用 Less
 
-CSS 为 Rspack 的一等公民，因此对于 CSS 文件的处理是原生支持的。而对于 `Less` 文件来说则需要借助外部的 [less-loader](https://github.com/webpack-contrib/less-loader) 对文件的内容做相应的转换：
+CSS 为 Rspack 的一等公民，因此对于 CSS 文件的处理是原生支持的。而对于 `Less` 文件来说，则需要借助外部的 [less-loader](https://github.com/webpack-contrib/less-loader) 对文件的内容做相应的转换：
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -38,7 +38,7 @@ module.exports = {
 
 你可以对特定的 [Rule](/config/module#rule) 匹配项使用多个 loader 进行链式处理，loader 的执行顺序为**从右往左**。
 
-例如你可以使用 [less-loader](https://github.com/webpack-contrib/less-loader) 完成 Less 到 CSS 类型之间的转换，并对转换后的源码使用 [postcss-loader](https://github.com/webpack-contrib/postcss-loader) 进行二次转换，并最终交给 Rspack 的 CSS 后处理器完成进一步处理：
+例如，你可以使用 [less-loader](https://github.com/webpack-contrib/less-loader) 完成 Less 到 CSS 类型之间的转换，并对转换后的源码使用 [postcss-loader](https://github.com/webpack-contrib/postcss-loader) 进行二次转换，并最终交给 Rspack 的 CSS 后处理器，完成进一步处理：
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -90,9 +90,9 @@ module.exports = {
 
 ### 使用自定义 Loader
 
-你可以在 Rspack 中使用自定义 loader，下面我们会编写一个简单的 banner loader 作为示例。
+你可以在 Rspack 中使用自定义 loader，下面我们会编写一个简单的 banner-loader 作为示例。
 
-Banner loader 的作用是在每个模块的头部添加一个 banner 注释，例如添加一段 License 信息：
+banner-loader 的作用是在每个模块的头部添加一个 banner 注释，例如添加一段 License 信息：
 
 ```js
 /**

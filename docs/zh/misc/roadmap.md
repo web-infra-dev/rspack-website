@@ -1,14 +1,14 @@
 # 功能规划
 
-我们预期在未来支持如下一些功能，但是我们并不保证在下个版本支持下述的所有功能，也不保证下述的功能按照下述的顺序实现。
+我们计划在未来支持如下的一些功能，但是我们并不保证在下个版本支持以下所有功能，也不保证以下功能按照下述的顺序实现。
 
 ### 性能优化
 
-我们仍然存在着很多的性能优化空间，我们将在未来和上游项目如 [swc](https://github.com/swc-project/swc) 和 [NAPI-RS](https://github.com/napi-rs/napi-rs) 一起持续的进行性能优化。
+我们仍然存在着很多的性能优化空间，我们将在未来和上游项目如 [SWC](https://github.com/swc-project/swc) 和 [NAPI-RS](https://github.com/napi-rs/napi-rs) 一起持续地进行性能优化。
 
-### 支持更多的社区插件 和 Loader
+### 支持更多的社区插件和 loaders
 
-因为 webpack 包含了大量的 API，我们将根据社区的反馈支持一些最高频使用的 loader 和 plugin。
+由于 webpack 包含了大量的 API，需要逐步进行支持。我们将根据社区的反馈，优先支持一些高频使用的 loaders 和 plugins。
 
 ### Module Federation 支持
 
