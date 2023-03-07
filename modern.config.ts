@@ -58,6 +58,10 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           link: getLink('/misc/roadmap'),
         },
         {
+          text: getText('基准测试', 'Benchmark'),
+          link: getLink('/misc/benchmark'),
+        },
+        {
           text: getText('贡献指南', 'Contributing Guide'),
           link: 'https://github.com/web-infra-dev/rspack/blob/main/CONTRIBUTING.md',
         },
@@ -150,6 +154,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/misc/meet-the-team'),
           getLink('/misc/license'),
           getLink('/misc/branding'),
+          getLink('/misc/benchmark'),
           getLink('/misc/announcement'),
         ],
       },
