@@ -1,8 +1,12 @@
 # Quick start
 
+Get up to speed quickly with a new Rspack based project.
+
 ## Creating project using scaffolding
 
-Rspack also includes scaffolding to quickly create new projects. Invoke the following command:
+### Using the Rspack CLI
+
+You can scaffold a simple project setup using the Rspack CLI directly. Invoke the following command:
 
 <Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
   <Tab>
@@ -37,6 +41,7 @@ Then follow the input prompts in your terminal.
 There are already a few Rspack-based toolchains in the community:
 
 - If you're looking for a React framework to build a web application, you can try [Modern.js](https://modernjs.dev/en/).
+- If you want a fast and production-ready setup that works in a standalone and monorepo environment and comes with built-in tooling, you can try [Nx](https://nx.dev).
 
 ### Modern.js
 
@@ -44,7 +49,47 @@ Modern.js is a progressive React framework developed by ByteDance. It is based o
 
 Learn more about Modern.js from the [official documentation](https://modernjs.dev/en/guides/get-started/introduction).
 
+### Using Nx
+
+The fastest way to get up to speed quickly and leverage Rspack and React in a production-ready setting is to use the dedicated [Rspack Nx plugin](https://www.npmjs.com/package/@nrwl/rspack). This gives you a pre-configured setup, integrating Rspack with React, TypeScript, ESLint, Jest, and Cypress for e2e testing.
+
+Run the following command to set up a new Nx workspace with React and Rspack:
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npx create-nx-workspace myrspackapp --preset=@nrwl/rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn create nx-workspace myrspackapp --preset=@nrwl/rspack --pm=yarn
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm create nx-workspace myrspackapp --preset=@nrwl/rspack  --pm=pnpm
+```
+
+  </Tab>
+</Tabs>
+
+The pre-configured setup is already ready to work with Rspack, TypeScript, TSX and React. In addition it also comes with Jest and Cypress for testing and ESLint for linting.
+
+Once created you can simply `npm start` (or `pnpm start` or `yarn start`) to start the development server. You can also run `npm run build` (or `pnpm run build` or `yarn run build`) to build the application for production and similarly run `npm run test` (or `pnpm run test` or `yarn run test`) to run the unit tests.
+
+You can learn more about Nx at [https://nx.dev](https://nx.dev).
+
 ## Manual installation
+
+### Installation
 
 We'll start by creating a project directory, generating an NPM `package.json`, and then installing `@rspack/cli` locally:
 
