@@ -71,15 +71,6 @@ Rspack 比 Webpack 快得益于如下几方面
 
 Rspack 和 turbopack 都是采用 Rust 编写的 bundler，且都发挥了 Rust 语言的优势，与 turbopack 不同的是 Rspack 选择了对 Webpack 生态兼容的路线，一方面这些兼容可能会导致带来一定的性能开销，但是在实际的业务落地中，我们发现这些性能开销对于大部分的应用来说是可以接受的，另一方面这些兼容也使得 Rspack 可以更好的与上层的框架和生态进行集成，能够实现业务的渐进式迁移。
 
-## Rspack 为什么比 Webpack 快
-
-Rspack 比 Webpack 快得益于如下几方面：
-
-- **Rust 的语言优势**: Rspack 使用 Rust 语言编写， 得益于 Rust 的高性能编译器支持， Rust 编译生成的 Native Code 通常比 JavaScript 性能更为高效。
-- **高度并行的架构**: Webpack 受限于 JavaScript 对多线程的羸弱支持，导致其很难进行高度的并行化计算，而得益于 Rust 语言的并行化的良好支持， Rspack 采用了高度并行化的架构，如模块图生成，代码生成等阶段，都是采用多线程并行执行，这使得其编译性能随着 CPU 核心数的增长而增长，能够充分挖掘 CPU 的多核优势。
-- **内置大部分的功能**: 事实上 Webpack 本身的性能足够高效，但是因为 Webpack 本身内置了较少的功能，这使得我们在使用 Webpack 做现代 Web App 开发时，通常需要配合很多的 plugin 和 loader 进行使用，而这些 loader 和 plugin 往往是性能的瓶颈，而 Rspack 虽然支持 loader 和 plugin，但是保证绝大部分常用功能都内置在 Rspack 内，从而减小 JS plugin、loader 导致的低性能和通信开销问题。
-- **增量编译**: 尽管 Rspack 的全量编译足够高效，但是当项目庞大时，全量的编译仍然难以满足 HMR 的性能要求，因此在 HMR 阶段，我们采用的是更为高效的增量编译策略，从而保证，无论你的项目多大，其 HMR 的开销总是控制在合理范围内。
-
 ## 尝试下
 
 我们提供了两个 Demo ，通过这两个 Demo 你能给感受到 Rspack 有多么得快。
