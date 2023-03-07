@@ -186,20 +186,20 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/module'),
       },
       {
-        text: getText('Target 目标环境与兼容性', 'Target'),
-        link: getLink('/config/target'),
-      },
-      {
-        text: getText('Builtins 内置功能', 'Builtins'),
-        link: getLink('/config/builtins'),
-      },
-      {
         text: getText('Resolve 模块解析', 'Resolve'),
         link: getLink('/config/resolve'),
       },
       {
-        text: getText('Externals 外部依赖', 'Externals'),
-        link: getLink('/config/externals'),
+        text: getText('Optimization 优化', 'Optimization'),
+        link: getLink('/config/optimization'),
+      },
+      {
+        text: getText('Plugins 插件', 'Plugins'),
+        link: getLink('/config/plugins'),
+      },
+      {
+        text: getText('DevServer 开发服务器', 'DevServer'),
+        link: getLink('/config/devServer'),
       },
       {
         text: getText('Cache 缓存', 'Cache'),
@@ -210,24 +210,32 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/snapshot'),
       },
       {
-        text: getText('Optimization 优化', 'Optimization'),
-        link: getLink('/config/optimization'),
-      },
-      {
         text: getText('Devtool 调试', 'Devtool'),
         link: getLink('/config/devtool'),
+      },
+      {
+        text: getText('Target 目标环境与兼容性', 'Target'),
+        link: getLink('/config/target'),
+      },
+      {
+        text: getText('Watch 监听变更', 'Watch'),
+        link: getLink('/config/watch'),
+      },
+      {
+        text: getText('Externals 外部依赖', 'Externals'),
+        link: getLink('/config/externals'),
       },
       {
         text: getText('Stats 打包信息', 'Stats'),
         link: getLink('/config/stats'),
       },
       {
-        text: getText('DevServer 开发服务器', 'DevServer'),
-        link: getLink('/config/devServer'),
-      },
-      {
         text: getText('Experiments 实验功能', 'Experiments'),
         link: getLink('/config/experiments'),
+      },
+      {
+        text: getText('Builtins 内置功能', 'Builtins'),
+        link: getLink('/config/builtins'),
       },
     ],
     [getLink('/api/')]: [
