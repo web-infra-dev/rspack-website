@@ -15,7 +15,7 @@ const PLUGIN_NAME = 'MyPlugin';
 class MyPlugin {
   apply(compiler) {
     compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
-      console.log('The rspack build process is starting!');
+      console.log('The Rspack build process is starting!');
     });
   }
 }

@@ -1,8 +1,8 @@
 # Rspack 正式发布了
 
-今天我们很高兴跟大家宣布 Rspack 正式发布了！Rspack 是由 ByteDance Web Infra 团队孵化的基于 Rust 语言开发的 Bundler，拥有高性能、兼容 Webpack 生态、定制性强等多种优点，他解决了我们在业务场景中遇到的非常多的问题，让很多开发者的体验有了质的提升。为了让更多的人可以参与到这样有趣的事情中，我们正式开放 Rspack 的源码，欢迎大家参与建设。
+今天我们很高兴跟大家宣布 Rspack 正式发布了！Rspack 是由 ByteDance Web Infra 团队孵化的基于 Rust 语言开发的 Bundler，拥有高性能、兼容 Webpack 生态、定制性强等多种优点，它解决了我们在业务场景中遇到的非常多的问题，让很多开发者的体验有了质的提升。为了让更多的人可以参与到这样有趣的事情中，我们正式开放 Rspack 的源码，欢迎大家参与建设。
 
-## 为什么要做 Rspack ？
+## 为什么要做 Rspack？
 
 字节跳动内部存在非常多的巨型前端应用，它们有着非常复杂的构建配置，十几分钟甚至半小时的构建耗时，我们尝试了多种方法去优化这些项目的编译速度，但是社区内存在的方案都或多或少存在一些问题，在对这些问题总结后，我们理解到工程师对 Bundler 的诉求是：
 
@@ -25,12 +25,12 @@ Rspack 作为一个较为底层的基础设施，需要通过和社区内的各�
 
 ## Acknowledgement
 
-Rspack 能在今天面世离不开社区内各个项目的启发和支持，在这里对这些前辈表示致敬和感谢：
+Rspack 能在今天面世，离不开社区内各个项目的启发和支持，在这里对这些前辈表示致敬和感谢：
 
 - [webpack 团队和社区](https://webpack.js.org/) 创建了一个优秀的打包工具和丰富的生态。
 - [@sokra](https://github.com/sokra) 在 [webpack](https://github.com/webpack/webpack) 项目上的出色工作。
 - [@ScriptedAlchemy](https://github.com/ScriptedAlchemy) 创造了模块联邦，并帮助 Rspack 与社区建立联系。
-- [SWC](https://swc.rs/) 项目（由 [@kdy1](https://github.com/kdy1) 创建）, 为 Rspack 的代码转译和压缩提供了支持。
+- [SWC](https://swc.rs/) 项目（由 [@kdy1](https://github.com/kdy1) 创建）, 为 Rspack 的代码解析、转换和压缩提供了支持。
 - [esbuild](https://github.com/evanw/esbuild) 项目（由 [@evanw](https://github.com/evanw) 创建）, 它启发了 Rspack 的并发架构。
 - [NAPI-RS](https://github.com/napi-rs/napi-rs) 项目（由 [@Brooooooklyn](https://github.com/Brooooooklyn) 创建），为 Rspack 的 node-binding 实现提供了支持。
 - [Parcel](https://github.com/parcel-bundler/parcel) 项目(由 [@devongovett](https://github.com/devongovett)创建), 它是 Rust Bundler 的先行探索者并启发了 Rspack 的增量构建架构.
@@ -65,5 +65,5 @@ Rspack 作为一个底层依赖解决了我们自己在工作中遇到的很多�
 
 ## 试用
 
-快速开始: [https://rspack.dev](https://rspack.dev)
-Codebase: [github.com/web-infra-dev/rspack](github.com/web-infra-dev/rspack)
+- 快速开始：[rspack.dev](https://rspack.dev)
+- GitHub 仓库：[github.com/web-infra-dev/rspack](https://github.com/web-infra-dev/rspack)

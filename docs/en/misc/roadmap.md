@@ -4,11 +4,11 @@ While we do expect to support the features listed below in the future, we do not
 
 ### Performance Improvement
 
-There is still room for performance optimization and we will continue to work on this in the future with upstream projects such as [swc](https://github.com/swc-project/swc) and [NAPI-RS](https://github.com/napi-rs/napi-rs).
+There is still room for performance optimization and we will continue to work on this in the future with upstream projects such as [SWC](https://github.com/swc-project/swc) and [NAPI-RS](https://github.com/napi-rs/napi-rs).
 
 ### Support for more community plugins and loaders
 
-As webpack contains a large number of apis, we will be working to support the most frequently used loaders and plugins based on feedback from the community first.
+As webpack contains a large number of APIs, we will be working to support the most frequently used loaders and plugins based on feedback from the community first.
 
 ### Module Federation support
 

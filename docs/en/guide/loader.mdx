@@ -90,9 +90,9 @@ module.exports = {
 
 ### Using a custom loader
 
-You can use a custom loader with Rspack. In the example below, we'll use the loader to write a simple banner.
+You can use a custom loader with Rspack. In the example below, we'll use the loader API to write a simple banner-loader.
 
-The purpose of this loader is to prepend a banner comment as the header of each module, for example a license notice:
+The purpose of the banner-loader is to prepend a banner comment at the header of each module, such as a license notice:
 
 ```js
 /**

@@ -6,7 +6,7 @@ TypeScript 是 Rspack 的一等公民，Rspack 内置了对 TypeScript 的处理
 
 我们默认会将 `*.ts` 结尾的文件视为 TypeScript 模块类型。Rspack 将会使用 SWC 完成 TypeScript 到 JavaScript 的转译，无需额外的配置。
 
-如果你打算从 Webpack 进行迁移，那么你可以去除配置中的 babel-loader 或 ts-loader 以使用 Rspack 内置的 TypeScript 转译功能以达到更优的性能，详情可以参考[迁移指南](/guide/migrate-from-webpack#去除-babel-loader)。
+如果你打算从 Webpack 进行迁移，那么你可以去除配置中的 babel-loader 或 ts-loader，使用 Rspack 内置的 TypeScript 转译功能，以达到更优的性能。具体可以参考 [迁移指南](/guide/migrate-from-webpack#去除-babel-loader)。
 
 ### 仅转译 (Transpile-only)
 

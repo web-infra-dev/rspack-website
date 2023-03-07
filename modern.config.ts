@@ -21,12 +21,12 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('配置', 'Config'),
-      link: getLink('/config/'),
+      link: getLink('/config'),
       activeMatch: '/config',
     },
     {
       text: getText('API', 'API'),
-      link: getLink('/api/'),
+      link: getLink('/api'),
       activeMatch: '/api',
     },
     {
@@ -54,7 +54,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           link: 'https://github.com/web-infra-dev/rspack/releases',
         },
         {
-          text: getText('开发计划', 'Roadmap'),
+          text: getText('功能规划', 'Roadmap'),
           link: getLink('/misc/roadmap'),
         },
         {
@@ -275,7 +275,7 @@ export default defineConfig({
   doc: {
     root: path.join(__dirname, 'docs'),
     title: 'Rspack',
-    description: 'A high-performance bundler based on Rust',
+    description: 'A fast Rust-based web bundler',
     logo: {
       light:
         'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2027.png',
@@ -298,15 +298,15 @@ export default defineConfig({
       locales: [
         {
           lang: 'en',
-          title: 'rspack',
-          description: 'A high-performance bundler based on Rust',
+          title: 'Rspack',
+          description: 'A fast Rust-based web bundler',
           nav: getNavConfig('en'),
           sidebar: getSidebarConfig('en'),
           label: 'English',
         },
         {
           lang: 'zh',
-          title: 'rspack',
+          title: 'Rspack',
           description: '基于 Rust 的高性能模块打包工具',
           nav: getNavConfig('zh'),
           sidebar: getSidebarConfig('zh'),

@@ -192,7 +192,7 @@ module.exports = {
 
 ### 添加 html 支持
 
-rspack 内置了对 html 的支持，无需自己手动的在 html 里配置产物 js 的地址，通过如下方式使用 html 功能：
+Rspack 内置了对 html 的支持，无需自己手动的在 html 里配置产物 js 的地址，通过如下方式使用 html 功能：
 
 ```js title="rspack.config.js"
 module.exports = {
@@ -238,11 +238,11 @@ module.exports = {
 
 ### 体验 HMR
 
-Rspack 内置了对 HMR 的支持，对于 React 则是内置了 fast-refresh 的支持，你无需配置，通过 `npx rspack serve` 即可体验 react 的 HMR，
+Rspack 内置了对 HMR 的支持，并对 React 项目内置了 fast-refresh 的支持，你无需配置，通过 `npx rspack serve` 即可体验 React 的 HMR，
 我们修改 `src/answer.js`
 
 ```js title="src/answer.js"
-export const answer = 'rspack';
+export const answer = 'Rspack';
 ```
 
-我们发现浏览器上的内容自动更新为 `the answer to the universe is rspack`。
+我们发现浏览器上的内容自动更新为 `the answer to the universe is Rspack`。
