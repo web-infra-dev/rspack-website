@@ -82,6 +82,6 @@ The HMR benchmark is relatively complex because it is usually implemented in fou
 Sometimes it takes about half time of HMR from second stage to fourth stage.
 
 Some tools' HMR benchmarks use the entire HMR time as the metric time, and since each toolchain may implement each stage of HMR differently,
-it's fine to compare in this way. However, since we have basically the same implementation as webpack in stages two through four,
-we use a more fine-grained incremental build algorithm to recompile the project, to demonstrate the effectiveness of that algorithm,
-we use the rebuild time of each build tool as a metric.
+it's fine to compare in this way.
+
+However,our implementation is basically the same as webpack's in phases two through four, unlike webpack, rspack uses a more fine-grained incremental build algorithm to accelerate phase one, and to better demonstrate the effect of this algorithm, we use the re-build time of both build tools as a metric.
