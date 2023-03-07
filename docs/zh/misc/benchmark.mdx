@@ -1,31 +1,81 @@
-# Case
+# 基准测试
 
-## all
+想自己运行这个基准测试，请克隆[web-infra-dev/bundler-benchmark](https://github.com/web-infra-dev/bundler-benchmark)，然后在根目录下使用这个命令。
 
-A combination of `atlaskit-editor`, `common-libs`, `common-libs-chunks`, `rome`
+``bash
+./scripts/bench-all.sh ${platform}.
 
-## atlaskit-editor
+# `platform`用于唯一地识别生成的基准数据。
 
-Basic react application with `@atlaskit/editor-core`
+```
 
-## common-libs
+## 基准测试用例
 
-A combination of some widely used libraries in Javascript ecosystem.
+### all
 
-## common-libs-chunks
+这个项目用于我们比较开发和生产构建的性能。
+这个项目是由`atlaskit-editor`, `common-libs`, `common-libs-chunks`, `rome`, `esbuild-three`组合而成。
 
-Same as `common-libs`, but using async `import()` syntax to force bundler generate multiple chunks.
+以下是每个子项目的简单描述。
 
-## rome
+**atlaskit-editor**
 
-the old Rome code base (prior to their Rust rewrite) to approximate a large TypeScript codebase.
+使用`@atlaskit/editor-core`的基本react应用程序
 
-## react-components-10000
+**common-libs**
 
-10000 react components (each component only have basic skeleton, complicated logic maybe lead a rerender time may greater than hmr time) to test hot module replacement performance of each devServer of bundler.
+结合了Javascript生态系统中一些广泛使用的库。
 
-# Metrics
+**common-libs-chunks**
 
-- dev-cold: the time it takes for the development build to complete without caching.
-- production-build: the time it takes for the production build to complete without caching.
-- hmr: the time it takes for the development server rebuild the project when an update is applied to a source file.
+与`common-libs`相同，但使用异步`import()`语法来强制bundler生成多个chunks。
+
+**esbuild-three**
+
+通过将three.js库重复10次来建立一个大型的JavaScript代码库。
+
+**rome**
+
+旧的Rome代码库（在他们的Rust重写之前），近似于一个大型TypeScript代码库。
+
+### react-components-10000
+
+10000个反应组件（每个组件只有基本的骨架），用于测试bundler的每个devServer的热模块替换性能。
+
+##度量标准
+
+- 开发环境冷启动：在没有缓存的情况下，开发模式构建完成所需的时间。
+- 生产环境冷启动：在没有缓存的情况下，生产模式构建完成所需的时间。
+- 模块热更新：当更新应用于一个源文件时，开发服务器重建项目所需的时间。
+  **HMR有两个子指标**。
+  - 叶子：更新一个没有依赖的 react 组件文件的时间
+  - 根：更新一个根 react 组件的时间，通常它被命名为`App.tsx`或`index.tsx`。
+## 参与比较的构建工具
+
+- webpack + ts-loader (or babel-loader in react-components-10000) + terser-webpack-plugin
+
+- webpack + swc-loader + swc-minifier
+
+- rspack（使用swc作为transpiler和swc minifier）。
+
+在开发模式下，所有的配置都保持原样，除了依赖于测试目标的 loader。
+在生产模式下，我们将`devtool'设置为`source-map'并使用依赖于测试目标的 loader 和 minifier，其他配置保持不变。
+
+##测量方法
+
+### 开发环境冷启动
+
+使用`hyperfine`预热后运行每个开发构建命令10次，得到平均时间并生成相应的 markdown 表格。
+
+### 生产环境冷启动
+
+使用`hyperfine`预热后运行每个生产构建命令10次，得到平均时间并生成相应的 markdown 表格。
+
+### 模块热更新
+
+HMR基准测试相对复杂，因为它通常分四个阶段实现。
+1. devServer监听文件变化并重建项目（通常是部分构建）。
+2. devServer通过本地网络（通常是websocket）将构建的差异发送到HMR客户端。
+3. HMR客户端收到差异，并将差异应用到浏览器的运行时代码中。
+4. 浏览器重新渲染视图。
+```

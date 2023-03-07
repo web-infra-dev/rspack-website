@@ -41,6 +41,7 @@ evanw
 Brooooooklyn
 devongovett
 jantimon
+rome
 myrspackapp
 nrwl
 myorg
