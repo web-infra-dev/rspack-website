@@ -1,8 +1,12 @@
 # 快速上手
 
+在一个新的基于 Rspack 的项目中快速上手。
+
 ## 使用脚手架快速创建
 
-Rspack 提供了脚手架用来快速创建项目：
+### 使用 Rspack CLI
+
+你可以直接使用 Rspack CLI 来搭建一个简单的项目设置。调用以下命令：
 
 <Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
   <Tab>
@@ -37,6 +41,7 @@ pnpm create rspack@latest
 社区中已经有一些基于 Rspack 的工具链：
 
 - 如果你需要一个 React 框架来构建 Web 应用，你可以尝试 [Modern.js](https://modernjs.dev/)。
+- 如果你需要一个快速的、可用于生产的配置，在独立的和 monorepo 环境中工作，并带有内置的工具，你可以尝试 [Nx](https://nx.dev)。
 
 ### Modern.js
 
@@ -44,7 +49,47 @@ Modern.js 是字节跳动研发的渐进式 React 框架。它基于 Rspack 实�
 
 请阅读 [官方文档](https://modernjs.dev/guides/get-started/introduction) 来了解更多关于 Modern.js 的信息。
 
+### 使用 Nx
+
+迅速上手并在生产就绪的情况下使用 Rspack 和 React 的最快方法是使用专用的 [Rspack Nx 插件](https://www.npmjs.com/package/@nrwl/rspack)。它会给你一个预先配好的配置，将 Rspack 与 React、TypeScript、ESLint、Jest 和用于 e2e 测试的 Cypress 整合在一起。
+
+运行以下命令，用 React 和 Rspack 建立一个新的 Nx workspace。
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npx create-nx-workspace myrspackapp --preset=@nrwl/rspack
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn create nx-workspace myrspackapp --preset=@nrwl/rspack --pm=yarn
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm create nx-workspace myrspackapp --preset=@nrwl/rspack  --pm=pnpm
+```
+
+  </Tab>
+</Tabs>
+
+这份预先配好的配置已经准备好与 Rspack、TypeScript、TSX 和 React 一起工作。此外，它还配备了 Jest 和 Cypress 用于测试，ESLint 用于代码规范化。
+
+一旦创建，你就可以简单地用 `npm start`（或 `pnpm start` 或 `yarn start`）来启动开发服务器。你也可以运行 `npm run build`（或 `pnpm run build` 或 `yarn run build`）来为生产环境构建应用程序，同样，运行 `npm run test`（或 `pnpm run test` 或 `yarn run test`）来运行单元测试。
+
+你可以在 [https://nx.dev](https://nx.dev) 了解更多关于 Nx 的信息。
+
 ## 手动安装指南
+
+### 安装
 
 首先我们创建一个目录，初始化 npm ，然后在本地安装 @rspack/cli，通过如下方式进行安装:
 
