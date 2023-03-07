@@ -19,27 +19,27 @@
 
 **atlaskit-editor**
 
-使用`@atlaskit/editor-core`的基本react应用程序
+使用`@atlaskit/editor-core`的基本 react 应用程序
 
 **common-libs**
 
-一个使用了JavaScript生态中一些常用库的应用程序。
+一个使用了 JavaScript 生态中一些常用库的应用程序。
 
 **common-libs-chunks**
 
-与`common-libs`相同，但使用异步`import()`语法来强制bundler生成多个chunks。
+与`common-libs`相同，但使用异步`import()`语法来强制构建工具生成多个 chunks。
 
 **esbuild-three**
 
-通过将three.js库重复10次来建立一个大型的JavaScript代码库。
+通过将 three.js 库重复10次来建立一个大型的 JavaScript 代码库。
 
 **rome**
 
-旧的Rome代码库（在他们使用Rust重写之前），近似于一个大型TypeScript代码库。
+旧的 Rome 代码库（在他们使用 Rust 重写之前），近似于一个大型 TypeScript 代码库。
 
 ### react-components-10000
 
-10000个反应组件（每个组件只有基本的骨架），用于测试bundler的每个devServer的热模块替换性能。
+10000个 react 组件（每个组件只有基本的骨架），用于测试构建工具的 devServer 的热模块替换性能。
 
 ##度量标准
 
@@ -73,8 +73,8 @@
 ### 模块热更新
 
 HMR基准测试相对复杂，因为它通常分四个阶段实现。
-1. devServer监听文件变化并重建项目（通常是部分构建）。
-2. devServer通过本地网络（通常是websocket）将构建的差异发送到HMR客户端。
+1. devServer 监听文件变化并重建项目（通常是部分构建）。
+2. devServer 通过本地网络（通常是websocket）将构建的差异发送到HMR客户端。
 3. HMR客户端收到差异，并将差异应用到浏览器的运行时代码中。
 4. 浏览器重新渲染视图。
 ```
@@ -82,4 +82,4 @@ HMR基准测试相对复杂，因为它通常分四个阶段实现。
 有时从第二阶段到第四阶段需要大约一半的 HMR 时间。
 一些工具的 HMR benchmark 将整个 HMR 的时间作为度量时间，
 因为各个工具链在实现 HMR 各阶段时都不一样，因此这样比较是没有问题的。
-但是由于我们和 webpack 在二到四阶段的实现基本一致，我们使用更加细粒度的增量构建算法来重新编译项目，为了更好展示该算法的效果，我们使用两个构建工具的 rebuild time 作为度量时间。
+但是由于我们和 webpack 在二到四阶段的实现基本一致，我们使用更加细粒度的增量构建算法来重新编译项目，为了更好展示该算法的效果，我们使用两个构建工具的重新构建时间作为度量时间。
