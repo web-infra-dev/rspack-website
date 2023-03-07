@@ -49,3 +49,5 @@ externalstypecommonjs
 commmonjs
 commmonjs
 outputlibraryumdnameddefine
+behaviour
+analysable
