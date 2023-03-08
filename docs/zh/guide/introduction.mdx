@@ -34,7 +34,7 @@ Rspack 作为一个底层依赖，解决了我们在工作中遇到的很多问�
 
 ### 提升插件化能力
 
-目前 Rspack 已经支持了基本的 Loader API 和少部分的 Webpack Plugin API。Webpack 有着海量的 Plugin API,虽然我们的目标**不是**实现 Plugin API 的 100% 兼容，但是我们会尽可能地实现社区主流需要的 Plugin API，以满足社区的需求。同时我们也在探索更高性能的插件通信方案，减小插件通信成本，以保证可以实现更多的插件 API。
+目前 Rspack 已经支持了基本的 Loader API 和少部分的 Webpack Plugin API。Webpack 有着海量的 Plugin API，虽然我们的目标**不是**实现 Plugin API 的 100% 兼容，但是我们会尽可能地实现社区主流需要的 Plugin API，以满足社区的需求。同时我们也在探索更高性能的插件通信方案，减小插件通信成本，以保证可以实现更多的插件 API。
 
 ### 持续提升性能
 
@@ -49,7 +49,7 @@ Rspack 作为一个底层依赖，解决了我们在工作中遇到的很多问�
 ### 和 webpack 的区别
 
 [Webpack](https://webpack.js.org/) 是目前最为成熟的构建工具，有着活跃的生态，灵活的配置和丰富的功能，但是其最为人诟病的是其性能问题，尤其在一些大型项目上，构建花费的时间可能会达到几分钟甚至几十分钟，性能问题是目前 webpack 最大的短板。因此 Rspack 解决的问题核心就是 Webpack 的性能问题。
-Rspack 比 Webpack 快得益于如下几方面
+Rspack 比 Webpack 快得益于如下几方面：
 
 - Rust 语言优势: Rspack 使用 Rust 语言编写， 得益于 Rust 的高性能编译器支持， Rust 编译生成的 Native Code 通常比 JavaScript 性能更为高效。
 - 高度并行的架构: Webpack 受限于 JavaScript 对多线程的羸弱支持，导致其很难进行高度的并行化计算，而得益于 Rust 语言的并行化的良好支持， Rspack 采用了高度并行化的架构，如模块图生成，代码生成等阶段，都是采用多线程并行执行，这使得其编译性能随着 CPU 核心数的增长而增长，充分挖掘 CPU 的多核优势。
