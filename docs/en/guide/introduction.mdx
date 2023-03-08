@@ -1,8 +1,46 @@
 import compare from '../../public/compare.png';
 
+<audio id="rspack-audio" src="/rspack.mp3" />
+
 # Introduction
 
-Rspack is a high-performance rust-based JavaScript bundler offers strong interoperability with the Webpack ecosystem and lower-cost integration, enabling optimized performance and efficient collaboration between the two tools.
+<div>
+  <span>Rspack(pronounced as `/'ɑrspæk/`, </span>
+  <button
+    style={{
+      border: 'none',
+      padding: '3px',
+      verticalAlign: 'middle',
+      display: 'inline',
+    }}
+    id="play-rspack-audio"
+    onClick={() => document.getElementById('rspack-audio').play()}
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 32 32"
+    >
+      <path
+        fill="currentColor"
+        d="m27.16 8.08l-1.53 1.29a10 10 0 0 1-.29 13.23l1.47 1.4a12 12 0 0 0 .35-15.88Z"
+      />
+      <path
+        fill="currentColor"
+        d="M21.58 12a6 6 0 0 1-.18 7.94l1.47 1.36a8 8 0 0 0 .23-10.59zM18 30a1 1 0 0 1-.71-.3L9.67 22H3a1 1 0 0 1-1-1V11a1 1 0 0 1 1-1h6.67l7.62-7.7a1 1 0 0 1 1.41 0a1 1 0 0 1 .3.7v26a1 1 0 0 1-1 1zM4 20h6.08a1 1 0 0 1 .71.3L17 26.57V5.43l-6.21 6.27a1 1 0 0 1-.71.3H4z"
+      />
+    </svg>
+  </button>
+  <p style={{ display: 'inline' }}>
+    <span>) is a high-performance rust-based</span>
+    <span>JavaScript bundler offers strong</span>
+    <span>interoperability with the Webpack ecosystem</span>
+    <span>and lower-cost integration,</span>
+    <span>enabling optimized performance</span>
+    <span>and efficient collaboration between the two tools.</span>
+  </p>
+</div>
 
 ## Why do we build Rspack?
 
