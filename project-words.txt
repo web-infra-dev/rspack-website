@@ -45,3 +45,9 @@ rome
 myrspackapp
 nrwl
 myorg
+externalstypecommonjs
+commmonjs
+commmonjs
+outputlibraryumdnameddefine
+behaviour
+analysable

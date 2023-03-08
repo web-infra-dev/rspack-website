@@ -190,6 +190,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/resolve'),
       },
       {
+        text: getText('Node 全局变量', 'Node'),
+        link: getLink('/config/node'),
+      },
+      {
         text: getText('Optimization 优化', 'Optimization'),
         link: getLink('/config/optimization'),
       },
