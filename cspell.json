@@ -13,7 +13,8 @@
     "node_modules",
     "/project-words.txt",
     "package.json",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    "rspack.mp3"
   ],
   "caseSensitive": true,
   "allowCompoundWords": true,
