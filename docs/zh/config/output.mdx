@@ -308,7 +308,9 @@ module.exports = {
 
 ## output.globalObject 
 
-`string = 'self'`
+- **类型：** `string`
+- **默认值：** `'self'`
+
 
 当输出为 library 时，尤其是当 `libraryTarget` 为 `'umd'`时，此选项将决定使用哪个全局对象来挂载 library。为了使 UMD 构建在浏览器和 Node.js 上均可用，应将 `output.globalObject` 选项设置为 `'this'`。对于类似 web 的目标，默认为 `self`。
 
