@@ -21,11 +21,11 @@ function useFooterData() {
         },
         {
           title: t('compatibility'),
-          link: getLink('/docs/deployment'),
+          link: getLink('/guide/loader-compat'),
         },
         {
           title: t('migration'),
-          link: getLink('/migrate-from-webpack'),
+          link: getLink('/guide/migrate-from-webpack'),
         },
       ],
     },
