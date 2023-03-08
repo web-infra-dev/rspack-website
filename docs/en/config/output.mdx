@@ -232,7 +232,7 @@ Content that can be replaced at the file level.
 
 Prefer to use [`output.library.auxiliaryComment`](#outputlibraryauxiliarycomment) instead.
 
-`string` `object`
+- **Type:** `string` | `object`
 
 When used in tandem with [`output.library`](#outputlibrary) and [`output.libraryTarget`](#outputlibrarytarget), this option allows users to insert comments within the export wrapper. To insert the same comment for each `libraryTarget` type, set `auxiliaryComment` to a string:
 
@@ -293,7 +293,7 @@ module.exports = {
 
 ## output.enabledLibraryTypes
 
-`[string]`
+- **Type:** `[string]`
 
 List of library types enabled for use by entry points.
 
@@ -308,7 +308,8 @@ module.exports = {
 
 ## output.globalObject
 
-`string = 'self'`
+- **Type:** `string`
+- **Default:** `self`
 
 When targeting a library, especially when `libraryTarget` is `'umd'`, this option indicates what global object will be used to mount the library. To make UMD build available on both browsers and Node.js, set `output.globalObject` option to `'this'`. Defaults to `self` for Web-like targets.
 
@@ -332,7 +333,8 @@ module.exports = {
 
 ## output.importFunctionName
 
-`string = 'import'`
+- **Type:** `string`
+- **Default:** `import`
 
 The name of the native `import()` function. Can be used for polyfilling, e.g. with [`dynamic-import-polyfill`](https://github.com/GoogleChromeLabs/dynamic-import-polyfill).
 
@@ -351,7 +353,7 @@ module.exports = {
 
 Output a library exposing the exports of your entry point.
 
-- Type: `string | string[] | object`
+- **Type:** `string | string[] | object`
 
 Let's take a look at an example.
 
@@ -439,7 +441,7 @@ module.exports = {
 
 Specify a name for the library.
 
-- Type:
+- **Type:** 
 
   ```ts
   string | string[] | {amd?: string, commonjs?: string, root?: string | string[]}
@@ -449,7 +451,7 @@ Specify a name for the library.
 
 Configure how the library will be exposed.
 
-- Type: `string`
+- **Type:**  `string`
 
   Types included by default are `'var'`, `'module'`, `'assign'`, `'assign-properties'`, `'this'`, `'window'`, `'self'`, `'global'`, `'commonjs'`, `'commonjs2'`, `'commonjs-module'`, `'commonjs-static'`, `'amd'`, `'amd-require'`, `'umd'`, `'umd2'`, `'jsonp'` and `'system'`, but others might be added by plugins.
 
@@ -786,7 +788,7 @@ module.exports = {
 
 Add a comment in the UMD wrapper.
 
-- Type: `string | { amd?: string, commonjs?: string, commonjs2?: string, root?: string }`
+- **Type:** `string | { amd?: string, commonjs?: string, commonjs2?: string, root?: string }`
 
 To insert the same comment for each `umd` type, set `auxiliaryComment` to a string:
 
@@ -848,7 +850,7 @@ module.exports = {
 
 Specify which export should be exposed as a library.
 
-- Type: `string | string[]`
+- **Type:** `string | string[]`
 
 It is `undefined` by default, which will export the whole (namespace) object. The examples below demonstrate the effect of this configuration when using [`output.library.type: 'var'`](#type-var).
 
@@ -893,7 +895,7 @@ var MyLibrary = _entry_return_.default.subModule;
 
 ## output.library.umdNamedDefine
 
-`boolean`
+- **Type:** `boolean`
 
 When using `output.library.type: "umd"`, setting `output.library.umdNamedDefine` to `true` will name the AMD module of the UMD build. Otherwise, an anonymous `define` is used.
 
@@ -920,7 +922,7 @@ define('MyLibrary', [], factory);
 
  We might drop support for this, so prefer to use [output.library.export](#outputlibraryexport) which works the same as `libraryExport`.
 
-`string` `[string]`
+- **Type:** `string` | `string[]`
 
 Configure which module or modules will be exposed via the `libraryTarget`. It is `undefined` by default, same behaviour will be applied if you set `libraryTarget` to an empty string e.g. `''` it will export the whole (namespace) object. The examples below demonstrate the effect of this configuration when using `libraryTarget: 'var'`.
 
@@ -956,7 +958,8 @@ MySubModule.doSomething();
 
 ## output.libraryTarget
 
-`string = 'var'`
+- **Type:** `string`
+- **Default:** `var`
 
 Please use [`output.library.type`](#outputlibrarytype) instead as we might drop support for `output.libraryTarget` in the future.
 
@@ -965,7 +968,7 @@ Please use [`output.library.type`](#outputlibrarytype) instead as we might drop 
 
 Prefer to use [`output.library.umdNamedDefine`](#outputlibraryumdnameddefine) instead.
 
-`boolean`
+- **Type:** `boolean`
 
 When using `libraryTarget: "umd"`, setting `output.umdNamedDefine` to `true` will name the AMD module of the UMD build. Otherwise an anonymous `define` is used.
 

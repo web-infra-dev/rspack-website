@@ -332,7 +332,8 @@ module.exports = {
 
 ## output.importFunctionName
 
-`string = 'import'`
+- **类型：** `string`
+- **默认值：** `'import'`
 
 内部 `import()` 函数的名称. 可用于 polyfilling, 例如 通过 [`dynamic-import-polyfill`](https://github.com/GoogleChromeLabs/dynamic-import-polyfill).
 
@@ -351,7 +352,7 @@ module.exports = {
 
 输出一个库，为你的入口做导出。
 
-- 类型：`string | string[] | object`
+- **类型：** `string | string[] | object`
 
 一起来看一个简单的示例。
 
@@ -441,7 +442,7 @@ module.exports = {
 
 指定库的名称。
 
-- 类型：
+- **类型：** 
 
   ```ts
   string | string[] | {amd?: string, commonjs?: string, root?: string | string[]}
@@ -451,7 +452,7 @@ module.exports = {
 
 配置将库暴露的方式。
 
-- 类型：`string`
+- **类型：** `string`
 
   类型默认包括 `'var'`、 `'module'`、 `'assign'`、 `'assign-properties'`、 `'this'`、 `'window'`、 `'self'`、 `'global'`、 `'commonjs'`、 `'commonjs2'`、 `'commonjs-module'`、 `'commonjs-static'`、 `'amd'`、 `'amd-require'`、 `'umd'`、 `'umd2'`、 `'jsonp'` 以及 `'system'`，除此之外也可以通过插件添加。
 
@@ -788,7 +789,7 @@ module.exports = {
 
 在 UMD 包装器中添加注释。
 
-- 类型：`string | { amd?: string, commonjs?: string, commonjs2?: string, root?: string }`
+- **类型：** `string | { amd?: string, commonjs?: string, commonjs2?: string, root?: string }`
 
 为每个 `umd` 类型插入相同的注释，将 `auxiliaryComment` 设置为 string。
 
@@ -847,7 +848,7 @@ module.exports = {
 
 ### output.library.umdNamedDefine 
 
-`boolean`
+- **类型：** `boolean`
 
 当使用 `output.library.type: "umd"` 时，将 `output.library.umdNamedDefine` 设置为 `true` 将会把 AMD 模块命名为 UMD 构建。否则使用匿名 `define`。
 
@@ -874,7 +875,7 @@ define('MyLibrary', [], factory);
 
 我们可能会停止对此的支持，所以最好使用 [output.library.export](#outputlibraryexport)，其作用与 `libraryExport` 一致。
 
-`string` `[string]`
+- **类型：** `string` | `string[]`
 
 通过配置 `libraryTarget` 决定暴露哪些模块。默认情况下为 `undefined`，如果你将 `libraryTarget` 设置为空字符串，则与默认情况具有相同的行为。例如，如果设置为 `''`，将导出整个（命名空间）对象。下述 demo 演示了当设置 `libraryTarget: 'var'` 时的效果。
 
@@ -909,7 +910,8 @@ MySubModule.doSomething();
 
 ## `output.libraryTarget`
 
-`string = 'var'`
+- **类型：** `string`
+- **默认值：** `var`
 
 请使用 [`output.library.type`](#outputlibrarytype) 代理，因为我们可能在未来放弃对 `output.libraryTarget` 的支持。
 
@@ -917,7 +919,7 @@ MySubModule.doSomething();
 
 最好使用 [`output.library.umdNamedDefine`](#outputlibraryumdnameddefine)。
 
-`boolean`
+- **类型：** `boolean`
 
 当使用 `libraryTarget: "umd"` 时，设置 `output.umdNamedDefine` 为 `true` 将命名由 UMD 构建的 AMD 模块。否则将使用一个匿名的 `define`。
 
