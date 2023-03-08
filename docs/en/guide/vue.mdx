@@ -5,3 +5,79 @@ Vue is a very popular front-end framework, and Rspack plans to provide full supp
 ## vue-loader
 
 Rspack's goal is to fully support vue-loader, but due to the limited APIs currently provided by Rspack, it is currently unable to directly run vue-loader. However, you can still build vue-loader's functionality yourself. Rspack provides a simple implementation of vue-loader for reference, which you can see in its entirety at [vue-example](https://github.com/web-infra-dev/rspack/tree/main/examples/vue).
+
+## Vue 3 JSX
+
+Since Rspack supports using `babel-loader`, you can directly use the [@vue/babel-plugin-jsx](https://github.com/vuejs/babel-plugin-jsx) plugin to support Vue 3 JSX syntax.
+
+### Install
+
+First, you need to install [babel-loader](https://www.npmjs.com/package/babel-loader), [@babel/core](https://www.npmjs.com/package/@babel/core) and [@vue/babel-plugin-jsx](https://www.npmjs.com/package/@vue/babel-plugin-jsx):
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+   <Tab>
+
+```sh
+npm install -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+   </Tab>
+
+   <Tab>
+
+```sh
+yarn add -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+   </Tab>
+
+   <Tab>
+
+```sh
+pnpm install -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+   </Tab>
+</Tabs>
+
+### Configure
+
+Then add the following configuration to support Vue 3 JSX syntax in `.jsx` files:
+
+```js title="rspack.config.js"
+/**
+ * @type {import('@rspack/cli'). Configuration}
+ */
+module.exports = {
+  context: __dirname,
+  entry: {
+    main: './src/index.jsx',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: ['@vue/babel-plugin-jsx'],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html',
+      },
+    ],
+  },
+};
+```
+
+Rspack provides a [example](https://github.com/web-infra-dev/rspack/tree/main/examples/vue3-jsx) of Vue JSX for reference.

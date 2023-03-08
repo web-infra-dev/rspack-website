@@ -5,3 +5,79 @@ Vue 是一个非常流行的前端框架，Rspack 计划在未来提供完整的
 ## vue-loader
 
 Rspack 的目标是完整地兼容 vue-loader，但是由于 Rspack 目前提供的 API 有限，目前无法直接运行 vue-loader，但是你仍然可以自行实现 vue-loader 的功能，Rspack 提供了一个简单的 vue-loader 实现供参考，你可以在这里看到完整实现：[vue-example](https://github.com/web-infra-dev/rspack/tree/main/examples/vue)。
+
+## Vue 3 JSX
+
+由于 Rspack 支持使用 `babel-loader` 进行转换，因此你可以直接使用 [@vue/babel-plugin-jsx](https://github.com/vuejs/babel-plugin-jsx) 插件来支持 Vue 3 JSX 语法。
+
+### 安装依赖
+
+首先，你需要安装 [babel-loader](https://www.npmjs.com/package/babel-loader)、[@babel/core](https://www.npmjs.com/package/@babel/core) 和 [@vue/babel-plugin-jsx](https://www.npmjs.com/package/@vue/babel-plugin-jsx)：
+
+import { Tabs, Tab } from '@theme';
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+  <Tab>
+
+```sh
+npm install -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+yarn add -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+  </Tab>
+
+  <Tab>
+
+```sh
+pnpm install -D babel-loader @babel/core @vue/babel-plugin-jsx
+```
+
+  </Tab>
+</Tabs>
+
+### 添加配置
+
+然后添加以下配置，即可在 `.jsx` 文件中使用 Vue 3 JSX 语法：
+
+```js title="rspack.config.js"
+/**
+ * @type {import('@rspack/cli').Configuration}
+ */
+module.exports = {
+  context: __dirname,
+  entry: {
+    main: './src/index.jsx',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: ['@vue/babel-plugin-jsx'],
+            },
+          },
+        ],
+      },
+    ],
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html',
+      },
+    ],
+  },
+};
+```
+
+Rspack 提供了一个 Vue JSX 的 [示例](https://github.com/web-infra-dev/rspack/tree/main/examples/vue3-jsx) 可供参考。
