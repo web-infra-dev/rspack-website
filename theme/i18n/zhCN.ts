@@ -17,5 +17,5 @@ export const ZH_CN: Record<keyof typeof EN_US, string> = {
   benchmarkTitle: '极快的构建速度',
   benchmarkDesc:
     '基于 Rust 及高度并行、增量编译的架构，构建速度非常快，带给你极致的开发体验。',
-  benchmarkDetail: '查看 Benchmark 仓库详情',
+  benchmarkDetail: '查看 Benchmark 详情',
 };

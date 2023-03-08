@@ -121,8 +121,7 @@ export function Benchmark() {
             </Tabs>
             <div>
               <a
-                href="https://github.com/web-infra-dev/bundler-benchmark/tree/main"
-                target="_blank"
+                href="misc/benchmark.html"
                 className="hover:text-brand transition-colors duration-300 text-14px font-medium"
               >
                 👉 {t('benchmarkDetail')}

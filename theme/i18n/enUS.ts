@@ -15,5 +15,5 @@ export const EN_US = {
   benchmarkTitle: 'Blazing Fast Build Speed',
   benchmarkDesc:
     'Based on Rust and highly parallel architecture, build speed is very fast, bringing you the ultimate development experience.',
-  benchmarkDetail: 'See Benchmark Repo Details',
+  benchmarkDetail: 'See Benchmark Details',
 } as const;
