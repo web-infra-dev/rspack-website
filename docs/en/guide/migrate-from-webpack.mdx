@@ -2,7 +2,326 @@
 
 While Rspack is aimed at maximizing compatibility with Webpack API contracts, some minor changes are necessary to accommodate differences in implementation, as well as enabling optimizations by replacing some plugins/loaders with Rspack's built-in equivalents.
 
-## Removing babel-loader
+> Based on webpack 5.
+
+> 🟩 : support
+>
+> 🟥 : not support
+>
+> 🟧 : partially support
+
+## Entry
+
+- string 🟩
+- string[] 🟩
+- EntryObject 🟧
+
+  - `import: EntryItem` 🟩
+  - `runtime?: string | false` 🟩
+  - ...others 🟥
+
+- Function 🟥
+
+## Context 🟩
+
+## Mode 🟩
+
+## Output
+
+Others
+
+### Output.assetModuleFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.filename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.chunkFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.cssFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.cssChunkFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.path 🟩
+
+- string
+
+### Output.publicPath 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.strictModuleErrorHandling 🟩
+
+- boolean
+
+### Output.[...others] 🟥
+
+### Template strings 🟧
+
+#### Compilation-level 🟧
+
+- [fullhash] 🟩
+- [hash] 🟥
+
+#### Chunk-level 🟩
+
+- [id] 🟩
+- [name] 🟩
+- [chunkhash] 🟩
+- [contenthash] 🟩
+
+#### Module-level 🟧
+
+- [id] 🟩
+- [moduleid] 🟥
+- [hash] 🟩
+- [modulehash] 🟥
+- [contenthash] 🟩
+
+#### File-level 🟧
+
+- [file] 🟥
+- [query] 🟩
+- [fragment] 🟥
+- [base] 🟥
+- [filebase] 🟥
+- [path] 🟩
+- [name] 🟩
+- [ext] 🟩
+
+#### URL-level 🟥
+
+- [url] 🟥
+
+## Module
+
+### Module.generator 🟥
+
+### Module.parser 🟧
+
+### Rule
+
+#### Rule Condition 🟧
+
+- string 🟩
+- RegExp 🟩
+- function 🟥
+
+#### Rule.exclude 🟩
+
+#### Rule.include 🟩
+
+#### Rule.loaders 🟩
+
+Prefer to `Rule.use`
+
+#### Rule.parse 🟩
+
+- dataUrlCondition 🟩
+
+#### Rule.generator 🟧
+
+- filename 🟩
+- dataUrl 🟥
+- emit 🟥
+- publicPath 🟥
+- outputPath 🟥
+
+#### Rule.resource 🟩
+
+#### Rule.resourceQuery 🟩
+
+#### Rule.sideEffects 🟩
+
+#### Rule.test 🟩
+
+#### Rule.type 🟧
+
+- asset/resource 🟩
+- asset/inline 🟩
+- asset/source 🟩
+- asset 🟩
+
+Other types supported by Rspack:
+
+- javascript/auto
+- typescript
+- css
+- css/module
+- json
+
+#### Rule.use 🟧
+
+- useEntry 🟩
+- function 🟥
+
+#### Rule.resolve 🟧
+
+#### Rule.[...others] 🟥
+
+## Resolve
+
+### Resolve.alias 🟩
+
+### Resolve.aliasField 🟧
+
+The types of this configuration are different:
+
+- webpack: `string[]`
+- Rspack: `Boolean`
+
+### Resolve.conditionNames 🟩
+
+### Resolve.extensions 🟧
+
+Default value are diffrent:
+
+- webpack: `['.js', '.json', '.wasm']`
+- rspack: `['.tsx', '.jsx', '.ts', '.js', '.json', '.d.ts']`
+
+### Resolve.fallback 🟩
+
+### Resolve.mainFields 🟩
+
+### Resolve.mainFiles 🟩
+
+### Resolve.modules 🟩
+
+### Resolve.preferRelative 🟩
+
+### Resolve.[...others] 🟥
+
+## Optimization
+
+### Optimization.moduleIds 🟧
+
+- natural 🟥
+- named 🟩
+- deterministic 🟩
+- size 🟥
+
+### Optimization.minimize 🟩
+
+### Optimization.minimizer 🟧 ???
+
+- plugins[] 🟩
+- function 🟥
+
+### Optimization.removeAvailableModules 🟧
+
+Default value are different:
+
+- webpack: only `true` in production mode
+- rspack: always `true`
+
+### Optimization.removeEmptyChunks 🟩
+
+### Optimization.runtimeChunk 🟧
+
+- object 🟥
+- string 🟥
+- boolean 🟩
+
+### Optimization.sideEffects 🟩
+
+### Optimization.splitChunks 🟧
+
+_Default configurations are completely identical._
+
+#### splitChunks.automaticNameDelimiter 🟩
+
+#### splitChunks.chunks 🟩
+
+#### splitChunks.maxAsyncRequests 🟩
+
+#### splitChunks.maxInitialRequests 🟩
+
+#### splitChunks.defaultSizeTypes 🟩
+
+#### splitChunks.minChunks 🟩
+
+#### splitChunks.hidePathInfo
+
+#### splitChunks.minSize 🟧
+
+- number 🟩
+- object 🟥
+
+#### splitChunks.minSizeReduction 🟧
+
+- number 🟩
+- object 🟥
+
+#### splitChunks.enforceSizeThreshold 🟩
+
+#### splitChunks.minRemainingSize 🟩
+
+#### splitChunks.layer 🟥
+
+#### splitChunks.maxSize 🟩
+
+#### splitChunks.maxAsyncSize 🟩
+
+#### splitChunks.maxInitialSize 🟩
+
+#### splitChunks.name 🟩
+
+#### splitChunks.usedExports 🟥
+
+#### splitChunks.cacheGroups 🟧
+
+## Plugins
+
+Some plugins can be replaced by built-in features: [plugin-compat](/guide/plugin-compat).
+
+Custom plugin apis : [plugin-api](/api/plugin-api)
+
+### DefinePlugin 🟩
+
+use `builtins.define`
+
+### html-webpack-plugin 🟩
+
+Rspack has built-in support for HTML. This means you can use `builtins.html` instead of `html-webpack-plugin`:
+
+```diff
+ const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+ module.exports = {
++  builtins: {
++    html: [
++      {
++        template: "index.html",
++        filename: "index.html",
++      },
++    ],
++  },
+-  plugins: [
+-    new HtmlWebpackPlugin({
+-      template: "index.html",
+-      filename: "index.html",
+-    }),
+-  ],
+ };
+```
+
+## Loaders
+
+### Removing babel-loader
 
 Rspack already has built-in support for TypeScript and JSX as well as the latest ECMAScript syntaxes. If your configuration only uses `babel-loader` to support TypeScript, JSX, and modern ECMAScript, then you can remove `babel-loader` entirely.
 
@@ -65,7 +384,7 @@ Rspack also supports JavaScript syntax downgrading by default. This means you do
  };
 ```
 
-## Removing css-loader and style-loader and mini-css-extract-plugin
+### Removing css-loader and style-loader and mini-css-extract-plugin
 
 Rspack's native CSS Module type has built-in support for CSS, CSS HMR, CSS Modules, and CSS extraction. This eliminates the need for `css-loader`, `style-loader`, and `mini-css-extract-plugin` for handling CSS files:
 
@@ -107,7 +426,7 @@ Rspack's [css-modules](https://github.com/css-modules/css-modules) functionality
  };
 ```
 
-## Using asset modules instead of file-loader and url-loader
+### Using asset modules instead of file-loader and url-loader
 
 Rspack is aligned with Webpack 5's "asset modules," which should be used instead of `file-loader` and `url-loader`.
 
@@ -136,27 +455,91 @@ Rspack is aligned with Webpack 5's "asset modules," which should be used instead
  };
 ```
 
-## Using builtins.html instead of html-webpack-plugin
+## DevServer 🟧
 
-Rspack has built-in support for HTML. This means you can use `builtins.html` instead of `html-webpack-plugin`:
+// todo
 
-```diff
- const HtmlWebpackPlugin = require("html-webpack-plugin");
+## Cache 🟥
 
- module.exports = {
-+  builtins: {
-+    html: [
-+      {
-+        template: "index.html",
-+        filename: "index.html",
-+      },
-+    ],
-+  },
--  plugins: [
--    new HtmlWebpackPlugin({
--      template: "index.html",
--      filename: "index.html",
--    }),
--  ],
- };
-```
+rspack only supports setting to boolean values.
+
+## Devtool 🟩
+
+## Target 🟧
+
+- async-node[[X].Y] 🟥
+- electron[[X].Y]-main 🟥
+- electron[[X].Y]-renderer 🟥
+- electron[[X].Y]-preload 🟥
+- node[[X].Y] 🟧
+  - `node`
+- node-webkit[[X].Y] 🟥
+- nwjs[[X].Y] 🟥
+- web 🟩
+- webworker 🟧
+  - Rename to `web-worker`
+- esX 🟩
+- browserslist 🟩
+
+## Watch and WatchOptions 🟧
+
+### Watch 🟩
+
+### WatchOptions.aggregateTimeout 🟥
+
+### WatchOptions.ignored 🟩
+
+### WatchOptions.poll 🟩
+
+### WatchOptions.followSymlinks 🟥
+
+### WatchOptions.stdin 🟥
+
+## Externals 🟧
+
+- string 🟩
+- object 🟩
+- function 🟥
+- RegExp 🟥
+- [] 🟥
+
+### ExternalsType 🟧
+
+- commonjs 🟩
+- global 🟩
+- module 🟩
+- promise 🟥
+- self 🟩
+- script 🟥
+- this 🟩
+- var 🟩
+- window 🟩
+
+Other value supported by rspack:
+
+- amd
+- amd-require
+- import
+- jsonp
+- node-commonjs
+- system
+- umd
+- umd2
+
+## Performance 🟥
+
+## Node 🟧
+
+### Node.global 🟩
+
+### Node.\_\_dirname 🟩
+
+### Node.\_\_filename 🟥
+
+## Stats 🟧
+
+// todo
+
+## Experiments 🟥
+
+Although both have the `experiments` configuration option, the experimental features of webpack and rspack are completely different, so do not configure webpack's experimental features in rspack.
