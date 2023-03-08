@@ -603,7 +603,7 @@ module.exports = {
 };
 ```
 
-**入口起点的返回值** 将会被复制给全局对象下的 `output.library.name`。取决于 [`target`](/config/target/) 值，全局对象可以分别改变,例如，`self`、`global` 或者 `globalThis`。
+**入口起点的返回值** 将会被复制给全局对象下的 `output.library.name`。取决于 [`target`](/config/target) 值，全局对象可以分别改变,例如，`self`、`global` 或者 `globalThis`。
 
 ```javascript
 global['MyLibrary'] = _entry_return_;

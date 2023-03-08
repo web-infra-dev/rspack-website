@@ -603,7 +603,7 @@ module.exports = {
 };
 ```
 
-The **return value of your entry point** will be assigned to the global object using the `output.library.name` value. Depending on the [`target`](/configuration/target/) value, the global object could change respectively, e.g., `self`, `global` or `globalThis`.
+The **return value of your entry point** will be assigned to the global object using the `output.library.name` value. Depending on the [`target`](/config/target.html) value, the global object could change respectively, e.g., `self`, `global` or `globalThis`.
 
 ```javascript
 global['MyLibrary'] = _entry_return_;
