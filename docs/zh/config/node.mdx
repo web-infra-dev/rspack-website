@@ -6,7 +6,7 @@ import WebpackLicense from '../../../components/webpack-license';
 
 这些选项可以配置是否 polyfill 或 mock 某些 [Node.js 全局变量](https://nodejs.org/docs/latest/api/globals.html)。
 
-## node.global 
+## node.global
 
 - **类型：** `boolean | 'warn'`
 
@@ -16,7 +16,7 @@ import WebpackLicense from '../../../components/webpack-license';
 - `false`: 不提供任何 polyfill。代码可能会出现 `ReferenceError` 的崩溃。
 - `'warn'`: 当使用 `global` 时展示一个警告。
 
-## node.__dirname
+## node.\_\_dirname
 
 - **类型：** `boolean | 'mock' | 'warn-mock' | 'eval-only'`
 

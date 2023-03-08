@@ -49,7 +49,7 @@ $('.my-element').animate(/* ... */);
 
 ### 字符串
 
-根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var '`](#externalstypevar), [`'window'`](#externalstypewindow)) 或模块的名称（参见 `amd`, [`commonjs`](#externalstypecommonjs), [`module`](#externalstypemodule ), `umd`)。
+根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var '`](#externalstypevar), [`'window'`](#externalstypewindow)) 或模块的名称（参见 `amd`, [`commonjs`](#externalstypecommonjs), [`module`](#externalstypemodule), `umd`)。
 
 如果你只定义 1 个 external，您也可以使用快捷语法：
 
@@ -84,10 +84,9 @@ module.exports = {
 };
 ```
 
-
 ### 对象
 
- 带有 `{ root, amd, commonjs, ... }` 的对象只允许用于 [`libraryTarget: 'umd'`](/configuration/output/#outputlibrarytarget) 和 [`externalsType: 'umd'`](#externalstype）。其他库的 target 不允许这样做。
+带有 `{ root, amd, commonjs, ... }` 的对象只允许用于 [`libraryTarget: 'umd'`](/configuration/output/#outputlibrarytarget) 和 [`externalsType: 'umd'`](#externalstype）。其他库的 target 不允许这样做。
 
 ```javascript
 module.exports = {
@@ -110,7 +109,7 @@ module.exports = {
 
 此语法用于描述外部 library 所有可用的访问方式。这里 `lodash` 这个外部 library 可以在 AMD 和 CommonJS 模块系统中通过 `lodash` 访问，但在全局变量形式下用 `_` 访问。`subtract` 可以通过全局 `math` 对象下的属性 `subtract` 访问（例如 `window['math']['subtract']`）。
 
-## externalsType 
+## externalsType
 
 - **类型：** `string`
 - **默认值：** `var`
@@ -136,12 +135,9 @@ module.exports = {
 - [`'var'`](#externalstypevar)
 - [`'window'`](#externalstypewindow)
 
-
 ### externalsType.commonjs
 
 将外部的默认类型指定为“commonjs”。Webpack 将为模块中使用的外部生成类似 `const X = require('...')` 的代码。
-
-
 
 ```javascript
 import fs from 'fs-extra';
@@ -170,8 +166,6 @@ const fs = require('fs-extra');
 ### externalsType.global
 
 将外部的默认类型指定为 `'global'`。Webpack 会将 external 作为全局变量读取到 [`globalObject`](/configuration/output/#outputglobalobject)。
-
-
 
 ```javascript
 import jq from 'jquery';
@@ -233,9 +227,7 @@ jq('.my-element').animate(/* ... */);
 
 ### externalsType.self
 
-将外部的默认类型指定为  `'self'`。 Webpack 会将 external 作为 `self` 对象上的全局变量读取。
-
-
+将外部的默认类型指定为 `'self'`。 Webpack 会将 external 作为 `self` 对象上的全局变量读取。
 
 ```javascript
 import jq from 'jquery';
@@ -265,7 +257,7 @@ jq('.my-element').animate(/* ... */);
 
 将 external 的默认类型指定为 `'this'`。Webpack 会将 external 作为 `this` 对象上的全局变量读取。
 
-示例 
+示例
 
 ```javascript
 import jq from 'jquery';
@@ -295,7 +287,7 @@ jq('.my-element').animate(/* ... */);
 
 将 external 的默认类型指定为 `'var'`。Webpack 会将 external 作为全局变量读取。
 
-示例 
+示例
 
 ```javascript
 import jq from 'jquery';
@@ -325,7 +317,7 @@ jq('.my-element').animate(/* ... */);
 
 将 external 的默认类型指定为 `'window'`。Webpack 会将 external 作为 `window` 对象上的全局变量读取。
 
-示例 
+示例
 
 ```javascript
 import jq from 'jquery';

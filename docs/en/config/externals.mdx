@@ -134,7 +134,6 @@ Supported types:
 - [`'var'`](#externalstypevar)
 - [`'window'`](#externalstypewindow)
 
-
 ### externalsType.commonjs
 
 Specify the default type of externals as `'commonjs'`. Webpack will generate code like `const X = require('...')` for externals used in a module.
@@ -166,7 +165,6 @@ Note that there will be a `require()` in the output bundle.
 ### externalsType.global
 
 Specify the default type of externals as `'global'`. Webpack will read the external as a global variable on the [`globalObject`](/configuration/output/#outputglobalobject).
-
 
 ```javascript
 import jq from 'jquery';
@@ -205,7 +203,6 @@ Note that there will be an `import` statement in the output bundle.
 
 Specify the default type of externals as `'node-commonjs'`. Webpack will import [`createRequire`](https://nodejs.org/api/module.html#module_module_createrequire_filename) from `'module'` to construct a require function for loading externals used in a module.
 
-
 ```javascript
 import jq from 'jquery';
 jq('.my-element').animate(/* ... */);
@@ -233,12 +230,9 @@ jq('.my-element').animate(/* ... */);
 
 Note that there will be an `import` statement in the output bundle.
 
-
 ### externalsType.self
 
 Specify the default type of externals as `'self'`. Webpack will read the external as a global variable on the `self` object.
-
-
 
 ```javascript
 import jq from 'jquery';
@@ -268,8 +262,6 @@ jq('.my-element').animate(/* ... */);
 
 Specify the default type of externals as `'this'`. Webpack will read the external as a global variable on the `this` object.
 
-
-
 ```javascript
 import jq from 'jquery';
 jq('.my-element').animate(/* ... */);
@@ -298,8 +290,6 @@ jq('.my-element').animate(/* ... */);
 
 Specify the default type of externals as `'var'`. Webpack will read the external as a global variable.
 
-
-
 ```javascript
 import jq from 'jquery';
 jq('.my-element').animate(/* ... */);
@@ -327,8 +317,6 @@ jq('.my-element').animate(/* ... */);
 ### externalsType.window
 
 Specify the default type of externals as `'window'`. Webpack will read the external as a global variable on the `window` object.
-
-
 
 ```javascript
 import jq from 'jquery';

@@ -415,6 +415,7 @@ In the above example, we're passing a single entry file to `entry`, however, rsp
      },
    };
    ```
+
    Assuming that both `a.js` and `b.js` export a function `hello`, here's how to consume the libraries:
 
    ```html
@@ -441,7 +442,7 @@ module.exports = {
 
 Specify a name for the library.
 
-- **Type:** 
+- **Type:**
 
   ```ts
   string | string[] | {amd?: string, commonjs?: string, root?: string | string[]}
@@ -451,7 +452,7 @@ Specify a name for the library.
 
 Configure how the library will be exposed.
 
-- **Type:**  `string`
+- **Type:** `string`
 
   Types included by default are `'var'`, `'module'`, `'assign'`, `'assign-properties'`, `'this'`, `'window'`, `'self'`, `'global'`, `'commonjs'`, `'commonjs2'`, `'commonjs-module'`, `'commonjs-static'`, `'amd'`, `'amd-require'`, `'umd'`, `'umd2'`, `'jsonp'` and `'system'`, but others might be added by plugins.
 
@@ -497,7 +498,9 @@ module.exports = {
   },
 };
 ```
+
 This will generate an implied global which has the potential to reassign an existing value (use with caution):
+
 ```javascript
 MyLibrary = _entry_return_;
 ```
@@ -505,7 +508,6 @@ MyLibrary = _entry_return_;
 Be aware that if `MyLibrary` isn't defined earlier your library will be set in global scope.
 
 ##### type: 'assign-properties'
-
 
 ```js
 module.exports = {
@@ -536,6 +538,7 @@ export function hello(name) {
 // you can run `hello` function like so
 MyLibrary.hello('World');
 ```
+
 #### Expose Via Object Assignment
 
 These options assign the return value of the entry point (e.g. whatever the entry point exported) to a specific object under the name defined by [`output.library.name`](#outputlibraryname).
@@ -577,6 +580,7 @@ module.exports = {
   },
 };
 ```
+
 The **return value of your entry point** will be assigned to the `window` object using the `output.library.name` value.
 
 ```javascript
@@ -620,6 +624,7 @@ module.exports = {
   },
 };
 ```
+
 The **return value of your entry point** will be assigned to the `exports` object using the `output.library.name` value. As the name implies, this is used in CommonJS environments.
 
 ```javascript
@@ -633,7 +638,6 @@ Note that not setting a `output.library.name` will cause all properties returned
 #### Module Definition Systems
 
 These options will result in a bundle that comes with a complete header to ensure compatibility with various module systems. The `output.library.name` option will take on a different meaning under the following `output.library.type` options.
-
 
 ##### type: 'commonjs2'
 
@@ -692,6 +696,7 @@ function doSomething() {}
 
 exports.doSomething = __webpack_exports__.doSomething;
 ```
+
 Consumption (CommonJS):
 
 ```javascript
@@ -705,7 +710,6 @@ import { doSomething } from './output.cjs'; // doSomething => [Function: doSomet
 ```
 
 This is useful when source code is written in ESM and the output should be compatible with both CJS and ESM. For further details, please [read this issue](https://github.com/webpack/webpack/issues/14998) or [this article](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed) (specifically, [this section](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#publish-only-a-cjs-distribution-with-property-exports)).
-
 
 ##### type: 'umd'
 
@@ -824,7 +828,6 @@ which will yield the following:
 });
 ```
 
-
 For fine-grained control, pass an object:
 
 ```js
@@ -920,7 +923,7 @@ define('MyLibrary', [], factory);
 
 ## output.libraryExport
 
- We might drop support for this, so prefer to use [output.library.export](#outputlibraryexport) which works the same as `libraryExport`.
+We might drop support for this, so prefer to use [output.library.export](#outputlibraryexport) which works the same as `libraryExport`.
 
 - **Type:** `string` | `string[]`
 
@@ -955,14 +958,12 @@ MyModule.doSomething();
 MySubModule.doSomething();
 ```
 
-
 ## output.libraryTarget
 
 - **Type:** `string`
 - **Default:** `var`
 
 Please use [`output.library.type`](#outputlibrarytype) instead as we might drop support for `output.libraryTarget` in the future.
-
 
 ## output.umdNamedDefine
 

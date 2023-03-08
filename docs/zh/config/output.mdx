@@ -228,7 +228,7 @@ module.exports = {
 | [name]  | 文件名，不包含扩展名和文件路径 |
 | [ext]   | 扩展名，包含 `.`               |
 
-## output.auxiliaryComment 
+## output.auxiliaryComment
 
 最好使用 [`output.library.auxiliaryComment`](#outputlibraryauxiliarycomment)。
 
@@ -306,11 +306,10 @@ module.exports = {
 };
 ```
 
-## output.globalObject 
+## output.globalObject
 
 - **类型：** `string`
 - **默认值：** `'self'`
-
 
 当输出为 library 时，尤其是当 `libraryTarget` 为 `'umd'`时，此选项将决定使用哪个全局对象来挂载 library。为了使 UMD 构建在浏览器和 Node.js 上均可用，应将 `output.globalObject` 选项设置为 `'this'`。对于类似 web 的目标，默认为 `self`。
 
@@ -398,6 +397,7 @@ export function hello(name) {
      },
    };
    ```
+
 2. 如果你将 `entry` 设置为一个 `object`，所以入口都可以通过 `library` 的 `array` 语法暴露：
 
    ```js
@@ -442,13 +442,13 @@ module.exports = {
 
 指定库的名称。
 
-- **类型：** 
+- **类型：**
 
   ```ts
   string | string[] | {amd?: string, commonjs?: string, root?: string | string[]}
   ```
 
-### output.library.type 
+### output.library.type
 
 配置将库暴露的方式。
 
@@ -458,11 +458,11 @@ module.exports = {
 
 对于接下来的示例，我们将会使用 `_entry_return_` 表示被入口点返回的值。
 
-#### Expose a Variable 
+#### Expose a Variable
 
 These options assign the return value of the entry point (e.g. whatever the entry point exported) to the name provided by [`output.library.name`](#outputlibraryname) at whatever scope the bundle was included at.
 
-##### type: 'var' 
+##### type: 'var'
 
 ```js
 module.exports = {
@@ -485,7 +485,7 @@ var MyLibrary = _entry_return_;
 MyLibrary.doSomething();
 ```
 
-##### type: 'assign' 
+##### type: 'assign'
 
 ```js
 module.exports = {
@@ -543,7 +543,7 @@ MyLibrary.hello('World');
 
 这些配置项分配入口点的返回值（例如：无论入口点导出的什么内容）到一个名为 [`output.library.name`](#outputlibraryname) 的对象中。
 
-##### type: 'this' 
+##### type: 'this'
 
 ```js
 module.exports = {
@@ -567,7 +567,7 @@ this.MyLibrary.doSomething();
 MyLibrary.doSomething(); // 如果 `this` 为 window 对象
 ```
 
-##### type: 'window' 
+##### type: 'window'
 
 ```js
 module.exports = {
@@ -582,13 +582,14 @@ module.exports = {
 ```
 
 **入口起点的返回值** 将会被赋值给 `window` 对象下的 `output.library.name`。
+
 ```javascript
 window['MyLibrary'] = _entry_return_;
 
 window.MyLibrary.doSomething();
 ```
 
-##### type: 'global' 
+##### type: 'global'
 
 ```js
 module.exports = {
@@ -610,7 +611,7 @@ global['MyLibrary'] = _entry_return_;
 global.MyLibrary.doSomething();
 ```
 
-##### type: 'commonjs' 
+##### type: 'commonjs'
 
 ```js
 module.exports = {
@@ -634,11 +635,11 @@ require('MyLibrary').doSomething();
 
 注意，不设置 `output.library.name` 将导致入口起点返回的所有属性都被赋值给给定的对象；不检查现有的属性名。
 
-#### Module Definition Systems 
+#### Module Definition Systems
 
 这些配置项将生成一个带有完整 header 的 bundle，以确保与各种模块系统兼容。`output.library.name` 配置项在不同的 `output.library.type` 中有不同的含义。
 
-##### type: 'commonjs2' 
+##### type: 'commonjs2'
 
 ```js
 module.exports = {
@@ -651,6 +652,7 @@ module.exports = {
   },
 };
 ```
+
 **入口起点的返回值** 将会被赋值给 `module.exports`。顾名思义，这是在 Node.js（CommonJS）环境中使用的：
 
 ```javascript
@@ -663,7 +665,7 @@ require('MyLibrary').doSomething();
 
 在考虑 CommonJS 与 CommonJS2 之间的区别？虽然它们很相似，但是它们之间有一些细微的差别，这些差别在 rspack 的上下文中通常是不相关的。（要获取更多详细内容，请 [阅读这个 issue](https://github.com/webpack/webpack/issues/1114)。）
 
-##### type: 'commonjs-static' 
+##### type: 'commonjs-static'
 
 ```js
 module.exports = {
@@ -676,6 +678,7 @@ module.exports = {
   },
 };
 ```
+
 单个导出将被设置为 `module.exports` 中的属性。名称中的 "static" 是指输出是静态可分析的，因此具名导出可以通过 Node.js 导入到 ESM 中：
 
 输入：
@@ -708,8 +711,7 @@ import { doSomething } from './output.cjs'; // doSomething => [Function: doSomet
 
 当源代码是用 ESM 编写的，并且输出应该兼容 CJS 和 ESM 时，这是很有用的。获取更多详情，请阅读该 [issue](https://github.com/webpack/webpack/issues/14998) 或者 [这篇文档](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed)（尤其是 [这个章节](https://dev.to/jakobjingleheimer/configuring-commonjs-es-modules-for-nodejs-12ed#publish-only-a-cjs-distribution-with-property-exports)）。
 
-
-##### type: 'umd' 
+##### type: 'umd'
 
 这将在所有模块定义下暴露你的库, 允许它与 CommonJS、AMD 和作为全局变量工作。可以查看 [UMD Repository](https://github.com/umdjs/umd) 获取更多内容。
 
@@ -751,6 +753,7 @@ module.exports = {
   },
 };
 ```
+
 输出将会是：
 
 ```javascript
@@ -785,7 +788,7 @@ module.exports = {
 };
 ```
 
-### output.library.auxiliaryComment 
+### output.library.auxiliaryComment
 
 在 UMD 包装器中添加注释。
 
@@ -846,7 +849,7 @@ module.exports = {
 };
 ```
 
-### output.library.umdNamedDefine 
+### output.library.umdNamedDefine
 
 - **类型：** `boolean`
 
@@ -871,7 +874,7 @@ AMD module 将会是这样：
 define('MyLibrary', [], factory);
 ```
 
-## output.libraryExport 
+## output.libraryExport
 
 我们可能会停止对此的支持，所以最好使用 [output.library.export](#outputlibraryexport)，其作用与 `libraryExport` 一致。
 
@@ -915,7 +918,7 @@ MySubModule.doSomething();
 
 请使用 [`output.library.type`](#outputlibrarytype) 代理，因为我们可能在未来放弃对 `output.libraryTarget` 的支持。
 
-## output.umdNamedDefine 
+## output.umdNamedDefine
 
 最好使用 [`output.library.umdNamedDefine`](#outputlibraryumdnameddefine)。
 
