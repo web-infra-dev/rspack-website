@@ -288,6 +288,9 @@ export default defineConfig({
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
+    markdown: {
+      checkDeadLinks: isProd,
+    },
     themeConfig: {
       footer: {
         message: '© 2023 ByteDance Inc. All Rights Reserved.',
@@ -321,6 +324,9 @@ export default defineConfig({
     builderConfig: {
       dev: {
         startUrl: false,
+        // disable progressBar because it's not working well with dead link checker
+        // TODO: can be removed in next doc-tools version
+        progressBar: isProd,
       },
       tools: {
         postcss: (config, { addPlugins }) => {
