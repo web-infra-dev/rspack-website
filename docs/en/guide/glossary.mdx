@@ -6,25 +6,21 @@
 
 Below are some common terms used with Rspack and webpack.
 
-## module
+## asset
 
-An application can be split into multiple files called modules, which may be JavaScript source files or other assets such as images or CSS. These files can share and reuse module content by importing and exporting, which helps organize your code into independent parts and define formalized interfaces for communication between them.
-
-## module type
-
-A module's type determines how it will be parsed and handled by the bundler. For example, we can tell Rspack that the module is a JavaScript module by specifying the module type as JavaScript, and Rspack will use the JavaScript parser to parse the module. If the specified module type is CSS, then Rspack will use a CSS parser to parse the module.
+An asset is a resource that is used in your application, such as images, fonts, videos, etc. They typically end up as files in your output directory which may need further processing such as being transformed into base64 string and inlined in the output bundle.
 
 ## asset module
 
 An "asset module" is a special module type used to process static resources, such as pictures, fonts, videos, etc.
 
-## module resolution
+## bundle
 
-Module resolution is the process of calculating the file path indicated by a module specifier. For example, an import statement includes a module specifier, and Rspack will use the module resolution algorithm to find the corresponding file path.
+Historically bundlers produced a single output file called a "bundle." The concept of chunks was introduced later as part of a feature for automatically decomposing bundles into smaller files that can be loaded on demand.
 
-## module graph
+## bundle splitting
 
-The module graph is a graph data structure that represents relationships between modules. It is a directed graph, where each node in the graph represents a module, and each edge represents the dependency relationship between modules.
+Bundle splitting is a technique that allows you to split or merge your code into multiple bundles, which is useful for parallel request and better browser caching, it's not used for reducing the initialize bundle size.
 
 ## chunk
 
@@ -38,21 +34,25 @@ Chunk graph is a data structure that represents the relationship between chunks.
 
 Code splitting is a technique that allows you to split your code into multiple chunks, and only load the necessary chunks when the application is running. This can help you reduce the size of the initial bundle and speed up the application load time.
 
-## bundle
+## loader
 
-Historically bundlers produced a single output file called a "bundle." The concept of chunks was introduced later as part of a feature for automatically decomposing bundles into smaller files that can be loaded on demand.
+In bundling terminology, a loader is like a plugin but specifically tasked with transforming module content. For example, we can use a loader to transform a TypeScript module into a JavaScript module, or to transform a CSS module into a JavaScript module that injects the CSS into the page.
 
-## bundle splitting
+## module
 
-Bundle splitting is a technique that allows you to split or merge your code into multiple bundles, which is useful for parallel request and better browser caching, it's not used for reducing the initialize bundle size.
+An application can be split into multiple files called modules, which may be JavaScript source files or other assets such as images or CSS. These files can share and reuse module content by importing and exporting, which helps organize your code into independent parts and define formalized interfaces for communication between them.
 
-## tree shaking
+## module type
 
-Tree shaking is a technique that allows you to remove unused code from your bundle. It a form of compiler dead code elimination, with a focus on minimizing processing of dead code. Compilers like Rspack will accomplish this by analyzing the static structure of your code, and then removing the unused code.
+A module's type determines how it will be parsed and handled by the bundler. For example, we can tell Rspack that the module is a JavaScript module by specifying the module type as JavaScript, and Rspack will use the JavaScript parser to parse the module. If the specified module type is CSS, then Rspack will use a CSS parser to parse the module.
 
-## asset
+## module resolution
 
-An asset is a resource that is used in your application, such as images, fonts, videos, etc. They typically end up as files in your output directory which may need further processing such as being transformed into base64 string and inlined in the output bundle.
+Module resolution is the process of calculating the file path indicated by a module specifier. For example, an import statement includes a module specifier, and Rspack will use the module resolution algorithm to find the corresponding file path.
+
+## module graph
+
+The module graph is a graph data structure that represents relationships between modules. It is a directed graph, where each node in the graph represents a module, and each edge represents the dependency relationship between modules.
 
 ## NAPI-RS
 
@@ -62,6 +62,6 @@ An asset is a resource that is used in your application, such as images, fonts, 
 
 A plugin is a program module that can be used to extend the functionality of Rspack by means of extensibility hooks. It can be used to customize the build process, or to integrate with other tools. Rspack provides lots of hooks which you can use to customize the build process.
 
-## loader
+## tree shaking
 
-In bundling terminology, a loader is like a plugin but specifically tasked with transforming module content. For example, we can use a loader to transform a TypeScript module into a JavaScript module, or to transform a CSS module into a JavaScript module that injects the CSS into the page.
+Tree shaking is a technique that allows you to remove unused code from your bundle. It a form of compiler dead code elimination, with a focus on minimizing processing of dead code. Compilers like Rspack will accomplish this by analyzing the static structure of your code, and then removing the unused code.
