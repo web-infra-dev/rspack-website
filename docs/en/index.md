@@ -37,7 +37,7 @@ features:
   - title: Production Optimization
     details: By default, various optimization strategies are built in, such as Tree Shaking, Minification, etc.
     icon: 🛠️
-    link: /guide/optimization
+    link: /guide/production
   - title: Framework Agnostic
     details: Not bound to any frontend framework, ensuring enough flexibility.
     icon: 🎯

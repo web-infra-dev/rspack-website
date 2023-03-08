@@ -33,11 +33,11 @@ features:
   - title: 内置常见构建能力
     details: 对 Typescript、JSX、CSS、CSS Modules、Sass 等提供开箱即用的支持。
     icon: 🎨
-    link: /guide/language-support
+    link: /zh/guide/language-support
   - title: 默认生产优化
     details: 默认内置多种优化策略，如 Tree Shaking、代码压缩等等。
     icon: 🛠️
-    link: /zh/guide/optimization
+    link: /zh/guide/production
   - title: '框架无关'
     details: 不和任何前端框架绑定，保证足够的灵活性。
     icon: 🎯
