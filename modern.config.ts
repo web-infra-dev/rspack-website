@@ -51,6 +51,10 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
       text: getText('关于', 'About'),
       items: [
         {
+          text: getText('加入我们', 'Join Us'),
+          link: getLink('/misc/join-us'),
+        },
+        {
           text: getText('团队', 'Team'),
           link: getLink('/misc/meet-the-team'),
         },
@@ -152,6 +156,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         items: [
           getLink('/misc/FAQ'),
           getLink('/misc/roadmap'),
+          getLink('/misc/join-us'),
           getLink('/misc/meet-the-team'),
           getLink('/misc/license'),
           getLink('/misc/branding'),

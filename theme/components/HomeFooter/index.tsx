@@ -47,7 +47,7 @@ function useFooterData() {
       ],
     },
     {
-      title: t('ecosystem'),
+      title: t('friendLink'),
       items: [
         {
           title: 'Rspack Sources',
@@ -56,6 +56,10 @@ function useFooterData() {
         {
           title: 'Modern.js',
           link: 'https://modernjs.dev',
+        },
+        {
+          title: 'Web Infra',
+          link: 'https://webinfra.org',
         },
       ],
     },
