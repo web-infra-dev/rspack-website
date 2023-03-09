@@ -10,8 +10,8 @@ To run this benchmark yourself, clone [web-infra-dev/bundler-benchmark](https://
 
 ### all
 
-This project is used for comparing development mode and production mode build performance, it is a combination of `atlaskit-editor`, `common-libs`, `common-libs-chunks`, `rome`, `esbuild-three`
-
+This project is used for comparing development mode and production mode build performance.
+It is a combination of `atlaskit-editor`, `common-libs`, `common-libs-chunks`, `rome`, `esbuild-three`,
 here is the simple description of each sub project:
 
 **atlaskit-editor**
@@ -34,9 +34,29 @@ A large JavaScript codebase by duplicating the three.js library 10 times.
 
 The old Rome code base (prior to their Rust rewrite) to approximate a large TypeScript codebase.
 
+#### Data
+
+Tested on Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz 32Core, 64GB of RAM
+| mode | rspack | webpack(with swc) | webpack (with babel) |
+|------------------------|---------|-------------------|----------------------|
+| development cold start | 3.79s | 31.25s | 42.61s |
+| production cold start | 22.353s | 75.054s | 160.059s |
+
 ### react-components-10000
 
 10000 react components (each component only have basic skeleton) to test hot module replacement performance of each devServer of bundler.
+
+#### Data
+
+Tested on Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz 32Core, 64GB of RAM
+| | rspack/root | rspack/leaf | webpack(with swc)/root | webpack (with swc)/leaf | webpack (with babel)/root | webpack (with babel)/leaf |
+|---------|-------------|-------------|------------------------|--------------------------|---------------------------|-------------------------|
+| 1 | 711ms | 562ms | 2023ms | 1534ms | 2081ms | 1644ms |
+| 2 | 507ms | 566ms | 1725ms | 1593ms | 1642ms | 1652ms |
+| 3 | 551ms | 592ms | 1602ms | 1454ms | 1786ms | 1595ms |
+| 4 | 525ms | 513ms | 1480ms | 1587ms | 1543ms | 1684ms |
+| 5 | 545ms | 571ms | 1517ms | 1470ms | 1658ms | 1603ms |
+| average | 567.8ms | 560.8ms | 1669.4ms | 1527.6ms | 1742ms | 1635.6ms |
 
 ## Metrics
 

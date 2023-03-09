@@ -57,15 +57,15 @@ const BENChMARK_DATA = {
   coldBuild: [
     {
       name: 'rspack',
-      time: 22.353,
+      time: 22.35,
     },
     {
       name: 'webpack (with SWC)',
-      time: 75.054,
+      time: 75.05,
     },
     {
       name: 'Webpack (with babel + terser)',
-      time: 160.059,
+      time: 160.06,
     },
   ],
 };
