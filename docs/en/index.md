@@ -27,7 +27,7 @@ features:
     icon: ⚡
     link: /guide/introduction
   - title: Webpack Interoperable
-    details: Compatible with the architecture and ecology of webpack, no need to build the ecology from scratch.
+    details: Compatible with the architecture and ecosystem of webpack, no need to build the ecosystem from scratch.
     icon: 📦
     link: /guide/loader-compat
   - title: 'Batteries included'
