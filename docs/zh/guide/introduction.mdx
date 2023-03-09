@@ -1,6 +1,9 @@
 import compare from '../../public/compare.png';
+import rspackAudio from '../../public/rspack.mp3';
 
-<audio id="rspack-audio" src="/rspack.mp3" />
+<audio id="rspack-audio">
+  <source src={rspackAudio} type="audio/mpeg"></source>
+</audio>
 
 # 介绍
 
@@ -14,7 +17,9 @@ import compare from '../../public/compare.png';
       display: 'inline',
     }}
     id="play-rspack-audio"
-    onClick={() => document.getElementById('rspack-audio').play()}
+    onClick={() => {
+      document.getElementById('rspack-audio').play();
+    }}
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
