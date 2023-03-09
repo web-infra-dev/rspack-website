@@ -1,6 +1,6 @@
 # 基准测试
 
-想自己运行这个基准测试，请克隆[web-infra-dev/bundler-benchmark](https://github.com/web-infra-dev/bundler-benchmark)，然后在根目录下使用这个命令。
+如果你想自己运行这个基准测试，请克隆[web-infra-dev/bundler-benchmark](https://github.com/web-infra-dev/bundler-benchmark)，然后在根目录下使用命令:
 
 ```bash
 ./scripts/bench-all.sh ${platform} # `platform` 用于唯一地识别生成的基准数据。
@@ -34,9 +34,29 @@
 
 旧的 Rome 代码库（在他们使用 Rust 重写之前），近似于一个大型 TypeScript 代码库。
 
+#### 测量数据
+
+测试于 on Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz 32Core, 64GB of RAM
+| | rspack | webpack(with swc) | webpack (with babel) |
+|------------------------|---------|-------------------|----------------------|
+| development cold start | 3.79s | 31.25s | 42.61s |
+| production cold start | 22.353s | 75.054s | 160.059s |
+
 ### react-components-10000
 
 10000 个 react 组件（每个组件只有基本的骨架），用于测试构建工具的 devServer 的热模块替换性能。
+
+#### 测量数据
+
+测试于 Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz 32Core, 64GB of RAM
+| | rspack/root | rspack/leaf | webpack(with swc)/root | webpack (with swc)/leaf | webpack (with babel)/root | webpack (with babel)/leaf |
+|---------|-------------|-------------|------------------------|--------------------------|---------------------------|-------------------------|
+| 1 | 711ms | 562ms | 2023ms | 1534ms | 2081ms | 1644ms |
+| 2 | 507ms | 566ms | 1725ms | 1593ms | 1642ms | 1652ms |
+| 3 | 551ms | 592ms | 1602ms | 1454ms | 1786ms | 1595ms |
+| 4 | 525ms | 513ms | 1480ms | 1587ms | 1543ms | 1684ms |
+| 5 | 545ms | 571ms | 1517ms | 1470ms | 1658ms | 1603ms |
+| average | 567.8ms | 560.8ms | 1669.4ms | 1527.6ms | 1742ms | 1635.6ms |
 
 ## 度量标准
 
