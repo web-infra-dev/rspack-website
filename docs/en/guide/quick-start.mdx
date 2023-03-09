@@ -244,11 +244,9 @@ module.exports = {
   entry: {
     main: './src/index.jsx',
   },
-  builtins: [
-    {
-      template: './src/index.html',
-    },
-  ],
+  builtins: {
+    html: [{ template: './src/index.html' }],
+  },
 };
 ```
 
