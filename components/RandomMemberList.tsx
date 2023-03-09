@@ -32,6 +32,7 @@ export const RandomMemberList = () => {
     },
     {
       id: 'h-a-n-a',
+      name: 'Hana',
       avatar: 'https://avatars.githubusercontent.com/u/10465670?s=120&v=4',
     },
     {
