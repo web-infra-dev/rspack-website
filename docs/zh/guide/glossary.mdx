@@ -26,6 +26,10 @@ chunk 图是一种表示块之间关系的数据结构。它是一个有向图�
 
 Code splitting 是一种技术，它允许你将你的代码拆分成多个块，并且只在应用程序运行时加载必要的块。这可以帮助你减少初始包的大小，加快应用程序的加载时间。
 
+## first class module type（一等公民模块类型）
+
+Rspack 中的一等公民模块指的是那些不需要依赖 loader 和 plugin 即可支持的模块类型，例如 JavaScript、CSS、JSON 等，而像 HTML、Markdown、YAML 等需要依赖 loader 和 plugin 才能支持的模块类型则不是一等公民模块。
+
 ## loader
 
 Loader 是用来转换模块内容的。例如，我们可以使用 loader 将 TypeScript 模块转化为 JavaScript 模块，或者将 CSS 模块转化为 JavaScript 模块，将 CSS 注入到页面中。
