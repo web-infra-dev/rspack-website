@@ -47,7 +47,7 @@ Keep building Rspack will be our top priority. Compared with webpack, Rspack is 
 
 ### Working with community partners
 
-We would love to offer some help with Rspack integration in your framework. If you are an engineer maintaining a framework who happens to be interested in giving Rspack a try, please contact us. You can contact us through these channels.
+We would love to offer some help with Rspack integration in your framework. If you are an engineer maintaining a framework who happens to be interested in giving Rspack a try, please contact us.
 
 ### Improve plugin capabilities
 
