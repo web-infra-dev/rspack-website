@@ -7,46 +7,42 @@
 
 ## RspackPluginInstance
 
-```js
+```ts
 interface RspackPluginInstance {
   apply(compiler: Compiler): void;
 }
 ```
 
-其中， Compiler 上提供的接口可以参考 (plugin api)[../api/plugin-api].
+其中，Compiler 上提供的接口可以参考 (plugin api)[../api/plugin-api]。
 
 用法：
 
-```js
-// plugin.js
-class CustomPlugin implement RspackPluginInstance {
+```js title=rspack.config.js
+class CustomPlugin {
   apply(compiler) {
     // some operations
   }
 }
 
-// rspack.config.js
 module.exports = {
-  plugin: [new CustomPlugin()]
-}
+  plugin: [new CustomPlugin()],
+};
 ```
 
 ## RspackPluginFunction
 
-```js
+```ts
 type RspackPluginFunction = (compiler: Compiler) => void;
 ```
 
 用法：
 
-```js
-// plugin.js
-function customPlugin() {
+```js title=rspack.config.js
+function customPlugin(compiler) {
   // some operations
 }
 
-// rspack.config.js
 module.exports = {
-  plugin: [CustomPlugin],
+  plugin: [customPlugin],
 };
 ```

@@ -7,7 +7,7 @@ Customize the build process.
 
 ## RspackPluginInstance
 
-```js
+```ts
 interface RspackPluginInstance {
   apply(compiler: Compiler): void;
 }
@@ -17,36 +17,32 @@ Among them, the interface provided on Compiler can refer to (plugin api)[../api/
 
 usage:
 
-```js
-// plugin.js
-class CustomPlugin implement RspackPluginInstance {
-   apply(compiler) {
-     // some operations
-   }
+```js title=rspack.config.js
+class CustomPlugin {
+  apply(compiler) {
+    // some operations
+  }
 }
 
-// rspack.config.js
 module.exports = {
-   plugin: [new CustomPlugin()]
-}
+  plugin: [new CustomPlugin()],
+};
 ```
 
 ## RspackPluginFunction
 
-```js
+```ts
 type RspackPluginFunction = (compiler: Compiler) => void;
 ```
 
 usage:
 
-```js
-// plugin.js
+```js title=rspack.config.js
 function customPlugin() {
   // some operations
 }
 
-// rspack.config.js
 module.exports = {
-  plugin: [CustomPlugin],
+  plugin: [customPlugin],
 };
 ```
