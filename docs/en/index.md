@@ -35,11 +35,11 @@ features:
     icon: 🎨
     link: /guide/language-support
   - title: Production Optimization
-    details: By default, various optimization strategies are built in, such as Tree Shaking, Minification, etc.
+    details: By default, various optimization strategies such as tree shaking and minification are built in.
     icon: 🛠️
     link: /guide/production
   - title: Framework Agnostic
-    details: Not bound to any frontend framework, ensuring enough flexibility.
+    details: Not bound to any frontend framework, ensuring good flexibility.
     icon: 🎯
     link: /guide/react
 ---
