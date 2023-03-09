@@ -30,6 +30,11 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
       activeMatch: '/api',
     },
     {
+      text: getText('博客', 'Blog'),
+      link: getLink('/blog/announcement'),
+      activeMatch: '/blog',
+    },
+    {
       text: getText('生态', 'Ecosystem'),
       items: [
         {
@@ -68,10 +73,6 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
         {
           text: getText('品牌指南', 'Branding Guideline'),
           link: getLink('/misc/branding'),
-        },
-        {
-          text: getText('发布公告', 'Announcing Rspack'),
-          link: getLink('/misc/announcement'),
         },
       ],
     },
@@ -272,6 +273,12 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/api/plugin-api'),
       },
     ],
+    [getLink('/blog/')]: [
+      {
+        text: getText('发布公告', 'Announcing Rspack'),
+        link: getLink('/blog/announcement'),
+      },
+    ],
   };
 }
 
@@ -326,7 +333,7 @@ export default defineConfig({
         startUrl: false,
         // disable progressBar because it's not working well with dead link checker
         // TODO: can be removed in next doc-tools version
-        progressBar: isProd,
+        progressBar: !isProd,
       },
       tools: {
         postcss: (config, { addPlugins }) => {
