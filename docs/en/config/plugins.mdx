@@ -1,0 +1,48 @@
+# Plugins
+
+Customize the build process.
+
+- **Type:** `Array<RspackPluginInstance | RspackPluginFunction>`
+- **Default:** `[]`
+
+## RspackPluginInstance
+
+```ts
+interface RspackPluginInstance {
+  apply: (compiler: Compiler) => void;
+}
+```
+
+Among them, the interface provided on Compiler can refer to (plugin api)[../api/plugin-api].
+
+usage:
+
+```js title=rspack.config.js
+class CustomPlugin {
+  apply(compiler) {
+    // some operations
+  }
+}
+
+module.exports = {
+  plugin: [new CustomPlugin()],
+};
+```
+
+## RspackPluginFunction
+
+```ts
+type RspackPluginFunction = (this: Compiler, compiler: Compiler) => void;
+```
+
+usage:
+
+```js title=rspack.config.js
+function customPlugin(compiler) {
+  // some operations
+}
+
+module.exports = {
+  plugin: [customPlugin],
+};
+```
