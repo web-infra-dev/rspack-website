@@ -70,6 +70,13 @@ const BENChMARK_DATA = {
   ],
 };
 
+const MODULE_COUNT_MAP = {
+  coldStart: '50000',
+  hmrRoot: '10000',
+  hmrLeaf: '10000',
+  coldBuild: '50000',
+};
+
 export function Benchmark() {
   const t = useI18n();
   const SCENE = ['coldStart', 'hmrRoot', 'hmrLeaf', 'coldBuild'];
@@ -136,9 +143,13 @@ export function Benchmark() {
               ))}
             </Tabs>
             <div>
+              <p className="font-medium my-2 text-center text-lg text-gray-500">
+                <span className=" font-normal">{t('moduleCount')}:</span>{' '}
+                {MODULE_COUNT_MAP[activeScene]}
+              </p>
               <a
                 href="misc/benchmark.html"
-                className="hover:text-brand transition-colors duration-300 text-14px font-medium"
+                className="hover:text-brand transition-colors duration-300 text-14px font-medium text-gray-500 p-3"
               >
                 👉 {t('benchmarkDetail')}
               </a>

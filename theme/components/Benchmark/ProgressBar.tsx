@@ -42,7 +42,8 @@ export function ProgressBar({ value, max }: { value: number; max: number }) {
             const width = parseFloat(latest.width);
             setElapsedTime((width / 100) * TOTAL_TIME);
           }}
-          transition={{ duration: value, ease: 'linear' }}
+          // 2x speed
+          transition={{ duration: value / 2, ease: 'linear' }}
         />
       </div>
       <div className={`${styles['font-mono']} text-sm sm:text-base`}>
