@@ -1,0 +1,52 @@
+# Plugins 插件
+
+自定义构建流程。
+
+- **类型：** `Array<RspackPluginInstance | RspackPluginFunction>`
+- **默认值：** `[]`
+
+## RspackPluginInstance
+
+```js
+interface RspackPluginInstance {
+  apply(compiler: Compiler): void;
+}
+```
+
+其中， Compiler 上提供的接口可以参考 (plugin api)[../api/plugin-api].
+
+用法：
+
+```js
+// plugin.js
+class CustomPlugin implement RspackPluginInstance {
+  apply(compiler) {
+    // some operations
+  }
+}
+
+// rspack.config.js
+module.exports = {
+  plugin: [new CustomPlugin()]
+}
+```
+
+## RspackPluginFunction
+
+```js
+type RspackPluginFunction = (compiler: Compiler) => void;
+```
+
+用法：
+
+```js
+// plugin.js
+function customPlugin() {
+  // some operations
+}
+
+// rspack.config.js
+module.exports = {
+  plugin: [CustomPlugin],
+};
+```
