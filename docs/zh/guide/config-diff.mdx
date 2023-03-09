@@ -1,0 +1,382 @@
+# Webpack 配置兼容性
+
+> 对比 webpack 5.
+
+> 🟩 : 支持
+>
+> 🟥 : 不支持
+>
+> 🟧 : 部分支持
+
+## Entry
+
+- string 🟩
+- string[] 🟩
+- EntryObject 🟧
+
+  - `import: EntryItem` 🟩
+  - `runtime?: string | false` 🟩
+  - ...others 🟥
+
+- Function 🟥
+
+## Context 🟩
+
+## Mode 🟩
+
+## Output
+
+Others
+
+### Output.assetModuleFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.filename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.chunkFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.cssFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.cssChunkFilename 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.path 🟩
+
+- string
+
+### Output.publicPath 🟧
+
+- string 🟩
+- function 🟥
+
+### Output.strictModuleErrorHandling 🟩
+
+- boolean
+
+### Output.[...others] 🟥
+
+### Template strings 🟧
+
+#### Compilation-level 🟧
+
+- [fullhash] 🟩
+- [hash] 🟥
+
+#### Chunk-level 🟩
+
+- [id] 🟩
+- [name] 🟩
+- [chunkhash] 🟩
+- [contenthash] 🟩
+
+#### Module-level 🟧
+
+- [id] 🟩
+- [moduleid] 🟥
+- [hash] 🟩
+- [modulehash] 🟥
+- [contenthash] 🟩
+
+#### File-level 🟧
+
+- [file] 🟥
+- [query] 🟩
+- [fragment] 🟥
+- [base] 🟥
+- [filebase] 🟥
+- [path] 🟩
+- [name] 🟩
+- [ext] 🟩
+
+#### URL-level 🟥
+
+- [url] 🟥
+
+## Module
+
+### Module.generator 🟥
+
+### Module.parser 🟧
+
+### Rule
+
+#### Rule Condition 🟧
+
+- string 🟩
+- RegExp 🟩
+- function 🟥
+
+#### Rule.exclude 🟩
+
+#### Rule.include 🟩
+
+#### Rule.loaders 🟩
+
+推荐使用 `Rule.use`。
+
+#### Rule.parse 🟩
+
+- dataUrlCondition 🟩
+
+#### Rule.generator 🟧
+
+- filename 🟩
+- dataUrl 🟥
+- emit 🟥
+- publicPath 🟥
+- outputPath 🟥
+
+#### Rule.resource 🟩
+
+#### Rule.resourceQuery 🟩
+
+#### Rule.sideEffects 🟩
+
+#### Rule.test 🟩
+
+#### Rule.type 🟧
+
+- asset/resource 🟩
+- asset/inline 🟩
+- asset/source 🟩
+- asset 🟩
+
+Other types supported by Rspack:
+
+- javascript/auto
+- typescript
+- css
+- css/module
+- json
+
+#### Rule.use 🟧
+
+- useEntry 🟩
+- function 🟥
+
+#### Rule.resolve 🟧
+
+#### Rule.[...others] 🟥
+
+## Resolve
+
+### Resolve.alias 🟩
+
+### Resolve.aliasField 🟧
+
+类型差异:
+
+- webpack: `string[]`
+- Rspack: `Boolean`
+
+### Resolve.conditionNames 🟩
+
+### Resolve.extensions 🟧
+
+默认值不同:
+
+- webpack: `['.js', '.json', '.wasm']`
+- rspack: `['.tsx', '.jsx', '.ts', '.js', '.json', '.d.ts']`
+
+### Resolve.fallback 🟩
+
+### Resolve.mainFields 🟩
+
+### Resolve.mainFiles 🟩
+
+### Resolve.modules 🟩
+
+### Resolve.preferRelative 🟩
+
+### Resolve.[...others] 🟥
+
+## Optimization
+
+### Optimization.moduleIds 🟧
+
+- natural 🟥
+- named 🟩
+- deterministic 🟩
+- size 🟥
+
+### Optimization.minimize 🟩
+
+### Optimization.minimizer 🟧 ???
+
+- plugins[] 🟩
+- function 🟥
+
+### Optimization.removeAvailableModules 🟧
+
+默认值不同:
+
+- webpack: 仅 production 模式下为 `true`
+- rspack: 默认都为 `true`
+
+### Optimization.removeEmptyChunks 🟩
+
+### Optimization.runtimeChunk 🟧
+
+- object 🟥
+- string 🟥
+- boolean 🟩
+
+### Optimization.sideEffects 🟩
+
+### Optimization.splitChunks 🟧
+
+_默认值完全相同。_
+
+#### splitChunks.automaticNameDelimiter 🟩
+
+#### splitChunks.chunks 🟩
+
+#### splitChunks.maxAsyncRequests 🟩
+
+#### splitChunks.maxInitialRequests 🟩
+
+#### splitChunks.defaultSizeTypes 🟩
+
+#### splitChunks.minChunks 🟩
+
+#### splitChunks.hidePathInfo
+
+#### splitChunks.minSize 🟧
+
+- number 🟩
+- object 🟥
+
+#### splitChunks.minSizeReduction 🟧
+
+- number 🟩
+- object 🟥
+
+#### splitChunks.enforceSizeThreshold 🟩
+
+#### splitChunks.minRemainingSize 🟩
+
+#### splitChunks.layer 🟥
+
+#### splitChunks.maxSize 🟩
+
+#### splitChunks.maxAsyncSize 🟩
+
+#### splitChunks.maxInitialSize 🟩
+
+#### splitChunks.name 🟩
+
+#### splitChunks.usedExports 🟥
+
+#### splitChunks.cacheGroups 🟧
+
+## Plugins
+
+请看：[plugin-compat](/guide/plugin-compat).
+
+支持的插件 api : [plugin-api](/api/plugin-api)
+
+## Loaders
+
+请查看 [loader-compat](/guide/loader-compat)。
+
+## DevServer 🟧
+
+// todo
+
+## Cache 🟥
+
+rspack 只支持设置为布尔值。
+
+## Devtool 🟩
+
+## Target 🟧
+
+- async-node[[X].Y] 🟥
+- electron[[X].Y]-main 🟥
+- electron[[X].Y]-renderer 🟥
+- electron[[X].Y]-preload 🟥
+- node[[X].Y] 🟧
+  - `node`
+- node-webkit[[X].Y] 🟥
+- nwjs[[X].Y] 🟥
+- web 🟩
+- webworker 🟧
+  - 改为 `web-worker`
+- esX 🟩
+- browserslist 🟩
+
+## Watch and WatchOptions 🟧
+
+### Watch 🟩
+
+### WatchOptions.aggregateTimeout 🟥
+
+### WatchOptions.ignored 🟩
+
+### WatchOptions.poll 🟩
+
+### WatchOptions.followSymlinks 🟥
+
+### WatchOptions.stdin 🟥
+
+## Externals 🟧
+
+- string 🟩
+- object 🟩
+- function 🟥
+- RegExp 🟥
+- [] 🟥
+
+### ExternalsType 🟧
+
+- commonjs 🟩
+- global 🟩
+- module 🟩
+- promise 🟥
+- self 🟩
+- script 🟥
+- this 🟩
+- var 🟩
+- window 🟩
+
+rspack 额外支持的属性:
+
+- amd
+- amd-require
+- import
+- jsonp
+- node-commonjs
+- system
+- umd
+- umd2
+
+## Performance 🟥
+
+## Node 🟧
+
+### Node.global 🟩
+
+### Node.\_\_dirname 🟩
+
+### Node.\_\_filename 🟥
+
+## Stats 🟧
+
+// todo
+
+## Experiments 🟥
+
+虽然都有 `experiments` 配置项，但两者的实验功能完全不同，所以不要在 rspack 中配置 webpack 的实验功能。

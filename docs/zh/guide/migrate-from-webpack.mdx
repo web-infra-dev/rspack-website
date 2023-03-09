@@ -2,324 +2,11 @@
 
 虽然 Rspack 尽可能地兼容了 webpack 的常用 API，但是不可避免地存在一些不同，或是相同的功能在 Rspack 中有更高性能的实现方式。
 
-> 对比 webpack 5.
+## 修改配置
 
-> 🟩 : 支持
->
-> 🟥 : 不支持
->
-> 🟧 : 部分支持
+可以参考 [「Webpack 配置兼容性」](/guide/config-diff) 进行配置迁移。
 
-## Entry
-
-- string 🟩
-- string[] 🟩
-- EntryObject 🟧
-
-  - `import: EntryItem` 🟩
-  - `runtime?: string | false` 🟩
-  - ...others 🟥
-
-- Function 🟥
-
-## Context 🟩
-
-## Mode 🟩
-
-## Output
-
-Others
-
-### Output.assetModuleFilename 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.filename 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.chunkFilename 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.cssFilename 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.cssChunkFilename 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.path 🟩
-
-- string
-
-### Output.publicPath 🟧
-
-- string 🟩
-- function 🟥
-
-### Output.strictModuleErrorHandling 🟩
-
-- boolean
-
-### Output.[...others] 🟥
-
-### Template strings 🟧
-
-#### Compilation-level 🟧
-
-- [fullhash] 🟩
-- [hash] 🟥
-
-#### Chunk-level 🟩
-
-- [id] 🟩
-- [name] 🟩
-- [chunkhash] 🟩
-- [contenthash] 🟩
-
-#### Module-level 🟧
-
-- [id] 🟩
-- [moduleid] 🟥
-- [hash] 🟩
-- [modulehash] 🟥
-- [contenthash] 🟩
-
-#### File-level 🟧
-
-- [file] 🟥
-- [query] 🟩
-- [fragment] 🟥
-- [base] 🟥
-- [filebase] 🟥
-- [path] 🟩
-- [name] 🟩
-- [ext] 🟩
-
-#### URL-level 🟥
-
-- [url] 🟥
-
-## Module
-
-### Module.generator 🟥
-
-### Module.parser 🟧
-
-### Rule
-
-#### Rule Condition 🟧
-
-- string 🟩
-- RegExp 🟩
-- function 🟥
-
-#### Rule.exclude 🟩
-
-#### Rule.include 🟩
-
-#### Rule.loaders 🟩
-
-推荐使用 `Rule.use`。
-
-#### Rule.parse 🟩
-
-- dataUrlCondition 🟩
-
-#### Rule.generator 🟧
-
-- filename 🟩
-- dataUrl 🟥
-- emit 🟥
-- publicPath 🟥
-- outputPath 🟥
-
-#### Rule.resource 🟩
-
-#### Rule.resourceQuery 🟩
-
-#### Rule.sideEffects 🟩
-
-#### Rule.test 🟩
-
-#### Rule.type 🟧
-
-- asset/resource 🟩
-- asset/inline 🟩
-- asset/source 🟩
-- asset 🟩
-
-Other types supported by Rspack:
-
-- javascript/auto
-- typescript
-- css
-- css/module
-- json
-
-#### Rule.use 🟧
-
-- useEntry 🟩
-- function 🟥
-
-#### Rule.resolve 🟧
-
-#### Rule.[...others] 🟥
-
-## Resolve
-
-### Resolve.alias 🟩
-
-### Resolve.aliasField 🟧
-
-类型差异:
-
-- webpack: `string[]`
-- Rspack: `Boolean`
-
-### Resolve.conditionNames 🟩
-
-### Resolve.extensions 🟧
-
-默认值不同:
-
-- webpack: `['.js', '.json', '.wasm']`
-- rspack: `['.tsx', '.jsx', '.ts', '.js', '.json', '.d.ts']`
-
-### Resolve.fallback 🟩
-
-### Resolve.mainFields 🟩
-
-### Resolve.mainFiles 🟩
-
-### Resolve.modules 🟩
-
-### Resolve.preferRelative 🟩
-
-### Resolve.[...others] 🟥
-
-## Optimization
-
-### Optimization.moduleIds 🟧
-
-- natural 🟥
-- named 🟩
-- deterministic 🟩
-- size 🟥
-
-### Optimization.minimize 🟩
-
-### Optimization.minimizer 🟧 ???
-
-- plugins[] 🟩
-- function 🟥
-
-### Optimization.removeAvailableModules 🟧
-
-默认值不同:
-
-- webpack: 仅 production 模式下为 `true`
-- rspack: 默认都为 `true`
-
-### Optimization.removeEmptyChunks 🟩
-
-### Optimization.runtimeChunk 🟧
-
-- object 🟥
-- string 🟥
-- boolean 🟩
-
-### Optimization.sideEffects 🟩
-
-### Optimization.splitChunks 🟧
-
-_默认值完全相同。_
-
-#### splitChunks.automaticNameDelimiter 🟩
-
-#### splitChunks.chunks 🟩
-
-#### splitChunks.maxAsyncRequests 🟩
-
-#### splitChunks.maxInitialRequests 🟩
-
-#### splitChunks.defaultSizeTypes 🟩
-
-#### splitChunks.minChunks 🟩
-
-#### splitChunks.hidePathInfo
-
-#### splitChunks.minSize 🟧
-
-- number 🟩
-- object 🟥
-
-#### splitChunks.minSizeReduction 🟧
-
-- number 🟩
-- object 🟥
-
-#### splitChunks.enforceSizeThreshold 🟩
-
-#### splitChunks.minRemainingSize 🟩
-
-#### splitChunks.layer 🟥
-
-#### splitChunks.maxSize 🟩
-
-#### splitChunks.maxAsyncSize 🟩
-
-#### splitChunks.maxInitialSize 🟩
-
-#### splitChunks.name 🟩
-
-#### splitChunks.usedExports 🟥
-
-#### splitChunks.cacheGroups 🟧
-
-## Plugins
-
-一些插件可以被内置功能取代: [plugin-compat](/guide/plugin-compat).
-
-支持的插件 api : [plugin-api](/api/plugin-api)
-
-### DefinePlugin 🟩
-
-使用 `builtins.define`
-
-### html-webpack-plugin 🟩
-
-Rspack 内置了对 html 的支持，这意味着你可以使用 `builtins.html` 来代替 html-webpack-plugin。
-
-```diff
- const HtmlWebpackPlugin = require("html-webpack-plugin");
-
- module.exports = {
-+  builtins: {
-+    html: [
-+      {
-+        template: "index.html",
-+        filename: "index.html",
-+      },
-+    ],
-+  },
--  plugins: [
--    new HtmlWebpackPlugin({
--      template: "index.html",
--      filename: "index.html",
--    }),
--  ],
- };
-```
-
-## Loaders
+## 处理 Loader
 
 ### 移除 babel-loader
 
@@ -384,7 +71,7 @@ Rspack 已经内置了对 TypeScript、JSX 以及最新的 JavaScript 语法的�
  };
 ```
 
-### 移除 css-loader 和 style-loader 和 mini-css-extract-plugin
+### 移除 css-loader 、 style-loader 和 mini-css-extract-plugin
 
 Rspack 内置支持了 css 模块类型 ，原生 css 模块类型内置了对 css、css hmr、css module 以及 css 提取功能的支持，这意味着你不需要再为 css 文件单独配置 css-loader、style-loader 和 mini-css-extract-plugin。
 
@@ -455,91 +142,29 @@ Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Mo
  };
 ```
 
-## DevServer 🟧
+## 处理 Plugins
 
-// todo
+### 使用 builtins.html 来代替 html-webpack-plugin
 
-## Cache 🟥
+Rspack 内置了对 html 的支持，这意味着你可以使用 `builtins.html` 来代替 html-webpack-plugin。
 
-rspack 只支持设置为布尔值。
+```diff
+ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-## Devtool 🟩
-
-## Target 🟧
-
-- async-node[[X].Y] 🟥
-- electron[[X].Y]-main 🟥
-- electron[[X].Y]-renderer 🟥
-- electron[[X].Y]-preload 🟥
-- node[[X].Y] 🟧
-  - `node`
-- node-webkit[[X].Y] 🟥
-- nwjs[[X].Y] 🟥
-- web 🟩
-- webworker 🟧
-  - 改为 `web-worker`
-- esX 🟩
-- browserslist 🟩
-
-## Watch and WatchOptions 🟧
-
-### Watch 🟩
-
-### WatchOptions.aggregateTimeout 🟥
-
-### WatchOptions.ignored 🟩
-
-### WatchOptions.poll 🟩
-
-### WatchOptions.followSymlinks 🟥
-
-### WatchOptions.stdin 🟥
-
-## Externals 🟧
-
-- string 🟩
-- object 🟩
-- function 🟥
-- RegExp 🟥
-- [] 🟥
-
-### ExternalsType 🟧
-
-- commonjs 🟩
-- global 🟩
-- module 🟩
-- promise 🟥
-- self 🟩
-- script 🟥
-- this 🟩
-- var 🟩
-- window 🟩
-
-rspack 额外支持的属性:
-
-- amd
-- amd-require
-- import
-- jsonp
-- node-commonjs
-- system
-- umd
-- umd2
-
-## Performance 🟥
-
-## Node 🟧
-
-### Node.global 🟩
-
-### Node.\_\_dirname 🟩
-
-### Node.\_\_filename 🟥
-
-## Stats 🟧
-
-// todo
-
-## Experiments 🟥
-
-虽然都有 `experiments` 配置项，但两者的实验功能完全不同，所以不要在 rspack 中配置 webpack 的实验功能。
+ module.exports = {
++  builtins: {
++    html: [
++      {
++        template: "index.html",
++        filename: "index.html",
++      },
++    ],
++  },
+-  plugins: [
+-    new HtmlWebpackPlugin({
+-      template: "index.html",
+-      filename: "index.html",
+-    }),
+-  ],
+ };
+```
