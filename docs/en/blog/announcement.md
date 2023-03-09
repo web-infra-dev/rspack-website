@@ -47,7 +47,7 @@ Keep building Rspack will be our top priority. Compared with webpack, Rspack is 
 
 ### Working with community partners
 
-We would love to offer some help with Rspack integration in your framework. If you are an engineer maintaining a framework who happens to be interested in giving Rspack a try, please contact us.
+We would love to offer some help with Rspack integration in your framework. If you are an engineer maintaining a framework who happens to be interested in giving Rspack a try, please contact us. We have also established a partnership with the webpack team. Rspack is an attempt to optimize webpack performance using Rust, and in the future, we will explore more possibilities for optimizing webpack together with the webpack team. When Rspack implements 80% of webpack's functionality, webpack will attempt to integrate with Rspack as an experimental feature.
 
 ### Improve plugin capabilities
 
