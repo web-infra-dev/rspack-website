@@ -15,41 +15,57 @@ const BENChMARK_DATA = {
     {
       name: 'Rspack',
       // 单位为 s
-      time: 4.2,
+      time: 3.79,
     },
     {
       name: 'Webpack (with SWC)',
-      time: 34.8,
+      time: 31.25,
+    },
+    {
+      name: 'Webpack (with babel)',
+      time: 42.61,
     },
   ],
   hmrRoot: [
     {
       name: 'Rspack',
-      time: 0.37,
+      time: 0.57,
     },
     {
       name: 'Webpack (with SWC)',
-      time: 1.45,
+      time: 1.67,
+    },
+    {
+      name: 'Webpack (with babel)',
+      time: 1.74,
     },
   ],
   hmrLeaf: [
     {
       name: 'rspack',
-      time: 0.42,
+      time: 0.56,
     },
     {
       name: 'webpack (with SWC)',
-      time: 1.35,
+      time: 1.53,
+    },
+    {
+      name: 'Webpack (with babel)',
+      time: 1.63,
     },
   ],
   coldBuild: [
     {
       name: 'rspack',
-      time: 24.1,
+      time: 22.353,
     },
     {
       name: 'webpack (with SWC)',
-      time: 69.4,
+      time: 75.054,
+    },
+    {
+      name: 'Webpack (with babel + terser)',
+      time: 160.059,
     },
   ],
 };
