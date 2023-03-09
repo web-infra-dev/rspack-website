@@ -34,6 +34,10 @@ Chunk graph is a data structure that represents the relationship between chunks.
 
 Code splitting is a technique that allows you to split your code into multiple chunks, and only load the necessary chunks when the application is running. This can help you reduce the size of the initial bundle and speed up the application load time.
 
+## first class module type
+
+In Rspack, first-class module types refer to module types that can be supported without relying on loaders or plugins, such as JavaScript, CSS, JSON, etc. However, module types that require loaders or plugins to support, such as HTML, Markdown, YAML, etc., are not first-class citizen modules.
+
 ## loader
 
 In bundling terminology, a loader is like a plugin but specifically tasked with transforming module content. For example, we can use a loader to transform a TypeScript module into a JavaScript module, or to transform a CSS module into a JavaScript module that injects the CSS into the page.
