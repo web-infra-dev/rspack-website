@@ -9,7 +9,7 @@ Customize the build process.
 
 ```ts
 interface RspackPluginInstance {
-  apply(compiler: Compiler): void;
+  apply: (compiler: Compiler) => void;
 }
 ```
 
@@ -32,13 +32,13 @@ module.exports = {
 ## RspackPluginFunction
 
 ```ts
-type RspackPluginFunction = (compiler: Compiler) => void;
+type RspackPluginFunction = (this: Compiler, compiler: Compiler) => void;
 ```
 
 usage:
 
 ```js title=rspack.config.js
-function customPlugin() {
+function customPlugin(compiler) {
   // some operations
 }
 
