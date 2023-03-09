@@ -26,7 +26,7 @@ features:
     details: With a built-in incremental compilation mechanism, HMR is extremely fast and fully capable of developing large-scale projects.
     icon: ⚡
     link: /guide/introduction
-  - title: Webpack Interoperable
+  - title: Webpack Compatible
     details: Compatible with the architecture and ecosystem of webpack, no need to build the ecosystem from scratch.
     icon: 📦
     link: /guide/loader-compat
