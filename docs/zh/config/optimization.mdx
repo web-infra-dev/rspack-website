@@ -206,13 +206,6 @@ Rspack 不允许将 entry 名称传递给 `{cacheGroup}.test` 或者为 `{cacheG
 
 :::
 
-### splitChunks.automaticNameDelimiter
-
-默认情况下，webpack 将使用 chunk 的来源和名称生成名称（例如 `vendors~main.js`）。此选项使你可以指定用于生成名称的分隔符。
-
-- **类型：** `string`
-- **默认值：** `'~'`
-
 ### splitChunks.chunks
 
 - **类型：** `string | (chunk: Chunk) => boolean`
@@ -232,22 +225,6 @@ module.exports = {
 };
 ```
 
-或者，你也可以提供一个函数去做更多的控制。这个函数的返回值将决定是否包含每一个 chunk。
-
-```js title=rspack.config.js
-module.exports = {
-  //...
-  optimization: {
-    splitChunks: {
-      chunks(chunk) {
-        // exclude `my-excluded-chunk`
-        return chunk.name !== 'my-excluded-chunk';
-      },
-    },
-  },
-};
-```
-
 ### splitChunks.maxAsyncRequests
 
 - **类型：** `number`
@@ -262,13 +239,6 @@ module.exports = {
 
 入口点的最大并行请求数。
 
-### splitChunks.defaultSizeTypes
-
-- **类型：** `string[]`
-- **默认值：** `['javascript', 'unknown']`
-
-设置参与计算 chunk 体积类型。
-
 ### splitChunks.minChunks
 
 - **类型：** `number`
@@ -282,18 +252,6 @@ module.exports = {
 - **默认值：** `20000`
 
 生成 chunk 的最小体积（以 bytes 为单位）。
-
-### splitChunks.minSizeReduction
-
-- **类型：** `number`
-
-生成 chunk 所需的主 chunk（bundle）的最小体积（以字节为单位）缩减。这意味着如果分割成一个 chunk 并没有减少主 chunk（bundle）的给定字节数，它将不会被分割，即使它满足 `splitChunks.minSize`。
-
-:::info
-
-为了生成 chunk ， `splitChunks.minSizeReduction` 与 `splitChunks.minSize` 都需要被满足。
-
-:::
 
 ### splitChunks.enforceSizeThreshold
 
@@ -319,57 +277,13 @@ module.exports = {
 
 :::
 
-### splitChunks.maxSize
-
-- **类型：** `number`
-- **默认值：** `0`
-
-使用 `maxSize` （每个缓存组 `optimization.splitChunks.cacheGroups[x].maxSize` 全局使用 `optimization.splitChunks.maxSize` 或对后备缓存组 `optimization.splitChunks.fallbackCacheGroup.maxSize` 使用）告诉 webpack 尝试将大于 `maxSize` 个字节的 chunk 分割成较小的部分。这些较小的部分在体积上至少为 `minSize` （仅次于 `maxSize` ）。该算法是确定性的，对模块的更改只会产生局部影响。这样，在使用长期缓存时就可以使用它并且不需要记录。`maxSize` 只是一个提示，当模块大于 `maxSize` 或者拆分不符合 minSize 时可能会被违反。
-
-当 chunk 已经有一个名称时，每个部分将获得一个从该名称派生的新名称。根据 `optimization.splitChunks.hidePathInfo` 的值，它将添加一个从第一个模块名称或其哈希值派生的密钥。
-
-`maxSize` 选项旨在与 HTTP/2 和长期缓存一起使用。它增加了请求数量以实现更好的缓存。它还可以用于减小文件大小，以加快二次构建速度。
-
-:::info
-
-`maxSize` 比 `maxInitialRequest`/`maxAsyncRequests` 具有更高的优先级。实际优先级是 `maxInitialRequest`/`maxAsyncRequests` < `maxSize` < `minSize。`
-
-:::
-
-:::info
-
-设置 `maxSize` 的值会同时设置 `maxAsyncSize` 和 `maxInitialSize` 的值。
-
-:::
-
-### splitChunks.maxAsyncSize
-
-- **类型：** `number`
-
-像 `maxSize` 一样， `maxAsyncSize` 可以为 `cacheGroups（splitChunks.cacheGroups.{cacheGroup}.maxAsyncSize`）或 fallback 缓存组（`splitChunks.fallbackCacheGroup.maxAsyncSize` ）全局应用（`splitChunks.maxAsyncSize`）
-
-`maxAsyncSize` 和 `maxSize` 的区别在于 `maxAsyncSize` 仅会影响按需加载 chunk。
-
-### splitChunks.maxInitialSize
-
-- **类型：** `number`
-
-像 `maxSize` 一样， `maxInitialSize` 可以对 `cacheGroups（splitChunks.cacheGroups.{cacheGroup}.maxInitialSize` ）或 fallback 缓存组（`splitChunks.fallbackCacheGroup.maxInitialSize`）全局应用（`splitChunks.maxInitialSize`）。
-
-`maxInitialSize` 和 `maxSize` 的区别在于 `maxInitialSize` 仅会影响初始加载 chunks。
-
 ### splitChunks.name
 
-- **类型：** `boolean | (module, chunks, cacheGroupKey) => string`
-- **默认值：** `false`
+- **类型：** `string`
 
 每个 cacheGroup 也可以使用：`splitChunks.cacheGroups.{cacheGroup}.name`。
 
 拆分 chunk 的名称。设为 `false` 将保持 chunk 的相同名称，因此不会不必要地更改名称。这是生产环境下构建的建议值。
-
-提供字符串或函数使你可以使用自定义名称。指定字符串或始终返回相同字符串的函数会将所有常见模块和 vendor 合并为一个 chunk。这可能会导致更大的初始下载量并减慢页面加载速度。
-
-如果你选择指定一个函数，则可能会发现 `chunk.name` 和 `chunk.hash` 属性（其中 `chunk` 是 `chunks` 数组的一个元素）在选择 chunk 名时特别有用。
 
 如果 `splitChunks.name` 与 entry point 名称匹配，entry point 将被删除。
 
@@ -412,27 +326,8 @@ module.exports = {
 
 如果当前 chunk 包含已从主 chunk 中拆分出的模块，则它将被重用，而不是生成新的模块。这可能会影响 chunk 的结果文件名。
 
-#### splitChunks.cacheGroups.\{cacheGroup\}.type
-
-- **类型：** `string`
-
-允许按模块类型将模块分配给缓存组。
-
 #### splitChunks.cacheGroups.\{cacheGroup\}.test
 
 - **类型：** `RegExp | string`
 
 控制此缓存组选择的模块。省略它会选择所有模块。它可以匹配绝对模块资源路径或 chunk 名称。匹配 chunk 名称时，将选择 chunk 中的所有模块。
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.enforce
-
-- **类型：** `boolean`
-- **默认值：** `false`
-
-告诉 Rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.idHint
-
-- **类型：** `string`
-
-设置 chunk id 的提示。它将被添加到 chunk 的文件名中。
