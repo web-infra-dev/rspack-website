@@ -14,7 +14,7 @@
 
 ## Rule
 
-- **类型：** `Object`
+- **类型：** `Rule`
 - **默认值：** `{}`
 
 Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
@@ -39,14 +39,14 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 
 ## Rule.exclude
 
-- **类型：** [`Condition[]`](/zh/config/module.html#condition)
+- **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 排除所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
 ## Rule.include
 
-- **类型：** [`Condition[]`](/zh/config/module.html#condition)
+- **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
@@ -55,7 +55,7 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 
 :::warning
 
-这个选项已经被废弃，请使用 `Rule.use` 代替
+这个选项已经被废弃，请使用 `Rule.use` 代替。
 
 :::
 
@@ -64,14 +64,14 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 - **类型：** `Object`
 - **默认值：** `{}`
 
-模块的 parser 配置
+模块的 parser 配置。
 
 ### Rule.parser.dataUrlCondition
 
 - **类型：** `object = { maxSize: number = 8096 }`
 - **默认值：** `{}`
 
-如果当前模块的小于等于 `maxSize`，那么模块将被 Base64 编码，否则模块将会以文件形式被输出。该选项仅能做用于 Asset Module 的场景
+如果当前模块的小于等于 `maxSize`，那么模块将被 Base64 编码，否则模块将会以文件形式被输出。该选项仅能做用于 Asset Module 的场景。
 
 ```ts title=rspack.config.js
 module.exports = {
@@ -142,20 +142,27 @@ module.exports = {
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
-匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配
+匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配。
 
 ## Rule.sideEffects
 
 - **类型：** `boolean`
 
-标记模块是否存在副作用
+标记模块是否存在副作用。
 
 ## Rule.test
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
-匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
+匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.resource` 同时存在。
+
+## Rule.issuer
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和引入当前模块的模块的 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。
 
 ## Rule.type
 
@@ -248,9 +255,14 @@ module.exports = {
 
 ## Condition
 
-- **类型：** `string | RegExp`
+- **类型：** `string | RegExp | Condition[] | LogicalConditions`
 
 Condition 代表了匹配一个给定输入的形式，它支持的类型为：
 
-- `String`: 给定一个输入，当输入的字符串满足 startsWith 时，则匹配成功。注：你可以认为是 `input.startsWith(condition)`。
-- `RegExp`: 给定一个输入，当输入的字符串满足正则表达式时，则匹配成功。注：你可以认为是 `condition.test(input)`。
+- `String`：给定一个输入，当输入的字符串满足 `startsWith` 时，则匹配成功。注：你可以认为是 `input.startsWith(condition)`。
+- `RegExp`：给定一个输入，当输入的字符串满足正则表达式时，则匹配成功。注：你可以认为是 `condition.test(input)`。
+- `Condition[]`：一系列条件，当有一个条件匹配上时，则匹配成功。
+- `LogicalConditions`：所有属性都匹配上时，则匹配成功。
+  - `{ and: Condition[] }`：所有条件都匹配，则匹配成功。
+  - `{ or: Condition[] }`：其中一个条件匹配，则匹配成功。
+  - `{ not: Condition }`：所有条件都不匹配时，则匹配成功。

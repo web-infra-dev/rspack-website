@@ -40,8 +40,6 @@ export type EmotionConfig =
 
 若你在项目中使用了 `emotion`，并且想要类似 [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin) 的能力，你可以开启 builtins.emotion 配置，启用该配置后，Rspack 会使用 `swc_emotion` 插件对 `emotion` 代码进行转译。
 
-### 示例
-
 你可以直接使用默认配置，直接将 `builtins.emotion` 设置为 `true` 即可。
 
 ```ts title="rspack.config.js"
@@ -58,7 +56,7 @@ module.exports = {
 
 各字段与 [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin) 保持一致，详细解释（下列内容部分取自 [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin) 官方文档）：
 
-#### autoLabel
+### autoLabel
 
 - **类型：** `'never' | 'dev-only' | 'always'`
 - **默认值：** `'dev-only'`
@@ -74,7 +72,7 @@ module.exports = {
 - `'always'`：无论什么模式下都开启该特效。
 - `'never'`：无论什么模式下都禁用该特性。
 
-#### labelFormat
+### labelFormat
 
 - **类型：** `string`
 - **默认值：** `'[local]'`
@@ -89,13 +87,13 @@ module.exports = {
 
 该配置只会影响表达式中的 `label` ，这意味着 CSS 前缀和 hash 会自动被添加。
 
-#### sourceMap
+### sourceMap
 
 - **类型：** `boolean`
 
 该配置决定是否注入 source maps。production 模式下默认关闭，development 模式下默认开启。
 
-#### importMap
+### importMap
 
 - **类型：**
 
@@ -212,7 +210,7 @@ type BuiltinsMinifyOptions = {
 - **类型：** `Record<string, string | boolean | undefined>`
 - **默认值：** `{}`
 
-### 示例
+当使用以下配置时
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -421,7 +419,7 @@ export type CopyConfig = {
 | `priority`         | `number`                    | 0         | 当设置 `force` 为 `true` 时，如果匹配到同样的文件，优先级高的会覆写优先级的。                                                         |
 | `globOptions`      | `object`                    | undefined | glob 查询选项，`caseSensitiveMatch` 决定是否大小写敏感，`dot` 决定是否匹配以 . 开头的文件。                                           |
 
-### 示例
+示例：
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -558,9 +556,7 @@ import Btn from 'foo/es/my-button';
 
 其他配置可以直接查看 [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import)。
 
-### 示例
-
-以经典的 4 版本的 [ant-design](https://4x.ant.design/) 为例，我们只需要如下配置：
+再以经典的 4 版本的 [ant-design](https://4x.ant.design/) 为例，我们只需要如下配置：
 
 ```ts title="rspack.config.js"
 module.exports = {

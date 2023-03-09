@@ -40,8 +40,6 @@ export type EmotionConfig =
 
 If you are using `emotion` in your project, and want functionality which is similar to [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin), you can enable `builtins.emotion` option, Rspack will use `swc_emotion` plugin to transpile your `emotion` code.
 
-### Example
-
 You can enable default options by specify `builtins.emotion: true`.
 
 ```ts title="rspack.config.js"
@@ -58,7 +56,7 @@ module.exports = {
 
 Each field name is the same with [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin), more detailed explanation (content below is from the official document of [@emotion/babel-plugin](https://emotion.sh/docs/@emotion/babel-plugin)):
 
-#### autoLabel
+### autoLabel
 
 - **Type:** `'never' | 'dev-only' | 'always'`
 - **Default:** `'dev-only'`
@@ -74,7 +72,7 @@ Each possible value for this option produces different output code:
 - `'always'` - we always add labels when possible,
 - `'never'` - we disable this entirely and no labels are added.
 
-#### labelFormat
+### labelFormat
 
 - **Type:** `string`
 - **Default:** `"[local]"`
@@ -89,13 +87,13 @@ Allowed values:
 
 This format only affects the label property of the expression, meaning that the css prefix and hash will be prepended automatically.
 
-#### sourceMap
+### sourceMap
 
 - **Type:** `boolean`
 
 Whether to inject source maps. By default, this will be disabled in production mode, and enabled in development mode.
 
-#### importMap
+### importMap
 
 - **Type:**
 
@@ -210,7 +208,7 @@ Replaces variables in your code with other values or expressions at compile time
 - **Type:** `Record<string, string | boolean | undefined>`
 - **Default:** `{}`
 
-### Example
+When using the following configuration:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -419,7 +417,7 @@ export type CopyConfig = {
 | `priority`         | `number`                    | 0         | When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.                                                                                                |
 | `globOptions`      | `object`                    | undefined | The configuration for glob queries: `caseSensitiveMatch` determines whether the matching is case sensitive, and `dot` determines whether files starting with . are matched.                                                         |
 
-### Example
+For example:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -553,8 +551,6 @@ import Btn from 'foo/es/my-button';
 In addition to `kebabCase`, there are `cameraCase`, `snakeCase`, `upperCase` and `lowerCase` can be used as well.
 
 You can check the document of [babel-plugin-import](https://www.npmjs.com/package/babel-plugin-import) for other configurations.
-
-### Example
 
 Taking the classic 4.x version of [ant-design](https://4x.ant.design/) as an example, we only need to configure it as follows:
 
