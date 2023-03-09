@@ -2,7 +2,13 @@
 
 While Rspack is aimed at maximizing compatibility with Webpack API contracts, some minor changes are necessary to accommodate differences in implementation, as well as enabling optimizations by replacing some plugins/loaders with Rspack's built-in equivalents.
 
-## Removing babel-loader
+## Configuration Migration
+
+You can refer to ["Webpack configuration compatibility"](/guide/config-diff) for configuration migration.
+
+## Modify Loader
+
+### Removing babel-loader
 
 Rspack already has built-in support for TypeScript and JSX as well as the latest ECMAScript syntaxes. If your configuration only uses `babel-loader` to support TypeScript, JSX, and modern ECMAScript, then you can remove `babel-loader` entirely.
 
@@ -65,7 +71,7 @@ Rspack also supports JavaScript syntax downgrading by default. This means you do
  };
 ```
 
-## Removing css-loader and style-loader and mini-css-extract-plugin
+### Removing css-loader style-loader and mini-css-extract-plugin
 
 Rspack's native CSS Module type has built-in support for CSS, CSS HMR, CSS Modules, and CSS extraction. This eliminates the need for `css-loader`, `style-loader`, and `mini-css-extract-plugin` for handling CSS files:
 
@@ -107,7 +113,7 @@ Rspack's [css-modules](https://github.com/css-modules/css-modules) functionality
  };
 ```
 
-## Using asset modules instead of file-loader and url-loader
+### Using asset modules instead of file-loader and url-loader
 
 Rspack is aligned with Webpack 5's "asset modules," which should be used instead of `file-loader` and `url-loader`.
 
@@ -136,7 +142,9 @@ Rspack is aligned with Webpack 5's "asset modules," which should be used instead
  };
 ```
 
-## Using builtins.html instead of html-webpack-plugin
+## Modify Plugins
+
+### Using builtins.html instead of html-webpack-plugin
 
 Rspack has built-in support for HTML. This means you can use `builtins.html` instead of `html-webpack-plugin`:
 

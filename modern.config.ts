@@ -147,6 +147,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('迁移', 'Migration'),
         items: [
           getLink('/guide/migrate-from-webpack'),
+          getLink('/guide/config-diff'),
           getLink('/guide/migrate-from-cra'),
         ],
       },

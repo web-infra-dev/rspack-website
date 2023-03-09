@@ -2,7 +2,11 @@
 
 虽然 Rspack 尽可能地兼容了 webpack 的常用 API，但是不可避免地存在一些不同，或是相同的功能在 Rspack 中有更高性能的实现方式。
 
-## 配置迁移
+## 修改配置
+
+可以参考 [「Webpack 配置兼容性」](/guide/config-diff) 进行配置迁移。
+
+## 处理 Loader
 
 ### 移除 babel-loader
 
@@ -67,7 +71,7 @@ Rspack 已经内置了对 TypeScript、JSX 以及最新的 JavaScript 语法的�
  };
 ```
 
-### 移除 css-loader 和 style-loader 和 mini-css-extract-plugin
+### 移除 css-loader 、 style-loader 和 mini-css-extract-plugin
 
 Rspack 内置支持了 css 模块类型 ，原生 css 模块类型内置了对 css、css hmr、css module 以及 css 提取功能的支持，这意味着你不需要再为 css 文件单独配置 css-loader、style-loader 和 mini-css-extract-plugin。
 
@@ -137,6 +141,8 @@ Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Mo
    },
  };
 ```
+
+## 处理 Plugins
 
 ### 使用 builtins.html 来代替 html-webpack-plugin
 
