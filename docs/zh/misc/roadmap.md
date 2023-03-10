@@ -22,6 +22,6 @@ Vue 和 Svelte 是两个非常流行的前端框架，其支持相比 React 的�
 
 尽管 Rspack 目前有很好的性能，但是面对具有大量页面的项目，其性能仍然具有较大的提升空间，Lazy Compilation 是一个提升性能的良好手段，我们将在未来支持该功能。
 
-### Persisten Cache 支持
+### Persistent Cache 支持
 
-Persisten Cache 能够大幅的优化项目的二次编译性能，即使 Rspack 目前在绝大部分项目里都能够达到不错的性能，但是在某些超大规模的项目的场景下，Persisten Cache 仍然能够带来很大的性能提升，我们将在未来计划支持该功能。
+Persistent Cache 能够大幅的优化项目的二次编译性能，即使 Rspack 目前在绝大部分项目里都能够达到不错的性能，但是在某些超大规模的项目的场景下，Persistent Cache 仍然能够带来很大的性能提升，我们将在未来计划支持该功能。
