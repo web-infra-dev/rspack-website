@@ -42,11 +42,11 @@ const BENChMARK_DATA = {
   ],
   hmrLeaf: [
     {
-      name: 'rspack',
+      name: 'Rspack',
       time: 0.56,
     },
     {
-      name: 'webpack (with SWC)',
+      name: 'Webpack (with SWC)',
       time: 1.53,
     },
     {
@@ -56,11 +56,11 @@ const BENChMARK_DATA = {
   ],
   coldBuild: [
     {
-      name: 'rspack',
+      name: 'Rspack',
       time: 22.35,
     },
     {
-      name: 'webpack (with SWC)',
+      name: 'Webpack (with SWC)',
       time: 75.05,
     },
     {
