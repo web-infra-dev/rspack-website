@@ -162,7 +162,6 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/misc/license'),
           getLink('/misc/branding'),
           getLink('/misc/benchmark'),
-          getLink('/misc/announcement'),
         ],
       },
     ],
