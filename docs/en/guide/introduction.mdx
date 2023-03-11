@@ -8,7 +8,7 @@ import rspackAudio from '../../public/rspack.mp3';
 # Introduction
 
 <div>
-  <span>Rspack (pronounced as `/'ɑrspæk/`, </span>
+  <span>Rspack (pronounced as `/'ɑrespæk/`, </span>
   <button
     style={{
       border: 'none',
@@ -38,58 +38,56 @@ import rspackAudio from '../../public/rspack.mp3';
     </svg>
   </button>
   <p style={{ display: 'inline' }}>
-    <span>) is a high-performance rust-based</span>
-    <span>JavaScript bundler offers strong</span>
-    <span>interoperability with the webpack ecosystem</span>
-    <span>and lower-cost integration,</span>
-    <span>enabling optimized performance</span>
+    <span>) is a high performance Rust-based</span>
+    <span>JavaScript bundler that offers strong</span>
+    <span>interoperability with the <a href="https://webpack.js.org/" target="_blank" rel="nofollow">webpack</a> ecosystem,</span>
+    <span>enabling faster development cycles</span>
     <span>and efficient collaboration between the two tools.</span>
   </p>
 </div>
 
-## Why do we build Rspack?
+## Why Rspack?
 
-We created Rspack to solve various performance problems we encountered while maintaining building tools at ByteDance. There were no tools in the market that could solve these problems well. We have a large number of monolithic applications within the company, all of which have very complex webpack configurations. The production build time can take more than ten minutes or even half an hour, and the cold start time can also exceed several minutes. We have tried various optimization methods to optimize these monolithic applications, but with little success. Based on our analysis of the problems we encountered during the build process, the business's core demands for the building tool are as follows:
+Rspack was initially created to solve performance problems encountered at ByteDance, a tech company that maintains many large monolithic app projects with complex bundling requirements. Production build times had grown to ten minutes or even half an hour in some cases, and cold start times could exceed several minutes. After experimenting with many bundlers and optimization ideas, a common set of requirements emerged:
 
-- Good Dev startup performance. `npm run dev` is a command that developers need to run many times a day, and large projects require waiting for 10 minutes each time. This is very painful for engineers, so optimizing the dev start time is very important.
-- Good Build performance. `npm run build` is an instruction that often runs in CI/CD environments, which determines the efficiency of the application's production delivery. Some applications in production often require 20-30 minutes of build time, and shortening the time here will be very helpful for the development process.
-- Flexible configuration. The configuration of the user's project is flexible and varied and has not been completely unified. In the process of trying to migrate the webpack configuration to other building tools, we encountered many problems, and their configuration is difficult to reach the flexibility of webpack.
-- Production optimization capability. Before starting Rspack, we practiced various community solutions, but they all faced certain negative optimizations in the production environment, such as insufficiently fine-grained package splitting, etc. Therefore, the ability to optimize production artifacts is an indispensable feature for us.
-
-After clarifying these four points, we investigated all the technical solutions in the community and found that none of them fully met our requirements. Therefore, we decided to develop Rspack ourselves.
+- **Dev mode startup performance.** `npm run dev` is a command that developers may invoke many times per hour. Engineering productivity suffers if startup time exceeds 10-15 seconds.
+- **Fast builds.** `npm run build` is used in CI/CD pipelines and directly impacts merging productivity and application delivery time. Large applications may spend 20-30 minutes running these pipelines, and bundling time is often a major contributor.
+- **Flexible configuration.** From experimenting with various popular bundlers, we found that one-size-fits all configurations encountered many problems when trying to accommodate real world projects. A major advantage of webpack is its flexibility and ease of accommodating customized requirements for each project. This in turn may pose steep migration costs for legacy projects that try to migrate away from Webpack.
+- **Production optimization capabilities.** All of the existing bundling solutions also had various limitations when optimizing for a production environment, such as insufficiently fine-grained package splitting, etc. Rspack was an opportunity to rethink these optimizations from the ground up, leveraging Rust-specific features such as multithreading.
 
 ## Current status of Rspack
 
-As of today (March 2023), Rspack has been developed for 11 months. Although Rspack is still in the relatively early stage and lacks many webpack functionalities, according to the Pareto principle, the current features can meet the needs of most businesses. We have already used Rspack in internal projects and achieved a 5-10 times improvement in compilation performance. We are also continuously optimizing Rspack's performance, and there is still a lot of room for improvement.
+Rspack has been under continuous development since April 2022, and was launched as open source in March 2023. Although the project is still in its early stages and lacks many webpack functionalities, based on the Pareto principle, we believe the current features can meet the needs of most businesses. Some ByteDance internal projects have already achieved a 5-10 times improvement moving from Webpack to Rspack, and there's still room for future optimizations.
 
-Rspack has now completed compatibility with the main configuration of webpack and adapted the webpack loader architecture. You can seamlessly use various loaders that you are familiar with in Rspack, such as babel-loader, less-loader, sass-loader, etc. Our long-term goal is to fully support the features of loaders. In the future, you can use more complex loaders such as vue-loader in Rspack.
+Rspack is compatible with webpack's configuration schema and loader architecture. You can seamlessly use familiar loaders such as `babel-loader`, `less-loader`, `sass-loader`, etc. Our long-term goal is to fully support most popular loaders including more complex cases such as `vue-loader`.
 
 Currently, Rspack's cache support is relatively simple, only supporting memory-level caching. In the future, we will build stronger cache capabilities, including migratable persistent caching, which will bring greater imagination space, such as reusing Rspack's cloud cache on different machines in monorepos, to improve the cache hit rate of large projects.
 
 ## The future of Rspack
 
-Although Rspack's current capabilities can meet the needs of most projects, there is still a big gap compared to the complete capabilities provided by webpack. We will enrich the basic capabilities of Rspack according to community feedback to meet more building scenarios' needs.
+Although Rspack already meets the needs of many projects, there is still a big gap to reach the full capabilities of webpack. Prioritization will be based on community feedback, so please tell us about your requirements!
 
-### Collaboration with Community Partners
+### Collaboration with community partners
 
-As a lower-level dependency, Rspack has solved many of the problems we encountered in our work, and we believe it can also solve the problems of the community. We are very willing to provide support to framework teams and toolchains within the community to unleash the true performance advantages of Rspack. If your framework or toolchain has a demand for high-performance build engines, please feel free to contact us, and we can provide better support.
+We are very willing to provide support to framework teams and toolchains within the community to unleash the true performance advantages of Rspack. If your framework or toolchain has a demand for high-performance build engines, let us know!
 
-### Enhancing Plugin Capabilities
+### Enhancing plugin capabilities
 
-Currently, Rspack has already supported the basic Loader API and a small number of webpack Plugin API. Although our goal is not to achieve 100% compatibility with Plugin API, we will try our best to implement the mainstream Plugin API needs of the community to meet their demands. At the same time, we are also exploring higher-performance plugin communication solutions to reduce the cost of plugin communication, thereby ensuring more plugin APIs can be implemented.
+Rspack already implements the basic `Loader` interface and a small number of webpack plugin APIs. Although our goal is not to achieve 100% compatibility for plugin APIs, we will try our best to implement the mainstream requirements based on community feedback. At the same time, we are also exploring higher-performance plugin communication solutions to reduce the cost of plugin communication, thereby ensuring more plugin APIs can be implemented.
 
-### Continuously Improving Performance
+### Continuously improving performance
 
-Performance is the core selling point of Rspack, so we will continuously optimize the performance of Rspack in the future. For example, we will explore higher-performance concurrent/multi-core-friendly algorithms, higher-performance caching solutions, higher-performance plugin communication solutions, etc.
+Performance is the core selling point and focus of Rspack development. In the future we'll explore higher-performance concurrent/multi-core-friendly algorithms, higher-performance caching solutions, higher-performance plugin communication solutions, etc.
 
-Establishing a Sound Quality Assurance System
-Currently, the main test cases of Rspack are reused from webpack's test cases. In the future, we will cover more of webpack's test cases, while building a more complete CI system and co-building an Ecosystem CI with community projects to ensure that the upgrade of Rspack does not cause any breaks in upstream projects, ensuring the long-term healthy development of the project and continuously improving test coverage.
+### Expanding the test suite
+
+Today Rspack is primarily tested using a subset of webpack's test cases. In the future, we'll cover more of these tests, while also expanding the test suite and including community projects to ensure compatibility across Rspack releases.
 
 ## Compared with webpack
 
-[Webpack](https://webpack.js.org/) is currently the most mature build tool, with an active ecosystem, flexible configuration and rich features, but its most criticized is its performance problems, especially on some large projects, the build time can reach several minutes, Rspack introduces several important performance optimizations to solve performance problems
+[Webpack](https://webpack.js.org/) is perhaps the most mature modern bundler, with an active ecosystem, flexible configuration, and rich features. 
 
-- **Rust language efficiency:** The Rust programming language was specifically designed to prioritize performance, topping benchmarks for both speed and memory management. It also provides many compiler safeguards to avoid common pitfalls of other native languages such as C++.
+- **Rust language efficiency:** Webpack's competitors frequently challenge it based on performance, especially for larger inputs. Rspack approaches this using the Rust platform, which was specifically designed to prioritize performance, topping benchmarks for both speed and memory management. Rust also provides many compiler safeguards to avoid common pitfalls of other native languages such as C++.
 
 - **Highly parallelized architecture:** Webpack is limited by JavaScript's weak support for multithreading. By contrast, Rspack's native code takes full advantage of modern multi-core CPUs.
 
