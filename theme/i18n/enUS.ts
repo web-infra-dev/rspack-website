@@ -12,8 +12,8 @@ export const EN_US = {
   cli: 'CLI',
   friendLink: 'Friend Link',
   community: 'Community',
-  benchmarkTitle: 'Blazing Fast Build Speed',
+  benchmarkTitle: 'Blazing fast build speed',
   benchmarkDesc:
-    'Based on Rust and highly parallel architecture, build speed is very fast, bringing you the ultimate development experience.',
-  benchmarkDetail: 'See Benchmark Details',
+    'Combining TypeScript and Rust with a parallelized architecture to bring you the ultimate developer experience.',
+  benchmarkDetail: 'See benchmark details',
 } as const;

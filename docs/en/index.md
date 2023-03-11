@@ -19,27 +19,27 @@ hero:
 
 features:
   - title: Fast Startup
-    details: Based on Rust, the build speed is extremely fast, bringing you the ultimate development experience.
+    details: Combining TypeScript and Rust with a parallelized architecture to bring you the ultimate developer experience.
     icon: 🚀
     link: /guide/introduction
   - title: Lightning HMR
-    details: With a built-in incremental compilation mechanism, HMR is extremely fast and fully capable of developing large-scale projects.
+    details: A built-in incremental compilation mechanism provides superior Hot Module Replacement performance for large-scale projects.
     icon: ⚡
     link: /guide/introduction
   - title: Webpack Compatible
-    details: Compatible with the architecture and ecosystem of webpack, no need to build the ecosystem from scratch.
+    details: Interoperates with existing webpack plugins and config. No need to reinvent your ecosystem from scratch.
     icon: 📦
     link: /guide/loader-compat
-  - title: 'Batteries included'
+  - title: Batteries Included
     details: Out-of-the-box support for TypeScript, JSX, CSS, CSS Modules, Sass, and more.
     icon: 🎨
     link: /guide/language-support
-  - title: Production Optimization
-    details: By default, various optimization strategies such as tree shaking and minification are built in.
+  - title: Production Optimizations
+    details: Core optimizations such as tree shaking and minification have integrated implementations rather than deferring to plugins.
     icon: 🛠️
     link: /guide/production
   - title: Framework Agnostic
-    details: Not bound to any frontend framework, ensuring good flexibility.
+    details: Not bound to any frontend framework. Everyone can use it!
     icon: 🎯
     link: /guide/react
 ---
