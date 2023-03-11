@@ -24,4 +24,4 @@ Although Rspack currently has good performance, there is still a lot of room to 
 
 ### Persistent Cache Support
 
-Persisten Cache can significantly optimize the performance of a project's warm compilation. Even though Rspack is currently able to achieve good performance on most projects, Persisten Cache can still provide a significant performance boost on some very large projects, and we plan to support this feature in the future.
+Persistent Cache can significantly optimize the performance of a project's warm compilation. Even though Rspack is currently able to achieve good performance on most projects, Persistent Cache can still provide a significant performance boost on some very large projects, and we plan to support this feature in the future.
