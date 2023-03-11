@@ -8,7 +8,9 @@
       "addWords": true
     }
   ],
-  "dictionaries": ["project-words"],
+  "dictionaries": [
+    "project-words"
+  ],
   "ignorePaths": [
     "node_modules",
     "/project-words.txt",
@@ -18,5 +20,12 @@
   ],
   "caseSensitive": true,
   "allowCompoundWords": true,
-  "ignoreWords": ["antd", "ɑrspæk", "Shenzhen"]
+  "ignoreWords": [
+    "antd",
+    "ɑrspæk",
+    "Shenzhen"
+  ],
+  "enableFiletypes": [
+    "mdx"
+  ]
 }
