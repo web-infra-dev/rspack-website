@@ -326,7 +326,7 @@ export default defineConfig({
         {
           lang: 'zh',
           title: 'Rspack',
-          description: '基于 Rust 的高性能模块打包工具',
+          description: '基于 Rust 的高性能 Web 应用打包工具',
           nav: getNavConfig('zh'),
           sidebar: getSidebarConfig('zh'),
           label: '简体中文',
