@@ -209,7 +209,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       },
       {
         text: getText('DevServer 开发服务器', 'DevServer'),
-        link: getLink('/config/devServer'),
+        link: getLink('/config/dev-server'),
       },
       {
         text: getText('Cache 缓存', 'Cache'),
