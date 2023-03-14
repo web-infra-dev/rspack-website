@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: Rspack
-  text: 基于 Rust 的高性能模块打包工具
+  text: 基于 Rust 的高性能 Web 构建工具
   tagline: 打造高性能的前端工具链
   # TODO logo
   image:
