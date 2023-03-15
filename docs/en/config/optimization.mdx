@@ -70,7 +70,7 @@ module.exports = {
 	optimization: {
 		minimize: true,
 		minimizer: [new minifyPlugin(
-          minifier: "terser"
+          { minifier: "terser" }
         )]
 	}
 };
