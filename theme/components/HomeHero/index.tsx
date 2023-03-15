@@ -27,14 +27,14 @@ export function HomeHero({ hero }: { hero: Hero }) {
         height: 'calc(100vh - var(--modern-nav-height)))',
       }}
     >
-      <div className="max-w-1152px m-auto flex flex-col md:flex-row">
+      <div className="max-w-6xl m-auto flex flex-col md:flex-row">
         <div className="m-auto flex flex-col order-2 md:order-1 justify-center text-center">
           <h1 className="text-3xl sm:text-6xl md:text-7xl font-bold pb-3 lg:pb-5 z-10">
             <span className={styles.clip}>{hero.name}</span>
           </h1>
           {hero.text?.length && (
             <p
-              className={`pb-2 mx-auto md:m-0 text-3xl sm:text-5xl md:text-6xl font-bold z-10 max-w-396px sm:max-w-568px`}
+              className={`pb-2 mx-auto md:m-0 text-3xl sm:text-5xl md:text-6xl font-bold z-10  max-w-xs sm:max-w-xl`}
               style={{ lineHeight: '1.15' }}
             >
               {hero.text}

@@ -81,6 +81,9 @@ export const RandomMemberList = () => {
             target="_blank"
             rel="nofollow"
             key={item.id}
+            style={{
+              border: 'none',
+            }}
           >
             <img className={style.avatar} src={item.avatar} />
             <span className={style.name}>{item.name || item.id}</span>

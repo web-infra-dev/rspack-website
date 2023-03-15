@@ -103,7 +103,7 @@ export function Benchmark() {
             <h2 className={`${styles.title} font-bold text-2xl sm:text-4xl`}>
               {t('benchmarkTitle')}
             </h2>
-            <p className="mt-6 mx-6 text-center sm:text-lg text-gray-600 max-w-768px">
+            <p className="mt-6 mx-6 text-center sm:text-lg text-gray-600 max-w-3xl">
               {t('benchmarkDesc')}
             </p>
           </div>
@@ -126,7 +126,10 @@ export function Benchmark() {
                     >
                       {inView && (
                         <>
-                          <p className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500 min-w-180px">
+                          <p
+                            className="mr-2 mb-2 w-20 text-center text-gray-500 dark:text-light-500"
+                            style={{ minWidth: '180px' }}
+                          >
                             {info.name}
                           </p>
                           <ProgressBar
