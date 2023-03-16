@@ -21,14 +21,13 @@ module.exports = {
 `rspack.config.js` 是一个 JavaScript 文件，你可以通过 JSDoc 来启用 IDE 的智能补全和 TypeScript 类型检查。
 
 ```js title="rspack.config.js"
-// @ts-check
+import { defineConfig } from '@rspack/cli';
 
-/** @type {import('@rspack/cli').RspackOptions} */
-const config = {
+const config = defineConfig({
   entry: {
     main: './src/index.js',
   },
-};
+});
 
 module.exports = config;
 ```
