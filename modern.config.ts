@@ -336,9 +336,6 @@ export default defineConfig({
     builderConfig: {
       dev: {
         startUrl: false,
-        // disable progressBar because it's not working well with dead link checker
-        // TODO: can be removed in next doc-tools version
-        progressBar: !isProd,
       },
       tools: {
         postcss: (config, { addPlugins }) => {
