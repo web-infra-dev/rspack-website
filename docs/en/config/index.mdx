@@ -18,17 +18,16 @@ module.exports = {
 
 ### Type Checking
 
-`rspack.config.js` is a JavaScript file, you can use JSDoc to enable the IDE's Intellisense and TypeScript type checking.
+`rspack.config.js` is a JavaScript file, you can use the `defineConfig` helper to enable the IDE's Intellisense and TypeScript type checking.
 
 ```js title="rspack.config.js"
-// @ts-check
+import { defineConfig } from '@rspack/cli';
 
-/** @type {import('@rspack/cli').RspackOptions} */
-const config = {
+const config = defineConfig({
   entry: {
     main: './src/index.js',
   },
-};
+});
 
 module.exports = config;
 ```
