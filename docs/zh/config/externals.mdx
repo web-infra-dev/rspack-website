@@ -342,3 +342,11 @@ module.exports = {
 const jq = window['$'];
 jq('.my-element').animate(/* ... */);
 ```
+
+## externalsPresets
+
+为特定的目标环境启用外部模块的预设值。
+
+### node
+
+将 node.js 的内置模块（如 `fs`、`path` 或 `vm`）视为外部模块，并在使用时通过 `require()` 加载它们。

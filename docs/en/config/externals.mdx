@@ -341,3 +341,11 @@ Will generate into something like
 const jq = window['$'];
 jq('.my-element').animate(/* ... */);
 ```
+
+## externalsPresets
+
+Enable presets of externals for specific targets.
+
+### node
+
+Treat node.js built-in modules like `fs`, `path` or `vm` as external and load them via `require()` when used.
