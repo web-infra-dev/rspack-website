@@ -23,7 +23,7 @@ module.exports = {
 ```js title="rspack.config.js"
 // @ts-check
 
-/** @type {import('@rspack/cli').RspackOptions} */
+/** @type {import('@rspack/cli').Configuration} */
 const config = {
   entry: {
     main: './src/index.js',
@@ -50,9 +50,9 @@ module.exports = config;
 Alternatively, you can use TypeScript as configuration file. The default TypeScript configuration file name is `rspack.config.ts`.
 
 ```ts title="rspack.config.ts"
-import { RspackOptions } from '@rspack/core'
+import { Configuration } from '@rspack/cli'
 
-const config: RspackOptions = {
+const config: Configuration = {
   entry: {
     main: './src/index.js',
   },

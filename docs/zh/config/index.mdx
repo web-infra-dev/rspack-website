@@ -23,7 +23,7 @@ module.exports = {
 ```js title="rspack.config.js"
 // @ts-check
 
-/** @type {import('@rspack/cli').RspackOptions} */
+/** @type {import('@rspack/cli').Configuration} */
 const config = {
   entry: {
     main: './src/index.js',
@@ -47,11 +47,11 @@ const config = defineConfig({
 module.exports = config;
 ```
 
-另外，你也可以使用TypeScript作为配置文件。默认的TypeScript配置文件名称是`rspack.config.ts`。
+另外，你也可以使用 TypeScript 作为配置文件。默认的 TypeScript 配置文件名称是 `rspack.config.ts`。
 
 ``ts title="rspack.config.ts"
-import { RspackOptions } from '@rspack/core'
-const config: RspackOptions = {
+import { Configuration } from '@rspack/cli'
+const config: Configuration = {
   entry: {
     main: './src/index.js',
   },
@@ -59,7 +59,7 @@ const config: RspackOptions = {
 export = config;
 ```
 
-你需要把`ts-node`安装为`devDependencies`，这样rspack才能解析`ts`扩展。
+你需要把 `ts-node` 安装为 `devDependencies`，这样 Rspack 才能解析 `ts` 扩展。
 
 ``json title="package.json"
 {
@@ -69,7 +69,7 @@ export = config;
 }
 ```
 
-注意，如果JS文件不存在，rspack将首先搜索JavaScript，然后才是TypeScript。
+注意，如果 JS 文件不存在，Rspack 将首先搜索 JavaScript，然后才是 TypeScript。
 
 ## 指定配置文件
 
