@@ -91,7 +91,7 @@ const config = {
 module.exports = config;
 ```
 
-使用 `optimization.splitChunks` 配置选项之后，现在应该可以看出， `index.bundle.js` 和 `another.bundle.js` 中已经移除了重复的依赖模块。需要注意的是，插件将 `shared.js` 分离到单独的 `another~index.bundle.js` 中 ，并且将其从 `index.bundle.js` 和 `another.bundle.js` 中移除。
+使用 `optimization.splitChunks` 配置选项之后，现在应该可以看出，`index.bundle.js` 和 `another.bundle.js` 中已经移除了重复的依赖模块。需要注意的是，插件将 `shared.js` 分离到单独的 `another~index.bundle.js` 中 ，并且将其从 `index.bundle.js` 和 `another.bundle.js` 中移除。
 
 构建结果：
 
@@ -106,7 +106,7 @@ Entrypoint index = another~index.bundle.js index.bundle.js
 [./src/shared.js] 24 bytes {another~index}
 ```
 
-## 动态导入(dynamic import)
+## 动态导入（dynamic import）
 
 当涉及到动态代码拆分时， Rspack 选择的方式是使用符合 ECMAScript 提案 的 `import()` 语法来实现动态导入。
 

@@ -679,7 +679,7 @@ module.exports = {
 };
 ```
 
-单个导出将被设置为 `module.exports` 中的属性。名称中的 "static" 是指输出是静态可分析的，因此具名导出可以通过 Node.js 导入到 ESM 中：
+单个导出将被设置为 `module.exports` 中的属性。名称中的“static”是指输出是静态可分析的，因此具名导出可以通过 Node.js 导入到 ESM 中：
 
 输入：
 
@@ -743,7 +743,7 @@ module.exports = {
 });
 ```
 
-请注意，根据 [对象赋值部分](#expose-via-object-assignment)，省略 `library.name` 将导致入口起点返回的所有属性直接赋值给根对象。示例：
+请注意，根据[对象赋值部分](#expose-via-object-assignment)，省略 `library.name` 将导致入口起点返回的所有属性直接赋值给根对象。示例：
 
 ```javascript
 module.exports = {
