@@ -1,3 +1,12 @@
+rspack-website/docs/en/config
+/index.mdx
+File metadata and controls
+
+Preview
+
+Code
+
+Blame
 # Configure Rspack
 
 Rspack provides configurations similar to webpack. This chapter will show you how to use the Rspack configuration.
@@ -18,17 +27,30 @@ module.exports = {
 
 ### Type Checking
 
-`rspack.config.js` is a JavaScript file, you can use the `defineConfig` helper to enable the IDE's Intellisense and TypeScript type checking.
+`rspack.config.js` is a JavaScript file, you can use JSDoc to enable the IDE's Intellisense and TypeScript type checking.
 
 ```js title="rspack.config.js"
-import { defineConfig } from '@rspack/cli';
+// @ts-check
+/** @type {import('@rspack/cli').RspackOptions} */
+const config = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+module.exports = config;
+```
+
+Alternatively, you can use the `defineConfig` helper:
+
+```js title="rspack.config.js"
+// @ts-check
+const { defineConfig } = require('@rspack/cli');
 
 const config = defineConfig({
   entry: {
     main: './src/index.js',
   },
 });
-
 module.exports = config;
 ```
 
