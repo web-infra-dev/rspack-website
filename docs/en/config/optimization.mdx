@@ -60,19 +60,21 @@ Whether to minimize the bundle.
 Customize the minimizer. When using a custom minimizer, the built-in minimizer will be disabled.
 
 ```js
-const minifyPlugin = require("@rspack/plugin-minify");
+const minifyPlugin = require('@rspack/plugin-minify');
 module.exports = {
-	context: __dirname,
-	target: "node",
-	entry: {
-		main: "./index.js"
-	},
-	optimization: {
-		minimize: true,
-		minimizer: [new minifyPlugin(
-          minifier: "terser"
-        )]
-	}
+  context: __dirname,
+  target: 'node',
+  entry: {
+    main: './index.js',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new minifyPlugin({
+        minifier: 'terser',
+      }),
+    ],
+  },
 };
 ```
 

@@ -61,19 +61,21 @@ EntryChunk2(index.js, a.js, b.js)
 自定义压缩器。当使用自定义压缩器时，内置压缩器将会被禁用。
 
 ```js
-const minifyPlugin = require("@rspack/plugin-minify");
+const minifyPlugin = require('@rspack/plugin-minify');
 module.exports = {
-	context: __dirname,
-	target: "node",
-	entry: {
-		main: "./index.js"
-	},
-	optimization: {
-		minimize: true,
-		minimizer: [new minifyPlugin(
-          minifier: "terser"
-        )]
-	}
+  context: __dirname,
+  target: 'node',
+  entry: {
+    main: './index.js',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new minifyPlugin({
+        minifier: 'terser',
+      }),
+    ],
+  },
 };
 ```
 
