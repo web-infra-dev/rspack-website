@@ -18,17 +18,30 @@ module.exports = {
 
 ### 配置类型检查
 
-`rspack.config.js` 是一个 JavaScript 文件，你可以通过 `defineConfig` 工具函数来启用 IDE 的智能补全和 TypeScript 类型检查。
+`rspack.config.js` 是一个 JavaScript 文件，你可以通过 JSDoc 来启用 IDE 的智能补全和 TypeScript 类型检查。
 
 ```js title="rspack.config.js"
-import { defineConfig } from '@rspack/cli';
+// @ts-check
+/** @type {import('@rspack/cli').RspackOptions} */
+const config = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+module.exports = config;
+```
+
+你也可以使用 `defineConfig` 工具函数：
+
+```js title="rspack.config.js"
+// @ts-check
+const { defineConfig } = require('@rspack/cli');
 
 const config = defineConfig({
   entry: {
     main: './src/index.js',
   },
 });
-
 module.exports = config;
 ```
 
