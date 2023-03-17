@@ -1,4 +1,4 @@
-# Resolve 模块解析
+# 模块解析（Resolve）
 
 用于配置 Rspack 模块解析逻辑。
 
@@ -38,7 +38,7 @@
 - **类型：** `string[]`
 - **默认值：** `[".tsx", ".jsx", ".ts", ".js", ".json", ".d.ts"]`
 
-按照顺序解析模块，例如 `require('./index')`, 会依次尝试解析 `'./index.tsx'`, `'./index.jsx'`...
+按照顺序解析模块，例如 `require('./index')`，会依次尝试解析 `'./index.tsx'`、`'./index.jsx'`...
 
 ## resolve.fallback
 
@@ -92,4 +92,4 @@
 - **类型：** `string | undefined`
 - **默认值：** `undefined`
 
-使用 tsconfigPath 的 `paths` 和 `baseUrl`, 功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。
+使用 tsconfigPath 的 `paths` 和 `baseUrl`，功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。

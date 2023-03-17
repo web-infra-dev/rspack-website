@@ -29,19 +29,19 @@ require.context(
 );
 ```
 
-添加 `directory` 、`includeSubdirs`，可以对引入的模块进行更精细控制。如果 `mode` 被设置为 `lazy`，模块将会被异步加载。
+添加 `directory`、`includeSubdirs`，可以对引入的模块进行更精细控制。如果 `mode` 被设置为 `lazy`，模块将会被异步加载。
 
 ## 模块变量
 
-### module.hot (webpack 专用)
+### module.hot（webpack 专用）
 
-是否启用了热模块替换，暴露此对象并且导出一些方法，详情见[HMR API](/api/hmr)页面。
+是否启用了热模块替换，暴露此对象并且导出一些方法，详情见 [HMR API](/api/hmr) 页面。
 
-### import.meta.webpackHot (webpack 专用)
+### import.meta.webpackHot（webpack 专用）
 
-`module.hot`的别名，但是`import.meta.webpackHot`可以在严格的 ESM 中使用，而 module.hot 不能。
+`module.hot` 的别名，但是 `import.meta.webpackHot` 可以在严格的 ESM 中使用，而 module.hot 不能。
 
-### \_\_dirname (NodeJS)
+### \_\_dirname（NodeJS）
 
 配置选项 `node.__dirname`。
 
@@ -51,9 +51,9 @@ require.context(
 
 如果在一个被 Parser 解析的表达式内部使用，则配置选项会被当作 true 处理。
 
-### \_\_resourceQuery (webpack 专用)
+### \_\_resourceQuery（webpack 专用）
 
-当前模块的资源查询(resource query) 。如果进行了如下的 require 调用，那么查询字符串(query string)在 file.js 中可访问。
+当前模块的资源查询（resource query）。如果进行了如下的 require 调用，那么查询字符串（query string）在 file.js 中可访问。
 
 ```ts
 require('file.js?test');
@@ -63,14 +63,14 @@ require('file.js?test');
 __resourceQuery === '?test';
 ```
 
-### **webpack_modules** (webpack 专用)
+### **webpack_modules**（webpack 专用）
 
 访问所有模块的内部对象。
 
-### **webpack_hash** (webpack 专用)
+### **webpack_hash**（webpack 专用）
 
-这个变量提供对编译过程中(compilation)的 hash 信息的访问。
+这个变量提供对编译过程中（compilation）的 hash 信息的访问。
 
-### **webpack_public_path** (webpack 专用)
+### **webpack_public_path**（webpack 专用）
 
 等于配置选项的 [output.publicPath](/config/output#outputpublicpath)。
