@@ -29,7 +29,21 @@ const config = {
     main: './src/index.js',
   },
 };
+module.exports = config;
+```
 
+你也可以使用 `defineConfig` 工具函数，它提供了针对配置的自动补全：
+
+```js title="rspack.config.js"
+// @ts-check
+
+const { defineConfig } = require('@rspack/cli');
+
+const config = defineConfig({
+  entry: {
+    main: './src/index.js',
+  },
+});
 module.exports = config;
 ```
 
