@@ -49,7 +49,7 @@ $('.my-element').animate(/* ... */);
 
 ### 字符串
 
-根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var '`](#externalstypevar), [`'window'`](#externalstypewindow)) 或模块的名称（参见 `amd`, [`commonjs`](#externalstypecommonjs), [`module`](#externalstypemodule), `umd`)。
+根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var '`](#externalstypevar)、[`'window'`](#externalstypewindow)）或模块的名称（参见 `amd`、[`commonjs`](#externalstypecommonjs)、[`module`](#externalstypemodule)、`umd`）。
 
 如果你只定义 1 个 external，您也可以使用快捷语法：
 
@@ -71,7 +71,7 @@ module.exports = {
 };
 ```
 
-您可以使用 `${externalsType} ${libraryName}` 语法为外部指定 [外部库类型](#externalstype)。 它将覆盖 [externalsType](#externalstype) 选项中指定的默认外部库类型。
+您可以使用 `${externalsType} ${libraryName}` 语法为外部指定[外部库类型](#externalstype)。它将覆盖 [externalsType](#externalstype) 选项中指定的默认外部库类型。
 
 例如，如果外部库是一个 [CommonJS 模块](#externalstypecommonjs)，你可以指定
 
@@ -86,7 +86,7 @@ module.exports = {
 
 ### 对象
 
-带有 `{ root, amd, commonjs, ... }` 的对象只允许用于 [`libraryTarget: 'umd'`](/config/output.html#outputlibrarytarget) 和 [`externalsType: 'umd'`](#externalstype）。其他库的 target 不允许这样做。
+带有 `{ root, amd, commonjs, ... }` 的对象只允许用于 [`libraryTarget: 'umd'`](/config/output.html#outputlibrarytarget) 和 [`externalsType: 'umd'`](#externalstype)。其他库的 target 不允许这样做。
 
 ```javascript
 module.exports = {

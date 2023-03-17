@@ -77,15 +77,15 @@ module.exports = {
 - **类型：** `string`
 - **默认值：** `'[local]'`
 
-此选项仅在 `'autoLabel'` 设置为 `'dev-only'` 或 `'always'` 时有效。允许你自定义添加的 `label` 的结构。通过字符串定义，其中可变部分用方括号 `'[]'` 括起来。例如对于标签: `'my-classname——[local]'`，其中 `'[local]'` 将被替换为样式变量的名称。
+此选项仅在 `'autoLabel'` 设置为 `'dev-only'` 或 `'always'` 时有效。允许你自定义添加的 `label` 的结构。通过字符串定义，其中可变部分用方括号 `'[]'` 括起来。例如对于标签：`'my-classname——[local]'`，其中 `'[local]'` 将被替换为样式变量的名称。
 
 允许的值:
 
-- `'[local]'` - CSS 或样式表达式所在的文件名称
-- `'[filename]'` - CSS 或样式表达式所在的文件名称(不带扩展名)。
-- `'[dirname]'` - 包含 CSS 或样式表达式所在文件的目录名。
+- `'[local]'`——CSS 或样式表达式所在的文件名称
+- `'[filename]'`——CSS 或样式表达式所在的文件名称(不带扩展名)。
+- `'[dirname]'`——包含 CSS 或样式表达式所在文件的目录名。
 
-该配置只会影响表达式中的 `label` ，这意味着 CSS 前缀和 hash 会自动被添加。
+该配置只会影响表达式中的 `label`，这意味着 CSS 前缀和 hash 会自动被添加。
 
 ### sourceMap
 
