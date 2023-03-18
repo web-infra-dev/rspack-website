@@ -23,7 +23,7 @@ module.exports = {
 ```js title="rspack.config.js"
 // @ts-check
 
-/** @type {import('@rspack/cli').RspackOptions} */
+/** @type {import('@rspack/cli').Configuration} */
 const config = {
   entry: {
     main: './src/index.js',
@@ -46,6 +46,32 @@ const config = defineConfig({
 });
 module.exports = config;
 ```
+
+Alternatively, you can use TypeScript as configuration file. The default TypeScript configuration file name is `rspack.config.ts`.
+
+```ts title="rspack.config.ts"
+import { Configuration } from '@rspack/cli'
+
+const config: Configuration = {
+  entry: {
+    main: './src/index.js',
+  },
+};
+
+export = config;
+```
+
+You need to install `ts-node` as `devDependencies` so that rspack can resolve the `ts` extension.
+
+```json title="package.json"
+{
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
+}
+```
+
+Note that rspack will first search JavaScript and then TypeScript if the JS file does not exist.
 
 ## Specify the Configuration File
 
