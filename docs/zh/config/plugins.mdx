@@ -13,7 +13,7 @@ interface RspackPluginInstance {
 }
 ```
 
-其中，Compiler 上提供的接口可以参考 (plugin api)[../api/plugin-api]。
+其中，Compiler 上提供的接口可以参考 [plugin api](../api/plugin-api)。
 
 用法：
 
@@ -25,7 +25,7 @@ class CustomPlugin {
 }
 
 module.exports = {
-  plugin: [new CustomPlugin()],
+  plugins: [new CustomPlugin()],
 };
 ```
 
@@ -43,6 +43,6 @@ function customPlugin(compiler) {
 }
 
 module.exports = {
-  plugin: [customPlugin],
+  plugins: [customPlugin],
 };
 ```
