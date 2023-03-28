@@ -199,7 +199,7 @@ Installing Tailwind CSS as a PostCSS plugin is the most seamless way to integrat
 
 #### Install Tailwind CSS
 
-Please install [tailwindcss](https://tailwindcss.com/), [postcss](https://postcss.org/) and [postcss-loader](https://www.npmjs.com/package/) in your project.
+Please install [tailwindcss](https://tailwindcss.com/),[autoprefixer](https://github.com/postcss/autoprefixer),[postcss](https://postcss.org/) and [postcss-loader](https://www.npmjs.com/package/) in your project.
 
 import { Tabs, Tab } from '@theme';
 
@@ -207,7 +207,7 @@ import { Tabs, Tab } from '@theme';
   <Tab>
 
 ```sh
-npm install -D tailwindcss postcss postcss-loader
+npm install -D tailwindcss autoprefixer postcss postcss-loader
 ```
 
   </Tab>
@@ -215,7 +215,7 @@ npm install -D tailwindcss postcss postcss-loader
   <Tab>
 
 ```sh
-yarn add -D tailwindcss postcss postcss-loader
+yarn add -D tailwindcss autoprefixer postcss postcss-loader
 ```
 
   </Tab>
@@ -223,7 +223,7 @@ yarn add -D tailwindcss postcss postcss-loader
   <Tab>
 
 ```sh
-pnpm install -D tailwindcss postcss postcss-loader
+pnpm install -D tailwindcss autoprefixer postcss postcss-loader
 ```
 
   </Tab>
@@ -248,6 +248,7 @@ module.exports = {
               postcssOptions: {
                 plugins: {
                   tailwindcss: {},
+                  autoprefixer: {},
                 },
               },
             },

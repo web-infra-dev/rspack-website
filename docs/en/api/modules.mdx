@@ -6,7 +6,7 @@ import WebpackLicense from '../../../components/webpack-license';
 
 While Rspack supports multiple module syntaxes, we recommend following a single syntax for consistency and to avoid odd behaviors/bugs.
 
-### ES6(Recommended)
+### ES6 (Recommended)
 
 Rspack support ES6 module syntax natively, you can use static `import`、 `export` and `import()` syntax.
 
@@ -34,11 +34,11 @@ If mode is set to 'lazy', the underlying modules will be loaded asynchronously.
 
 ## Module Variables
 
-### module.hot(webpack-specific)
+### module.hot (webpack-specific)
 
 Indicates whether or not Hot Module Replacement is enabled and provides an interface to the process. See the [HMR API page](/api/hmr) for details.
 
-### import.meta.webpackHot(webpack-specific)
+### import.meta.webpackHot (webpack-specific)
 
 An alias for `module.hot`, however `import.meta.webpackHot` can be used in strict ESM while module.hot can't.
 
@@ -63,14 +63,14 @@ require('file.js?test');
 __resourceQuery === '?test';
 ```
 
-### **webpack_modules**(webpack-specific)
+### webpack_modules (webpack-specific)
 
 Access to the internal object of all modules.
 
-### **webpack_hash**(webpack-specific)
+### webpack_hash (webpack-specific)
 
 It provides access to the hash of the compilation.
 
-### **webpack_public_path**(webpack-specific)
+### webpack_public_path (webpack-specific)
 
 Equals the configuration option's [`output.publicPath`](/config/output#outputpublicpath).

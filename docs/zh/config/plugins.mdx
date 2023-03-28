@@ -25,7 +25,7 @@ class CustomPlugin {
 }
 
 module.exports = {
-  plugin: [new CustomPlugin()],
+  plugins: [new CustomPlugin()],
 };
 ```
 
@@ -43,6 +43,6 @@ function customPlugin(compiler) {
 }
 
 module.exports = {
-  plugin: [customPlugin],
+  plugins: [customPlugin],
 };
 ```
