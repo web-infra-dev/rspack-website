@@ -4,7 +4,7 @@
 
 ## 更新依赖
 
-首先，我们需要更新依赖，将 Create React App 的依赖全部卸载，然后安装 @rspack/cli 依赖，并更新对应的启动脚本
+首先，我们需要更新依赖，将 Create React App 的依赖全部卸载，然后安装 @rspack/cli 依赖，并更新对应的启动脚本。注意，此处使用的 `copy-webpack-plugin` 是 5.x 版本，而不是最新版本。使用 `npm install copy-webpack-plugin@5` 安装。
 
 ```diff title=package.json
 {
