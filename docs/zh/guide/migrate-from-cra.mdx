@@ -4,14 +4,13 @@
 
 ## 更新依赖
 
-首先，我们需要更新依赖，将 Create React App 的依赖全部卸载，然后安装 @rspack/cli 依赖，并更新对应的启动脚本。注意，此处使用的 `copy-webpack-plugin` 是 5.x 版本，而不是最新版本。使用 `npm install copy-webpack-plugin@5` 安装。
+首先，我们需要更新依赖，将 Create React App 的依赖全部卸载，然后安装 @rspack/cli 依赖，并更新对应的启动脚本。
 
 ```diff title=package.json
 {
   "dependencies": {
 -    "react-scripts": "5.0.1"
-+    "@rspack/cli": "latest",
-+    "copy-webpack-plugin": "5.1.2"
++    "@rspack/cli": "latest"
   },
   "scripts": {
 -    "start": "react-scripts start",
@@ -42,15 +41,14 @@ module.exports = {
         template: './index.html', // 对齐 CRA 生成index.html
       },
     ],
+    copy: {
+      patterns: [
+        {
+          from: 'public',
+        },
+      ],
+    },
   },
-  plugins: [
-    new CopyPlugin([
-      {
-        from: 'public',
-        to: '.',
-      },
-    ]),
-  ], // 将 public 目录下的文件复制到 dist 目录下，对齐 CRA 的行为
 };
 ```
 
