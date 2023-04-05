@@ -399,6 +399,7 @@ export type CopyConfig = {
         globOptions?: {
           caseSensitiveMatch?: boolean; // Default to true
           dot?: boolean; // Default to true
+          ignore?: string[]; // ignore specific path
         };
       }[];
 };
@@ -406,16 +407,16 @@ export type CopyConfig = {
 
 - **Default:** `undefined`
 
-| Name               | Type                        | Default   | Description                                                                                                                                                                                                                         |
-| ------------------ | --------------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`             | `string`                    | undefined | The source path of the copy operation, which can be an absolute path, a relative path, or a glob search string. It can refer to a file or a directory. If a relative path is passed, it is relative to the `context` configuration. |
-| `to`               | `string`                    | undefined | The destination of the copy operation, which can be an absolute path, a relative path, or a template string, such as `'[name].[hash][ext]'`. If not specified, it is equal to output path.                                          |
-| `context`          | `string`                    | undefined | This configuration determines how the "from" path is matched and the resulting structure after copying.                                                                                                                             |
-| `toType`           | `'dir'\|'file'\|'template'` | undefined | Specify the type of `to`, which can be a directory, a file, or a template name in rspack. If not specified, it will be automatically inferred.                                                                                      |
-| `noErrorOnMissing` | `boolean`                   | false     | Ignore error if there are missing files or directories.                                                                                                                                                                             |
-| `force`            | `boolean`                   | false     | Wether to overwrite the asset if it already exist                                                                                                                                                                                   |
-| `priority`         | `number`                    | 0         | When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.                                                                                                |
-| `globOptions`      | `object`                    | undefined | The configuration for glob queries: `caseSensitiveMatch` determines whether the matching is case sensitive, and `dot` determines whether files starting with . are matched.                                                         |
+| Name               | Type                        | Default   | Description                                                                                                                                                                                                                                                           |
+| ------------------ | --------------------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from`             | `string`                    | undefined | The source path of the copy operation, which can be an absolute path, a relative path, or a glob search string. It can refer to a file or a directory. If a relative path is passed, it is relative to the `context` configuration.                                   |
+| `to`               | `string`                    | undefined | The destination of the copy operation, which can be an absolute path, a relative path, or a template string, such as `'[name].[hash][ext]'`. If not specified, it is equal to output path.                                                                            |
+| `context`          | `string`                    | undefined | This configuration determines how the "from" path is matched and the resulting structure after copying.                                                                                                                                                               |
+| `toType`           | `'dir'\|'file'\|'template'` | undefined | Specify the type of `to`, which can be a directory, a file, or a template name in rspack. If not specified, it will be automatically inferred.                                                                                                                        |
+| `noErrorOnMissing` | `boolean`                   | false     | Ignore error if there are missing files or directories.                                                                                                                                                                                                               |
+| `force`            | `boolean`                   | false     | Wether to overwrite the asset if it already exist                                                                                                                                                                                                                     |
+| `priority`         | `number`                    | 0         | When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.                                                                                                                                  |
+| `globOptions`      | `object`                    | undefined | The configuration for glob queries: `caseSensitiveMatch` determines whether the matching is case sensitive, and `dot` determines whether files starting with . are matched. `ignore` is an array of strings in glob format that can be used to ignore specific paths. |
 
 For example:
 
