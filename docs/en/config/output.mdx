@@ -215,6 +215,23 @@ module.exports = {
 
 For all asset resources, their request URLs look like this: `https://cdn.example.com/assets/logo.png`.
 
+### Dynamically set publicPath
+
+You can set `publicPath` dynamically using `__webpack_public_path__` in the runtime code, and the `__webpack_public_path__` will override the `publicPath` in the Rspack config, but it will only take effect for dynamically loaded resources.
+
+First create a `publicPath.js`:
+
+```js title="publicPath.js"
+__webpack_public_path__ = 'https://cdn.example.com/assets/';
+```
+
+Then import it into the first line of the entry file:
+
+```js title="entry.js"
+import './publicPath.js';
+import './others.js';
+```
+
 ## output.strictModuleErrorHandling
 
 - **Type:** `boolean`

@@ -215,6 +215,23 @@ module.exports = {
 
 对于所有 asset 资源，它们的请求 URL 看起来像是这样：`https://cdn.example.com/assets/logo.png`。
 
+### 动态设置 publicPath
+
+在运行时代码中，你可以通过 `__webpack_public_path__` 来动态设置 `publicPath`，`__webpack_public_path__` 会覆盖 Rspack 配置中的 `publicPath`，但只能对异步加载的资源生效。
+
+首先创建一个 `publicPath.js`：
+
+```js title="publicPath.js"
+__webpack_public_path__ = 'https://cdn.example.com/assets/';
+```
+
+然后在入口文件的第一行引入它即可：
+
+```js title="entry.js"
+import './publicPath.js';
+import './others.js';
+```
+
 ## output.strictModuleErrorHandling
 
 - **类型：** `boolean`
