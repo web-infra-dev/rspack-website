@@ -4,9 +4,9 @@ import WebpackLicense from '../../../components/webpack-license';
 
 <WebpackLicense from="https://webpack.docschina.org/configuration/optimization/" />
 
-# Optimization 优化
+# Optimization
 
-Rspack 会根据 [mode](/config/mode) 来选择合适的优化配置。同时，你也可以通过 [optimization](/config/optimization) 来自定义优化配置。
+优化：该选项用于自定义优化配置。你可以通过 [optimization](/config/optimization) 来自定义优化配置。默认情况下，Rspack 会根据 [mode](/config/mode) 来选择合适的优化配置。
 
 ## optimization.removeAvailableModules
 
@@ -22,7 +22,7 @@ EntryChunk(index.js, a.js, b.js)
 EntryChunk2(index.js, a.js, b.js)
 ```
 
-在上面的例子中，`b.js` 都已经被包含在 `EntryChunk` 和 `EntryChunk2` ，所以 `b.js` 可以从 `ChunkFoo` 中移除。
+在上面的例子中，`b.js` 都已经被包含在 `EntryChunk` 和 `EntryChunk2`，所以 `b.js` 可以从 `ChunkFoo` 中移除。
 
 :::info Webpack 的差异点
 
@@ -34,10 +34,10 @@ EntryChunk2(index.js, a.js, b.js)
 
 <PropertyType.CN type="'named' | 'deterministic'" />
 
-| 选项            | 描述                                                                                      |
-| --------------- | ----------------------------------------------------------------------------------------- |
-| `named`         | 使用有意义、方便调试的内容当作模块 id。此选项会在开发环境下默认开启。                    |
-| `deterministic` | 使用对模块标识符哈希后的数字当作模块 id， 有益于长期缓存。此选项会在生产环境下默认开启。 |
+| 选项            | 描述                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------- |
+| `named`         | 使用有意义、方便调试的内容当作模块 id。此选项会在开发环境下默认开启。                   |
+| `deterministic` | 使用对模块标识符哈希后的数字当作模块 id，有益于长期缓存。此选项会在生产环境下默认开启。 |
 
 ## optimization.minimize
 
@@ -103,7 +103,7 @@ module.exports = {
 }
 ```
 
-告诉 Rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules` (模块配置中的规则)，当模块导出都未被使用且模块本身没有副作用时跳过模块及其子树。
+告诉 Rspack 识别 package.json 中的 `sideEffects` 标志或者 `module.rules`（模块配置中的规则），当模块导出都未被使用且模块本身没有副作用时跳过模块及其子树。
 
 `optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。这种配置项开启后有额外的构建时间开销，但移除模块对性能有积极影响，因为这意味着更少的代码生成。这种优化的效果取决于你的代码库。
 
@@ -118,7 +118,7 @@ module.exports = {
 };
 ```
 
-如果你只想使用 通过(package.json 和 `module.rule.sideEffects`) 配置的 `sideEffects`，而不想分析代码:
+如果你只想使用通过（`package.json` 和 `module.rule.sideEffects`）配置的 `sideEffects`，而不想分析代码:
 
 **rspack.config.js**
 
@@ -132,7 +132,7 @@ module.exports = {
 ```
 
 :::info Tip
-`optimization.sideEffects` 为 `true` 时， Rspack 会在一个模块中所有的 statement 都没有副作用时标记该模块为无副作用。
+`optimization.sideEffects` 为 `true` 时，Rspack 会在一个模块中所有的语句（statement）都没有副作用时标记该模块为无副作用。
 :::
 
 ## optimization.splitChunks
@@ -143,9 +143,9 @@ Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行�
 
 开箱即用的 `SplitChunksPlugin` 对于大部分用户来说非常友好。
 
-默认情况下，它只会影响到按需加载的 chunks，因为初始 chunks 会影响到项目的 HTML 文件中的脚本标签。
+默认情况下，它只会影响到按需加载的 chunk，因为初始 chunk 会影响到项目的 HTML 文件中的脚本标签。
 
-rspack 将根据以下条件自动拆分 chunks：
+rspack 将根据以下条件自动拆分 chunk：
 
 - 新的 chunk 可以被共享，或者模块来自于 `node_modules` 文件夹
 - 新的 chunk 体积大于 20kb（在进行 min+gz 之前的体积）
@@ -213,7 +213,7 @@ Rspack 不允许将 entry 名称传递给 `{cacheGroup}.test` 或者为 `{cacheG
 - **类型：** `string | (chunk: Chunk) => boolean`
 - **默认值：** `'~'`
 
-这表明将选择哪些 chunk 进行优化。当提供一个字符串，有效值为 `all` ， `async` 和 `initial` 。设置为 `all` 可能特别强大，因为这意味着 chunk 可以在异步和非异步 chunk 之间共享。
+这表明将选择哪些 chunk 进行优化。当提供一个字符串，有效值为 `all` ，`async` 和 `initial`。设置为 `all` 可能特别强大，因为这意味着 chunk 可以在异步和非异步 chunk 之间共享。
 
 ```js title=rspack.config.js
 module.exports = {
@@ -246,14 +246,14 @@ module.exports = {
 - **类型：** `number`
 - **默认值：** `1`
 
-拆分前必须共享模块的最小 chunks 数。
+拆分前必须共享模块的最小 chunk 数。
 
 ### splitChunks.minSize
 
 - **类型：** `number`
 - **默认值：** `20000`
 
-生成 chunk 的最小体积（以 bytes 为单位）。
+生成 chunk 的最小体积（以字节为单位）。
 
 ### splitChunks.enforceSizeThreshold
 
@@ -271,7 +271,7 @@ module.exports = {
 - **类型：** `number`
 - **默认值：** `0`
 
-在 webpack 5 中引入了 `splitChunks.minRemainingSize` 选项，通过确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块。'development' 模式 中默认为 0。对于其他情况， `splitChunks.minRemainingSize` 默认为 `splitChunks.minSize` 的值，因此除需要深度控制的极少数情况外，不需要手动指定它。
+在 webpack 5 中引入了 `splitChunks.minRemainingSize` 选项，通过确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块。开发（development）模式中默认为 0。对于其他情况，`splitChunks.minRemainingSize` 默认为 `splitChunks.minSize` 的值，因此除需要深度控制的极少数情况外，不需要手动指定它。
 
 :::warning
 
@@ -291,7 +291,7 @@ module.exports = {
 
 :::info
 
-`splitChunks.cacheGroups.{cacheGroup}.name` 可以用来将模块移到其所属 Chunk 的的父 Chunk 中。例如，使用 `name: "entry-name "`来将模块移到 `entry-name` chunk 中。你也可以使用按需命名的 chunk ，但你必须注意所选的模块只在这个 chunk 下使用。
+`splitChunks.cacheGroups.{cacheGroup}.name` 可以用来将模块移到其所属 Chunk 的的父 Chunk 中。例如，使用 `name: "entry-name "` 来将模块移到 `entry-name` chunk 中。你也可以使用按需命名的 chunk，但你必须注意所选的模块只在这个 chunk 下使用。
 
 :::
 
@@ -317,14 +317,14 @@ module.exports = {
 - **类型：** `number`
 - **默认值：** `-20`
 
-一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority` （优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0` ）。
+一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority`（优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0`）。
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.reuseExistingChunk
 
 - **类型：** `boolean`
 - **默认值：** `true`
 
-一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority` （优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0` ）。
+一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority`（优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0`）。
 
 如果当前 chunk 包含已从主 chunk 中拆分出的模块，则它将被重用，而不是生成新的模块。这可能会影响 chunk 的结果文件名。
 
