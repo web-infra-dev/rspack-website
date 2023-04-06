@@ -300,7 +300,8 @@ export default defineConfig({
     lang: 'en',
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     markdown: {
-      checkDeadLinks: isProd,
+      checkDeadLinks: true,
+      experimentalMdxRs: true,
     },
     themeConfig: {
       footer: {
