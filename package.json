@@ -7,16 +7,17 @@
     "prepare": "husky install",
     "dev": "modern dev",
     "build": "modern build",
-    "format": "prettier docs/**/*.{md,mdx} --write",
     "spell": "npx cspell docs/**/*.{ts,tsx,js,jsx,md,mdx}",
     "caseCheck": "npx case-police docs/**/*.{md,mdx}",
-    "preview": "modern preview"
+    "preview": "modern preview",
+    "fix:md-x": "markdownlint-cli2-fix \"**/*.{md,mdx}\"",
+    "lint:md-x": "markdownlint-cli2 \"**/*.{md,mdx}\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "nano-staged": {
-    "*.{ts,tsx,js,jsx,md,mdx}": [
+    "*.{ts,tsx,js,jsx}": [
       "prettier --write",
       "npx cspell --cache"
     ]
@@ -35,6 +36,8 @@
     "@types/react": "^18.0.27",
     "case-police": "0.5.10",
     "husky": "^8.0.3",
+    "markdownlint-cli2": "^0.6.0",
+    "markdownlint-rule-search-replace": "^1.0.9",
     "nano-staged": "^0.8.0",
     "prettier": "^2.8.3",
     "typescript": "^4.9.4"

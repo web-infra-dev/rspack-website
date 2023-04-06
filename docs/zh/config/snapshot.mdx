@@ -21,7 +21,7 @@ type Snapshot = {
 };
 ```
 
-### snapshot.resolve
+## snapshot.resolve
 
 - **类型：** `object = {hash?: boolean, timestamp?: boolean}`
 
@@ -32,7 +32,7 @@ type Snapshot = {
 - hash：通过比较文件内容哈希来判断是否无效。（比 timestamp 更耗时，但更改的频率较低）。
 - timestamp：通过比较文件修改的时间戳来判断是否有效。
 
-### snapshot.module
+## snapshot.module
 
 - **类型：** `object = {hash?: boolean, timestamp?: boolean}`
 

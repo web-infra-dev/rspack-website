@@ -49,7 +49,7 @@ $('.my-element').animate(/* ... */);
 
 ### 字符串
 
-根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var '`](#externalstypevar)、[`'window'`](#externalstypewindow)）或模块的名称（参见 `amd`、[`commonjs`](#externalstypecommonjs)、[`module`](#externalstypemodule)、`umd`）。
+根据 [externalsType](#externalstype)，这可能是全局变量的名称（参见 [`'global'`](#externalstypeglobal)、[`'this'`](#externalstypethis)、[`'var'`](#externalstypevar)、[`'window'`](#externalstypewindow)）或模块的名称（参见 `amd`、[`commonjs`](#externalstypecommonjs)、[`module`](#externalstypemodule)、`umd`）。
 
 如果你只定义 1 个 external，您也可以使用快捷语法：
 
@@ -194,9 +194,15 @@ const jq = global['$'];
 jq('.my-element').animate(/* ... */);
 ```
 
+### externalsType.module
+
+将默认的 externals 设置为 `'module'`。Webpack 将为模块中使用的外部对象生成像 `import * as X from '...'` 的代码。
+
+注意，输出 bundle 中将会有 `import` 语句。
+
 ### externalsType.node-commonjs
 
-将 externals 类型设置为 `'node-commonjs'`，webpack 将从 `module` 中导入 `createRequire` 来构造一个 require 函数，用于加载模块中使用的外部对象。
+将默认的 externals 类型设置为 `'node-commonjs'`。webpack 将从 `module` 中导入 `createRequire` 来构造一个 require 函数，用于加载模块中使用的外部对象。
 
 ```javascript
 import jq from 'jquery';

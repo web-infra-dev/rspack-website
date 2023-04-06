@@ -2,7 +2,7 @@
 
 Rspack has built-in devServer for development and debugging, which includes features like HMR and proxy server.
 
-### HMR
+## HMR
 
 By default, Rspack enables HMR in dev mode. You can disable HMR by configuring the `devServer.hot` option in `rspack.config.js`.
 
@@ -14,7 +14,7 @@ module.exports = {
 };
 ```
 
-### Proxy
+## Proxy
 
 Rspack has a built-in simple proxy server. You can enable the proxy server by configuring the `devServer.proxy` option in `rspack.config.js`. The devServer internally uses [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) to implement the proxy function. For example, you can proxy `/api` to `http://localhost:3000` as follows:
 

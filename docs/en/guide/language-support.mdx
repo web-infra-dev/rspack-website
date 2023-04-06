@@ -14,7 +14,7 @@ For maximum speed, Rspack transpiles TypeScript source code without performing a
 
 ### isolatedModules
 
-To maximize parallelism, Rspack will transpile each module separately. This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
+To maximize parallelism, Rspack will transpile each module separately. This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
 
 ```json title="tsconfig.json"
 {
@@ -31,7 +31,7 @@ To maximize parallelism, Rspack will transpile each module separately. This impl
 {
 // TODO: link to builtin
 }
-If you are using renderer other than React, you can configure the JSX transpilation with the [builtins.react]() option. For example, if you are using the [Preact](https://preactjs.com/) renderer:
+If you are using renderer other than React, you can configure the JSX transpilation with the `builtins.react` option. For example, if you are using the [Preact](https://preactjs.com/) renderer:
 
 ```ts title="rspack.config.js"
 module.exports = {

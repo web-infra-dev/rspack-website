@@ -9,7 +9,7 @@ Used to set the built-in functions provided by Rspack.
 
 :::warning Stability Warning
 
-The built-in functionality provided by _builtins_ may change in the future or be replaced with a better solution, so please note the changes to the builtins when you upgrade and we will highlight them in the [Release Notes](https://github.com/web-infra-dev/rspack/releases).
+The built-in functionality provided by *builtins* may change in the future or be replaced with a better solution, so please note the changes to the builtins when you upgrade and we will highlight them in the [Release Notes](https://github.com/web-infra-dev/rspack/releases).
 
 :::
 
@@ -338,15 +338,15 @@ type BuiltinsCssModules = {
 };
 ```
 
-| Name               | Type                                                                   | Default                                                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                               | `asIs` Class names will be exported as is.<br/> `camelCase` Class names will be camelized, the original class name will not to be removed from the locals.<br/> `camelCaseOnly` Class names will be camelized, the original class name will be removed from the locals.<br/> `dashes` Only dashes in class names will be camelized.<br/> `dashesOnly` Dashes in class names will be camelized, the original class name will be removed from the locals. |
-| `localIdentName`   | `string`                                                               | production: '[hash]'<br/>development: '[path][name][ext]\_\_[local]" | The generated local ident name. Supported template strings: <br/>`hash` hash string.<br/>`hash:<length>` hash with hash settings.<br/>`path` the path of the resource relative to the **context** option.<br/>`name` the basename of the resource.<br/>`ext` extension with leading `.`.<br/>`local` original class.                                                                                                                                    |
-| `exportsOnly`      | `boolean`                                                              | false                                                                | Only export js object, without css file. Useful in SSR.                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Name               | Type                                                                   | Default                                                                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------ | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                                 | `asIs` Class names will be exported as is.<br/> `camelCase` Class names will be camelized, the original class name will not to be removed from the locals.<br/> `camelCaseOnly` Class names will be camelized, the original class name will be removed from the locals.<br/> `dashes` Only dashes in class names will be camelized.<br/> `dashesOnly` Dashes in class names will be camelized, the original class name will be removed from the locals. |
+| `localIdentName`   | `string`                                                               | production: '[hash]'<br/>development: '[path]\[name]\[ext]\_\_[local]" | The generated local ident name. Supported template strings: <br/>`hash` hash string.<br/>`hash:<length>` hash with hash settings.<br/>`path` the path of the resource relative to the **context** option.<br/>`name` the basename of the resource.<br/>`ext` extension with leading `.`.<br/>`local` original class.                                                                                                                                    |
+| `exportsOnly`      | `boolean`                                                              | false                                                                  | Only export js object, without css file. Useful in SSR.                                                                                                                                                                                                                                                                                                                                                                                                 |
 
-{/* ## builtins.postcss */}
+{/*## builtins.postcss*/}
 
-{/* ## builtins.treeShaking */}
+{/*## builtins.treeShaking*/}
 
 ## builtins.progress
 
@@ -364,7 +364,7 @@ This configuration can be used to control progress, `false` means to turn off pr
 | -------- | -------- | -------- | --------------------------------------- |
 | `prefix` | `string` | 'Rspack' | The text displayed before the progress. |
 
-{/* ## builtins.noEmitAssets */}
+{/*## builtins.noEmitAssets*/}
 
 ## builtins.devFriendlySplitChunks
 

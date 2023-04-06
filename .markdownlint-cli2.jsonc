@@ -1,0 +1,54 @@
+{
+  "config": {
+    "default": true,
+    "MD013": false,
+    // Enable to use `$` in the code
+    "MD014": false,
+    "MD033": {
+      "allowed_elements": [
+        "WebpackLicense",
+        "PropertyType",
+        "br",
+        "Tabs",
+        "Tab",
+        "audio",
+        "source",
+        "div",
+        "span",
+        "p",
+        "a",
+        "img",
+        "RandomMemberList",
+        "Plugin"
+      ]
+    },
+    "MD036": false,
+    // Enable to unmark language in the code
+    "MD040": false,
+    // Don't start with `#`, not recommended
+    "MD041": false,
+    "MD049": {
+      "style": "asterisk"
+    },
+    "search-replace": {
+      "rules": [
+        {
+          "name": "double-spaces",
+          "message": "Avoid double spaces",
+          "searchPattern": "/([^\\s>])  ([^\\s|])/g",
+          "replace": "$1 $2",
+          "skipCode": true
+        },
+        {
+          "name": "trailing-spaces",
+          "message": "Avoid trailing spaces",
+          "searchPattern": "/  +$/gm",
+          "replace": "",
+          "skipCode": false
+        }
+      ]
+    }
+  },
+  "customRules": ["markdownlint-rule-search-replace"],
+  "ignores": ["node_modules", ".github/"]
+}
