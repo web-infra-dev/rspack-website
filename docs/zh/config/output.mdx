@@ -124,6 +124,44 @@ module.exports = {
 
 此选项决定了非初始（non-initial）CSS chunk 文件的名称。
 
+## output.crossOriginLoading
+
+- **类型：** `false | 'anonymous' | 'use-credentials'`
+- **默认值：** `false`
+
+通过 `crossOriginLoading` 配置项，你可以为动态加载的 chunks 设置 [crossorigin 属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin)。
+
+当 `target` 为 `'web'` 时，Rspack 会动态创建 `<script>` 和 `<link>` 标签来加载异步的 JavaScript 和 CSS 资源。如果这些资源的 URL 在其他域名下，且 `crossOriginLoading` 不为 `false`，那么 Rspack 会为 `<script>` 和 `<link>` 标签添加 `crossorigin` 属性。
+
+### 可选值
+
+`crossOriginLoading` 有以下可选值：
+
+- `false`: 不设置 [crossorigin 属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin)。
+- `'anonymous'`：将 `crossorigin` 设置为 `'anonymous'`，不包含用户凭据来跨域加载资源。
+- `'use-credentials'`：将 `crossorigin` 设置为 `'use-credentials'`，包含用户凭据来跨域加载资源。
+
+### 示例
+
+比如将 `output.publicPath` 设置为 `https://example.com/`，并将 `output.crossOriginLoading` 设置为 `'anonymous'`：
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  output: {
+    publicPath: 'https://example.com/',
+    crossOriginLoading: 'anonymous',
+  },
+};
+```
+
+当 Rspack 在加载异步的 JavaScript 资源时，会生成如下的 HTML：
+
+```html
+<script src="https://example.com/foo.js" crossorigin="anonymous"></script>
+```
+
 ## output.path
 
 - **类型：** `string`
