@@ -124,6 +124,44 @@ This option determines the name of the CSS file.
 
 This option determines the name of the non-initial CSS chunk file.
 
+## output.crossOriginLoading
+
+- **Type:** `false | 'anonymous' | 'use-credentials'`
+- **Default:** `false`
+
+The `crossOriginLoading` config allows you to set the [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin) for dynamically loaded chunks.
+
+If `target` is `'web'`, Rspack will dynamically create `<script>` and `<link>` tags to load asynchronous JavaScript and CSS resources. Rspack will add the `crossorigin` attribute to the `<script>` and `<link>` tags if the URLs of these resources are on other domains and `crossOriginLoading` is not `false`.
+
+### Optional values
+
+`crossOriginLoading` has the following optional values:
+
+- `false`: Do not set the [crossorigin attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin).
+- `'anonymous'`: Set `crossorigin` to `'anonymous'` to enable cross-origin without user credentials.
+- `'use-credentials'`: Set `crossorigin` to `'use-credentials'` enable cross-origin with user credentials.
+
+### Example
+
+For example, set `output.publicPath` to `https://example.com/` and `output.crossOriginLoading` to `'anonymous'`:
+
+```ts title="rspack.config.js"
+const path = require('path');
+
+module.exports = {
+  output: {
+    publicPath: 'https://example.com/',
+    crossOriginLoading: 'anonymous',
+  },
+};
+```
+
+When Rspack dynamically loads JavaScript resources, it will generate the following HTML:
+
+```html
+<script src="https://example.com/foo.js" crossorigin="anonymous"></script>
+```
+
 ## output.path
 
 - **Type:** `string`
