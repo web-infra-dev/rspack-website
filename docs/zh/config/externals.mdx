@@ -2,15 +2,15 @@ import WebpackLicense from '../../../components/webpack-license';
 
 <WebpackLicense from="https://webpack.docschina.org/configuration/externals/" />
 
-# Externals 外部依赖
+# Externals
 
-`externals` 配置选项提供了「从输出的 bundle 中排除依赖」的方法。相反，所创建的 bundle 依赖于那些存在于用户环境(consumer's environment)中的依赖。此功能通常对 **library 开发人员**来说是最有用的，然而也会有各种各样的应用程序用到它。
+外部依赖：该选项提供了「从输出的 bundle 中排除依赖」的方法。相反，所创建的 bundle 依赖于那些存在于用户环境（consumer's environment）中的依赖。此功能通常对**库开发人员**来说是最有用的，然而也会有各种各样的应用程序用到它。
 
 ## externals
 
 - **类型：** `string | object`
 
-**防止**将某些 `import` 的包(package)**打包**到 bundle 中，而是在运行时(runtime)再去从外部获取这些*扩展依赖(external dependencies)*。
+**防止**将某些 `import` 的包（package）**打包**到 bundle 中，而是在运行时（runtime）再去从外部获取这些*扩展依赖*（external dependencies）。
 
 例如，从 CDN 引入 [jQuery](https://jquery.com/)，而不是把它打包：
 
@@ -43,7 +43,7 @@ import $ from 'jquery';
 $('.my-element').animate(/* ... */);
 ```
 
-上面 `rspack.config.js` 中 `externals` 下指定的属性名称 `jquery` 表示 `import $ from 'jquery'` 中的模块 `jquery` 应该从打包产物中排除。 为了替换这个模块，`jQuery` 值将用于检索全局 `jQuery` 变量，因为默认的外部库类型是 `var`，请参阅 [externalsType](#externalstype)。
+上面 `rspack.config.js` 中 `externals` 下指定的属性名称 `jquery` 表示 `import $ from 'jquery'` 中的模块 `jquery` 应该从打包产物中排除。为了替换这个模块，`jQuery` 值将用于检索全局 `jQuery` 变量，因为默认的外部库类型是 `var`，请参阅 [externalsType](#externalstype)。
 
 虽然我们在上面展示了一个使用外部全局变量的示例，但实际上可以以以下任何形式使用外部变量：全局变量、CommonJS、AMD、ES2015 模块，在 [externalsType](#externalstype) 中查看更多信息。
 

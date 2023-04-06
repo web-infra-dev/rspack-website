@@ -165,7 +165,6 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         ],
       },
     ],
-
     [getLink('/config/')]: [
       {
         text: getText('配置', 'Config'),

@@ -27,7 +27,7 @@ if (import.meta.webpackHot) {
 
 ### accept
 
-接受(accept)给定 `依赖模块(dependencies)` 的更新，并触发一个 `回调函数` 来响应更新，除此之外，你可以附加一个可选的 error 处理程序：
+接受（`accept`）给定依赖模块（`dependencies`）的更新，并触发回调函数（`callback`）来响应更新，除此之外，你可以附加一个可选的 error 处理程序：
 
 ```js
 module.hot.accept(
@@ -44,19 +44,19 @@ import.meta.webpackHot.accept(
 );
 ```
 
-当使用 ESM `import` 时，所有从 `dependencies` 中导入的符号都会自动更新。注意：依赖项字符串必须与 `import` 中的 `from` 字符串完全匹配。在某些情况下， 甚至可以省略 `callback`。在 `callback` 中使用的 `require()` 在这里没有任何意义。
+当使用 ESM `import` 时，所有从 `dependencies` 中导入的符号都会自动更新。注意：依赖项字符串必须与 `import` 中的 `from` 字符串完全匹配。在某些情况下，甚至可以省略 `callback`。在 `callback` 中使用的 `require()` 在这里没有任何意义。
 
 在使用 CommonJS 时，你应该通过 `callback` 中的 `require()` 手动更新依赖模块。省略 `callback` 在这里没有任何意义。
 
-#### errorHandler for accept
+#### 为 accept 设置错误处理程序
 
 `(err, {moduleId, dependencyId}) => {}`
 
-- `err`: 当使用 ESM 依赖项时，回调函数在第二个参数中或在依赖项执行期间抛出的错误。
-- `moduleId`: 当前模块 id。
-- `dependencyId`: (第一个)被更改依赖项的模块 id。
+- `err`：当使用 ESM 依赖项时，回调函数在第二个参数中或在依赖项执行期间抛出的错误。
+- `moduleId`：当前模块 id。
+- `dependencyId`：（第一个）被更改依赖项的模块 id。
 
-### accept (self)
+### accept（self）
 
 接受自身更新。
 
@@ -75,19 +75,19 @@ import.meta.webpackHot.accept(
 
 当执行此模块（或依赖模块）抛出异常时，会触发 `errorHandler`。
 
-#### errorHandler for self accept
+#### 为 accept 自身设置错误处理程序
 
 `(err, {moduleId, module}) => {}`
 
-- `err`: 计算新版本时的错误。
-- `moduleId`: 当前模块 id。
-- `module`: 当前模块实例。
-  - `module.hot`: 允许访问出错模块实例的 HMR API。一个常见的场景是再次自我接收（accept）。添加一个 dispose 处理程序来传递数据也是有意义的。注意，错误的模块可能已经部分执行，所以请确保不要进入不一致的状态。你可以使用 `module.hot.data` 存储部分状态。
-  - `module.exports`: 可以被重载，但是要小心，因为属性名在生产模式下可能会被破坏。
+- `err`：计算新版本时的错误。
+- `moduleId`：当前模块 id。
+- `module`：当前模块实例。
+  - `module.hot`：允许访问出错模块实例的 HMR API。一个常见的场景是再次自我接收（accept）。添加一个 dispose 处理程序来传递数据也是有意义的。注意，错误的模块可能已经部分执行，所以请确保不要进入不一致的状态。你可以使用 `module.hot.data` 存储部分状态。
+  - `module.exports`：可以被重载，但是要小心，因为属性名在生产模式下可能会被破坏。
 
 ### decline
 
-拒绝给定`依赖模块`的更新，使用 `'decline'` 方法强制更新失败。
+拒绝给定依赖模块（`dependencies`）的更新，使用 `'decline'` 方法强制更新失败。
 
 ```js
 module.hot.decline(
@@ -100,10 +100,9 @@ import.meta.webpackHot.decline(
 );
 ```
 
-将依赖模块标记为不可更新(not-update-able)。在处理「依赖的导出正在更新」或「尚未实现处理」时，这是有意义的。取决于你的 HMR 管理代码，
-此依赖模块（或其未接受的依赖模块）更新，通常会导致页面被完全重新加载。
+将依赖模块标记为不可更新(not-update-able)。在处理「依赖的导出正在更新」或「尚未实现处理」时，这是有意义的。取决于你的 HMR 管理代码，此依赖模块（或其未接受的依赖模块）更新，通常会导致页面被完全重新加载。
 
-### decline (self)
+### decline（self）
 
 拒绝自身更新。
 
@@ -114,9 +113,9 @@ module.hot.decline();
 import.meta.webpackHot.decline();
 ```
 
-将依赖模块标记为不可更新(not-update-able)。当此模块具有无法避免的外部作用(side-effect)，或者尚未对此模块进行 HMR 处理时，这是有意义的。取决于你的 HMR 管理代码，此依赖模块（或其未接受的依赖模块）更新，通常会导致页面被完全重新加载。
+将依赖模块标记为不可更新（not-update-able）。当此模块具有无法避免的副作用（side-effect），或者尚未对此模块进行 HMR 处理时，这是有意义的。取决于你的 HMR 管理代码，此依赖模块（或其未接受的依赖模块）更新，通常会导致页面被完全重新加载。
 
-### dispose (or addDisposeHandler)
+### dispose（或 addDisposeHandler）
 
 添加一个处理函数，在当前模块代码被替换时执行。此函数应该用于移除你声明或创建的任何持久资源。如果要将状态传入到更新过的模块，请添加给定 `data` 参数。更新后，此对象在更新之后可通过 `module.hot.data` 调用。
 
@@ -127,7 +126,7 @@ module.hot.dispose((data) => {
 
 // or
 import.meta.webpackHot.dispose((data) => {
-  // Clean up and pass data to the updated module...
+  // 清理并将 data 传递到更新后的模块...
 });
 ```
 
@@ -239,7 +238,7 @@ import.meta.webpackHot.status();
 | prepare     | 该进程正在准备更新（例如，下载已更新的模块）                              |
 | ready       | 此更新已准备并可用                                                        |
 | dispose     | 该进程正在调用将被替换模块的 `dispose` 处理函数                           |
-| apply       | 该进程正在调用 `accept` 处理函数，并重新执行自我接受(self-accepted)的模块 |
+| apply       | 该进程正在调用 `accept` 处理函数，并重新执行自我接受（self-accepted）的模块 |
 | abort       | 更新已中止，但系统仍处于之前的状态                                        |
 | fail        | 更新已抛出异常，系统状态已被破坏                                          |
 
@@ -297,14 +296,14 @@ import.meta.webpackHot
 
 可选的 `options` 对象可以包含以下属性：
 
-- `ignoreUnaccepted` (boolean): 忽略对不可接受的模块所做的更改。
-- `ignoreDeclined` (boolean): 忽略对已拒绝的模块所做的更改。
-- `ignoreErrored` (boolean): 忽略在接受处理程序、错误处理程序以及重新评估模块时抛出的错误。
-- `onDeclined` (function(info)): 拒绝模块的通知者。
-- `onUnaccepted` (function(info)): 不可接受的模块的通知程序。
-- `onAccepted` (function(info)): 可接受模块的通知者。
-- `onDisposed` (function(info)): 废弃模块的通知者。
-- `onErrored` (function(info)): 错误通知者。
+- `ignoreUnaccepted`（boolean）：忽略对不可接受的模块所做的更改。
+- `ignoreDeclined`（boolean）：忽略对已拒绝的模块所做的更改。
+- `ignoreErrored`（boolean）：忽略在接受处理程序、错误处理程序以及重新评估模块时抛出的错误。
+- `onDeclined`（function(info)）：拒绝模块的通知者。
+- `onUnaccepted`（function(info)）：不可接受的模块的通知程序。
+- `onAccepted`（function(info)）：可接受模块的通知者。
+- `onDisposed`（function(info)）：废弃模块的通知者。
+- `onErrored`（function(info)）：错误通知者。
 
 `info` 参数将是一个包含以下某些值的对象：
 
@@ -337,13 +336,13 @@ module.hot.addStatusHandler((status) => {
   // 响应当前状态...
 });
 
-// or
+// 或者
 import.meta.webpackHot.addStatusHandler((status) => {
-  // React to the current status...
+  // 响应当前状态...
 });
 ```
 
-请记住，当 status 处理函数返回一个 `Promise` 时，HMR 系统将会在继续之前等待 `Promise` resolve。
+请记住，当 status 处理函数返回一个 `Promise` 时，直到 `Promise` 完成兑现，HMR 系统都将继续等待。
 
 ### removeStatusHandler
 
