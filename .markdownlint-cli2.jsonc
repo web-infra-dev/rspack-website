@@ -23,7 +23,7 @@
       ]
     },
     "MD036": false,
-    // Enable to unmark language in the code
+    // Don't mark language type in the code
     "MD040": false,
     // Don't start with `#`, not recommended
     "MD041": false,
