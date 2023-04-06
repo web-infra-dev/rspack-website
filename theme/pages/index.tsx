@@ -13,7 +13,7 @@ export function HomeLayout() {
         className="relative border-b dark:border-dark-50"
         style={{
           background: 'var(--modern-home-bg)',
-          minHeight: 'calc(100vh - var(--modern-nav-height))',
+          minHeight: 'calc(80rem - var(--modern-nav-height))',
           paddingBottom: '56px',
         }}
       >
