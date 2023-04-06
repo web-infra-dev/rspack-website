@@ -1,4 +1,7 @@
 /* It seems tailwind have style `dispaly: list-style` by default */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 summary {
   display: block;
