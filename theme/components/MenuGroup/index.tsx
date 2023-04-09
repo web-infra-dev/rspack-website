@@ -39,7 +39,7 @@ export function MenuGroup({ children, defaultLabel }: MenuGroupProps) {
         }}
       >
         <div
-          className="p-3 w-full h-full w-auto max-h-100vh rounded-xl whitespace-nowrap bg-white"
+          className="p-3 h-full w-auto max-h-100vh rounded-xl whitespace-nowrap bg-black"
           style={{
             boxShadow: 'var(--modern-shadow-3)',
             marginRight: '-1.5rem',
