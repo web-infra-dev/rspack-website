@@ -1,0 +1,34 @@
+# Migrate Storybook
+
+If you're using [Storybook 7.0](https://storybook.js.org/) for React with Webpack5, it's possible to use Rspack using an experimental [builder](https://storybook.js.org/docs/react/builders/overview).
+
+## Updating dependencies
+
+First, we need to add `@fy-dev/react-rspack` dependency, and uninstall the `@storybook/react-webpack5` dependency.
+
+```diff title=package.json
+{
+  "dependencies": {
+-   "@storybook/react-webpack5": "^7"
++   "@fy-dev/react-rspack": "latest"
+  }}
+```
+
+## Configure Storybook
+
+Then, make the corresponding change to the Storybook `main.js` config:
+
+```diff title=.storybook/main.js
+export default {
+-  framework: '@storybook/react-webpack5'
++  framework: '@fy-dev/react-rspack'
+}
+```
+
+## Limitations
+
+Support for Storybook 7.0 is still experimental, and there are some limitations:
+
+1. There is no docgen analysis for components to automatically generate controls,
+2. There is no support for non-React frameworks,
+3. There is no support for NextJS, which is its own framework
