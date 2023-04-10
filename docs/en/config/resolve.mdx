@@ -6,7 +6,7 @@ Used to configure the Rspack module resolution logic.
 
 ## resolve.alias
 
-- **Type:** `Record<string, false | string | string[]>`
+- **Type:** `Record<string, false | string | (string | false)[]>`
 - **Default:** `{}`
 
 Path alias, e.g.
@@ -93,3 +93,16 @@ When enabled, `require('file')` will first look for the `. /file` file in the cu
 - **Default:** `undefined`
 
 Use `paths` and `baseUrl` of tsconfigPath, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
+
+## resolve.fullySpecified
+
+- **Type:** `boolean`
+- **Default value:** `false`
+
+No longer resolve extensions, no longer resolve mainFiles in package.json (but does not affect requests from mainFiles, browser, alias).
+
+## resolve.byDependency
+
+- **Type:** `Record<string, Resolve>`.
+
+Customize the Resolve configuration based on the module type.

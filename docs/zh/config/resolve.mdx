@@ -6,7 +6,7 @@
 
 ## resolve.alias
 
-- **类型：** `Record<string, false | string | string[]>`
+- **类型：** `Record<string, false | string | (string | false)[]>`
 - **默认值：** `{}`
 
 路径别名，例如：
@@ -93,3 +93,16 @@
 - **默认值：** `undefined`
 
 使用 tsconfigPath 的 `paths` 和 `baseUrl`，功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。
+
+## resolve.fullySpecified
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+不再解析扩展名，不再解析 package.json 中的 mainFiles（但不会影响来自 mainFiles, browser, alias 的请求）。
+
+## resolve.byDependency
+
+- **类型：** `Record<string, Resolve>`.
+
+依据模块类型自定义 Resolve 配置。
