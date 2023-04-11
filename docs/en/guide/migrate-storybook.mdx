@@ -29,6 +29,16 @@ export default {
 
 Support for Storybook 7.0 is still experimental, and there are some limitations:
 
-1. There is no docgen analysis for components to automatically generate controls,
-2. There is no support for non-React frameworks,
-3. There is no support for NextJS, which is its own framework
+1. There is no support for non-React frameworks,
+2. There is no support for NextJS, which is its own framework
+
+There is also incomplete docgen support to automatically generate controls from components.
+Rspack is currently compatible with the following `main.js` configuration, however this has known issues and is a work in progress.
+
+```js
+export default {
+  typescript: {
+    reactDocgen: 'react-docgen',
+  },
+};
+```
