@@ -149,6 +149,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/migrate-from-webpack'),
           getLink('/guide/config-diff'),
           getLink('/guide/migrate-from-cra'),
+          getLink('/guide/migrate-storybook'),
         ],
       },
       {
