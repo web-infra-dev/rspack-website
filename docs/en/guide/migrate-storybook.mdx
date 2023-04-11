@@ -4,13 +4,13 @@ If you're using [Storybook 7.0](https://storybook.js.org/) for React with Webpac
 
 ## Updating dependencies
 
-First, we need to add `@fy-dev/react-rspack` dependency, and uninstall the `@storybook/react-webpack5` dependency.
+First, we need to add `storybook-react-rspack` dependency, and uninstall the `@storybook/react-webpack5` dependency.
 
 ```diff title=package.json
 {
   "dependencies": {
 -   "@storybook/react-webpack5": "^7"
-+   "@fy-dev/react-rspack": "latest"
++   "storybook-react-rspack": "latest"
   }}
 ```
 
@@ -21,7 +21,7 @@ Then, make the corresponding change to the Storybook `main.js` config:
 ```diff title=.storybook/main.js
 export default {
 -  framework: '@storybook/react-webpack5'
-+  framework: '@fy-dev/react-rspack'
++  framework: 'storybook-react-rspack'
 }
 ```
 
