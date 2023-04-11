@@ -107,6 +107,22 @@ module.exports = {
 
 此选项决定了非初始（non-initial）JavaScript chunk 文件的名称。
 
+## output.chunkLoadingGlobal
+
+- **类型：** `string`
+- **默认值：** 根据 [`output.uniqueName`](/config/output.html#outputuniquename) 推断
+  - `webpackChunk${output.uniqueName}`
+
+此选项决定了 Rspack 用于加载 chunk 的全局变量。
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkLoadingGlobal: 'myCustomFunc',
+  },
+};
+```
+
 ## output.cssFilename
 
 - **类型：** `string`
@@ -986,6 +1002,24 @@ module.exports = {
   //...
   output: {
     umdNamedDefine: true,
+  },
+};
+```
+
+## output.uniqueName
+
+- **类型：** `string`
+- **默认值：** 默认使用 [`output.library`](/config/output.html#outputlibrary) 名称或者上下文中的 package.json 的 包名称(package name)， 如果两者都不存在，值为 ''。
+
+此选项决定了在全局环境下为防止多个 rspack 运行时 冲突所使用的唯一名称。
+
+`output.uniqueName` 将用于生成唯一全局变量:
+- [`output.chunkLoadingGlobal`](/config/output.html#outputchunkloadingglobal)
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    uniqueName: 'my-package-xyz',
   },
 };
 ```
