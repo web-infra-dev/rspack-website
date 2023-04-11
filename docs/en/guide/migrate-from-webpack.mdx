@@ -49,7 +49,7 @@ Rspack also supports JavaScript syntax downgrading by default. This means you do
  module.exports = {
 +  builtins: {
 +    presetEnv: {
-+      targets: ['es5'],
++      targets: ['Chrome >= 48'],
 +    },
 +  },
 +  target: ['web', 'es5'],
