@@ -107,6 +107,22 @@ More can be found in [Template String](/config/output.html#template-string).
 
 This option determines the name of the non-initial JavaScript chunk file.
 
+## output.chunkLoadingGlobal
+
+- **Type:** `string`
+- **Default:** inferred from [`output.uniqueName`](/config/output.html#outputuniquename)
+  - `webpackChunk${output.uniqueName}`
+
+This option determines the global variable is used by Rspack for loading chunks.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkLoadingGlobal: 'myCustomFunc',
+  },
+};
+```
+
 ## output.cssFilename
 
 - **Type:** `string`
@@ -1033,6 +1049,25 @@ module.exports = {
   //...
   output: {
     umdNamedDefine: true,
+  },
+};
+```
+
+## output.uniqueName
+
+- **Type:** `string`
+- **Default:** It defaults to [`output.library`](/config/output.html#outputlibrary) name or the package name from package.json in the context, if both aren't found, it is set to an ''.
+
+This option determines the unique name of the Rspack build to avoid multiple Rspack runtimes to conflict when using globals.
+
+`output.uniqueName` will be used to generate unique globals for:
+
+- [`output.chunkLoadingGlobal`](/config/output.html#outputchunkloadingglobal)
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    uniqueName: 'my-package-xyz',
   },
 };
 ```
