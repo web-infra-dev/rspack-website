@@ -19,15 +19,20 @@
 
 参考下列配置，修改 Storybook 的 `main.js` 配置：
 
-````diff title=.storybook/main.js
+```diff title=.storybook/main.js
 export default {
 -  framework: '@storybook/react-webpack5'
 +  framework: 'storybook-react-rspack'
 }
+```
+
+## 示例
+
+你可以在这里查看 fork 自 [chakra-ui](https://github.com/chakra-ui/chakra-ui) 的例子，[code sandbox](https://codesandbox.io/p/github/JSerFeng/chakra-ui-rspack/main?workspaceId=a6c903ed-a672-40b4-ba85-692f4c7b578e&file=README.md)
 
 ## 局限
 
-对 Storybook 7.0 的支持仍然是实验性的，并且目前有一些局限：
+对 Storybook 7.0 的支持仍然是实验性的，并且目前有一些局限
 
 1. 暂不支持 React 以外的框架
 2. 暂不支持 NextJS，NextJS 有自己的构建方案
@@ -43,4 +48,7 @@ export default {
 ```
 
 Rspack 会使用 [react-docgen](https://github.com/reactjs/react-docgen) 来分析文件并且为你的 jsx | tsx 文件生成文档，但该库目前仍然处于开发中，有一些已知问题
-````
+
+```
+
+```
