@@ -118,7 +118,6 @@ This option determines the global variable is used by Rspack for loading chunks.
 ```ts title="rspack.config.js"
 module.exports = {
   output: {
-    //...
     chunkLoadingGlobal: 'myCustomFunc',
   },
 };
@@ -1062,12 +1061,12 @@ module.exports = {
 This option determines the unique name of the Rspack build to avoid multiple Rspack runtimes to conflict when using globals.
 
 `output.uniqueName` will be used to generate unique globals for:
+
 - [`output.chunkLoadingGlobal`](/config/output.html#outputchunkloadingglobal)
 
 ```ts title="rspack.config.js"
 module.exports = {
   output: {
-    //...
     uniqueName: 'my-package-xyz',
   },
 };
