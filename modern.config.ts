@@ -38,12 +38,16 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
       text: getText('生态', 'Ecosystem'),
       items: [
         {
-          text: 'Rspack Sources',
-          link: 'https://github.com/web-infra-dev/rspack-sources',
+          text: 'Modern.js Framework',
+          link: 'https://modernjs.dev/en/',
         },
         {
-          text: 'Modern.js',
-          link: 'https://modernjs.dev/',
+          text: 'Modern.js Doc',
+          link: 'https://modernjs.dev/doc-tools/',
+        },
+        {
+          text: 'Nx plugin for Rspack',
+          link: 'https://nx.dev/packages/rspack/documents/overview',
         },
       ],
     },
