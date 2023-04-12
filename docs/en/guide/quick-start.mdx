@@ -183,7 +183,9 @@ Time: 21.388ms
 The default stats of `@rspack/cli` only output information about errors, warnings, and timings. You can use the [`stats`](/config/stats) configuration option to output more information.
 :::
 
-At this point we have generated `main.js` and `main.js.map` files in the `dist` directory. Our configuration should have also generated the following `dist/index.html` file:
+At this point we have generated `main.js` and `main.js.map` files in the `dist` directory.
+
+Let's create a `index.html` manually in the `dist` folder by copying the following content to verify the correctness of the output.
 
 ```html title="dist/index.html"
 <!DOCTYPE html>
