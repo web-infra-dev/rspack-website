@@ -50,12 +50,16 @@ function useFooterData() {
       title: t('friendLink'),
       items: [
         {
-          title: 'Rspack Sources',
-          link: 'https://github.com/web-infra-dev/rspack-sources',
+          title: 'Modern.js Framework',
+          link: 'https://modernjs.dev/en/',
         },
         {
-          title: 'Modern.js',
-          link: 'https://modernjs.dev',
+          title: 'Modern.js Doc',
+          link: 'https://modernjs.dev/doc-tools/',
+        },
+        {
+          title: 'Nx plugin for Rspack',
+          link: 'https://nx.dev/packages/rspack/documents/overview',
         },
         {
           title: 'Web Infra',
