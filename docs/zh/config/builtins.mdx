@@ -183,6 +183,12 @@ type BuiltinsHtml = Array<{
 | `favicon`            | `string\|undefined`                              | undefined    | 配置 html 图标                                                                                |
 | `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | 配置需要注入 html 的 meta                                                                     |
 
+:::info
+
+对于复杂的 HTML 配置需求，可使用 [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html)，兼容 html-webpack-plugin 中的 hooks 和大部分配置。
+
+:::
+
 ## builtins.minifyOptions
 
 设置内置压缩器配置。
