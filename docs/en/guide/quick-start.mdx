@@ -176,13 +176,12 @@ A simple way to invoke the build is `npx rspack build`. You could also customize
 
 ```sh
 npx rspack build
-  Asset      Size  Chunks             Chunk Names
-main.js  11.8 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[151] ./src/index.js 155 bytes {main}
-[33] ./src/answer.js 25 bytes {main}
-build: 21.388ms
+Time: 21.388ms
 ```
+
+:::info
+The default stats of `@rspack/cli` only output information about errors, warnings, and timings. You can use the [`stats`](/config/stats) configuration option to output more information.
+:::
 
 At this point we have generated `main.js` and `main.js.map` files in the `dist` directory. Our configuration should have also generated the following `dist/index.html` file:
 
