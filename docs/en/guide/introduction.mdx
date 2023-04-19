@@ -107,6 +107,11 @@ Today Rspack is primarily tested using a subset of webpack's test cases. In the 
 
 [Turbopack](https://turbo.build/) is implemented in Rust like Rspack, but Turbopack started over with a redesigned architecture and configuration. This brings some benefits, but presents a steeper migration cost for projects that rely on webpack and its extensive ecosystem.
 
+## Compared with rollup
+
+Rspack and rollup are both bundling tools, but they focus on different areas. Rollup is more suitable for bundling libraries, while Rspack is more suitable for bundling applications. Therefore, Rspack has optimized many features for bundling applications, such as HMR and Bundle splitting. Rollup produces ESM outputs that are more friendly to libraries than Rspack. There are also many tools in the community that encapsulate rollup to some extent and provide more friendly support for bundling applications, such as vite and wmr. Currently, Rspack has better production build performance than rollup.
+
+
 ## Try it
 
 We've prepared two online demos to see how fast the Rspack is:

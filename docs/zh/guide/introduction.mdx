@@ -120,6 +120,10 @@ Rspack 和 turbopack 都是基于 Rust 实现的 bundler，且都发挥了 Rust 
 
 与 turbopack 不同的是，Rspack 选择了对 Webpack 生态兼容的路线，一方面，这些兼容可能会带来一定的性能开销，但在实际的业务落地中，我们发现对于大部分的应用来说，这些性能开销是可以接受的，另一方面，这些兼容也使得 Rspack 可以更好地与上层的框架和生态进行集成，能够实现业务的渐进式迁移。
 
+### 和 rollup 的区别
+
+Rspack 和 rollup 虽然都是打包工具，但是两者的侧重领域不同，rollup 更适合用于打包库，而 Rspack 适合用于打包应用。因此 Rspack 对打包应用进行了很多优化，如 HMR、Bundle splitting 等功能，而 rollup 则比 Rspack 的编译产物对库更为友好，如更好的 ESM 产物支持。 社区上也有很多的工具在 rollup 基础上进行了一定的封装，提供了对应用打包更友好的支持，如 vite 和 wmr, 目前 Rspack 比 rollup 有更好的生产环境构建性能。
+
 ## 尝试 Rspack
 
 我们提供了两个在线 demo，通过这两个 demo，你能直观感受到 Rspack 的构建性能：
