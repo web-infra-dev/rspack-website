@@ -148,10 +148,6 @@ Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行�
 rspack 将根据以下条件自动拆分 chunk：
 
 - 新的 chunk 可以被共享，或者模块来自于 `node_modules` 文件夹
-- 新的 chunk 体积大于 20kb（在进行 min+gz 之前的体积）
-- 当按需加载 chunks 时，并行请求的最大数量小于或等于 30
-- 当加载初始化页面时，并发请求的最大数量小于或等于 30
-- 当尝试满足最后两个条件时，最好使用较大的 chunks。
 
 ### 配置
 
@@ -173,22 +169,16 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'async',
-      minSize: 20000,
-      minRemainingSize: 0,
       minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      enforceSizeThreshold: 50000,
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
+          minChunks: 2,
           priority: -10,
-          reuseExistingChunk: true,
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true,
         },
       },
     },
@@ -227,59 +217,18 @@ module.exports = {
 };
 ```
 
-### splitChunks.maxAsyncRequests
-
-- **类型：** `number`
-- **默认值：** `30`
-
-按需加载时的最大并行请求数。
-
-### splitChunks.maxInitialRequests
-
-- **类型：** `number`
-- **默认值：** `30`
-
-入口点的最大并行请求数。
-
 ### splitChunks.minChunks
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
 
 - **类型：** `number`
 - **默认值：** `1`
 
 拆分前必须共享模块的最小 chunk 数。
 
-### splitChunks.minSize
-
-- **类型：** `number`
-- **默认值：** `20000`
-
-生成 chunk 的最小体积（以字节为单位）。
-
-### splitChunks.enforceSizeThreshold
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.enforceSizeThreshold
-
-- **类型：** `number`
-- **默认值：** `50000`
-
-强制执行拆分的体积阈值和其他限制（`minRemainingSize`，`maxAsyncRequests`，`maxInitialRequests`）将被忽略。
-
-### splitChunks.minRemainingSize
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.minRemainingSize
-
-- **类型：** `number`
-- **默认值：** `0`
-
-在 webpack 5 中引入了 `splitChunks.minRemainingSize` 选项，通过确保拆分后剩余的最小 chunk 体积超过限制来避免大小为零的模块。开发（development）模式中默认为 0。对于其他情况，`splitChunks.minRemainingSize` 默认为 `splitChunks.minSize` 的值，因此除需要深度控制的极少数情况外，不需要手动指定它。
-
-:::warning
-
-`splitChunks.minRemainingSize` 仅在剩余单个 chunk 时生效。
-
-:::
-
 ### splitChunks.name
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
 
 - **类型：** `string`
 
@@ -318,15 +267,6 @@ module.exports = {
 - **默认值：** `-20`
 
 一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority`（优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0`）。
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.reuseExistingChunk
-
-- **类型：** `boolean`
-- **默认值：** `true`
-
-一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority`（优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0`）。
-
-如果当前 chunk 包含已从主 chunk 中拆分出的模块，则它将被重用，而不是生成新的模块。这可能会影响 chunk 的结果文件名。
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.test
 

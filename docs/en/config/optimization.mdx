@@ -152,9 +152,6 @@ By default it only affects on-demand chunks, because changing initial chunks wou
 Webpack will automatically split chunks based on these conditions:
 
 - New chunk can be shared OR modules are from the node_modules folder
-- New chunk would be bigger than 20kb (before min+gz)
-- Maximum number of parallel requests when loading chunks on demand would be lower or equal to 30
-- Maximum number of parallel requests at initial page load would be lower or equal to 30
 
 When trying to fulfill the last two conditions, bigger chunks are preferred.
 
@@ -178,22 +175,16 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'async',
-      minSize: 20000,
-      minRemainingSize: 0,
       minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      enforceSizeThreshold: 50000,
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
+          minChunks: 2,
           priority: -10,
-          reuseExistingChunk: true,
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true,
         },
       },
     },
@@ -232,50 +223,18 @@ module.exports = {
 };
 ```
 
-### splitChunks.maxAsyncRequests
-
-- **Type:** `number`
-- **Default:：** `30`
-
-Maximum number of parallel requests when on-demand loading.
-
-### splitChunks.maxInitialRequests
-
-- **Type:** `number`
-- **Default:：** `30`
-
-Maximum number of parallel requests at an entry point.
-
 ### splitChunks.minChunks
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
 
 - **Type:** `number`
 - **Default:：** `1`
 
 The minimum times must a module be shared among chunks before splitting.
 
-### splitChunks.minSize
-
-- **Type:** `number`
-- **Default:：** `20000`
-
-Minimum size, in bytes, for a chunk to be generated.
-
-### splitChunks.minRemainingSize
-
-{/* #### splitChunks.cacheGroups.\{cacheGroup\}.minRemainingSize */}
-
-- **Type:** `number`
-- **Default:：** `0`
-
-`splitChunks.minRemainingSize` option was introduced in webpack 5 to avoid zero sized modules by ensuring that the minimum size of the chunk which remains after splitting is above a limit. Defaults to `0` in ['development' mode](/config/mode). For other cases `splitChunks.minRemainingSize` defaults to the value of `splitChunks.minSize` so it doesn't need to be specified manually except for the rare cases where deep control is required.
-
-:::warning
-
-`splitChunks.minRemainingSize` only takes effect when a single chunk is remaining.
-
-:::
-
 ### splitChunks.name
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.name
 
 - **Type:** `string`
 - **Default:：** `false`
@@ -319,13 +278,6 @@ module.exports = {
 - **Default:：** `-20`
 
 A module can belong to multiple cache groups. The optimization will prefer the cache group with a higher `priority`. The default groups have a negative priority to allow custom groups to take higher priority (default value is `0` for custom groups).
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.reuseExistingChunk
-
-- **Type:** `boolean`
-- **Default:：** `true`
-
-If the current chunk contains modules already split out from the main bundle, it will be reused instead of a new one being generated. This can affect the resulting file name of the chunk.
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.test
 
