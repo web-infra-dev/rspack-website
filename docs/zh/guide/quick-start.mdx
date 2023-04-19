@@ -176,13 +176,12 @@ module.exports = {
 
 ```sh
 npx rspack build
-  Asset      Size  Chunks             Chunk Names
-main.js  11.8 KiB    main  [emitted]  main
-Entrypoint main = main.js
-[151] ./src/index.js 155 bytes {main}
-[33] ./src/answer.js 25 bytes {main}
-build: 21.388ms
+Time: 21.388ms
 ```
+
+:::info
+`@rspack/cli` 默认的 stats 只输出 errors、warnings 和 timings 的信息，可以通过 [`stats`](/config/stats) 设置输出更多构建信息。
+:::
 
 此时我们在 `dist` 目录里生成了 `main.js` 和 `main.js.map` 两个文件， 我们在 `dist` 里创建如下的 `dist/index.html` 来验证生成的产物运行是否正常。
 
