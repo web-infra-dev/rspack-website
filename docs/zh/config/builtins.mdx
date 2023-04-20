@@ -13,6 +13,53 @@ _Builtins_ 提供的内置功能在未来可能会发生变化，或被更好的
 
 :::
 
+## builtins.banner
+
+- **类型：**
+
+```ts
+type BannerCondition = string | RegExp | Array<string | RegExp>;
+
+type BannerConfig =
+	| string
+	| {
+			banner: string;
+			entryOnly?: boolean;
+			footer?: boolean;
+			raw?: boolean;
+			test?: BannerCondition;
+			include?: BannerCondition;
+			exclude?: BannerCondition;
+	  };
+
+export type BannerConfigs = BannerConfig | BannerConfig[];
+```
+
+- **默认值：** `undefined`
+
+| Name      | Type                  | Default   | Description                                                                                                                                                                                                                                                                                     |
+| --------- | --------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `banner`    | `string`                       | undefined |  指定 banner 内容（会被包裹成注释）                         |
+| `entryOnly` | `boolean\|undefined`           | undefined |  如果值为 true，将只在入口 chunks 文件中添加                 |
+| `footer`    | `boolean\|undefined`           | undefined |  如果值为 true，banner 将会位于编译结果的最下方               |                                                                                                                                                                                                       
+| `raw`       | `boolean\|undefined`           | undefined |  如果值为 true，将直接输出，不会被作为注释                    |
+| `test`      | `BannerConditions\|undefined`  | undefined |  包含所有匹配的模块                                        |                                                                                                                                                                                                           
+| `include`   | `BannerConditions\|undefined`  | undefined |  根据条件匹配指定的模块                                    |                                                                                                                                                                                                           
+| `exclude`   | `BannerConditions\|undefined`  | undefined |  根据条件排除指定的模块                                    |                                                                                                                                                                                                           
+
+为每个 chunk 文件头部或底部添加 banner。
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    banner: [{
+      banner: 'hello world',
+      footer: true,
+    }],
+  } 
+};
+```
+
 ## builtins.emotion
 
 用于设置对 emotion 的编译优化。
