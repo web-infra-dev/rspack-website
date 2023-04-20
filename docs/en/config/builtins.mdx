@@ -13,6 +13,53 @@ The built-in functionality provided by _builtins_ may change in the future or be
 
 :::
 
+## builtins.banner
+
+- **Type:**
+
+```ts
+type BannerCondition = string | RegExp | Array<string | RegExp>;
+
+type BannerConfig =
+	| string
+	| {
+			banner: string;
+			entryOnly?: boolean;
+			footer?: boolean;
+			raw?: boolean;
+			test?: BannerCondition;
+			include?: BannerCondition;
+			exclude?: BannerCondition;
+	  };
+
+export type BannerConfigs = BannerConfig | BannerConfig[];
+```
+
+- **Default:** `undefined`
+
+| Name      | Type                  | Default   | Description                                                                                                                                                                                                                                                                                     |
+| --------- | --------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `banner`     | `string`                       | undefined | Specifies the banner, it will be wrapped in a comment.                     |
+| `entryOnly`  | `boolean\|undefined`           | undefined | If true, the banner will only be added to the entry chunks.                |
+| `footer`     | `boolean\|undefined`           | undefined | If true, banner will be placed at the end of the output.                   |                                                                                                                                                                                                           
+| `raw`        | `boolean\|undefined`           | undefined | If true, banner will not be wrapped in a comment.                          |
+| `test`       | `BannerConditions\|undefined`  | undefined | Include all modules that pass test assertion.                              |                                                                                                                                                                                                           
+| `include`    | `BannerConditions\|undefined`  | undefined | Include all modules matching any of these conditions.                      |                                                                                                                                                                                                           
+| `exclude`    | `BannerConditions\|undefined`  | undefined | Exclude all modules matching any of these conditions.                      |                                                                                                                                                                                                           
+
+Adds a banner to the top or bottom of each generated chunk.
+
+```ts title="rspack.config.js"
+module.exports = {
+  builtins: {
+    banner: [{
+      banner: 'hello world',
+      footer: true,
+    }],
+  } 
+};
+```
+
 ## builtins.emotion
 
 Using optimization for emotion in compile-time.
