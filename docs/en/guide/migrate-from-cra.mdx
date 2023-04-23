@@ -27,10 +27,8 @@ First, we need to update the dependencies, uninstall all the Create React App de
 Then, we need to create the `rspack.config.js` file in the root of the project to configure rspack-related options. `@rspack/cli` does not have all the CRA functionality built-in, so some additional options need to be configured as follows
 
 ```js title=rspack.config.js
-/*
- * @type {import('@rspack/cli').Configuration}
- */
-module.exports = {
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
   entry: {
     main: './src/index.jsx', // Configure the project entry file
   },
@@ -49,6 +47,7 @@ module.exports = {
     },
   },
 };
+module.exports = config;
 ```
 
 ## migrate ejected CRA to Rspack

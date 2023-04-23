@@ -3,10 +3,8 @@
 Thanks to the good compatibility of Rspack with the babel-loader, it is very easy to use SolidJS in rspack. All you need is babel-loader and solidjs babel preset. Rspack provides SolidJS [example](https://github.com/web-infra-dev/rspack/tree/main/examples/solid) for reference.
 
 ```js title="rspack.config.js"
-/**
- * @type {import('@rspack/cli').Configuration}
- */
-module.exports = {
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
   context: __dirname,
   entry: {
     main: './src/index.jsx',
@@ -35,4 +33,5 @@ module.exports = {
     ],
   },
 };
+module.exports = config;
 ```
