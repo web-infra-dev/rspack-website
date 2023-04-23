@@ -21,42 +21,44 @@ The built-in functionality provided by _builtins_ may change in the future or be
 type BannerCondition = string | RegExp | Array<string | RegExp>;
 
 type BannerConfig =
-	| string
-	| {
-			banner: string;
-			entryOnly?: boolean;
-			footer?: boolean;
-			raw?: boolean;
-			test?: BannerCondition;
-			include?: BannerCondition;
-			exclude?: BannerCondition;
-	  };
+  | string
+  | {
+      banner: string;
+      entryOnly?: boolean;
+      footer?: boolean;
+      raw?: boolean;
+      test?: BannerCondition;
+      include?: BannerCondition;
+      exclude?: BannerCondition;
+    };
 
 export type BannerConfigs = BannerConfig | BannerConfig[];
 ```
 
 - **Default:** `undefined`
 
-| Name      | Type                  | Default   | Description                                                                                                                                                                                                                                                                                     |
-| --------- | --------------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `banner`     | `string`                       | undefined | Specifies the banner, it will be wrapped in a comment.                     |
-| `entryOnly`  | `boolean\|undefined`           | undefined | If true, the banner will only be added to the entry chunks.                |
-| `footer`     | `boolean\|undefined`           | undefined | If true, banner will be placed at the end of the output.                   |                                                                                                                                                                                                           
-| `raw`        | `boolean\|undefined`           | undefined | If true, banner will not be wrapped in a comment.                          |
-| `test`       | `BannerConditions\|undefined`  | undefined | Include all modules that pass test assertion.                              |                                                                                                                                                                                                           
-| `include`    | `BannerConditions\|undefined`  | undefined | Include all modules matching any of these conditions.                      |                                                                                                                                                                                                           
-| `exclude`    | `BannerConditions\|undefined`  | undefined | Exclude all modules matching any of these conditions.                      |                                                                                                                                                                                                           
+| Name        | Type                          | Default   | Description                                                 |
+| ----------- | ----------------------------- | --------- | ----------------------------------------------------------- |
+| `banner`    | `string`                      | undefined | Specifies the banner, it will be wrapped in a comment.      |
+| `entryOnly` | `boolean\|undefined`          | undefined | If true, the banner will only be added to the entry chunks. |
+| `footer`    | `boolean\|undefined`          | undefined | If true, banner will be placed at the end of the output.    |
+| `raw`       | `boolean\|undefined`          | undefined | If true, banner will not be wrapped in a comment.           |
+| `test`      | `BannerConditions\|undefined` | undefined | Include all modules that pass test assertion.               |
+| `include`   | `BannerConditions\|undefined` | undefined | Include all modules matching any of these conditions.       |
+| `exclude`   | `BannerConditions\|undefined` | undefined | Exclude all modules matching any of these conditions.       |
 
 Adds a banner to the top or bottom of each generated chunk.
 
 ```ts title="rspack.config.js"
 module.exports = {
   builtins: {
-    banner: [{
-      banner: 'hello world',
-      footer: true,
-    }],
-  } 
+    banner: [
+      {
+        banner: 'hello world',
+        footer: true,
+      },
+    ],
+  },
 };
 ```
 
@@ -185,6 +187,21 @@ type PresetEnv =
 | `targets` | `string[]\|undefined` | undefined | Use [browserslist query](https://github.com/browserslist/browserslist#queries) to specify the ECMAScript version of the user code. Rspack will try to use [browserslist](https://github.com/browserslist/browserslist) config on [context](config/context) directory when value is `undefined`. |
 | `mode`    | `'entry'\|undefined`  | undefined | This option determine the behavior of polyfill injection, `'entry'` means that inject all polyfill that matches your needs, according to [browserslist](https://github.com/browserslist/browserslist) query, set this to `undefined` will not inject polyfill at all.                           |
 | `coreJs`  | `string`              | undefined | This option specify the version of core-js                                                                                                                                                                                                                                                      |
+
+:::warning notice about core-js usage
+When you use `mode = 'entry'` or `mode = 'usage'` to inject `core-js`, you need to manually install `core-js`. If you encounter the problem of "failed to resolve 'core-js'" during compilation, you should also configure `resolve.alias` to point the `core-js` path to the local `core-js` as follows:
+
+```js
+module.exports = {
+  resolve: {
+    alias: {
+      'core-js': require('path').dirname(require.resolve('core-js')),
+    },
+  },
+};
+```
+
+:::
 
 ## builtins.html
 
