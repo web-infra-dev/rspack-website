@@ -49,6 +49,10 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           text: 'Nx plugin for Rspack',
           link: 'https://nx.dev/packages/rspack/documents/overview',
         },
+        {
+          text: 'Rspack Community Package',
+          link: 'https://github.com/rspack-contrib',
+        },
       ],
     },
     {
