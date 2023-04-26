@@ -206,8 +206,8 @@ Since webpack 5, passing an entry name to `{cacheGroup}.test` and using a name o
 
 ### splitChunks.chunks
 
-- **Type:** `string | (chunk: Chunk) => boolean`
-- **Default:：** `'~'`
+- **Type:** `string | 'initial' | 'all' | 'async'`
+- **Default:：** `'async'`
 
 This indicates which chunks will be selected for optimization. When a string is provided, valid values are `all`, `async`, and `initial`. Providing `all` can be particularly powerful, because it means that chunks can be shared even between async and non-async chunks.
 
