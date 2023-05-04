@@ -13,17 +13,11 @@ Path alias, e.g.
 
 ```
 {
-  "@": path.resolve(__dirname, './src'),
-  // trailing `$` means exact match
-  "abc$": path.resolve(__dirname, './src/abc')
+  "@": path.resolve(__dirname, './src')
 }
 ```
 
-At this point:
-
-- `require("@/a")` will attempt to resolve `<root>/src/a`.
-- `require("abc")` will attempt to resolve `<root>/src/abc`.
-- `require("abc/file.js")` will not match, and it will attempt to resolve `node_modules/abc/file.js`.
+At this point, `require("@/a")` will attempt to resolve `<root>/src/a`.
 
 ## resolve.aliasField
 
