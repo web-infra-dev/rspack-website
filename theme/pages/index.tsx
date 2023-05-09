@@ -1,11 +1,12 @@
-import { HomeHero } from '../components/HomeHero';
-import { HomeFeature } from '../components/HomeFeatures';
+import { Hero, HomeHero } from '../components/HomeHero';
+import { HomeFeature, Feature } from '../components/HomeFeatures';
 import { NoSSR, usePageData } from '@modern-js/doc-tools/runtime';
 import { Benchmark } from '../components/Benchmark';
 import { HomeFooter } from '../components/HomeFooter/index';
 
 export function HomeLayout() {
-  const { frontmatter } = usePageData();
+  const { page } = usePageData();
+  const { frontmatter } = page;
   return (
     <div>
       {/* Landing Page */}
@@ -18,8 +19,8 @@ export function HomeLayout() {
         }}
       >
         <div className="pt-14 pb-12">
-          <HomeHero hero={frontmatter.hero} />
-          <HomeFeature features={frontmatter.features} />
+          <HomeHero hero={frontmatter.hero as Hero} />
+          <HomeFeature features={frontmatter.features as Feature[]} />
         </div>
       </div>
       {/* Benchmark Page */}
