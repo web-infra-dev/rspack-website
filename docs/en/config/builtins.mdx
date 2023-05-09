@@ -262,14 +262,16 @@ type BuiltinsMinifyOptions = {
   passes?: number;
   dropConsole?: boolean;
   pureFuncs?: Array<string>;
+  extractComments: boolean | RegExp;
 };
 ```
 
-| Name          | Type            | Default | Description                                                                                            |
-| ------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------ |
-| `passes`      | `number`        | 1       | The maximum number of times to run compress.                                                           |
-| `dropConsole` | `boolean`       | false   | Pass true to discard calls to console.\* functions.                                                    |
-| `pureFuncs`   | `Array<string>` | []      | You can pass an array of names and Rspack will assume that those functions do not produce side effects |
+| Name              | Type              | Default | Description                                                                                                                                                                                          |
+| ----------------- | ----------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `passes`          | `number`          | 1       | The maximum number of times to run compress.                                                                                                                                                         |
+| `dropConsole`     | `boolean`         | false   | Pass true to discard calls to console.\* functions.                                                                                                                                                  |
+| `pureFuncs`       | `Array<string>`   | []      | You can pass an array of names and Rspack will assume that those functions do not produce side effects                                                                                               |
+| `extractComments` | `boolean\|RegExp` | false   | Extract comments that match the configuration to a separate file (fileName: `{assetName}.LICENSE.txt`). If the option is set to true, use the regular expression `/@preserve\|@lic\|@cc_on\|^\**!/`. |
 
 ## builtins.define
 
