@@ -30,6 +30,71 @@ export const CompatibleCardItem = ({
     </div>
   );
 };
+export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
+  const pluginList: CardMeta[] = [
+    {
+      name: 'html-webpack-plugin',
+      url: 'https://www.npmjs.com/package/html-webpack-plugin',
+      status: i18n[lang]['alternative'],
+      description: i18n[lang]['html-webpack-plugin-desc'],
+    },
+    {
+      name: 'DefinePlugin',
+      url: 'https://webpack.js.org/plugins/define-plugin/',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['define-plugin-desc'],
+    },
+    {
+      name: 'copy-webpack-plugin',
+      url: 'https://www.npmjs.com/package/copy-webpack-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['copy-plugin-desc'],
+    },
+    {
+      name: 'banner-plugin',
+      url: 'https://webpack.js.org/plugins/banner-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['banner-plugin-desc'],
+    },
+    {
+      name: 'mini-css-extract-plugin',
+      url: 'https://webpack.js.org/plugins/mini-css-extract-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['mini-css-extract-plugin-desc'],
+    },
+    {
+      name: 'terser-webpack-plugin',
+      url: 'https://webpack.js.org/plugins/terser-webpack-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['terser-webpack-plugin-desc'],
+    },
+    {
+      name: 'progressPlugin',
+      url: 'https://webpack.js.org/plugins/progress-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['progress-plugin-desc'],
+    },
+    {
+      name: 'webpack-bundle-analyzer',
+      url: 'https://www.npmjs.com/package/webpack-bundle-analyzer',
+      status: i18n[lang]['compatible'],
+    },
+    {
+      name: 'tsconfig-paths-webpack-plugin',
+      url: 'https://www.npmjs.com/package/tsconfig-paths-webpack-plugin',
+      status: i18n[lang]['included'],
+      description: i18n[lang]['tsconfig-paths-webpack-plugin-desc'],
+    },
+    {
+      name: 'HotModuleReplacementPlugin',
+      url: 'https://webpack.js.org/plugins/hot-module-replacement-plugin',
+      status: i18n[lang]['included'],
+    },
+  ];
+  return pluginList.map((item) => (
+    <CompatibleCardItem key={item.name} {...item} />
+  ));
+};
 
 export const LoaderCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
   const loaderList: CardMeta[] = [
@@ -120,5 +185,7 @@ export const LoaderCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       url: 'https://www.npmjs.com/package/node-loader',
     },
   ];
-  return loaderList.map((item) => <CompatibleCardItem {...item} />);
+  return loaderList.map((item) => (
+    <CompatibleCardItem key={item.name} {...item} />
+  ));
 };
