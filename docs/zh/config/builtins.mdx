@@ -265,14 +265,16 @@ type BuiltinsMinifyOptions = {
   passes?: number;
   dropConsole?: boolean;
   pureFuncs?: Array<string>;
+  extractComments: boolean | RegExp;
 };
 ```
 
-| 名称          | 类型            | 默认值 | 描述                                         |
-| ------------- | --------------- | ------ | -------------------------------------------- |
-| `passes`      | `number`        | 1      | 运行压缩的最大次数                           |
-| `dropConsole` | `boolean`       | false  | 是否移除对 console.\* 函数的调用             |
-| `pureFuncs`   | `Array<string>` | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句 |
+| 名称              | 类型              | 默认值 | 描述                                                                                                                                                |
+| ----------------- | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `passes`          | `number`          | 1      | 运行压缩的最大次数                                                                                                                                  |
+| `dropConsole`     | `boolean`         | false  | 是否移除对 console.\* 函数的调用                                                                                                                    |
+| `pureFuncs`       | `Array<string>`   | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句                                                                                                        |
+| `extractComments` | `boolean\|RegExp` | false  | 提取符合配置注释到一个单独的文件 (fileName: `{assetName}.LICENSE.txt`), 如果设置该选项为 `true`, 使用正则表达式`/@preserve\|@lic\|@cc_on\|^\**!/`。 |
 
 ## builtins.define
 
