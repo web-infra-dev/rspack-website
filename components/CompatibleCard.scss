@@ -1,0 +1,20 @@
+.component-card {
+  padding: 20px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: 3px 3px 6px #e4e4e6;
+  position: relative;
+  &-link {
+    color: var(--modern-c-brand);
+    margin-bottom: 5px;
+  }
+
+  &-status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 10px;
+    border-radius: 0 5px;
+    border: 1px solid #42b98344;
+  }
+}

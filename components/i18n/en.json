@@ -1,0 +1,6 @@
+{
+  "compatible": "compatible",
+  "incompatible": "incompatible",
+  "babel-loader-description": "SWC has been used internally to implement babel-loader with most of its conversion capabilities",
+  "babel-loader-remark": "Be cautious of the performance impact of babel-loader"
+}

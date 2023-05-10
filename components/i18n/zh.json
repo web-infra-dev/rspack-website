@@ -1,0 +1,6 @@
+{
+  "compatible": "兼容",
+  "incompatible": "不兼容",
+  "babel-loader-description": "内部使用 SWC 实现了 babel-loader 的大部分转换功能",
+  "babel-loader-remark": "babel-loader 对性能影响较大，请谨慎使用"
+}
