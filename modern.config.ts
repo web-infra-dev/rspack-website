@@ -140,6 +140,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/react'),
           getLink('/guide/solid'),
           getLink('/guide/vue'),
+          getLink('/guide/svelte'),
         ],
       },
       {
