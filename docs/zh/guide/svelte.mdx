@@ -1,0 +1,50 @@
+# Svelte
+
+得益于 Rspack 对 [svelte-loader](https://github.com/sveltejs/svelte-loader) 的良好兼容，在 Rspack 里使用 Svelte 是非常简单的。只需要配置好 svelte-loader 即可。 Rspack 提供了一个 Svelte 的[例子](https://github.com/web-infra-dev/rspack/tree/main/examples/svelte)可供参考。
+
+```js title="rspack.config.js"
+const path = require('path');
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
+  context: __dirname,
+  entry: {
+    main: './src/main.ts',
+  },
+  resolve: {
+    alias: {
+      svelte: path.dirname(require.resolve('svelte/package.json')),
+    },
+    extensions: ['.mjs', '.js', '.ts', '.svelte'],
+    mainFields: ['svelte', 'browser', 'module', 'main'],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.svelte$/,
+        use: [
+          {
+            loader: 'svelte-loader',
+            options: {
+              compilerOptions: {
+                dev: !prod,
+              },
+
+              emitCss: prod,
+              hotReload: !prod,
+              preprocess: sveltePreprocess({ sourceMap: !prod, postcss: true }),
+            },
+          },
+        ],
+      },
+    ],
+  },
+  builtins: {
+    html: [
+      {
+        template: './index.html',
+      },
+    ],
+  },
+};
+module.exports = config;
+```
