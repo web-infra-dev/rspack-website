@@ -675,3 +675,30 @@ module.exports = {
 import Button from 'antd/es/button';
 import 'antd/es/button/style';
 ```
+
+## builtins.provide
+
+自动的将全局变量转换为模块导入，如下配置：
+
+```js
+module.exports = {
+  builtins: {
+    provide: {
+      process: [require.resolve('process/browser')],
+    },
+  },
+};
+```
+
+将如下代码：
+
+```js
+console.log(process.version);
+```
+
+转换为：
+
+```js
+import process from 'process/browser';
+console.log(process.version);
+```

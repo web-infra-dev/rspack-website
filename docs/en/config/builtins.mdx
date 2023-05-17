@@ -670,3 +670,30 @@ The above configuration will transform `import { Button } from 'antd';` to:
 import Button from 'antd/es/button';
 import 'antd/es/button/style';
 ```
+
+## builtins.provide
+
+Automatically load modules instead of having to import or require them everywhere.
+
+```js
+module.exports = {
+  builtins: {
+    provide: {
+      process: [require.resolve('process/browser')],
+    },
+  },
+};
+```
+
+Which will convert the following code:
+
+```js
+console.log(process.version);
+```
+
+To:
+
+```js
+import process from 'process/browser';
+console.log(process.version);
+```
