@@ -458,8 +458,8 @@ Copies individual files or entire directories, which already exist, to the build
 
 ```ts
 export type CopyConfig = {
-  patterns:
-    | string[] // If input is string, it's the same as { from: `your input string` }
+  patterns: (
+    | string // If input is string, it's the same as { from: `your input string` }
     | {
         from: string;
         to?: string; // Determin based on `from`
@@ -473,7 +473,8 @@ export type CopyConfig = {
           dot?: boolean; // Default to true
           ignore?: string[]; // ignore specific path
         };
-      }[];
+      }
+  )[];
 };
 ```
 

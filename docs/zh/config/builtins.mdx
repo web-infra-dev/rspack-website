@@ -461,8 +461,8 @@ import WebpackLicense from '../../../components/webpack-license';
 
 ```ts
 export type CopyConfig = {
-  patterns:
-    | string[] // 如果传入字符串，会被视作 { from: `你传入的字符串` }
+  patterns: (
+    | string // 如果传入字符串，会被视作 { from: `你传入的字符串` }
     | {
         from: string;
         to?: string; // 默认根据 from 推断
@@ -476,7 +476,8 @@ export type CopyConfig = {
           dot?: boolean; // 默认 true
           ignore?: string[]; // 忽略特定路径
         };
-      }[];
+      }
+  )[];
 };
 ```
 
