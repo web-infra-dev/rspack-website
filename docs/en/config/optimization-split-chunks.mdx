@@ -1,0 +1,153 @@
+import PropertyType from '../../../components/property-type.tsx';
+
+import WebpackLicense from '../../../components/webpack-license';
+
+<WebpackLicense from="https://webpack.js.org/configuration/optimization/" />
+
+# SplitChunksPlugin
+
+## optimization.splitChunks
+
+Rspack supports you to split Chunk with the `optimization.splitChunks` configuration item.
+
+### Default:
+
+Out of the box `SplitChunksPlugin` should work well for most users.
+
+By default it only affects on-demand chunks, because changing initial chunks would affect the script tags the HTML file should include to run the project.
+
+Webpack will automatically split chunks based on these conditions:
+
+- New chunk can be shared OR modules are from the node_modules folder
+
+When trying to fulfill the last two conditions, bigger chunks are preferred.
+
+### Configuration
+
+Rspack provides a set of options for developers that want more control over this functionality.
+
+:::warning
+
+The default configuration was chosen to fit web performance best practices, but the optimal strategy for your project might differ. If you're changing the configuration, you should measure the effect of your changes to ensure there's a real benefit.
+
+:::
+
+### optimization.splitChunks
+
+This configuration object represents the default behavior of the `SplitChunksPlugin`.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      minChunks: 1,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          minChunks: 2,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+        },
+      },
+    },
+  },
+};
+```
+
+:::warning
+
+When files paths are processed by webpack, they always contain `/` on UNIX systems and `\` on Windows. That's why using `[\\/]` in `{cacheGroup}.test` fields is necessary to represent a path separator. `/` or `\` in `{cacheGroup}.test` will cause issues when used cross-platform.
+
+:::
+
+:::warning
+
+Since webpack 5, passing an entry name to `{cacheGroup}.test` and using a name of an existing chunk for `{cacheGroup}.name` is no longer allowed.
+
+:::
+
+### splitChunks.chunks
+
+- **Type:** `string | 'initial' | 'all' | 'async'`
+- **Default:：** `'async'`
+
+This indicates which chunks will be selected for optimization. When a string is provided, valid values are `all`, `async`, and `initial`. Providing `all` can be particularly powerful, because it means that chunks can be shared even between async and non-async chunks.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      // include all types of chunks
+      chunks: 'all',
+    },
+  },
+};
+```
+
+### splitChunks.minChunks
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
+
+- **Type:** `number`
+- **Default:：** `1`
+
+The minimum times must a module be shared among chunks before splitting.
+
+### splitChunks.name
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.name
+
+- **Type:** `string`
+- **Default:：** `false`
+
+Also available for each cacheGroup: `splitChunks.cacheGroups.{cacheGroup}.name`.
+
+The name of the split chunk. Providing `false` will keep the same name of the chunks so it doesn't change names unnecessarily. It is the recommended value for production builds.
+
+Providing a string or a function allows you to use a custom name. Specifying either a string or a function that always returns the same string will merge all common modules and vendors into a single chunk. This might lead to bigger initial downloads and slow down page loads.
+
+If you choose to specify a function, you may find the `chunk.name` property (where `chunk` is an element of the `chunks` array) particularly useful in choosing a name for your chunk.
+
+If the `splitChunks.name` matches an [entry point](/config/entry) name, the entry point will be removed.
+
+:::info
+
+`splitChunks.cacheGroups.{cacheGroup}.name` can be used to move modules into a chunk that is a parent of the source chunk. For example, use `name: "entry-name"` to move modules into the `entry-name` chunk. You can also use on demand named chunks, but you must be careful that the selected modules are only used under this chunk.
+
+:::
+
+### splitChunks.cacheGroups
+
+Cache groups can inherit and/or override any options from `splitChunks.*`; but `test`, `priority` and `reuseExistingChunk` can only be configured on cache group level. To disable any of the default cache groups, set them to `false`.
+
+```js title=webpack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+      },
+    },
+  },
+};
+```
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.priority
+
+- **Type:** `number`
+- **Default:：** `-20`
+
+A module can belong to multiple cache groups. The optimization will prefer the cache group with a higher `priority`. The default groups have a negative priority to allow custom groups to take higher priority (default value is `0` for custom groups).
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.test
+
+- **Type:** `RegExp | string`
+
+Controls which modules are selected by this cache group. Omitting it selects all modules. It can match the absolute module resource path or chunk names. When a chunk name is matched, all modules in the chunk are selected.
