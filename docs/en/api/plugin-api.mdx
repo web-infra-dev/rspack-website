@@ -65,6 +65,18 @@ Executes a plugin during watch mode after a new compilation is triggered but bef
 
 Called right after beforeCompile, before a new compilation is created.
 
+### `beforeCompile`
+
+`AsyncSeriesHook<[]>`
+
+Executes a plugin after compilation parameters are created.
+
+### `afterCompile`
+
+`AsyncSeriesHook<[Compilation]>`
+
+Called after finishing and sealing the compilation.
+
 ### `thisCompilation`
 
 `SyncHook<[Compilation]>`
@@ -126,3 +138,55 @@ Called if the compilation fails.
 `AsyncSeriesHook<[CompilationAssets]>`
 
 Process the assets before emit.
+
+### `optimizeModules`
+
+`SyncBailHook<[JsModule[]]>`
+
+Called at the beginning of the module optimization phase. A plugin can tap into this hook to perform optimizations on modules.
+
+### `optimizeChunkModule`
+
+`AsyncSeriesBailHook<[JsModule[]]>`
+
+Called after the tree optimization, at the beginning of the chunk modules optimization. A plugin can tap into this hook to perform optimizations of chunk modules.
+
+### `finishModules`
+
+`AsyncSeriesHook<[JsModule[]]>`
+
+Called when all modules have been built without errors.
+
+### `chunkAsset`
+
+`SyncHook<[JsChunk[], string /** filename*/ ]>`
+
+Triggered when an asset from a chunk was added to the compilation.
+
+## NormalModuleFactory
+
+### `beforeResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+Called when a new dependency request is encountered. A dependency can be ignored by returning `false`. Otherwise, it should return `undefined` to proceed.
+
+### `afterResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+Called after the request is resolved.
+
+### `ResolveForScheme`
+
+`AsyncSeriesBailHook<[ResourceDataWithData]>`
+
+Called before a request with scheme (URI) is resolved.
+
+## ContextModuleFactory
+
+### `afterResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+Called after the requested directory resolved.
