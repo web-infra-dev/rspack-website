@@ -149,7 +149,7 @@ make 阶段之前调用。
 
 `AsyncSeriesBailHook<[JsModule[]]>`
 
-在树形优化之后，在块模块优化的开始时调用。插件可以使用此钩子来对块模块执行优化。
+在 `afterOptimizeTree` 之后，在块模块优化的开始时调用。插件可以使用此钩子来对块模块执行优化。
 
 ### `finishModules`
 
@@ -183,7 +183,7 @@ Triggered when an asset from a chunk was added to the compilation.
 
 `AsyncSeriesBailHook<[ResourceDataWithData]>`
 
-在带有方案的解析（URI）请求之前调用。
+在带有 scheme 的解析（URI）请求之前调用。
 
 ## ContextModuleFactory
 
