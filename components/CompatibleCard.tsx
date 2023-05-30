@@ -93,7 +93,7 @@ export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
     {
       name: 'fork-ts-checker-webpack-plugin',
       url: 'https://github.com/TypeStrong/fork-ts-checker-webpack-plugin',
-      status: i18n[lang]['included'],
+      status: i18n[lang]['compatible'],
     },
   ];
   return pluginList.map((item) => (
