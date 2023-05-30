@@ -3,6 +3,7 @@
   "alternative": "alternative",
   "included": "included",
   "babel-loader-description": "SWC has been used internally to implement babel-loader with most of its conversion capabilities",
+  "style-loader-description": "Style HMR is only supported with `esModule: false` enabled for now",
   "babel-loader-remark": "Be cautious of the performance impact of babel-loader",
   "html-webpack-plugin-desc": "Currently does not support childCompiler related functionality in webpack，use @rspack/plugin-html instead",
   "define-plugin-desc": "use builtins.define instead",
