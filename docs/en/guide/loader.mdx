@@ -126,13 +126,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          {
-            loader: require.resolve('./banner-loader.js'),
-          }
-        ]
+        use: require.resolve('./banner-loader.js'),
       },
     ],
   },
 };
 ```
+
+For details, you can refer to [loader-api](/api/loader-api)
