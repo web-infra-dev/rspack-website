@@ -25,6 +25,7 @@ summary {
 
 .dark {
   --modern-code-title-bg: rgba(128, 128, 128, 0.2);
+  --modern-code-block-bg: #242424;
 }
 
 button:focus,
