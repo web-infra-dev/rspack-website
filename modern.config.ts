@@ -213,7 +213,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/optimization'),
       },
       {
-        text: getText('SplitChunks 优化', 'SplitChunks'),
+        text: getText('SplitChunksPlugin', 'SplitChunksPlugin'),
         link: getLink('/config/optimization-split-chunks'),
       },
       {

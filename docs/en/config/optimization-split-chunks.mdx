@@ -16,9 +16,12 @@ Out of the box `SplitChunksPlugin` should work well for most users.
 
 By default it only affects on-demand chunks, because changing initial chunks would affect the script tags the HTML file should include to run the project.
 
-Webpack will automatically split chunks based on these conditions:
+Rspack will automatically split chunks based on these conditions:
 
 - New chunk can be shared OR modules are from the node_modules folder
+- New chunk would be bigger than 20kb (before min+gz)
+- Maximum number of parallel requests when loading chunks on demand would be lower or equal to 30
+- Maximum number of parallel requests at initial page load would be lower or equal to 30
 
 When trying to fulfill the last two conditions, bigger chunks are preferred.
 
@@ -43,15 +46,19 @@ module.exports = {
     splitChunks: {
       chunks: 'async',
       minChunks: 1,
+      minSize: 20000,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
       cacheGroups: {
         defaultVendors: {
           test: /[\\/]node_modules[\\/]/,
-          minChunks: 2,
           priority: -10,
+          reuseExistingChunk: true,
         },
         default: {
           minChunks: 2,
           priority: -20,
+          reuseExistingChunk: true,
         },
       },
     },
@@ -61,13 +68,13 @@ module.exports = {
 
 :::warning
 
-When files paths are processed by webpack, they always contain `/` on UNIX systems and `\` on Windows. That's why using `[\\/]` in `{cacheGroup}.test` fields is necessary to represent a path separator. `/` or `\` in `{cacheGroup}.test` will cause issues when used cross-platform.
+When files paths are processed by Rspack, they always contain `/` on UNIX systems and `\` on Windows. That's why using `[\\/]` in `{cacheGroup}.test` fields is necessary to represent a path separator. `/` or `\` in `{cacheGroup}.test` will cause issues when used cross-platform.
 
 :::
 
 :::warning
 
-Since webpack 5, passing an entry name to `{cacheGroup}.test` and using a name of an existing chunk for `{cacheGroup}.name` is no longer allowed.
+Passing an entry name to `{cacheGroup}.test` and using a name of an existing chunk for `{cacheGroup}.name` is no longer allowed.
 
 :::
 
@@ -90,6 +97,20 @@ module.exports = {
 };
 ```
 
+### splitChunks.maxAsyncRequests
+
+- **类型：** `number`
+- **默认值：** `30`
+
+Maximum number of parallel requests when on-demand loading.
+
+### splitChunks.maxInitialRequests
+
+- **类型：** `number`
+- **默认值：** `30`
+
+Maximum number of parallel requests at an entry point.
+
 ### splitChunks.minChunks
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
@@ -98,6 +119,56 @@ module.exports = {
 - **Default:：** `1`
 
 The minimum times must a module be shared among chunks before splitting.
+
+### splitChunks.minSize
+
+Minimum size, in bytes, for a chunk to be generated.
+
+### splitChunks.maxInitialRequests
+
+- **类型：** `number`
+- **默认值：** `20000`
+
+Minimum size, in bytes, for a chunk to be generated.
+
+### splitChunks.maxSize
+
+`number = 0`
+
+Using `maxSize` (either globally `optimization.splitChunks.maxSize` per cache group `optimization.splitChunks.cacheGroups[x].maxSize` or for the fallback cache group `optimization.splitChunks.fallbackCacheGroup.maxSize`) tells Rspack to try to split chunks bigger than `maxSize` bytes into smaller parts. Parts will be at least `minSize` (next to `maxSize`) in size.
+The algorithm is deterministic and changes to the modules will only have local effects. So that it is usable when using long term caching and doesn't require records. `maxSize` is only a hint and could be violated when modules are bigger than `maxSize` or splitting would violate `minSize`.
+
+When the chunk has a name already, each part will get a new name derived from that name. Depending on the value of `optimization.splitChunks.hidePathInfo` it will add a key derived from the first module name or a hash of it.
+
+`maxSize` option is intended to be used with HTTP/2 and long term caching. It increases the request count for better caching. It could also be used to decrease the file size for faster rebuilding.
+
+:::info Tip
+
+`maxSize` takes higher priority than `maxInitialRequest/maxAsyncRequests`. Actual priority is `maxInitialRequest/maxAsyncRequests < maxSize < minSize`.
+
+:::
+
+:::info Tip
+
+Setting the value for `maxSize` sets the value for both `maxAsyncSize` and `maxInitialSize`.
+
+:::
+
+### splitChunks.maxAsyncSize
+
+`number`
+
+Like `maxSize`, `maxAsyncSize` can be applied globally (`splitChunks.maxAsyncSize`), to cacheGroups (`splitChunks.cacheGroups.{cacheGroup}.maxAsyncSize`), or to the fallback cache group (`splitChunks.fallbackCacheGroup.maxAsyncSize`).
+
+The difference between `maxAsyncSize` and `maxSize` is that `maxAsyncSize` will only affect on-demand loading chunks.
+
+### splitChunks.maxInitialSize
+
+`number`
+
+Like `maxSize`, `maxInitialSize` can be applied globally (`splitChunks.maxInitialSize`), to cacheGroups (`splitChunks.cacheGroups.{cacheGroup}.maxInitialSize`), or to the fallback cache group (`splitChunks.fallbackCacheGroup.maxInitialSize`).
+
+The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` will only affect initial load chunks.
 
 ### splitChunks.name
 
@@ -126,7 +197,7 @@ If the `splitChunks.name` matches an [entry point](/config/entry) name, the entr
 
 Cache groups can inherit and/or override any options from `splitChunks.*`; but `test`, `priority` and `reuseExistingChunk` can only be configured on cache group level. To disable any of the default cache groups, set them to `false`.
 
-```js title=webpack.config.js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
