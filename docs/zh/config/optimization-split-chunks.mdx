@@ -62,7 +62,7 @@ module.exports = {
 
 :::warning
 
-当 webpack 处理文件路径时，它们始终包含 UNIX 系统中的 `/` 和 Windows 系统中的 `\`。这就是为什么在 `{cacheGroup}.test` 字段中使用 `[\\/]` 来表示路径分隔符的原因。`{cacheGroup}.test` 中的 `/` 或 `\` 会在跨平台使用时产生问题。
+当 Rspack 处理文件路径时，它们始终包含 UNIX 系统中的 `/` 和 Windows 系统中的 `\`。这就是为什么在 `{cacheGroup}.test` 字段中使用 `[\\/]` 来表示路径分隔符的原因。`{cacheGroup}.test` 中的 `/` 或 `\` 会在跨平台使用时产生问题。
 
 :::
 
@@ -123,7 +123,7 @@ module.exports = {
 
 ### splitChunks.maxSize
 
-使用 `maxSize`（每个缓存组 `optimization.splitChunks.cacheGroups[x].maxSize` 全局使用 `optimization.splitChunks.maxSize` 或对后备缓存组 `optimization.splitChunks.fallbackCacheGroup.maxSize` 使用）告诉 webpack 尝试将大于 `maxSize` 个字节的 chunk 分割成较小的部分。 这些较小的部分在体积上至少为 `minSize`（仅次于 `maxSize`）。
+使用 `maxSize`（每个缓存组 `optimization.splitChunks.cacheGroups[x].maxSize` 全局使用 `optimization.splitChunks.maxSize` 或对后备缓存组 `optimization.splitChunks.fallbackCacheGroup.maxSize` 使用）告诉 Rspack 尝试将大于 `maxSize` 个字节的 chunk 分割成较小的部分。 这些较小的部分在体积上至少为 `minSize`（仅次于 `maxSize`）。
 该算法是确定性的，对模块的更改只会产生局部影响。这样，在使用长期缓存时就可以使用它并且不需要记录。`maxSize` 只是一个提示，当模块大于 `maxSize` 或者拆分不符合 `minSize` 时可能会被违反。
 
 当 chunk 已经有一个名称时，每个部分将获得一个从该名称派生的新名称。 根据 `optimization.splitChunks.hidePathInfo` 的值，它将添加一个从第一个模块名称或其哈希值派生的密钥。
@@ -180,7 +180,7 @@ module.exports = {
 
 缓存组可以继承和/或覆盖来自 `splitChunks.*` 的任何选项。但是 `test`、`priority` 和 `reuseExistingChunk` 只能在缓存组级别上进行配置。将它们设置为 `false` 以禁用任何默认缓存组。
 
-```js title=webpack.config.js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
