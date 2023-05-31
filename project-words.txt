@@ -28,6 +28,8 @@ myorg
 myrspackapp
 NAPI
 NAPI-RS
+nestjs
+NestJS
 nosources
 nrwl
 nwjs
@@ -57,3 +59,4 @@ Xeon
 XKKCNZZNJD
 Zack
 Zack Jackson
+
