@@ -863,7 +863,7 @@ module.exports = {
 
 这将会把你的库暴露为一个 [`System.register`](https://github.com/systemjs/systemjs/blob/master/docs/system-register.md) 模块。这个特性最初是在 [webpack 4.30.0](https://github.com/webpack/webpack/releases/tag/v4.30.0) 中发布。
 
-System 模块要求当 webpack bundle 执行时，全局变量 `System` 出现在浏览器中。编译的 `System.register` 格式允许你在没有额外配置的情况下使用 `System.import('/bundle.js')`，并将你的 webpack bundle 加载到系统模块注册表中。
+System 模块要求当 bundle 执行时，全局变量 `System` 出现在浏览器中。编译的 `System.register` 格式允许你在没有额外配置的情况下使用 `System.import('/bundle.js')`，并将你的 bundle 加载到系统模块注册表中。
 
 ```javascript
 module.exports = {
@@ -913,6 +913,7 @@ module.exports = {
     outputModule: true,
   },
   output: {
+    chunkFormat: 'module',
     library: {
       // do not specify a `name` here
       type: 'module',
