@@ -10,3 +10,18 @@ Enable incremental rebuild. `true` will try to reuse the results of the last bui
 
 - **Type：** `boolean`
 - **Default：** `true`
+
+## experiments.outputModule
+
+- **Type：** `boolean`
+- **Default：** `true`
+
+Once enabled, Rspack will output ECMAScript module syntax whenever possible. For instance, `import()` to load chunks, ESM exports to expose chunk data, among others.
+
+```js
+module.exports = {
+  experiments: {
+    outputModule: true,
+  },
+};
+```
