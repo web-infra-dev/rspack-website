@@ -141,6 +141,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
           getLink('/guide/solid'),
           getLink('/guide/vue'),
           getLink('/guide/svelte'),
+          getLink('/guide/nestjs'),
         ],
       },
       {
