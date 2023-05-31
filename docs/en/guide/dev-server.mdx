@@ -14,6 +14,10 @@ module.exports = {
 };
 ```
 
+:::warning
+HMR is not working for css when `output.cssFilename` contains `[hash]` or `[contenthash]`
+:::
+
 ### Proxy
 
 Rspack has a built-in simple proxy server. You can enable the proxy server by configuring the `devServer.proxy` option in `rspack.config.js`. The devServer internally uses [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware) to implement the proxy function. For example, you can proxy `/api` to `http://localhost:3000` as follows:
