@@ -60,7 +60,7 @@ EntryChunk2(index.js, a.js, b.js)
 
 自定义压缩器。当使用自定义压缩器时，内置压缩器将会被禁用。
 
-```js
+```js title=rspack.config.js
 const minifyPlugin = require('@rspack/plugin-minify');
 module.exports = {
   context: __dirname,
@@ -107,9 +107,7 @@ module.exports = {
 
 `optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。这种配置项开启后有额外的构建时间开销，但移除模块对性能有积极影响，因为这意味着更少的代码生成。这种优化的效果取决于你的代码库。
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -120,9 +118,7 @@ module.exports = {
 
 如果你只想使用通过（`package.json` 和 `module.rule.sideEffects`）配置的 `sideEffects`，而不想分析代码:
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -134,6 +130,21 @@ module.exports = {
 :::info Tip
 `optimization.sideEffects` 为 `true` 时，Rspack 会在一个模块中所有的语句（statement）都没有副作用时标记该模块为无副作用。
 :::
+
+## optimization.realContentHash
+
+在产物处理完成后，添加额外的哈希计算步骤根据产物的文件内容计算该产物的哈希。该功能在生产环境下会默认开启。
+
+如果将 realContentHash 设置为 false，则使用编译流程中的内部数据计算哈希，在某些情况下，即使产物内容完全一致也可能导致哈希变化。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    realContentHash: true,
+  },
+};
+```
 
 ## optimization.splitChunks
 

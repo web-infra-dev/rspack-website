@@ -59,7 +59,7 @@ Whether to minimize the bundle.
 
 Customize the minimizer. When using a custom minimizer, the built-in minimizer will be disabled.
 
-```js
+```js title=rspack.config.js
 const minifyPlugin = require('@rspack/plugin-minify');
 module.exports = {
   context: __dirname,
@@ -111,9 +111,7 @@ Tells Rspack to recognise the sideEffects flag in package.json or rules to skip 
 `optimization.sideEffects` dependends on `builtins.treeShaking` to be enabled.
 This configuration has a build time cost, but eliminating modules has positive impact on performance because of less code generation. Effect of this optimization depends on your codebase.
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -124,9 +122,7 @@ module.exports = {
 
 If you only want Rspack use the manual `sideEffects` flag via (package.json and module.rule.sideEffects) and don't analyse code:
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -138,6 +134,21 @@ module.exports = {
 :::info Tip
 When `optimization.sideEffects` is true , Rspack will also flag modules as side effect free when they contain only side effect free statements.
 :::
+
+## optimization.realContentHash
+
+Adds an additional hash compilation pass after the assets have been processed to get the correct asset content hashes. This feature will enable by default in production mode.
+
+If realContentHash is set to false, internal data is used to calculate the hash and it can change when assets are identical in some cases.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    realContentHash: true,
+  },
+};
+```
 
 ## optimization.splitChunks
 
