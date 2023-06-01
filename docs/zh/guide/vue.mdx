@@ -2,9 +2,89 @@
 
 Vue 是一个非常流行的前端框架，Rspack 计划在未来提供完整的 Vue 支持，提供 Vue 开发所需的工程化能力。
 
-## vue-loader
+## Vue3
 
-Rspack 的目标是完整地兼容 vue-loader，但是由于 Rspack 目前提供的 API 有限，目前无法直接运行 vue-loader，但是你仍然可以自行实现 vue-loader 的功能，Rspack 提供了一个简单的 vue-loader 实现供参考，你可以在这里看到完整实现：[vue-example](https://github.com/web-infra-dev/rspack/tree/main/examples/vue)。
+目前，Rspack 已经完成了对 Vue3 的支持，请确保你的 [vue-loader](https://github.com/vuejs/vue-loader) 版本 >= 17.2.1，并进行如下配置：
+
+```js title="rspack.config.js"
+const { VueLoaderPlugin } = require('vue-loader');
+
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
+  // ...
+  plugins: [new VueLoaderPlugin()],
+  module: {
+    rules: [
+      // ...
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          // 注意，为了绝大多数功能的可用性，请确保该选项为 `true`
+          experimentalInlineMatchResource: true,
+        },
+      },
+    ],
+  },
+};
+module.exports = config;
+```
+
+由于 Rspack 原生支持了 CSS 模块的编译，因此你无需配置与 CSS 相关的 loader。另外，当你尝试使用 CSS 预处理器（如：less）时，你只需要添加如下配置即可：
+
+```diff
+const config = {
+  module: {
+    rules: [
++      {
++        test: /\.less$/,
++        loader: "less-loader"
++        type: "css"
++      }
+    ]
+  }
+}
+module.exports = config;
+```
+
+此时，Rspack 将会使用内置的 CSS 处理器进行后处理。
+
+除此之外，由于 Rspack 内置了 TS 的支持，因此我们也默认支持了 `lang="ts"` 的配置：
+
+```html
+<script lang="ts">
+  export default {
+    // ...
+  };
+</script>
+```
+
+相关示例可以参考 [example-vue3](https://github.com/web-infra-dev/rspack/tree/main/examples/vue)。
+
+## Vue2
+
+Rspack 已经完成对 Vue2（使用 vue-loader@15）的兼容。目前，尽管 vue-loader@15 暂时无法配合内置的 TS、CSS 功能使用，但你依旧可以配合 style-loader 与 css-loader 进行样式生成。
+
+请确保在配置 Vue2 项目时关闭 `experiments.css` 或在 CSS 相关的规则中使用 `Rule.type = "javascript/auto"`：
+
+```js title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+        type: 'javascript/auto',
+      },
+    ],
+  },
+  experiments: {
+    css: false,
+  },
+};
+```
+
+相关示例可以参考：[example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2)。
 
 ## Vue 3 JSX
 
