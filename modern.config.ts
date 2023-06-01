@@ -294,6 +294,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
     ],
     [getLink('/blog/')]: [
       {
+        text: getText('0.2 发布公告', 'Announcing Rspack 0.2'),
+        link: getLink('/blog/announcing-0.2'),
+      },
+      {
         text: getText('发布公告', 'Announcing Rspack'),
         link: getLink('/blog/announcement'),
       },
