@@ -95,7 +95,7 @@ export function Benchmark() {
       animate={inView ? 'animate' : 'initial'}
       variants={variants}
       transition={{ duration: 1 }}
-      className="relative flex flex-col justify-center py-10 mb-20 mt-15 h-auto"
+      className="relative flex flex-col justify-center py-10 mt-15 h-auto"
     >
       {inView && (
         <>

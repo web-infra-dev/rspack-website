@@ -3,6 +3,7 @@ import { HomeFeature, Feature } from '../components/HomeFeatures';
 import { NoSSR, usePageData } from '@modern-js/doc-tools/runtime';
 import { Benchmark } from '../components/Benchmark';
 import { HomeFooter } from '../components/HomeFooter/index';
+import { Contributor } from '../components/Contributor';
 
 export function HomeLayout() {
   const { page } = usePageData();
@@ -27,6 +28,7 @@ export function HomeLayout() {
       <NoSSR>
         <Benchmark />
       </NoSSR>
+      <Contributor />
       {/* Footer */}
       <HomeFooter />
     </div>
