@@ -97,10 +97,6 @@ module.exports = {
 };
 ```
 
-### Emit Assets 支持增量写入
-
-在新版本中，最终产物的输出将会是增量式的，这在 HMR 构建时可以减少大量 I/O 的操作。25000 模块预计可以将 emit assets 时间从 500ms 降低到 5ms。补一个 O(1)的和 webpack 的对比图
-
 ## Breaking Changes
 
 - 文件名生成逻辑对齐
@@ -135,17 +131,17 @@ module.exports = {
 
   详情：https://github.com/web-infra-dev/rspack/pull/3242
 
-- 修改了 @rspack/dev-middleware 和 @rspack/html-plugin 的导出方式,并移除了@rspack/dev-middleware 导出的 `getRspackMemoryAssets`
+- 修改了 @rspack/dev-middleware 和 @rspack/html-plugin 的导出方式，并移除了@rspack/dev-middleware 导出的 `getRspackMemoryAssets`
 
   详情：https://github.com/web-infra-dev/rspack/pull/3358
 
 ## Webpack 兼容性更新
 
-随着我们支持了更多的 webpack API, 我们也兼容了更多的社区的 Plugin 和 Loader。我们适配了一些社区呼声较高的 Plugin 和 Loader。
+随着我们支持了更多的 webpack API，我们也兼容了更多的社区的 Plugin 和 Loader。我们适配了一些社区呼声较高的 Plugin 和 Loader。
 
 ### fork-ts-checker-webpack-plugin
 
-在 Rspack 里进行 TypeScript 的类型检查是一个广泛的需求，Rspack 已经完全适配了 [fork-ts-checker-webpack-plugin](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin)，你可以通过该插件在编译时进行 TypeScript 的类型检查，值得注意的是因为 TypeScript 的类型检查通常十分耗时，这使得在较大的项目上类型检查的耗时可能远超过 Rspack 本身的构建耗时。在 dev 模式下 该插件并不会阻塞构建，但是在 build 模式下该插件会阻塞构建，请根据你的实际需求选择是否启用该插件。
+在 Rspack 里进行 TypeScript 的类型检查是一个广泛的需求，Rspack 已经完全适配了 [fork-ts-checker-webpack-plugin](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin)，你可以通过该插件在编译时进行 TypeScript 的类型检查，值得注意的是因为 TypeScript 的类型检查通常十分耗时，这使得在较大的项目上类型检查的耗时可能远超过 Rspack 本身的构建耗时。在 dev 模式下，该插件并不会阻塞构建，但是在 build 模式下该插件会阻塞构建，请根据你的实际需求选择是否启用该插件。
 
 ### license-webpack-plugin
 
@@ -202,9 +198,9 @@ Rspack 0.2 完成了对 vue-loader 的兼容，你可以参考 [example-vue3](ht
 
 ## 开发指南
 
-Rspack 团队非常重视开源社区做出的宝贵贡献。 我们致力于保持开放的态度，努力在每一步都让开源社区参与进来。
+Rspack 团队非常重视开源社区做出的宝贵贡献。我们致力于保持开放的态度，努力在每一步都让开源社区参与进来。
 这就是为什么我们目前正在制作一份全面的[开发指南](https://web-infra-dev.github.io/rspack-dev-guide/)，为贡献者提供 Rspack 所有的开发文档。
-当前版本的指南包含构建、测试、调试和分析 Rspack 的所有必要资料。 此外，它还包括贡献流程，例如如何创建最小的[可重现示例](https://github.com/web-infra-dev/rspack-repro)。
+当前版本的指南包含构建、测试、调试和分析 Rspack 的所有必要资料。此外，它还包括贡献流程，例如如何创建最小的[可重现示例](https://github.com/web-infra-dev/rspack-repro)。
 将来，该指南还会概述 Rspack 的整体架构，使贡献者能够深入了解该项目的内部工作原理。
 
 ## 测试架构
@@ -230,12 +226,12 @@ Rspack 团队非常重视开源社区做出的宝贵贡献。 我们致力于保
 
 - [@TheLarkInn](https://github.com/TheLarkInn) 和 [@alexander-akait](https://github.com/alexander-akait) ，回答和解决了很多 Rspack 团队关于 Webpack 的疑问
 - [@zackarychapple](https://github.com/zackarychapple) 和 [@edusperoni](https://github.com/edusperoni) ，帮助 Rspack 对 Angular 做了基本支持
-- [@suxin2017](https://github.com/suxin2017)，在 Rspack 里支持了 System.js format ，optional-dependency 功能，并在 Windows 兼容方面做了很多贡献。
+- [@suxin2017](https://github.com/suxin2017)，在 Rspack 里支持了 System.js format，optional-dependency 等功能，并在 Windows 兼容方面做了很多贡献。
 - [@faga295](https://github.com/faga295)，在 Rspack 里支持了解压代码注释功能和 rspack preview 功能。
 - [@lippzhang](https://github.com/lippzhang)，在对齐 Webpack 行为方面做了很多贡献。
 - [@HerringtonDarkholme](https://github.com/HerringtonDarkholme)，允许 Rspack 使用 rspack.config.ts 作为配置文件
 - [@dhruvkelawala](https://github.com/dhruvkelawala), 在 Rspack 里实现了 builtins.provide 功能
-- [@magic-akari](https://github.com/magic-akari)，在 Rspack 里支持了 new URL("./foo", import.meta.url) 语法
+- [@magic-akari](https://github.com/magic-akari)，在 Rspack 里支持了 `new URL("./foo", import.meta.url)` 语法
 - [@tuchg](https://github.com/tuchg)，在 Rspack 里支持了打包 .wasm 文件
 
 我们还要感谢所有使用 Rspack 的用户，对 Rspack 这样一个年轻的开源项目展现出信任，你们的宝贵反馈对我们项目的改进和优化起到了关键作用。你们的支持和信任是我们前进的动力。

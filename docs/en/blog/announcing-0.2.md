@@ -236,7 +236,7 @@ Special thanks to:
 - [@lippzhang](https://github.com/lippzhang), for making numerous contributions in aligning Rspack's behavior with Webpack.
 - [@HerringtonDarkholme](https://github.com/HerringtonDarkholme), for allowing Rspack to use rspack.config.ts as a configuration file.
 - [@dhruvkelawala](https://github.com/dhruvkelawala), for implementing the builtins.provide feature in Rspack.
-- [@magic-akari](https://github.com/magic-akari), for supporting the new URL("./foo", import.meta.url) syntax in Rspack.
+- [@magic-akari](https://github.com/magic-akari), for supporting the `new URL("./foo", import.meta.url)` syntax in Rspack.
 - [@tuchg](https://github.com/tuchg), for supporting the packing of .wasm files in Rspack.
 
 We also want to thank all the users of Rspack, for showing trust in such a young open-source project. Your valuable feedback plays a key role in our project improvements and optimizations. Your support and trust is our motivation to move forward.
