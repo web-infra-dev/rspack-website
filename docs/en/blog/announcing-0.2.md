@@ -1,16 +1,16 @@
 # Announcing Rspack 0.2
 
-Almost three months since the release of Rspack 0.1, we have received much attention and feedback from the community, for which we are grateful. In version 0.2, we have added many features, such as realContentHash, DataURI, and support for ESM format, etc., strengthened compatibility with Webpack, and optimized many details. In addition, thanks to good compatibility with the Webpack API, we have also further achieved compatibility with the surrounding ecosystem, such as completing tests for compatibility with vue-loader versions 17 (corresponding to Vue3) and 15 (corresponding to Vue2). Now you can try using Rspack in Vue2/3 projects. We look forward to you experiencing these new improvements in version 0.2, and welcome your feedback at any time.
+It has been almost three months since the release of Rspack 0.1. We have received so much attention and feedback from the community, and we are grateful. In version 0.2, we have added many features, such as: realContentHash, DataURI, support for ESM format, strengthened compatibility with webpack, and optimized many details. In addition, thanks to compatibility with the webpack API, we have also further achieved compatibility with the surrounding ecosystem. Completing tests for compatibility with vue-loader versions 17 (corresponding to Vue3) and 15 (corresponding to Vue2). You can now try using Rspack in Vue2/3 projects. We look forward to you experiencing these new improvements in version 0.2, and welcome your feedback.
 
 ## Main feature updates
 
 ### Loader
 
-Version 0.2 has completed compatibility with most of the loader APIs, including inline match resource, pitching loader, inline loader, etc. More APIs have further improved compatibility with Webpack loaders, details of which can be found in the following Webpack compatibility updates. For more information, please refer to [Loader API](/api/loader-api.html).
+Version 0.2 has completed compatibility with most of the loader APIs, including: inline match resource, pitching loader, and inline loader. More APIs have further improved compatibility with webpack loaders, details of which can be found in our webpack compatibility updates [Loader API](/api/loader-api.html).
 
 ### Plugin Hooks
 
-Some new hooks for plugins have been added.
+New hooks for plugins have been added.
 
 Compiler hooks:
 
@@ -36,7 +36,7 @@ ContextModuleFactory hooks:
 
 ### realContentHash
 
-We have implemented `optimization.realContentHash`, which calculates the Hash based on the final product's file content, making the generated Hash more stable and better utilizing the cache. In version 0.2, this feature will be enabled by default for production environment builds.
+We have implemented optimization.realContentHash, which calculates the Hash based on the final product's file content. This makes the generated Hash more stable and is better utilized for caching. In version 0.2, this feature will be enabled by default for production environment builds.
 
 ### ESM/System format
 
@@ -62,7 +62,7 @@ module.exports = {
 
 We have restructured the existing implementation of `SplitChunksPlugin` in Rspack, making the behavior of `SplitChunksPlugin` more predictable and reducing the cost of troubleshooting related issues.
 
-After the restructuring, we are confident to implement more new features on `SplitChunksPlugin`. We are pleased to announce that in version 0.2, `SplitChunksPlugin` supports the following configuration items:
+After the restructuring, we are confident to implement more features on SplitChunksPlugin. We are pleased to announce that in version 0.2, SplitChunksPlugin supports the following configuration options:
 
 - `splitChunks.maxSize`
 - `splitChunks.maxAsyncSize`
@@ -70,9 +70,7 @@ After the restructuring, we are confident to implement more new features on `Spl
 - `splitChunks.maxAsyncRequests`
 - `splitChunks.maxInitialRequests`
 
-In version 0.2, we will use the new `SplitChunksPlugin` by default. If you encounter problems, please provide feedback promptly, and we will fix them as soon as possible. You can switch back to the old implementation
-
-with `experiments.newSplitChunks: false`, but we strongly recommend using the new version. In version 0.3, we will remove the old implementation.
+In version 0.2, we will use the new `SplitChunksPlugin` by default. If you encounter problems, please provide feedback promptly, and we will fix them as soon as possible. You can switch back to the deprecated implementation by using the `experiments.newSplitChunks: false` option, but we strongly recommend using the new version. In version 0.3, we will remove the deprecated implementation.
 
 ### DataURI support
 
@@ -96,10 +94,6 @@ module.exports = {
   },
 };
 ```
-
-### Incremental writing supported in Emit Assets
-
-In the new version, the output of the final product will be incremental, which can significantly reduce I/O operations during HMR builds. For 25000 modules, it is estimated that the emit assets time can be reduced from 500ms to 5ms. Here's a comparison chart with Webpack showing the O(1) improvement.
 
 ## Breaking Changes
 
@@ -145,7 +139,7 @@ As we support more webpack APIs, we are also compatible with more community plug
 
 ### fork-ts-checker-webpack-plugin
 
-Type checking in TypeScript in Rspack is a widespread demand. Rspack has fully adapted [fork-ts-checker-webpack-plugin](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin). You can use this plugin to perform TypeScript type checking during compilation. However, as TypeScript's type checking is usually very time-consuming, this makes the time required for type checking on larger projects may far exceed the build time of Rspack itself. In dev mode, this plugin will not block the build, but in build mode, this plugin will block the build. Please choose whether to enable this plugin based on your actual needs.
+Type checking in TypeScript for Rspack is highly demanded. Rspack has fully adapted [fork-ts-checker-webpack-plugin](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin). You can use this plugin to perform TypeScript type checking during compilation. However, as TypeScript's type checking is usually very time-consuming, this makes the time required for type checking on larger projects may far exceed the build time of Rspack itself. In dev mode, this plugin will not block the build, but in build mode, this plugin will block the build. Please choose whether to enable this plugin based on your actual needs.
 
 ### license-webpack-plugin
 
@@ -159,7 +153,7 @@ Although Rspack supports and enables the `experiments.css` feature of webpack by
 
 When using Rspack to package Node applications like Nestjs, a common requirement is to package libraries containing addons. These libraries' native dependencies cannot be directly packaged into js, so they need special treatment. Rspack has adapted [node-loader](https://github.com/webpack-contrib/node-loader), so you can now use Rspack to build node applications.
 
-Rspack's adaptation to webpack's plugins and loaders is not only this. We have tracked the adapted plugins and loaders in [loader-compat](https://github.com/web-infra-dev/rspack/tree/main/examples/loader-compat) and [plugin-compat](https://github.com/web-infra-dev/rspack/tree/main/examples/plugin-compat). If you find that the community plugin and loader you are using are also compatible, welcome to submit it to us.
+Rspack has additional adaptation of webpack's plugins. We have tracked the adapted plugins and loaders in [loader-compat](https://github.com/web-infra-dev/rspack/tree/main/examples/loader-compat) and [plugin-compat](https://github.com/web-infra-dev/rspack/tree/main/examples/plugin-compat). If you find that a community plugin or loader you are using is also compatible, welcome to submit it to us so we can list it in our compatibility matrix.
 
 ## Framework Ecosystem Updates
 
@@ -191,13 +185,11 @@ With the help of the Storybook team, Rspack has completed support for the Storyb
 
 ### Angular
 
-With the help of the Valor team, Rspack has completed preliminary support for Angular. You can use Rspack to
-
-build Angular applications, but the support for dev and HMR has not yet been fully adapted. We will continue to follow up on Angular support in version 0.2.x.
+With the help of the [Valor](https://valor-software.com/) team, Rspack has completed preliminary support for Angular. You can use Rspack to build Angular applications, but the support for dev and HMR has not yet been fully adapted. We will continue to follow up on Angular support in version 0.2.x.
 
 ### NestJS
 
-With the help of Rosa, Nx, and Valor, Rspack has completed the compilation support for NestJS. You can use Rspack to package NestJS applications, and in actual projects, tests have shown that Rspack has a 5-10 times build performance improvement compared to the Webpack version.
+With the help of [Rosa](https://rosa.be/), [Nx](https://nx.dev/), and [Valor](https://valor-software.com/), Rspack has completed the compilation support for [NestJS](https://nestjs.com/). You can use Rspack to package NestJS applications, and in actual projects, tests have shown that Rspack has a 5-10 times build performance improvement compared to the webpack version.
 
 ## Benchmark
 
@@ -205,8 +197,10 @@ Added a benchmark comparison with esbuild. Please refer to the following link fo
 
 ## Dev guide
 
-The Rspack team deeply values the valuable contributions made by the open source community and actively fosters collaboration. We are committed to maintaining an open approach, striving to engage and involve the community at every step.
+The Rspack team cherishes the valuable contributions made by the open source community and wants to actively fosters collaboration. We are committed to maintaining an open approach, striving to engage and involve the community at every step.
+
 This is why we are currently crafting a comprehensive development guide that equips contributors with all the essential materials required to facilitate the development of Rspack.
+
 The current version of the guide contains all the necessary materials for building, testing, debugging, and profiling Rspack. Additionally, it includes contribution procedures, such as creating a minimal reproducible example.
 In the future, the guide will offer an insightful overview of Rspack's architecture, enabling contributors to gain a profound understanding of the project's intricate inner workings.
 
@@ -230,7 +224,7 @@ With the release of Rspack 0.2, we wholeheartedly thank all the contributors who
 Special thanks to:
 
 - [@TheLarkInn](https://github.com/TheLarkInn) and [@alexander-akait](https://github.com/alexander-akait), for answering and resolving many of Rspack team's questions about Webpack.
-- [@zackarychapple](https://github.com/zackarychapple) and [@edusperoni](https://github.com/edusperoni), for assisting Rspack with basic support for Angular.
+- [@zackarychapple](https://github.com/zackarychapple), [@valorkin](https://github.com/valorkin), [@edusperoni](https://github.com/edusperoni), and [@Coly101](https://github.com/Coly010) for assisting the Rspack team with basic support for Angular and [@zackarychapple](https://github.com/zackarychapple) for reviewing this release blog.
 - [@suxin2017](https://github.com/suxin2017), for supporting System.js format and optional-dependency functionality in Rspack, as well as contributing a lot in terms of Windows compatibility.
 - [@faga295](https://github.com/faga295), for supporting the decompression code comment feature and rspack preview feature in Rspack.
 - [@lippzhang](https://github.com/lippzhang), for making numerous contributions in aligning Rspack's behavior with Webpack.
