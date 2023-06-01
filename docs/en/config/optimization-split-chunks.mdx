@@ -81,7 +81,7 @@ Passing an entry name to `{cacheGroup}.test` and using a name of an existing chu
 ### splitChunks.chunks
 
 - **Type:** `string | 'initial' | 'all' | 'async'`
-- **Default:：** `'async'`
+- **Default:** `'async'`
 
 This indicates which chunks will be selected for optimization. When a string is provided, valid values are `all`, `async`, and `initial`. Providing `all` can be particularly powerful, because it means that chunks can be shared even between async and non-async chunks.
 
@@ -99,15 +99,15 @@ module.exports = {
 
 ### splitChunks.maxAsyncRequests
 
-- **类型：** `number`
-- **默认值：** `30`
+- **Type:** `number`
+- **Default:** `30`
 
 Maximum number of parallel requests when on-demand loading.
 
 ### splitChunks.maxInitialRequests
 
-- **类型：** `number`
-- **默认值：** `30`
+- **Type:** `number`
+- **Default:** `30`
 
 Maximum number of parallel requests at an entry point.
 
@@ -116,7 +116,7 @@ Maximum number of parallel requests at an entry point.
 #### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
 
 - **Type:** `number`
-- **Default:：** `1`
+- **Default:** `1`
 
 The minimum times must a module be shared among chunks before splitting.
 
@@ -126,8 +126,8 @@ Minimum size, in bytes, for a chunk to be generated.
 
 ### splitChunks.maxInitialRequests
 
-- **类型：** `number`
-- **默认值：** `20000`
+- **Type:** `number`
+- **Default:** `20000`
 
 Minimum size, in bytes, for a chunk to be generated.
 
@@ -175,7 +175,7 @@ The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` w
 #### splitChunks.cacheGroups.\{cacheGroup\}.name
 
 - **Type:** `string`
-- **Default:：** `false`
+- **Default:** `false`
 
 Also available for each cacheGroup: `splitChunks.cacheGroups.{cacheGroup}.name`.
 
@@ -213,7 +213,7 @@ module.exports = {
 #### splitChunks.cacheGroups.\{cacheGroup\}.priority
 
 - **Type:** `number`
-- **Default:：** `-20`
+- **Default:** `-20`
 
 A module can belong to multiple cache groups. The optimization will prefer the cache group with a higher `priority`. The default groups have a negative priority to allow custom groups to take higher priority (default value is `0` for custom groups).
 
