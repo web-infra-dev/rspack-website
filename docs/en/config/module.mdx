@@ -320,6 +320,7 @@ Condition represents the form of matching a given input, and it supports the fol
 - `RegExp`: Given an input, the match is successful when the input string satisfies the regular expression. Note: You can think of it as `condition.test(input)`.
 - `Condition[]`: A list of conditions. If one condition matches, the match succeeds.
 - `LogicalConditions`: If all attributes are matched, the matching succeeds.
-  - `{ and: Condition[] }`: If all conditions are matched, the match is successful.
+  - `{ and: Condition[] }`: If all conditions are matched, the match is succeeds.
   - `{ or: Condition[] }`: If one of the conditions matches, the match succeeds.
   - `{ not: Condition }`: If all conditions do not match, the match succeeds.
+- `(value: string) => boolean`: If it's called with the input and return a truthy value, the match is succeeds.
