@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-export const Contributor: FC = () => (
+export const Contributors: FC = () => (
   <>
     <hr />
     <div className="flex flex-col my-4 items-center">
