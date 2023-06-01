@@ -6,7 +6,7 @@
 
 ### Loader
 
-0.2 版本完成了 loader 大部分 API 的兼容，其中包括了 inline match resource，pitching loader，inline loader 等。更多的 API 进一步提升了对 Webpack loader 的兼容性，详情可以参考下方 webpack 兼容性更新。更多信息请参考 [Loader API](https://www.rspack.dev/api/loader-api.html)
+0.2 版本完成了 loader 大部分 API 的兼容，其中包括了 inline match resource，pitching loader，inline loader 等。更多的 API 进一步提升了对 Webpack loader 的兼容性，详情可以参考下方 webpack 兼容性更新。更多信息请参考 [Loader API](/api/loader-api.html)
 
 ### Plugin Hooks
 
@@ -14,25 +14,25 @@
 
 Compiler hooks
 
-1. [beforeCompile](https://www.rspack.dev/api/plugin-api.html#beforecompile)
-2. [afterCompile](https://www.rspack.dev/api/plugin-api.html#aftercompile)
+1. [beforeCompile](api/plugin-api.html#beforecompile)
+2. [afterCompile](api/plugin-api.html#aftercompile)
 
 Compilation hooks
 
-1. [optimizeModules](https://www.rspack.dev/api/plugin-api.html#optimizemodules)
-2. [optimizeChunkModule](https://www.rspack.dev/api/plugin-api.html#optimizechunkmodules)
-3. [finishModules](https://www.rspack.dev/api/plugin-api.html#finishmodules)
-4. [chunkAsset](https://www.rspack.dev/api/plugin-api.html#chunkasset)
+1. [optimizeModules](api/plugin-api.html#optimizemodules)
+2. [optimizeChunkModule](api/plugin-api.html#optimizechunkmodules)
+3. [finishModules](api/plugin-api.html#finishmodules)
+4. [chunkAsset](api/plugin-api.html#chunkasset)
 
 NormalModuleFactory hooks
 
-1. [beforeResolve](https://www.rspack.dev/api/plugin-api.html#beforeresolve)
-2. [afterResolve](https://www.rspack.dev/api/plugin-api.html#afterresolve)
-3. [ResolveForScheme](https://www.rspack.dev/api/plugin-api.html#resolveforscheme)
+1. [beforeResolve](api/plugin-api.html#beforeresolve)
+2. [afterResolve](api/plugin-api.html#afterresolve)
+3. [ResolveForScheme](api/plugin-api.html#resolveforscheme)
 
 ContextModuleFactory hooks
 
-1. [beforeResolve](https://www.rspack.dev/api/plugin-api.html#beforeresolve)
+1. [beforeResolve](api/plugin-api.html#beforeresolve)
 
 ### realContentHash
 
@@ -124,7 +124,7 @@ module.exports = {
 
   详情：https://github.com/web-infra-dev/rspack/issues/3270
 
-- 默认启用 realContentHash
+- 生产环境下默认启用 realContentHash
 
   详情：https://github.com/web-infra-dev/rspack/pull/3338
 
@@ -186,19 +186,14 @@ Rspack 0.2 完成了对 vue-loader 的兼容，你可以参考 [example-vue3](ht
 ### Angular
 
 在 Valor 团队的帮助下，Rspack 完成了对 angular 的初步支持，你可以使用 Rspack 构建 angular 应用，但是目前对 dev 和 HMR 的支持还没适配完，我们将在 0.2.x 版本继续跟进 Angular 的支持。
-NestJS
+
+### NestJS
+
 在 Rosa、Nx 和 Valor 的帮助下，Rspack 完成了对 NestJS 的编译支持，你可以使用 Rspack 打包 NestJS 应用，在实际项目中进行测试，Rspack 相比 Webpack 版本有 5-10 倍的构建性能提升。
 
 ## Benchmark
 
 添加与 esbuild 对比的 benchmark https://github.com/web-infra-dev/performance-compare
-
-<!-- ## Dev guide
-
-The Rspack team deeply values the valuable contributions made by the open source community and actively fosters collaboration. We are committed to maintaining an open approach, striving to engage and involve the community at every step.
-This is why we are currently crafting a comprehensive development guide that equips contributors with all the essential materials required to facilitate the development of Rspack.
-The current version of the guide contains all the necessary materials for building, testing, debugging, and profiling Rspack. Additionally, it includes contribution procedures, such as creating a minimal reproducible example.
-In the future, the guide will offer an insightful overview of Rspack's architecture, enabling contributors to gain a profound understanding of the project's intricate inner workings. -->
 
 ## 开发指南
 
@@ -206,15 +201,6 @@ Rspack 团队非常重视开源社区做出的宝贵贡献。 我们致力于保
 这就是为什么我们目前正在制作一份全面的[开发指南](https://web-infra-dev.github.io/rspack-dev-guide/)，为贡献者提供 Rspack 所有的开发文档。
 当前版本的指南包含构建、测试、调试和分析 Rspack 的所有必要资料。 此外，它还包括贡献流程，例如如何创建最小的[可重现示例](https://github.com/web-infra-dev/rspack-repro)。
 将来，该指南还会概述 Rspack 的整体架构，使贡献者能够深入了解该项目的内部工作原理。
-
-<!-- ## Test infrastructures
-
-In order to ship with confidence, we are currently:
-
-- Building and testing a list of examples in the Rspack repository (currently 38 examples)
-- Porting all webpack tests from the webpack repository
-- Running all tests on Node 14, 16 and 18
-- Maintaining a separate ecosystem-ci repository for integration tests -->
 
 ## 测试架构
 
