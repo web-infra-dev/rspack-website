@@ -49,8 +49,9 @@ module.exports = {
     outputModule: true,
   },
   output: {
+    chunkFormat: 'module',
+    chunkLoading: 'import',
     library: {
-      // do not specify a `name` here
       type: 'module',
     },
   },
