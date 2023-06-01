@@ -164,11 +164,15 @@ Rspack's adaptation to webpack's plugins and loaders is not only this. We have t
 
 ### Modern.js Framework
 
-Thanks to the close cooperation and parallel iteration of the Modern.js framework and Rspack, **Modern.js Rspack mode has covered 85% of the framework capabilities**, supporting SSR, BFF, micro front-end scenarios, and aligning with TypeScript type checking, code compatibility detection and other functions. In ByteDance, more than 80 projects are using the Modern.js Rspack mode. Some of the projects have been launched to the production environment, achieving about a 10-fold improvement in build performance.
+Thanks to the close collaboration and parallel iteration of the [Modern.js framework](https://modernjs.dev/en/) and Rspack, **Modern.js Rspack mode has covered 85% of the framework's capabilities**, supporting SSR, BFF, micro front-end scenarios, and aligning with TypeScript type checking, code compatibility detection and other features.
+
+At ByteDance, more than 80 projects are using the Modern.js Rspack mode. Some of the projects have been deployed into production and have seen a 10x improvement in build performance.
 
 ### Modern.js Doc
 
-In addition to the Modern.js framework, the document site development solution under the Modern.js system - Modern.js Doc - has also switched the build tool from webpack to Rspack, and rewritten the MDX compilation process based on Rust. Compared with the early version using webpack, the overall brought more than 10 times the build performance improvement. For example, the startup and construction time of the Modern.js official website documents has been reduced from 30s to within 2s. In the future, we plan to rename Modern.js Doc to Rspress, serve as the official documentation site solution of Rspack, and maintain it through a separate repository.
+In addition to the Modern.js framework, the document site solution under the Modern.js system - [Modern.js Doc](https://modernjs.dev/doc-tools/) - has also switched the bundler from webpack to Rspack, and rewritten the MDX compilation process based on Rust.
+
+Compared to previous versions using webpack, the current version's build speed can be reduced to seconds. Using the Modern.js official website documentation as an example, the project's startup and build time has been reduced from 30 seconds to less than 2 seconds. In the future, we plan to rename Modern.js Doc to **Rspress** as the official documentation site solution for Rspack and maintain it through a separate repository.
 
 > Welcome to visit the [Modern.js code repository](https://github.com/web-infra-dev/modern.js) and experience the above content.
 
