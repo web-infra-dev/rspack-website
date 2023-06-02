@@ -66,7 +66,8 @@ import rspackAudio from '../../public/rspack.mp3';
 
 到今天（2023 年 3 月）为止 Rspack 已经开发了 11 个月，虽然 Rspack 仍处于比较早期的状态，且缺失了一些 webpack 的功能，但根据二八原则，目前的功能已经能够满足大多数项目的需求。同时，我们已经在内部的多个业务上完成了落地，取得了 5~10 倍编译性能的提升。目前的性能仍然存在较大提升空间，我们会持续对 Rspack 进行更深入的性能优化。
 
-Rspack 已经完成了对 webpack 主要配置的兼容，并且适配了 webpack 的 loader 架构。目前，你已经可以在 Rspack 中无缝使用你熟悉的各种 loader，如 babel-loader、less-loader、sass-loader 等等。我们的长期目标是完整地支持 loader 特性，未来你可以在 Rspack 中使用那些更加复杂的 loader，如 vue-loader。
+Rspack 已经完成了对 webpack 主要配置的兼容，并且适配了 webpack 的 loader 架构。目前，你已经可以在 Rspack 中无缝使用你熟悉的各种 loader，如 babel-loader、less-loader、sass-loader、vue-loader 等等。
+
 目前 Rspack 对缓存支持还比较简单，仅支持了内存级别的缓存，未来我们会建设更强的缓存能力，包括可迁移的持久化缓存，这将带来更大的想象空间，如在 monorepo 里不同的机器上都可以复用 Rspack 的云端缓存，提升大型项目的缓存命中率。
 
 ## Rspack 的未来
