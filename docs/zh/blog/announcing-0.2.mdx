@@ -1,3 +1,5 @@
+import benchmark from '../../public/benchmark.jpeg';
+
 # Rspack 0.2 发布公告
 
 自 Rspack 0.1 版本发布的将近三个月以来，我们得到了非常多社区的关注和反馈，感谢大家对 Rspack 的支持。在 0.2 版本中，我们新增了诸多功能，如 realContentHash、DataURI、ESM format 的支持等，同时加强了与 Webpack 的兼容性，并优化了诸多细节。
@@ -196,6 +198,8 @@ Rspack 0.2 已经完成了对 vue-loader 的兼容。对于 Vue3 项目，你可
 
 添加与 esbuild 对比的 benchmark https://github.com/web-infra-dev/performance-compare
 
+<img src={benchmark} alt="benchmark"></img>
+
 ## 开发指南
 
 Rspack 团队非常重视开源社区做出的宝贵贡献。我们致力于保持开放的态度，努力在每一步都让开源社区参与进来。
@@ -213,8 +217,6 @@ Rspack 团队非常重视开源社区做出的宝贵贡献。我们致力于保�
 - 搭建了独立的 ecosystem-ci 仓库用于集成社区的上层框架
 
 ## Nightly Release
-
-<!-- To expedite iteration and delivery, Rspack is released on a daily basis with the "@nightly" tag to npm. -->
 
 为了加速迭代，Rspack 每天发布一次带有“@nightly” 标签的 npm 包。
 
