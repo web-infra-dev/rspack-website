@@ -10,3 +10,22 @@
 
 - **类型：** `boolean`
 - **默认值：** `true`
+
+## experiments.outputModule
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+开启之后，将尽可能输出符合 ECMAScript 语法的代码。例如，使用 `import()` 加载 chunk，使用 ESM exports 等等。
+
+```js
+module.exports = {
+  experiments: {
+    outputModule: true,
+  },
+};
+```
+
+## experiments.css
+
+启用原生 CSS 支持，请注意如果你在使用 `style-loader` 和 `css-loader` 请关闭该配置，因为 `style-loader` 和 `css-loader` 和原生 CSS 功能冲突。

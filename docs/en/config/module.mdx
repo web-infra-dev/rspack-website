@@ -51,6 +51,84 @@ Excludes all modules that match this condition and will match against the absolu
 
 Matches all modules that match this condition against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
 
+## Rule.resource
+
+- **Type:** [`Condition`](/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.test`.
+
+## Rule.resourceQuery
+
+- **Type:** [`Condition`](/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource against the Resource's query. Note: Containing `?`, when `Rule.resourceQuery` is `?raw`, it will match the resource request of `xxx?raw`
+
+## Rule.resourceFragment
+
+- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource against the Resource's fragment. Note: Containing `#`, when `Rule.resourceFragment` is `#abc`, it will match the resource request of `xxx#abc`
+
+## Rule.test
+
+- **Type:** [`Condition`](/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.resource`.
+
+## Rule.issuer
+
+- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment) of the module that issued the current module.
+
+## Rule.dependency
+
+- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against the category of the dependency that introduced the current module, for example `esm` for `import` and `import()`, `cjs` for `require()`, `url` for `new URL()` and `url()`.
+
+## Rule.scheme
+
+- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against the Resource's scheme.
+
+For example, you can treat the inline data uri resource as a separate resource with the following configuration:
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        scheme: 'data',
+        type: 'asset/resource',
+      },
+    ],
+  },
+};
+```
+
+## Rule.mimetype
+
+- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against the Resource's mimetype.
+
+## Rule.descriptionData
+
+- **Type:** `{ [k: string]: Condition }`
+- **Default:** `undefined`
+
+Matches all modules that match this resource, and will match against the data in the Resource's package.json.
+
 ## Rule.loaders
 
 :::warning
@@ -58,6 +136,14 @@ Matches all modules that match this condition against the absolute path of the r
 This option is deprecated, please use `Rule.use` instead
 
 :::
+
+## Rule.loader
+
+`Rule.loader` is a shortcut to `Rule.use: [ { loader } ]`. See [Rule.use](/config/module.html#ruleuse) for details.
+
+## Rule.options
+
+`Rule.options` is a shortcut to `Rule.use: [ { options } ]`. See [Rule.use](/config/module.html#ruleuse) for details.
 
 ## Rule.parser
 
@@ -129,39 +215,11 @@ module.exports = {
 };
 ```
 
-## Rule.resource
-
-- **Type:** [`Condition`](/config/module.html#condition)
-- **Default:** `undefined`
-
-Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.test`.
-
-## Rule.resourceQuery
-
-- **Type:** [`Condition`](/config/module.html#condition)
-- **Default:** `undefined`
-
-Matches all modules that match this resource against the Resource's query. Note: Containing `? `, when `Rule.resourceQuery` is `?raw`, it will match the resource request of `xxx?raw`
-
 ## Rule.sideEffects
 
 - **Type:** `boolean`
 
 Flag the module for side effects
-
-## Rule.test
-
-- **Type:** [`Condition`](/config/module.html#condition)
-- **Default:** `undefined`
-
-Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.resource`.
-
-## Rule.issuer
-
-- **Type:** [`Condition`](/zh/config/module.html#condition)
-- **Default:** `undefined`
-
-Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment) of the module that issued the current module.
 
 ## Rule.type
 
@@ -260,8 +318,9 @@ Condition represents the form of matching a given input, and it supports the fol
 
 - `String`: Given an input, the match is successful when the input string satisfies startsWith. Note: You can think of it as `input.startsWith(condition)`.
 - `RegExp`: Given an input, the match is successful when the input string satisfies the regular expression. Note: You can think of it as `condition.test(input)`.
-- `Condition[]`: A list of conditions. If one condition matches, the match succeeds.
-- `LogicalConditions`: If all attributes are matched, the matching succeeds.
-  - `{ and: Condition[] }`: If all conditions are matched, the match is successful.
-  - `{ or: Condition[] }`: If one of the conditions matches, the match succeeds.
-  - `{ not: Condition }`: If all conditions do not match, the match succeeds.
+- `Condition[]`: A list of conditions. At least one of the Conditions must match.
+- `LogicalConditions`: All Conditions must match.
+  - `{ and: Condition[] }`: All Conditions must match.
+  - `{ or: Condition[] }`: At least one of the Conditions must match.
+  - `{ not: Condition }`: All Conditions must NOT match.
+- `(value: string) => boolean`: If it's called with the input and return a truthy value, the match is succeeds.

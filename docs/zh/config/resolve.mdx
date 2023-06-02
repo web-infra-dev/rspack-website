@@ -41,9 +41,29 @@
 ## resolve.extensions
 
 - **类型：** `string[]`
-- **默认值：** `[".tsx", ".jsx", ".ts", ".js", ".json"]`
+- **默认值：** `[".js", ".json", ".wasm", ".tsx", ".ts", ".jsx"]`
 
 按照顺序解析模块，例如 `require('./index')`，会依次尝试解析 `'./index.tsx'`、`'./index.jsx'`...
+
+## resolve.extensionAlias
+
+- **类型：** `Record<string, string[] | string>`
+- **默认值：** `{}`
+
+定义拓展名的别名，例如
+
+```js
+// rspack.config.js
+module.exports = {
+  resolve: {
+    extensionAlias: {
+      '.js': ['.ts', '.js'],
+    },
+  },
+};
+```
+
+在 `require('./index.js')` 时，会依次尝试解析 `'./index.ts'`, `./index.js`。
 
 ## resolve.fallback
 
@@ -77,6 +97,28 @@
 - **默认值：** `["index"]`
 
 解析目录时的文件名后缀，例如 `require('./dir/')` 会尝试解析 `'./dir/index'`。
+
+## resolve.exportsFields
+
+- **类型：** `string[]`
+- **默认值：** `["exports"]`
+
+自定义 package.json 中的 exports 字段，例如：
+
+```json
+// lib/package.json
+{
+  "name": "lib",
+  "testExports": {
+    ".": "./test.js"
+  },
+  "exports": {
+    ".": "./index.js"
+  }
+}
+```
+
+则当配置为 `["testExports", "exports"]` 时, `import value from 'lib'` 的结果为 `lib/test.js`。
 
 ## resolve.modules
 

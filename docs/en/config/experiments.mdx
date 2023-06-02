@@ -10,3 +10,25 @@ Enable incremental rebuild. `true` will try to reuse the results of the last bui
 
 - **Type：** `boolean`
 - **Default：** `true`
+
+## experiments.outputModule
+
+- **Type：** `boolean`
+- **Default：** `true`
+
+Once enabled, Rspack will output ECMAScript module syntax whenever possible. For instance, `import()` to load chunks, ESM exports to expose chunk data, among others.
+
+```js
+module.exports = {
+  experiments: {
+    outputModule: true,
+  },
+};
+```
+
+## experiments.css
+
+- **Type：** `boolean`
+- **Default：** `true`
+
+Once enabled, Rspack will enable native CSS support, Note that if you're using `style-loader` and `css-loader`, you should disable this option because `style-loader` and `css-loader` will conflict with native CSS.

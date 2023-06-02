@@ -60,7 +60,7 @@ EntryChunk2(index.js, a.js, b.js)
 
 自定义压缩器。当使用自定义压缩器时，内置压缩器将会被禁用。
 
-```js
+```js title=rspack.config.js
 const minifyPlugin = require('@rspack/plugin-minify');
 module.exports = {
   context: __dirname,
@@ -107,9 +107,7 @@ module.exports = {
 
 `optimization.sideEffects` 依赖于 `builtins.treeShaking` 的启用。这种配置项开启后有额外的构建时间开销，但移除模块对性能有积极影响，因为这意味着更少的代码生成。这种优化的效果取决于你的代码库。
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -120,9 +118,7 @@ module.exports = {
 
 如果你只想使用通过（`package.json` 和 `module.rule.sideEffects`）配置的 `sideEffects`，而不想分析代码:
 
-**rspack.config.js**
-
-```js
+```js title=rspack.config.js
 module.exports = {
   //...
   optimization: {
@@ -135,141 +131,23 @@ module.exports = {
 `optimization.sideEffects` 为 `true` 时，Rspack 会在一个模块中所有的语句（statement）都没有副作用时标记该模块为无副作用。
 :::
 
+## optimization.realContentHash
+
+在产物处理完成后，添加额外的哈希计算步骤根据产物的文件内容计算该产物的哈希。该功能在生产环境下会默认开启。
+
+如果将 realContentHash 设置为 false，则使用编译流程中的内部数据计算哈希，在某些情况下，即使产物内容完全一致也可能导致哈希变化。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    realContentHash: true,
+  },
+};
+```
+
 ## optimization.splitChunks
 
 Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行拆分。
 
-### 默认值
-
-开箱即用的 `SplitChunksPlugin` 对于大部分用户来说非常友好。
-
-默认情况下，它只会影响到按需加载的 chunk，因为初始 chunk 会影响到项目的 HTML 文件中的脚本标签。
-
-rspack 将根据以下条件自动拆分 chunk：
-
-- 新的 chunk 可以被共享，或者模块来自于 `node_modules` 文件夹
-
-### 配置
-
-rspack 为希望对该功能进行更多控制的开发者提供了一组选项。
-
-:::warning
-
-Rspack 的默认配置符合 Web 性能最佳实践，但是项目的最佳策略可能有所不同。如果要更改配置，则应评估所做更改的影响，以确保有真正的收益。
-
-:::
-
-### optimization.splitChunks
-
-下面这个配置对象代表 `SplitChunksPlugin` 的默认行为。
-
-```js title=rspack.config.js
-module.exports = {
-  //...
-  optimization: {
-    splitChunks: {
-      chunks: 'async',
-      minChunks: 1,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          minChunks: 2,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-        },
-      },
-    },
-  },
-};
-```
-
-:::warning
-
-当 webpack 处理文件路径时，它们始终包含 UNIX 系统中的 `/` 和 Windows 系统中的 `\`。这就是为什么在 `{cacheGroup}.test` 字段中使用 `[\\/]` 来表示路径分隔符的原因。`{cacheGroup}.test` 中的 `/` 或 `\` 会在跨平台使用时产生问题。
-
-:::
-
-:::warning
-
-Rspack 不允许将 entry 名称传递给 `{cacheGroup}.test` 或者为 `{cacheGroup}.name` 使用现有的 chunk 的名称。
-
-:::
-
-### splitChunks.chunks
-
-- **Type:** `string 'initial' | 'all' | 'async'`
-- **Default:：** `'async'`
-
-这表明将选择哪些 chunk 进行优化。当提供一个字符串，有效值为 `all` ，`async` 和 `initial`。设置为 `all` 可能特别强大，因为这意味着 chunk 可以在异步和非异步 chunk 之间共享。
-
-```js title=rspack.config.js
-module.exports = {
-  //...
-  optimization: {
-    splitChunks: {
-      // include all types of chunks
-      chunks: 'all',
-    },
-  },
-};
-```
-
-### splitChunks.minChunks
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
-
-- **类型：** `number`
-- **默认值：** `1`
-
-拆分前必须共享模块的最小 chunk 数。
-
-### splitChunks.name
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.minChunks
-
-- **类型：** `string`
-
-每个 cacheGroup 也可以使用：`splitChunks.cacheGroups.{cacheGroup}.name`。
-
-拆分 chunk 的名称。设为 `false` 将保持 chunk 的相同名称，因此不会不必要地更改名称。这是生产环境下构建的建议值。
-
-如果 `splitChunks.name` 与 entry point 名称匹配，entry point 将被删除。
-
-:::info
-
-`splitChunks.cacheGroups.{cacheGroup}.name` 可以用来将模块移到其所属 Chunk 的的父 Chunk 中。例如，使用 `name: "entry-name "` 来将模块移到 `entry-name` chunk 中。你也可以使用按需命名的 chunk，但你必须注意所选的模块只在这个 chunk 下使用。
-
-:::
-
-### splitChunks.cacheGroups
-
-缓存组可以继承和/或覆盖来自 `splitChunks.*` 的任何选项。但是 `test`、`priority` 和 `reuseExistingChunk` 只能在缓存组级别上进行配置。将它们设置为 `false` 以禁用任何默认缓存组。
-
-```js title=webpack.config.js
-module.exports = {
-  //...
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-      },
-    },
-  },
-};
-```
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.priority
-
-- **类型：** `number`
-- **默认值：** `-20`
-
-一个模块可以属于多个缓存组。优化将优先考虑具有更高 `priority`（优先级）的缓存组。默认组的优先级为负，以允许自定义组获得更高的优先级（自定义组的默认值为 `0`）。
-
-#### splitChunks.cacheGroups.\{cacheGroup\}.test
-
-- **类型：** `RegExp | string`
-
-控制此缓存组选择的模块。省略它会选择所有模块。它可以匹配绝对模块资源路径或 chunk 名称。匹配 chunk 名称时，将选择 chunk 中的所有模块。
+点击 [SplitChunksPlugin](/config/optimization-split-chunks) 查看可用配置项

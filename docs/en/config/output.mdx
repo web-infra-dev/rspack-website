@@ -525,7 +525,7 @@ Configure how the library will be exposed.
 
 - **Type:** `string`
 
-  Types included by default are `'var'`, `'module'`, `'assign'`, `'assign-properties'`, `'this'`, `'window'`, `'self'`, `'global'`, `'commonjs'`, `'commonjs2'`, `'commonjs-module'`, `'commonjs-static'`, `'amd'`, `'amd-require'`, `'umd'`, `'umd2'`, but others might be added by plugins.
+  Types included by default are `'var'`, `'module'`, `'system'`, `'assign'`, `'assign-properties'`, `'this'`, `'window'`, `'self'`, `'global'`, `'commonjs'`, `'commonjs2'`, `'commonjs-module'`, `'commonjs-static'`, `'amd'`, `'amd-require'`, `'umd'`, `'umd2'`, but others might be added by plugins.
 
 For the following examples, we'll use `_entry_return_` to indicate the values returned by the entry point.
 
@@ -859,6 +859,73 @@ module.exports = {
 };
 ```
 
+##### type: 'system'
+
+This will expose your library as a [`System.register`](https://github.com/systemjs/systemjs/blob/master/docs/system-register.md) module.
+
+System modules require that a global variable `System` is present in the browser when the bundle is executed. Compiling to `System.register` format allows you to `System.import('/bundle.js')` without additional configuration and has your bundle loaded into the System module registry.
+
+```javascript
+module.exports = {
+  //...
+  output: {
+    library: {
+      type: 'system',
+    },
+  },
+};
+```
+
+Output:
+
+```javascript
+System.register([], function (__WEBPACK_DYNAMIC_EXPORT__, __system_context__) {
+  return {
+    execute: function () {
+      // ...
+    },
+  };
+});
+```
+
+By adding `output.library.name` to configuration in addition to having `output.library.type` set to `system`, the output bundle will have the library name as an argument to `System.register`:
+
+```javascript
+System.register(
+  'MyLibrary',
+  [],
+  function (__WEBPACK_DYNAMIC_EXPORT__, __system_context__) {
+    return {
+      execute: function () {
+        // ...
+      },
+    };
+  }
+);
+```
+
+##### type: 'module'
+
+```js
+module.exports = {
+  // …
+  experiments: {
+    outputModule: true,
+  },
+  output: {
+    chunkFormat: 'module',
+    library: {
+      // do not specify a `name` here
+      type: 'module',
+    },
+  },
+};
+```
+
+Output ES Module.
+
+However this feature is still experimental and not fully supported yet, so make sure to enable [experiments.outputModule](/config/experiments.html) beforehand.
+
 ### output.library.auxiliaryComment
 
 Add a comment in the UMD wrapper.
@@ -1071,3 +1138,10 @@ module.exports = {
   },
 };
 ```
+
+## output.clean
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+Clean the output directory before emit.

@@ -90,6 +90,11 @@ export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       url: 'https://webpack.js.org/plugins/hot-module-replacement-plugin',
       status: i18n[lang]['included'],
     },
+    {
+      name: 'fork-ts-checker-webpack-plugin',
+      url: 'https://github.com/TypeStrong/fork-ts-checker-webpack-plugin',
+      status: i18n[lang]['compatible'],
+    },
   ];
   return pluginList.map((item) => (
     <CompatibleCardItem key={item.name} {...item} />
@@ -133,6 +138,17 @@ export const LoaderCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       name: 'stylus-loader',
       status: i18n[lang]['compatible'],
       url: 'https://github.com/webpack-contrib/stylus-loader',
+    },
+    {
+      name: 'style-loader',
+      status: i18n[lang]['compatible'],
+      url: 'https://github.com/webpack-contrib/style-loader',
+      description: i18n[lang]['style-loader-description'],
+    },
+    {
+      name: 'file-loader',
+      status: i18n[lang]['compatible'],
+      url: 'https://github.com/webpack-contrib/file-loader',
     },
     {
       name: '@mdx-js/loader',

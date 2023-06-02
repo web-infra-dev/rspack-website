@@ -51,6 +51,84 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 
 匹配所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
+## Rule.resource
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
+
+## Rule.resourceQuery
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配。
+
+## Rule.resourceFragment
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 fragment 进行匹配。注：包含 `#`，当 `Rule.resourceFragment` 为 `#abc` 时，会和 `xxx#abc` 的资源请求进行匹配。
+
+## Rule.test
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.resource` 同时存在。
+
+## Rule.issuer
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和引入当前模块的模块的 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。
+
+## Rule.dependency
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和引入当前模块的依赖的类别（category）进行匹配，比如对于 `import`、`import()` 来说是 `esm`，对于 `require()` 来说是 `cjs`，对于 `new URL()`、`url()` 来说是 `url`。
+
+## Rule.scheme
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 scheme 进行匹配。
+
+比如，你可以通过以下配置将内联的 data uri 资源当作单独的资源处理：
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        scheme: 'data',
+        type: 'asset/resource',
+      },
+    ],
+  },
+};
+```
+
+## Rule.mimetype
+
+- **类型：** [`Condition`](/zh/config/module.html#condition)
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 mimetype 进行匹配。
+
+## Rule.descriptionData
+
+- **类型：** `{ [k: string]: Condition }`
+- **默认值：** `undefined`
+
+匹配所有符合这个资源的模块，会和 Resource 的 package.json 中的字段进行匹配。
+
 ## Rule.loaders
 
 :::warning
@@ -58,6 +136,14 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 这个选项已经被废弃，请使用 `Rule.use` 代替。
 
 :::
+
+## Rule.loader
+
+`Rule.loader` 是 `Rule.use: [ { loader } ]` 的简略写法。 详情见 [Rule.use](/config/module.html#ruleuse).
+
+## Rule.options
+
+`Rule.options` 是 `Rule.use: [ { options } ]` 的简略写法。 详情见 [Rule.use](/config/module.html#ruleuse).
 
 ## Rule.parser
 
@@ -130,39 +216,11 @@ module.exports = {
 };
 ```
 
-## Rule.resource
-
-- **类型：** [`Condition`](/zh/config/module.html#condition)
-- **默认值：** `undefined`
-
-匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
-
-## Rule.resourceQuery
-
-- **类型：** [`Condition`](/zh/config/module.html#condition)
-- **默认值：** `undefined`
-
-匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配。
-
 ## Rule.sideEffects
 
 - **类型：** `boolean`
 
 标记模块是否存在副作用。
-
-## Rule.test
-
-- **类型：** [`Condition`](/zh/config/module.html#condition)
-- **默认值：** `undefined`
-
-匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.resource` 同时存在。
-
-## Rule.issuer
-
-- **类型：** [`Condition`](/zh/config/module.html#condition)
-- **默认值：** `undefined`
-
-匹配所有符合这个资源的模块，会和引入当前模块的模块的 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。
 
 ## Rule.type
 
@@ -265,3 +323,4 @@ Condition 代表了匹配一个给定输入的形式，它支持的类型为：
   - `{ and: Condition[] }`：所有条件都匹配，则匹配成功。
   - `{ or: Condition[] }`：其中一个条件匹配，则匹配成功。
   - `{ not: Condition }`：所有条件都不匹配时，则匹配成功。
+- `(value: string) => boolean`：当输入的字符串经函数调用后返回 true 是，则匹配成功。

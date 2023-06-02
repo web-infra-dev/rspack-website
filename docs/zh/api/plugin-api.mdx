@@ -65,6 +65,18 @@ resolver 设置完成之后触发。
 
 在一个新的 compilation 创建之前调用。
 
+### `beforeCompile`
+
+`AsyncSeriesHook<[]>`
+
+在编译参数创建后执行插件。
+
+### `afterCompile`
+
+`AsyncSeriesHook<[Compilation]>`
+
+在完成并封闭(seal)编译后调用。
+
 ### `thisCompilation`
 
 `SyncHook<[Compilation]>`
@@ -126,3 +138,57 @@ make 阶段之前调用。
 `AsyncSeriesHook<[CompilationAssets]>`
 
 在产物输出之前进行修改产物。
+
+### `optimizeModules`
+
+`SyncBailHook<[JsModule[]]>`
+
+在模块优化阶段开始时调用。插件可以使用此钩子来对模块执行优化。
+
+### `optimizeChunkModule`
+
+`AsyncSeriesBailHook<[JsModule[]]>`
+
+在 `afterOptimizeTree` 之后，在块模块优化的开始时调用。插件可以使用此钩子来对块模块执行优化。
+
+### `finishModules`
+
+`AsyncSeriesHook<[JsModule[]]>`
+
+当所有模块都没有错误地构建完成时调用。
+
+### `chunkAsset`
+
+`SyncHook<[JsChunk[], string /** filename*/ ]>`
+
+Triggered when an asset from a chunk was added to the compilation.
+
+当`chunk`的产物被添加到编译时触发。
+
+## NormalModuleFactory
+
+### `beforeResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+当遇到新的依赖请求时调用。可以通过返回 `false` 来忽略依赖项。否则，应该返回 `undefined` 以继续。
+
+### `afterResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+在请求被解析后调用。
+
+### `ResolveForScheme`
+
+`AsyncSeriesBailHook<[ResourceDataWithData]>`
+
+在带有 scheme 的解析（URI）请求之前调用。
+
+## ContextModuleFactory
+
+### `afterResolve`
+
+`AsyncSeriesBailHook<[ResolveData]>`
+
+在请求的目录解析后调用。

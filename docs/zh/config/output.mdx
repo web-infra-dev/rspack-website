@@ -525,7 +525,7 @@ module.exports = {
 
 - **类型：** `string`
 
-  类型默认包括 `'var'`、 `'module'`、 `'assign'`、 `'assign-properties'`、 `'this'`、 `'window'`、 `'self'`、 `'global'`、 `'commonjs'`、 `'commonjs2'`、 `'commonjs-module'`、 `'commonjs-static'`、 `'amd'`、 `'amd-require'`、 `'umd'`、 `'umd2'`，除此之外也可以通过插件添加。
+  类型默认包括 `'var'`、 `'module'`、`'system'`、 `'assign'`、 `'assign-properties'`、 `'this'`、 `'window'`、 `'self'`、 `'global'`、 `'commonjs'`、 `'commonjs2'`、 `'commonjs-module'`、 `'commonjs-static'`、 `'amd'`、 `'amd-require'`、 `'umd'`、 `'umd2'`，除此之外也可以通过插件添加。
 
 对于接下来的示例，我们将会使用 `_entry_return_` 表示被入口点返回的值。
 
@@ -859,6 +859,73 @@ module.exports = {
 };
 ```
 
+##### type: 'system'
+
+这将会把你的库暴露为一个 [`System.register`](https://github.com/systemjs/systemjs/blob/master/docs/system-register.md) 模块。
+
+System 模块要求当 bundle 执行时，全局变量 `System` 出现在浏览器中。编译的 `System.register` 格式允许你在没有额外配置的情况下使用 `System.import('/bundle.js')`，并将你的 bundle 加载到系统模块注册表中。
+
+```javascript
+module.exports = {
+  //...
+  output: {
+    library: {
+      type: 'system',
+    },
+  },
+};
+```
+
+输出：
+
+```javascript
+System.register([], function (__WEBPACK_DYNAMIC_EXPORT__, __system_context__) {
+  return {
+    execute: function () {
+      // ...
+    },
+  };
+});
+```
+
+除了设置 `output.library.type` 为 `system`，还要将 `output.library.name` 添加到配置中，输出的 bundle 将以库名作为 `System.register` 的参数：
+
+```javascript
+System.register(
+  'MyLibrary',
+  [],
+  function (__WEBPACK_DYNAMIC_EXPORT__, __system_context__) {
+    return {
+      execute: function () {
+        // ...
+      },
+    };
+  }
+);
+```
+
+##### type: 'module'
+
+```js
+module.exports = {
+  // …
+  experiments: {
+    outputModule: true,
+  },
+  output: {
+    chunkFormat: 'module',
+    library: {
+      // do not specify a `name` here
+      type: 'module',
+    },
+  },
+};
+```
+
+输出 ES 模块。
+
+然而该特性仍然是实验性的，并且没有完全支持，所以请确保事先启用 [experiments.outputModule](/config/experiments.html)。
+
 ### output.library.auxiliaryComment
 
 在 UMD 包装器中添加注释。
@@ -1024,3 +1091,10 @@ module.exports = {
   },
 };
 ```
+
+## output.clean
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+在生成产物前，删除输出目录下的所有文件。
