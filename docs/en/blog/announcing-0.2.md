@@ -173,7 +173,7 @@ Compared to previous versions using webpack, the current version's build speed c
 
 ### Vue
 
-Rspack 0.2 has completed the compatibility with vue-loader. You can refer to [example-vue3](https://github.com/web-infra-dev/rspack/tree/main/examples/vue) or [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2) to complete the corresponding configuration. At the same time, we are also promoting further support for the Vue framework, so stay tuned.
+Rspack 0.2 has achieved compatibility with vue-loader! For Vue3 projects, you can use Rspack's native CSS and TS processors to improve the compilation speed of Vue projects. All you need to do is upgrade vue-loader to version 17.2.1 or above and set `experimentalInlineMatchResource: true`. For more information on Vue3/Vue2 support, please refer to [guide-vue](/guide/vue).
 
 ### Svelte
 

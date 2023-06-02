@@ -174,7 +174,7 @@ Rspack 适配的 webpack 的 plugin 和 loader 远不仅此，我们在 [loader-
 
 ### Vue
 
-Rspack 0.2 完成了对 vue-loader 的兼容，你可以参考 [example-vue3](https://github.com/web-infra-dev/rspack/tree/main/examples/vue) 或 [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2) 完成对应的配置。同时，我们也正在进一步推动更进一步的 Vue 框架支持，敬请期待。
+Rspack 0.2 已经完成了对 vue-loader 的兼容。对于 Vue3 项目，你可以使用 Rspack 原生的 CSS、TS 处理器提升 Vue 项目的编译速度，你仅需要将 vue-loader 升级到 17.2.1 以上的版本，并设置 `experimentalInlineMatchResource: true` 即可。对于 Vue3/Vue2 支持的更多信息请参考 [Vue](/guide/vue)。
 
 ### Svelte
 
