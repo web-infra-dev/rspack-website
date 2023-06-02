@@ -63,7 +63,7 @@ You can refer to the related example [example-vue3](https://github.com/web-infra
 
 ## Vue2
 
-Rspack has completed compatibility with Vue2 (using vue-loader@15). Although it temporarily does not support using built-in TS, CSS features, you can still use style-loader and css-loader to generate styles.
+Rspack has completed compatibility with Vue2 (using vue-loader@15).
 
 Please make sure to turn off `experiments.css` when configuring Vue2 projects or use `Rule.type = "javascript/auto"` in CSS-related rules:
 
@@ -76,6 +76,10 @@ module.exports = {
         use: ['vue-style-loader', 'css-loader'],
         type: 'javascript/auto',
       },
+      {
+        resourceQuery: /lang=ts/,
+        type: 'ts', // add this rule when you use typescript in Vue SFC
+      },
     ],
   },
   experiments: {
@@ -84,7 +88,7 @@ module.exports = {
 };
 ```
 
-You can refer to the related example [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2).
+You can refer to the related example [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2) and [example-vue2-ts](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2-ts).
 
 ## Vue 3 JSX
 
