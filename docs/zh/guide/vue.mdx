@@ -63,7 +63,7 @@ module.exports = config;
 
 ## Vue2
 
-Rspack 已经完成对 Vue2（使用 vue-loader@15）的兼容。目前，尽管 vue-loader@15 暂时无法配合内置的 TS、CSS 功能使用，但你依旧可以配合 style-loader 与 css-loader 进行样式生成。
+Rspack 已经完成对 Vue2（使用 vue-loader@15）的兼容。目前，尽管 vue-loader@15 暂时无法便捷地配合内置的 TS、CSS 功能使用，但你依旧可以配合 style-loader 与 css-loader 进行样式生成。
 
 请确保在配置 Vue2 项目时关闭 `experiments.css` 或在 CSS 相关的规则中使用 `Rule.type = "javascript/auto"`：
 
