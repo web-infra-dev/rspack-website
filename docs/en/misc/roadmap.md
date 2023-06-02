@@ -14,10 +14,6 @@ As webpack contains a large number of APIs, we will be working to support the mo
 
 Module Federation is a widely used webpack feature with a rich ecosystem and we plan to support module federation in the future.
 
-### Vue and Svelte support
-
-From what we have seen, Vue and Svelte are two very popular front-end frameworks that are more complex to support than React. They rely on more internal webpack apis. We expect to complete full support for both frameworks in the near future. Our desire is to support the full Vue and Svelte ecosystems.
-
 ### Lazy Compilation support
 
 Although Rspack currently has good performance, there is still a lot of room to improve performance for projects with a large number of pages, and Lazy Compilation is a good way to improve performance.
