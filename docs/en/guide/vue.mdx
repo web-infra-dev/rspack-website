@@ -2,9 +2,89 @@
 
 Vue is a very popular front-end framework, and Rspack plans to provide full support for Vue in the future, offering complete engineering capabilities.
 
-## vue-loader
+## Vue3
 
-Rspack's goal is to fully support vue-loader, but due to the limited APIs currently provided by Rspack, it is currently unable to directly run vue-loader. However, you can still build vue-loader's functionality yourself. Rspack provides a simple implementation of vue-loader for reference, which you can see in its entirety at [vue-example](https://github.com/web-infra-dev/rspack/tree/main/examples/vue).
+Currently, Vue3 is supported by Rspack. Please make sure your [vue-loader](https://github.com/vuejs/vue-loader) version is >= 17.2.1 and configure as follows:
+
+```js title="rspack.config.js"
+const { VueLoaderPlugin } = require('vue-loader');
+
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
+  // ...
+  plugins: [new VueLoaderPlugin()],
+  module: {
+    rules: [
+      // ...
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          // Note, for the majority of features to be available, make sure this option is `true`
+          experimentalInlineMatchResource: true,
+        },
+      },
+    ],
+  },
+};
+module.exports = config;
+```
+
+As Rspack natively supports the compilation of CSS modules, you do not need to configure loaders related to CSS. In addition, when you try to use a CSS preprocessor (such as: less), you only need to add the following configuration:
+
+```diff
+const config = {
+  module: {
+    rules: [
++      {
++        test: /\.less$/,
++        loader: "less-loader",
++        type: "css",
++      }
+    ],
+  },
+};
+module.exports = config;
+```
+
+At this time, Rspack will use the built-in CSS processor for post-processing.
+
+Besides, as Rspack has built-in TS support, we also support `lang="ts"` configuration by default:
+
+```html
+<script lang="ts">
+  export default {
+    // ...
+  };
+</script>
+```
+
+You can refer to the related example [example-vue3](https://github.com/web-infra-dev/rspack/tree/main/examples/vue).
+
+## Vue2
+
+Rspack has completed compatibility with Vue2 (using vue-loader@15). Although it temporarily does not support using built-in TS, CSS features, you can still use style-loader and css-loader to generate styles.
+
+Please make sure to turn off `experiments.css` when configuring Vue2 projects or use `Rule.type = "javascript/auto"` in CSS-related rules:
+
+```js title="rspack.config.js"
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader'],
+        type: 'javascript/auto',
+      },
+    ],
+  },
+  experiments: {
+    css: false,
+  },
+};
+```
+
+You can refer to the related example [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2).
 
 ## Vue 3 JSX
 
