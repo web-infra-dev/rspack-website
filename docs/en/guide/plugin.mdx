@@ -37,6 +37,22 @@ module.exports = {
 };
 ```
 
-{
-// TODO: link to compat page
+Please refer to [Plugin compat](/guide/plugin-compat) for the list of plugins that have passed Rspack compatibility tests.
+
+### Type definitions
+
+If you use TypeScript to write Rspack plugins, you can import `Compiler` and `RspackPluginInstance` to declare the types of your plugins:
+
+```ts
+import type { Compiler, RspackPluginInstance } from '@rspack/core';
+
+const PLUGIN_NAME = 'MyPlugin';
+
+class MyPlugin implements RspackPluginInstance {
+  apply(compiler: Compiler) {
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      console.log('The Rspack build process is starting!');
+    });
+  }
 }
+```

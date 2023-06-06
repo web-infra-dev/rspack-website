@@ -38,6 +38,22 @@ module.exports = {
 };
 ```
 
-{
-// TODO: link to compat page
+请参考 [Plugin 兼容](/guide/plugin-compat) 来了解完成 Rspack 兼容性测试的插件列表。
+
+### 类型定义
+
+如果你使用 TypeScript 来编写 Rspack 插件，可以引入 `Compiler` 和 `RspackPluginInstance` 来声明插件的类型：
+
+```ts
+import type { Compiler, RspackPluginInstance } from '@rspack/core';
+
+const PLUGIN_NAME = 'MyPlugin';
+
+class MyPlugin implements RspackPluginInstance {
+  apply(compiler: Compiler) {
+    compiler.hooks.compilation.tap(PLUGIN_NAME, (compilation) => {
+      console.log('The Rspack build process is starting!');
+    });
+  }
 }
+```
