@@ -1,6 +1,11 @@
 import { ReactNode } from 'react';
 import Markdown from 'markdown-to-jsx';
-import { getCustomMDXComponent } from '@modern-js/doc-tools/theme';
+import {
+  Table as ModernTable,
+  Th as ModernTableHead,
+  Tr as ModernTableRow,
+  Td as ModernTableData,
+} from './mdx-components';
 
 interface TableProps {
   children: ReactNode[];
@@ -8,13 +13,6 @@ interface TableProps {
   header: { name: string; key: string }[];
   tableStyle: Record<string, string>;
 }
-
-const {
-  table: ModernTable,
-  th: ModernTableHead,
-  tr: ModernTableRow,
-  td: ModernTableData,
-} = getCustomMDXComponent();
 
 // Use case example:
 //
@@ -51,13 +49,11 @@ export function Table(props: TableProps) {
   // generate table tag
   return (
     <ModernTable style={tableStyle}>
-      <ModernTableHead>
-        <ModernTableRow>
-          {header.map((item) => (
-            <ModernTableHead key={item.key}>{item.name}</ModernTableHead>
-          ))}
-        </ModernTableRow>
-      </ModernTableHead>
+      <ModernTableRow>
+        {header.map((item) => (
+          <ModernTableHead key={item.key}>{item.name}</ModernTableHead>
+        ))}
+      </ModernTableRow>
       <tbody>
         {compiledValue.map((item: any, index: number) => (
           <ModernTableRow key={index}>
