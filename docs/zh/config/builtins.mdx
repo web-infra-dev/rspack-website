@@ -1,4 +1,5 @@
 import PropertyType from '../../../components/property-type.tsx';
+import { Table } from '@builtIns';
 
 # Builtins
 
@@ -37,15 +38,70 @@ export type BannerConfigs = BannerConfig | BannerConfig[];
 
 - **默认值：** `undefined`
 
-| Name        | Type                          | Default   | Description                                    |
-| ----------- | ----------------------------- | --------- | ---------------------------------------------- |
-| `banner`    | `string`                      | undefined | 指定 banner 内容（会被包裹成注释）             |
-| `entryOnly` | `boolean\|undefined`          | undefined | 如果值为 true，将只在入口 chunks 文件中添加    |
-| `footer`    | `boolean\|undefined`          | undefined | 如果值为 true，banner 将会位于编译结果的最下方 |
-| `raw`       | `boolean\|undefined`          | undefined | 如果值为 true，将直接输出，不会被作为注释      |
-| `test`      | `BannerConditions\|undefined` | undefined | 包含所有匹配的模块                             |
-| `include`   | `BannerConditions\|undefined` | undefined | 根据条件匹配指定的模块                         |
-| `exclude`   | `BannerConditions\|undefined` | undefined | 根据条件排除指定的模块                         |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`banner`',
+      type: '`string`',
+      default: 'undefined',
+      description: '指定 banner 内容（会被包裹成注释）',
+    },
+    {
+      name: '`entryOnly`',
+      type: '`boolean|undefined`',
+      default: 'undefined',
+      description: '如果值为 true，将只在入口 chunks 文件中添加',
+    },
+    {
+      name: '`footer`',
+      type: '`boolean|undefined`',
+      default: 'undefined',
+      description: '如果值为 true，banner 将会位于编译结果的最下方',
+    },
+    {
+      name: '`raw`',
+      type: '`boolean|undefined`',
+      default: 'undefined',
+      description: '如果值为 true，将直接输出，不会被作为注释',
+    },
+    {
+      name: '`test`',
+      type: '`BannerConditions|undefined`',
+      default: 'undefined',
+      description: '包含所有匹配的模块',
+    },
+    {
+      name: '`include`',
+      type: '`BannerConditions|undefined`',
+      default: 'undefined',
+      description: '根据条件匹配指定的模块',
+    },
+    {
+      name: '`exclude`',
+      type: '`BannerConditions|undefined`',
+      default: 'undefined',
+      description: '根据条件排除指定的模块',
+    },
+  ]}
+/>
 
 为每个 chunk 文件头部或底部添加 banner。
 
@@ -184,11 +240,48 @@ type PresetEnv =
 
 - **默认值：** `undefined`
 
-| 名称      | 类型                  | 默认值    | 描述                                                                                                                                                                                                                                                                                       |
-| --------- | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `targets` | `string[]\|undefined` | undefined | 通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。 |
-| `mode`    | `'entry'\|undefined`  | undefined | 该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。                                                                       |
-| `coreJs`  | `string`              | undefined | 该配置指定注入的 core-js 的版本                                                                                                                                                                                                                                                            |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`targets`',
+      type: '`string[]|undefined`',
+      default: 'undefined',
+      description:
+        '通过该配置可以使用 [browserslist query](https://github.com/browserslist/browserslist#queries) 来控制用户代码中 js 和 css 语法的降级，当此值为 undefined 时，rspack 将尝试使用[基础目录](config/context) 下的 [browserslist](https://github.com/browserslist/browserslist) 配置来进行转换。',
+    },
+    {
+      name: '`mode`',
+      type: "`'entry'|undefined`",
+      default: 'undefined',
+      description:
+        "该配置决定怎样注入 polyfill，`'entry'` 表示根据 [browserslist](https://github.com/browserslist/browserslist#queries) 查询的浏览器，注入所有这些浏览器中缺失的 polyfill，当此值为 `undefined` 时则不会注入 polyfill。",
+    },
+    {
+      name: '`coreJs`',
+      type: '`string`',
+      default: 'undefined',
+      description: '该配置指定注入的 core-js 的版本',
+    },
+  ]}
+/>
 
 :::warning core-js 使用注意
 当你使用 mode = `entry` 或者 mode = `usage` 来注入`core-js`的时候, 你需要手动的安装 `core-js`, 如果编译时还碰到了 failed to resolve `core-js` 的问题，
@@ -232,21 +325,107 @@ type BuiltinsHtml = Array<{
 
 - **默认值：** `[]`
 
-| 名称                 | 类型                                             | 默认值       | 描述                                                                                          |
-| -------------------- | ------------------------------------------------ | ------------ | --------------------------------------------------------------------------------------------- |
-| `title`              | `string\|undefined`                              | undefined    | 构建 html 的标题                                                                              |
-| `filename`           | `string`                                         | 'index.html' | 输出的文件名，可以指定子目录，例如 `pages/index.html`                                         |
-| `template`           | `string\|undefined`                              | undefined    | 模版文件路径，支持 ejs                                                                        |
-| `templateParameters` | `Record<string, string>`                         | \{\}         | 传递给模版的参数                                                                              |
-| `inject`             | `'head'\|'body'\|undefined`                      | undefined    | 产物注入位置                                                                                  |
-| `publicPath`         | `string`                                         | ''           | script 和 link 标签的 publicPath                                                              |
-| `scriptLoading`      | `'blocking'\|'defer'\|'module'`                  | 'defer'      | 现代浏览器支持使用 defer 来异步加载 js，设置为 module 则会添加 `type="module"` 同时使用 defer |
-| `chunks`             | `string[]\|undefined`                            | undefined    | 配置需要注入的 chunk，默认注入所有 chunk                                                      |
-| `excludedChunks`     | `string[]\|undefined`                            | undefined    | 配置需要跳过注入的 chunk                                                                      |
-| `sri`                | `'sha256'\|'sha384'\|'sha512'\|undefined`        | undefined    | sri hash 算法，默认不开启 sri                                                                 |
-| `minify`             | `boolean`                                        | false        | 是否启用压缩                                                                                  |
-| `favicon`            | `string\|undefined`                              | undefined    | 配置 html 图标                                                                                |
-| `meta`               | `Record<string, string\|Record<string, string>>` | \{\}         | 配置需要注入 html 的 meta                                                                     |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`title`',
+      type: '`string|undefined`',
+      default: 'undefined',
+      description: '构建 html 的标题',
+    },
+    {
+      name: '`filename`',
+      type: '`string`',
+      default: "'index.html'",
+      description: '输出的文件名，可以指定子目录，例如 `pages/index.html`',
+    },
+    {
+      name: '`template`',
+      type: '`string|undefined`',
+      default: 'undefined',
+      description: '模版文件路径，支持 ejs',
+    },
+    {
+      name: '`templateParameters`',
+      type: '`Record<string, string>`',
+      default: '{}',
+      description: '传递给模版的参数',
+    },
+    {
+      name: '`inject`',
+      type: "`'head'|'body'|undefined`",
+      default: 'undefined',
+      description: '产物注入位置',
+    },
+    {
+      name: '`publicPath`',
+      type: '`string`',
+      default: "''",
+      description: 'script 和 link 标签的 publicPath',
+    },
+    {
+      name: '`scriptLoading`',
+      type: "`'blocking'|'defer'|'module'`",
+      default: "'defer'",
+      description:
+        '现代浏览器支持使用 defer 来异步加载 js，设置为 module 则会添加 `type="module"` 同时使用 defer',
+    },
+    {
+      name: '`chunks`',
+      type: '`string[]|undefined`',
+      default: 'undefined',
+      description: '配置需要注入的 chunk，默认注入所有 chunk',
+    },
+    {
+      name: '`excludedChunks`',
+      type: '`string[]|undefined`',
+      default: 'undefined',
+      description: '配置需要跳过注入的 chunk',
+    },
+    {
+      name: '`sri`',
+      type: "`'sha256'|'sha384'|'sha512'|undefined`",
+      default: 'undefined',
+      description: 'sri hash 算法，默认不开启 sri',
+    },
+    {
+      name: '`minify`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否启用压缩',
+    },
+    {
+      name: '`favicon`',
+      type: '`string|undefined`',
+      default: 'undefined',
+      description: '配置 html 图标',
+    },
+    {
+      name: '`meta`',
+      type: '`Record<string, string|Record<string, string>>` ',
+      default: '{}',
+      description: '配置需要注入 html 的 meta',
+    },
+  ]}
+/>
 
 :::info
 
@@ -269,12 +448,53 @@ type BuiltinsMinifyOptions = {
 };
 ```
 
-| 名称              | 类型              | 默认值 | 描述                                                                                                                                                |
-| ----------------- | ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `passes`          | `number`          | 1      | 运行压缩的最大次数                                                                                                                                  |
-| `dropConsole`     | `boolean`         | false  | 是否移除对 console.\* 函数的调用                                                                                                                    |
-| `pureFuncs`       | `Array<string>`   | []     | 指定无副作用的函数名称，压缩时会丢弃相关语句                                                                                                        |
-| `extractComments` | `boolean\|RegExp` | false  | 提取符合配置注释到一个单独的文件 (fileName: `{assetName}.LICENSE.txt`), 如果设置该选项为 `true`, 使用正则表达式`/@preserve\|@lic\|@cc_on\|^\**!/`。 |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`passes`',
+      type: '`number`',
+      default: '1',
+      description: '运行压缩的最大次数',
+    },
+    {
+      name: '`dropConsole`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否移除对 console.* 函数的调用',
+    },
+    {
+      name: '`pureFuncs`',
+      type: '`Array<string>`',
+      default: '[]',
+      description: '指定无副作用的函数名称，压缩时会丢弃相关语句',
+    },
+    {
+      name: '`extractComments`',
+      type: '`boolean|RegExp`',
+      default: 'false',
+      description:
+        '提取符合配置注释到一个单独的文件 (fileName: `{assetName}.LICENSE.txt`), 如果设置该选项为 `true`, 使用正则表达式`/@preserve|@lic|@cc_on|^**!/`。',
+    },
+  ]}
+/>
 
 ## builtins.define
 
@@ -348,17 +568,84 @@ type BuiltinsReact = {
 
 - **默认值：** `{}`
 
-| 名称               | 类型                     | 默认值                | 描述                                                                                                                   |
-| ------------------ | ------------------------ | --------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `runtime`          | `'automatic'\|'classic'` | 'automatic'           | automatic 会自动导入 JSX 运行时模块，classic 会使用 `React.createElement` 来进行转换                                   |
-| `importSource`     | `string`                 | 'react'               | 当 runtime 为 automatic 时，自动导入的库名称                                                                           |
-| `pragma`           | `string`                 | 'React.createElement' | 当 runtime 为 classic 时，编译 JSX 表达式时所替换的函数名                                                              |
-| `pragmaFrag`       | `string`                 | 'React.Fragment'      | 编译 JSX fragments 时所使用的组件名                                                                                    |
-| `throwIfNamespace` | `boolean`                | true                  | 当使用 xml 命名空间（例如 <f:image />）时是否抛出错误                                                                  |
-| `development`      | `boolean`                | false                 | 是否为开发者模式，开发者模式将会在 JSX 元素上导出 `__self` 和 `__source` 以供类似于 React Developer Tools 这类工具使用 |
-| `useBuiltins`      | `boolean`                | false                 | 是否使用 `Object.assign()` 代替 `_extends`                                                                             |
-| `useSpread`        | `boolean`                | false                 | 是否使用 `Object.assign()` 代替扩展操作符                                                                              |
-| `refresh`          | `boolean`                | false                 | 是否启动 react-refresh 相关转换                                                                                        |
+<Table
+  header={[
+    {
+      name: 'Name',
+      key: 'name',
+    },
+    {
+      name: 'Type',
+      key: 'type',
+    },
+    {
+      name: 'Default',
+      key: 'default',
+    },
+    {
+      name: 'Description',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`runtime`',
+      type: "`'automatic'|'classic'`",
+      default: "'automatic'",
+      description:
+        'automatic 会自动导入 JSX 运行时模块，classic 会使用 `React.createElement` 来进行转换',
+    },
+    {
+      name: '`importSource`',
+      type: '`string`',
+      default: "'react'",
+      description: '当 runtime 为 automatic 时，自动导入的库名称',
+    },
+    {
+      name: '`pragma`',
+      type: '`string`',
+      default: "'React.createElement'",
+      description: '当 runtime 为 classic 时，编译 JSX 表达式时所替换的函数名',
+    },
+    {
+      name: '`pragmaFrag`',
+      type: '`string`',
+      default: "'React.Fragment'",
+      description: '编译 JSX fragments 时所使用的组件名',
+    },
+    {
+      name: '`throwIfNamespace`',
+      type: '`boolean`',
+      default: 'true',
+      description: '当使用 xml 命名空间（例如 <f:image />）时是否抛出错误',
+    },
+    {
+      name: '`development`',
+      type: '`boolean`',
+      default: 'false',
+      description:
+        '是否为开发者模式，开发者模式将会在 JSX 元素上导出 `__self` 和 `__source` 以供类似于 React Developer Tools 这类工具使用',
+    },
+    {
+      name: '`useBuiltins`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否使用 `Object.assign()` 代替 `_extends`',
+    },
+    {
+      name: '`useSpread`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否使用 `Object.assign()` 代替扩展操作符',
+    },
+    {
+      name: '`refresh`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否启动 react-refresh 相关转换',
+    },
+  ]}
+/>
 
 ## builtins.decorator
 
@@ -377,10 +664,41 @@ type BuiltinsDecorator =
 
 - **默认值：** `true`
 
-| 名称           | 类型      | 默认值 | 描述                                                                                         |
-| -------------- | --------- | ------ | -------------------------------------------------------------------------------------------- |
-| `legacy`       | `boolean` | true   | 是否使用[历史（第 1 阶段）](https://github.com/tc39/proposal-decorators)类装饰器的语法和行为 |
-| `emitMetadata` | `boolean` | true   | 是否保留 metadata 信息                                                                       |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`legacy`',
+      type: '`boolean`',
+      default: 'true',
+      description:
+        '是否使用[历史（第 1 阶段）](https://github.com/tc39/proposal-decorators)类装饰器的语法和行为',
+    },
+    {
+      name: '`emitMetadata`',
+      type: '`boolean`',
+      default: 'true',
+      description: '是否保留 metadata 信息',
+    },
+  ]}
+/>
 
 ## builtins.css
 
@@ -413,11 +731,48 @@ type BuiltinsCssModules = {
 };
 ```
 
-| 名称               | 类型                                                                   | 默认值                                                          | 描述                                                                                                                                                                                                                                                                |
-| ------------------ | ---------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `localsConvention` | `'asIs' \| 'camelCase' \| 'camelCaseOnly' \| 'dashes' \| 'dashesOnly'` | 'asIs'                                                          | `asIs` 类名将按原样导出。<br/> `camelCase` 类名将被驼峰化，原始类名仍然可用。<br/> `camelCaseOnly` 类名将被驼峰化，原始类名不可用。<br/> `dashes` 只有类名中的破折号会被驼峰化，原始类名仍然可用。<br/> `dashesOnly` 只有类名中的破折号会被驼峰化，原始类名不可用。 |
-| `localIdentName`   | `string`                                                               | 生产环境: '[hash]'<br/>开发环境: '[path][name][ext]\_\_[local]" | 最终产物里的类名生成规则，支持以下模版字符：<br/>`hash` 字符串 hash<br/>`hash:<length>` 截取一定长度的 hash<br/>`path` 文件与基础目录的相对路径<br/>`name` 文件名称<br/>`ext` 文件后缀名<br/>`local` 原始类名                                                       |
-| `exportsOnly`      | `boolean`                                                              | false                                                           | 只输出 js 对象，不输出 css 文件。常在 SSR 场景下使用                                                                                                                                                                                                                |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`localsConvention`',
+      type: "`'asIs' | 'camelCase' | 'camelCaseOnly' | 'dashes' | 'dashesOnly'`",
+      default: '`asIs`',
+      description:
+        '`asIs` 类名将按原样导出。<br/> `camelCase` 类名将被驼峰化，原始类名仍然可用。<br/> `camelCaseOnly` 类名将被驼峰化，原始类名不可用。<br/> `dashes` 只有类名中的破折号会被驼峰化，原始类名仍然可用。<br/> `dashesOnly` 只有类名中的破折号会被驼峰化，原始类名不可用。',
+    },
+    {
+      name: '`localIdentName`',
+      type: '`string`',
+      default: "生产环境: '[hash]'<br/>开发环境: '[path][name][ext]__[local]\"",
+      description:
+        '最终产物里的类名生成规则，支持以下模版字符：<br/>`hash` 字符串 hash<br/>`hash:<length>` 截取一定长度的 hash<br/>`path` 文件与基础目录的相对路径<br/>`name` 文件名称<br/>`ext` 文件后缀名<br/>`local` 原始类名',
+    },
+    {
+      name: '`exportsOnly`',
+      type: '`boolean`',
+      default: 'false',
+      description: '只输出 js 对象，不输出 css 文件。常在 SSR 场景下使用',
+    },
+  ]}
+/>
 
 {/* ## builtins.postcss */}
 
@@ -435,9 +790,34 @@ type BuiltinsCssModules = {
   ]}
 />
 
-| 名称     | 类型     | 默认值   | 描述             |
-| -------- | -------- | -------- | ---------------- |
-| `prefix` | `string` | 'Rspack' | 进度条前显示文案 |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`prefix`',
+      type: '`string`',
+      default: "'Rspack'",
+      description: '进度条前显示文案',
+    },
+  ]}
+/>
 
 {/* ## builtins.noEmitAssets */}
 
@@ -483,16 +863,81 @@ export type CopyConfig = {
 
 - **默认值：** `undefined`
 
-| 名称               | 类型                        | 默认值    | 描述                                                                                                                                                             |
-| ------------------ | --------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`             | `string`                    | undefined | 复制的源路径，可以是绝对路径、相对路径、glob 查询字符串，可以是文件或目录。若传入相对路径，则是相对于 `context` 配置。                                           |
-| `to`               | `string`                    | undefined | 复制的目的地，可以是绝对路径、相对路径或者是 Rspack 的模版字符串，例如 `'[name].[hash][ext]'`。当不指定 `to` 时，则相当于是产物目录。                            |
-| `context`          | `string`                    | undefined | 该配置决定怎样匹配 `from` 路径，以及复制后的结构。                                                                                                               |
-| `toType`           | `'dir'\|'file'\|'template'` | undefined | 指定 `to` 的类型，可以是目录，文件或 Rspack 的模版名，若不指定则会自动推断。                                                                                     |
-| `noErrorOnMissing` | `boolean`                   | false     | 当没有找到对应的文件或目录时，忽略错误。                                                                                                                         |
-| `force`            | `boolean`                   | false     | 当产物中已经有相应的文件时，是否覆写。                                                                                                                           |
-| `priority`         | `number`                    | 0         | 当设置 `force` 为 `true` 时，如果匹配到同样的文件，优先级高的会覆写优先级的。                                                                                    |
-| `globOptions`      | `object`                    | undefined | glob 查询选项，`caseSensitiveMatch` 决定是否大小写敏感，`dot` 决定是否匹配以 `.` 开头的文件，`ignore` 是 glob 形式的字符串数组，可以使用该配置忽略部分特定路径。 |
+<Table
+  header={[
+    {
+      name: '名称',
+      key: 'name',
+    },
+    {
+      name: '类型',
+      key: 'type',
+    },
+    {
+      name: '默认值',
+      key: 'default',
+    },
+    {
+      name: '描述',
+      key: 'description',
+    },
+  ]}
+  body={[
+    {
+      name: '`from`',
+      type: '`string`',
+      default: 'undefined',
+      description:
+        '复制的源路径，可以是绝对路径、相对路径、glob 查询字符串，可以是文件或目录。若传入相对路径，则是相对于 `context` 配置。',
+    },
+    {
+      name: '`to`',
+      type: '`string`',
+      default: 'undefined',
+      description:
+        "复制的目的地，可以是绝对路径、相对路径或者是 Rspack 的模版字符串，例如 `'[name].[hash][ext]'`。当不指定 `to` 时，则相当于是产物目录。",
+    },
+    {
+      name: '`context`',
+      type: '`string`',
+      default: 'undefined',
+      description: '该配置决定怎样匹配 `from` 路径，以及复制后的结构。',
+    },
+    {
+      name: '`toType`',
+      type: "`'dir'|'file'|'template'`",
+      default: 'undefined',
+      description:
+        '指定 `to` 的类型，可以是目录，文件或 Rspack 的模版名，若不指定则会自动推断。',
+    },
+    {
+      name: '`noErrorOnMissing`',
+      type: '`boolean`',
+      default: 'false',
+      description: '当没有找到对应的文件或目录时，忽略错误。',
+    },
+    {
+      name: '`force`',
+      type: '`boolean`',
+      default: 'false',
+      description: '当产物中已经有相应的文件时，是否覆写。',
+    },
+    {
+      name: '`priority`',
+      type: '`number`',
+      default: '0',
+      description:
+        '当设置 `force` 为 `true` 时，如果匹配到同样的文件，优先级高的会覆写优先级的。',
+    },
+    {
+      name: '`globOptions`',
+      type: '`object`',
+      default: 'undefined',
+      description:
+        'glob 查询选项，`caseSensitiveMatch` 决定是否大小写敏感，`dot` 决定是否匹配以 `.` 开头的文件，`ignore` 是 glob 形式的字符串数组，可以使用该配置忽略部分特定路径。',
+    },
+  ]}
+/>
 
 示例：
 

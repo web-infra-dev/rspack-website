@@ -1,5 +1,6 @@
 import path from 'path';
 import docTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
+import { remarkBuiltIn } from './remark-builtin';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -317,6 +318,7 @@ export default defineConfig({
     },
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
+
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     markdown: {
       checkDeadLinks: true,
@@ -353,6 +355,11 @@ export default defineConfig({
       ],
     },
     builderConfig: {
+      source: {
+        alias: {
+          '@builtIns': path.join(__dirname, 'components', 'builtIns'),
+        },
+      },
       dev: {
         startUrl: false,
       },
