@@ -317,6 +317,7 @@ export default defineConfig({
     },
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
+
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     markdown: {
       checkDeadLinks: true,
@@ -353,6 +354,11 @@ export default defineConfig({
       ],
     },
     builderConfig: {
+      source: {
+        alias: {
+          '@builtIns': path.join(__dirname, 'components', 'builtIns'),
+        },
+      },
       dev: {
         startUrl: false,
       },
