@@ -1,6 +1,5 @@
 import path from 'path';
 import docTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
-import { remarkBuiltIn } from './remark-builtin';
 
 const isProd = process.env.NODE_ENV === 'production';
 
