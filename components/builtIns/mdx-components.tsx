@@ -2,10 +2,12 @@ import { ComponentProps } from 'react';
 
 export const Table = (props: ComponentProps<'table'>) => {
   return (
-    <table
-      {...props}
-      className="table border-collapse text-base my-5 overflow-x-auto leading-7 border-gray-light-2"
-    />
+    <div className="w-full overflow-x-auto">
+      <table
+        {...props}
+        className="table w-full border-collapse text-base my-5 leading-7 border-gray-light-2"
+      />
+    </div>
   );
 };
 
