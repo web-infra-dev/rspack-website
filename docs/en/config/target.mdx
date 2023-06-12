@@ -8,13 +8,17 @@ Used to configure the target environment of Rspack output and the ECMAScript ver
 
 The following options are now supported:
 
-| options          | description                                                                                                                                                                                              |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `'node'`         | Compile as available for Node.js environments                                                                                                                                                            |
-| `'web'`          | Compile as available in the browser environment (default)                                                                                                                                                |
-| `'webworker'`   | Compile as WebWorker                                                                                                                                                                                     |
-| `'esX'`          | Compile Rspack runtime to the corresponding ECMAScript version. Currently supports `es3`, `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020`, `es2021`, `es2022` (es5 is used by default) |
-| `'browserslist'` | Infer the ECMAScript version based on the configured browserslist                                                                                                                                        |
+| options                      | description                                                                                                                                                                                                                                   |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `'node[[X].Y]'`                   | Compile as available for Node.js environments                                                                                                                                                                                                 |
+| `'web'`                      | Compile as available in the browser environment (default)                                                                                                                                                                                     |
+| `'esX'`                      | Compile Rspack runtime to the corresponding ECMAScript version. Currently supports `es3`, `es5`, `es2015`, `es2016`, `es2017`, `es2018`, `es2019`, `es2020`, `es2021`, `es2022` (es5 is used by default)                                      |
+| `'browserslist'`             | Infer the ECMAScript version based on the configured browserslist                                                                                                                                                                             |
+| `'electron[[X].Y]-main'`     | Compile for Electron for main process.                                                                                                                                                                                                        |
+| `'electron[[X].Y]-renderer'` | Compile for Electron for renderer process, providing a target using `array-push` as chunkFormat and `jsonp` as chunkLoading for browser environments and `NodeTargetPlugin` and `ExternalsPlugin` for CommonJS and Electron built-in modules. |
+| `'electron[[X].Y]-preload'`  | Compile for Electron for preload script of renderer process                                                                                                                                                                                   |
+
+{/* | `'webworker'`   | Compile as WebWorker                                                                                                                                                                                     | */}
 
 :::warning Specifies the ECMAScript version of the user code
 
