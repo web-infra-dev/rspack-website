@@ -350,3 +350,23 @@ jq('.my-element').animate(/* ... */);
 ### node
 
 将 node.js 的内置模块（如 `fs`、`path` 或 `vm`）视为外部模块，并在使用时通过 `require()` 加载它们。
+
+### web
+
+将对 `http(s)://...` 和 `std:...` 引入的模块视为外部模块，并在使用时通过 `import` (`externalType: "module"`) 来加载它们（请注意，这会改变执行顺序，因为外部模块的代码会在 Chunk 中的任何其他模块的代码之前执行）。
+
+### electron
+
+将 Electron 主进程和预加载脚本中常见的 Electron 内置模块如 `electron`、`ipc` 或 `shell` 视为外部模块，并在使用时通过 `require()` 加载它们。
+
+### electronMain
+
+将 Electron 主进程中常见的 Electron 内置模块如 `app`、`ipc-main` 或 `shell` 视为外部模块，并在使用时通过 `require()` 加载它们。
+
+### electronRenderer
+
+将 Electron 渲染进程中常见的 Electron 内置模块如 `web-frame`、`ipc-renderer` 或 `shell` 视为外部模块，并在使用时通过 `require()` 加载它们。
+
+### electronPreload
+
+将 Electron 预加载脚本中常见的 Electron 内置模块如 `web-frame`、`ipc-renderer` 或 `shell` 视为外部模块，并在使用时通过 `require()` 加载它们。

@@ -8,13 +8,17 @@
 
 现在支持的字符串格式有：
 
-| 选项             | 描述                                                                                                                                                                 |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `'node'`         | 编译为 Node.js 环境可用                                                                                                                                              |
-| `'web'`          | 编译为浏览器环境可用（默认值）                                                                                                                                       |
-| `'webworker'`   | 编译为 WebWorker                                                                                                                                                     |
-| `'esX'`          | 编译 Rspack runtime 为对应的 ECMAScript 版本，当前支持 `es3`、`es5`、`es2015`、`es2016`、`es2017`、`es2018`、`es2019`、`es2020`、`es2021`、`es2022`（默认使用 es5 ） |
-| `'browserslist'` | 根据配置的 browserslist 完成 ECMAScript 版本的推断                                                                                                                   |
+| 选项                         | 描述                                                                                                                                                                          |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `'node'`                     | 编译为 Node.js 环境可用                                                                                                                                                       |
+| `'web'`                      | 编译为浏览器环境可用（默认值）                                                                                                                                                |
+| `'es[X]'`                    | 编译 Rspack runtime 为对应的 ECMAScript 版本，当前支持 `es3`、`es5`、`es2015`、`es2016`、`es2017`、`es2018`、`es2019`、`es2020`、`es2021`、`es2022`（默认使用 es5 ）          |
+| `'browserslist'`             | 根据配置的 browserslist 完成 ECMAScript 版本的推断                                                                                                                            |
+| `'electron[[X].Y]-main'`     | 编译 Electron 的主进程                                                                                                                                                        |
+| `'electron[[X].Y]-renderer'` | 编译 Electron 的渲染器进程，该 target 下会使用 array-push 作为 chunkFormat，jsonp 作为 chunkLoading，为 CommonJS 和 Electron 内置模块提供 NodeTargetPlugin 和 ExternalsPlugin |
+| `'electron[[X].Y]-preload'`  | 编译 Electron 的预加载脚本                                                                                                                                                    |
+
+{/* | `'webworker'`    | 编译为 Web Worker                                                                                                                                                     | */}
 
 :::warning 指定用户代码的 ECMAScript 版本
 
