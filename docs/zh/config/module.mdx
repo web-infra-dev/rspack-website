@@ -224,12 +224,14 @@ module.exports = {
 
 ## Rule.type
 
-- **类型：** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`
+- **类型：** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline' | 'tsx' | 'jsx'`
 
 用于标记匹配的模块的类型，这会影响 Rspack 内置对于该模块的处理方式。例如：当模块被标记为 `'typescript'` 则会使用 TS parser/generator 对模块进行处理。
 
 - `'javascript/auto'`：JavaScript 模块，支持的模块系统：CommonJS、ESM，暂没有对 AMD 模块支持的计划。
+- `'jsx'`: 支持 jsx 的 JavaScript 模块
 - `'typescript'`：TypeScript 模块。
+- `'tsx'`: 支持 tsx 的 TypeScript 模块。
 - `'css'`：CSS 模块。
 - `'css/module'`：CSS Modules 模块。
 - `'json'`：JSON data 模块。
