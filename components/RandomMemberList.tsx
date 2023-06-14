@@ -76,8 +76,8 @@ export const RandomMemberList = () => {
       avatar: 'https://avatars.githubusercontent.com/u/2133184?v=4',
     },
     {
-      id: 'dmitry-stepanenko',
-      avatar: 'https://avatars.githubusercontent.com/u/33101123?v=4',
+      id: 'valorkin',
+      avatar: 'https://avatars.githubusercontent.com/u/1107171?v=4',
     },
   ];
 
