@@ -166,7 +166,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         collapsible: false,
         text: getText('其他', 'Misc'),
         items: [
-          getLink('/misc/FAQ'),
+          getLink('/misc/faq'),
           getLink('/misc/roadmap'),
           getLink('/misc/join-us'),
           getLink('/misc/meet-the-team'),
@@ -317,7 +317,6 @@ export default defineConfig({
     },
     icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
     lang: 'en',
-
     globalStyles: path.join(__dirname, 'theme', 'index.css'),
     markdown: {
       checkDeadLinks: true,
