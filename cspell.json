@@ -23,7 +23,8 @@
   "ignoreWords": [
     "antd",
     "ɑrespæk",
-    "Shenzhen"
+    "Shenzhen",
+    "lingyucoder"
   ],
   "enableFiletypes": [
     "mdx"
