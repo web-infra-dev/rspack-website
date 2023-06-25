@@ -139,7 +139,29 @@ module.exports = {
 - **类型：** `string | undefined`
 - **默认值：** `undefined`
 
-使用 tsconfigPath 的 `paths` 和 `baseUrl`，功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。
+这个选项接受的是 `tsconfig.json` 的文件路径。在开启这个选项后， Rspack 会基于 `tsconfig.json` 中 的 `paths` 和 `baseUrl` 来寻找模块，其功能等同于 [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin)。
+
+```js rspack.config.js
+const path = require('path');
+
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
+  // ...
+  resolve: {
+    tsConfigPath: path.resolve(__dirname, 'tsconfig.json'),
+  },
+  // ...
+};
+module.exports = config;
+```
+
+[点击查看例子](https://github.com/web-infra-dev/rspack/tree/main/examples/basic-ts)。
+
+:::warning
+
+不支持 `tsconfig.json#extends` 字段。
+
+:::
 
 ## resolve.fullySpecified
 

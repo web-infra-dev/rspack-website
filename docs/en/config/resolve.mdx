@@ -139,7 +139,29 @@ When enabled, `require('file')` will first look for the `. /file` file in the cu
 - **Type:** `string | undefined`
 - **Default:** `undefined`
 
-Use `paths` and `baseUrl` of tsconfigPath, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
+If you pass the path of `tsconfig.json` via the option, Rspack will try to resolve modules based on the `paths` and `baseUrl` of `tsconfig.json`, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
+
+```js rspack.config.js
+const path = require('path');
+
+/** @type {import('@rspack/cli').Configuration} */
+const config = {
+  // ...
+  resolve: {
+    tsConfigPath: path.resolve(__dirname, 'tsconfig.json'),
+  },
+  // ...
+};
+module.exports = config;
+```
+
+[Click to see the example](https://github.com/web-infra-dev/rspack/tree/main/examples/basic-ts).
+
+:::warning
+
+`tsconfig.json#extends` is not supported.
+
+:::
 
 ## resolve.fullySpecified
 
