@@ -114,6 +114,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             link: getLink('/guide/asset-module'),
             text: getText('资源模块', 'Asset modules'),
           },
+          {
+            link: getLink('/guide/web-workers'),
+            text: getText('Web Workers', 'Web Workers'),
+          },
           getLink('/guide/loader'),
           {
             link: getLink('/guide/plugin'),
