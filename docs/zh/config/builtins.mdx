@@ -310,6 +310,7 @@ type BuiltinsHtml = Array<{
   title?: string;
   filename?: string;
   template?: string;
+  templateContent?: string;
   templateParameters?: Record<string, string>;
   inject?: 'head' | 'body';
   publicPath?: string;
@@ -362,6 +363,12 @@ type BuiltinsHtml = Array<{
       type: '`string|undefined`',
       default: 'undefined',
       description: '模版文件路径，支持 ejs',
+    },
+    {
+      name: '`templateContent`',
+      type: '`string|undefined`',
+      default: 'undefined',
+      description: '模版文件内容，优先级大于 template',
     },
     {
       name: '`templateParameters`',

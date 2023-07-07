@@ -214,6 +214,7 @@ type BuiltinsHtml = Array<{
   title?: string;
   filename?: string;
   template?: string;
+  templateContent?: string;
   templateParameters?: Record<string, string>;
   inject?: 'head' | 'body';
   publicPath?: string;
@@ -234,6 +235,7 @@ type BuiltinsHtml = Array<{
 | `title`              | `string\|undefined`                              | undefined    | The title to use for the generated HTML document.                                                                                                                                                                                 |
 | `filename`           | `string`                                         | 'index.html' | The file to write the HTML to. Defaults to `index.html`. You can specify a subdirectory here too (eg: pages/index.html).                                                                                                          |
 | `template`           | `string\|undefined`                              | undefined    | The template file path.                                                                                                                                                                                                           |
+| `templateContent`    | `string\|undefined`                              | undefined    | The template file content, priority is greater than template.                                                                                                                                                                     |
 | `templateParameters` | `Record<string, string>`                         | \{\}         | Allows to overwrite the parameters used in the template.                                                                                                                                                                          |
 | `inject`             | `'head'\|'body'\|undefined`                      | undefined    | The script and link tag inject position in `template`.                                                                                                                                                                            |
 | `publicPath`         | `string`                                         | ''           | The publicPath used for script and link tags.                                                                                                                                                                                     |
