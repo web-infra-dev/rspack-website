@@ -32,7 +32,6 @@ NAPI-RS
 nestjs
 NestJS
 nosources
-nrwl
 nwjs
 outputlibraryumdnameddefine
 recognise
