@@ -71,3 +71,4 @@ magic-akari
 tuchg
 Rspress
 valorkin
+monaco
