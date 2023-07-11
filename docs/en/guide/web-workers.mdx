@@ -2,7 +2,7 @@ import WebpackLicense from '../../../components/webpack-license';
 
 <WebpackLicense from="https://webpack.js.org/guides/web-workers/" />
 
-# Web Workers <sup>`v0.2.5+`</sup>
+# Web Workers <sup>`v0.2.6+`</sup>
 
 [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) are first-class citizens of Rspack, which means you don't need any loader to use Web Workers directly.
 
@@ -18,7 +18,11 @@ new Worker(new URL('./worker.js', import.meta.url), {
 });
 ```
 
-For example: [examples/worker](https://github.com/web-infra-dev/rspack/tree/main/examples/worker)。
+For examples:
+
+- [examples/worker](https://github.com/web-infra-dev/rspack/tree/main/examples/worker)
+- [examples/monaco-editor-js](https://github.com/web-infra-dev/rspack/tree/main/examples/monaco-editor-js)
+- [examples/monaco-editor-ts-react](https://github.com/web-infra-dev/rspack/tree/main/examples/monaco-editor-ts-react)
 
 :::info
 The syntax was chosen to allow running code without bundler, it is also available in native ECMAScript modules in the browser.
