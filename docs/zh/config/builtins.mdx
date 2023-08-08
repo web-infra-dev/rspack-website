@@ -452,6 +452,7 @@ type BuiltinsMinifyOptions = {
   dropConsole?: boolean;
   pureFuncs?: Array<string>;
   extractComments: boolean | RegExp;
+  asciiOnly?: boolean;
 };
 ```
 
@@ -499,6 +500,13 @@ type BuiltinsMinifyOptions = {
       default: 'false',
       description:
         '提取符合配置注释到一个单独的文件 (fileName: `{assetName}.LICENSE.txt`), 如果设置该选项为 `true`, 使用正则表达式`/@preserve|@lic|@cc_on|^**!/`。',
+    },
+    {
+      name: '`asciiOnly`',
+      type: '`boolean`',
+      default: 'false',
+      description:
+        '转义字符串和正则表达式中的 Unicode 字符（会影响包含非ASCII字符的指令，使其无效）。',
     },
   ]}
 />

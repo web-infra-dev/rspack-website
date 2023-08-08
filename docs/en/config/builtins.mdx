@@ -265,6 +265,7 @@ type BuiltinsMinifyOptions = {
   dropConsole?: boolean;
   pureFuncs?: Array<string>;
   extractComments: boolean | RegExp;
+  asciiOnly?: boolean;
 };
 ```
 
@@ -274,6 +275,7 @@ type BuiltinsMinifyOptions = {
 | `dropConsole`     | `boolean`         | false   | Pass true to discard calls to console.\* functions.                                                                                                                                                  |
 | `pureFuncs`       | `Array<string>`   | []      | You can pass an array of names and Rspack will assume that those functions do not produce side effects                                                                                               |
 | `extractComments` | `boolean\|RegExp` | false   | Extract comments that match the configuration to a separate file (fileName: `{assetName}.LICENSE.txt`). If the option is set to true, use the regular expression `/@preserve\|@lic\|@cc_on\|^\**!/`. |
+| `asciiOnly`       | `boolean`         | false   | Escape Unicode characters in strings and regexps (affects directives with non-ascii characters becoming invalid)                                                                                     |
 
 ## builtins.define
 
