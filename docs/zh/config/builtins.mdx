@@ -453,6 +453,7 @@ type BuiltinsMinifyOptions = {
   pureFuncs?: Array<string>;
   extractComments: boolean | RegExp;
   asciiOnly?: boolean;
+  comments?: false | 'all' | 'some';
 };
 ```
 
@@ -507,6 +508,13 @@ type BuiltinsMinifyOptions = {
       default: 'false',
       description:
         '转义字符串和正则表达式中的 Unicode 字符（会影响包含非ASCII字符的指令，使其无效）。',
+    },
+    {
+      name: '`comments`',
+      type: '`false | "all" | "some"`',
+      default: 'false',
+      description:
+        '默认情况下将省略输出中的注释、正则表达式字符串（例如 /^!/）或函数，传递 `"some"` 以保留包含 "@license"、"@copyright"、"@preserve" 或以 ! 开头的注释，传递 `"all"` 以保留所有注释。',
     },
   ]}
 />
