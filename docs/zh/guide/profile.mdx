@@ -1,0 +1,13 @@
+# 性能分析
+
+Rspack CLI 支持使用 `RSPACK_PROFILE` 环境变量来进行构建性能分析。
+
+```sh
+$ RSPACK_PROFILE=ALL rspack build
+```
+
+执行该命令后会在当前文件夹下生成 `rspack.logging`、`rspack.trace` 和 `rspack.jscpuprofile` 三个文件
+
+- `rspack.trace`：使用 [tracing](https://github.com/tokio-rs/tracing) 细粒度地记录了 Rust 侧各个阶段的耗时，可以使用 [ui.perfetto.dev](https://ui.perfetto.dev/) 进行查看
+- `rspack.jscpuprofile`：使用 [Node.js inspector](https://nodejs.org/dist/latest-v18.x/docs/api/inspector.html) 细粒度地记录了 JavaScript 侧的各个阶段的耗时，可以使用 [speedscope.app](https://www.speedscope.app/) 进行查看
+- `rspack.logging`：包含一些日志信息，粗粒度地记录了构建的各个阶段耗时
