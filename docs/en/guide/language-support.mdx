@@ -32,17 +32,7 @@ If you are using the plugin in development mode, it won’t block the build and 
 
 Based on your actual needs, you should decide whether to enable this plugin. If the type checking process becomes a bottleneck in your build process, we recommend using TypeScript’s incremental build feature. This feature can greatly speed up the type checking process by only analyzing the changed files since the last build.
 
-To enable TypeScript’s incremental build, you can add the --incremental flag to your TypeScript compiler options in the tsconfig.json file:
-
-```json
-{
-  "compilerOptions": {
-    "incremental": true
-    // other options...
-  }
-  // other configurations...
-}
-```
+To enable TypeScript’s incremental build, you can use `tsc --incremental` independently or [enabling incremental mode](https://github.com/TypeStrong/fork-ts-checker-webpack-plugin#enabling-incremental-mode) in the plugin.
 
 Enabling incremental build can help reduce type checking time, especially when only a few files have been modified. This way, you can optimize your build process without sacrificing the benefits of type checking.
 
