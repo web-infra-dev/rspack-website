@@ -12,22 +12,12 @@
 
 一个规则数组，当模块被创建时与该模块的请求相匹配。这些规则可以修改模块的创建行为。它们可以对模块应用 Loader 等。
 
-## Rule
+### Rule
 
 - **类型：** `Rule`
 - **默认值：** `{}`
 
 Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
-
-**Rule 条件**
-
-定义了一个模块的匹配条件，常见的匹配有和 `resource` 与 `resourceQuery` 的匹配，以及 `include` 与 `exclude` 的匹配。
-
-例如: 当 app.js 导入 `./image.png?inline#foo`
-
-- `resource` 为 `/path/to/image.png`
-- `resourceQuery` 为 `?inline`
-- `resourceFragment` 为 `#foo`
 
 **Rule 处理行为**
 
@@ -37,7 +27,30 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 - 定义模块的类型（`Rule.type`）
 - 定义模块的 resolve 配置（`Rule.resolve`）
 
-### Nested Rule
+#### Condition
+
+- **类型：** `string | RegExp | Condition[] | LogicalConditions`
+
+定义了一个模块的匹配条件，常见的匹配有和 `resource` 与 `resourceQuery` 的匹配，以及 `include` 与 `exclude` 的匹配等。
+
+例如: 当 app.js 导入 `./image.png?inline#foo`
+
+- `resource` 为 `/path/to/image.png`，会与 `Rule.resource` 这个 Condition 进行匹配
+- `resourceQuery` 为 `?inline`，会与 `Rule.resourceQuery` 这个 Condition 进行匹配
+- `resourceFragment` 为 `#foo`，会与 `Rule.resourceFragment` 这个 Condition 进行匹配
+
+Condition 代表了匹配一个给定输入的形式，它支持的类型为：
+
+- `String`：给定一个输入，当输入的字符串满足 `startsWith` 时，则匹配成功。注：你可以认为是 `input.startsWith(condition)`。
+- `RegExp`：给定一个输入，当输入的字符串满足正则表达式时，则匹配成功。注：你可以认为是 `condition.test(input)`。
+- `Condition[]`：一系列条件，当有一个条件匹配上时，则匹配成功。
+- `LogicalConditions`：所有属性都匹配上时，则匹配成功。
+  - `{ and: Condition[] }`：所有条件都匹配，则匹配成功。
+  - `{ or: Condition[] }`：其中一个条件匹配，则匹配成功。
+  - `{ not: Condition }`：所有条件都不匹配时，则匹配成功。
+- `(value: string) => boolean`：当输入的字符串经函数调用后返回 true 是，则匹配成功。
+
+#### Nested Rule
 
 嵌套 Rule 可以通过 [`Rule.rules`](#rulerules) 和 [`Rule.oneOf`](#ruleoneof) 定义，这些嵌套 Rule 只有在其上层 Rule 匹配成功时才会进行匹配，它们可以包含自己的 Rule 条件
 
@@ -47,63 +60,63 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 2. [`Rule.rules`](#rulerules)
 3. [`Rule.oneOf`](#ruleoneof)
 
-## Rule.exclude
+### Rule.exclude
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 排除所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
-## Rule.include
+### Rule.include
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个条件的模块，会和资源的绝对路径（不包含 query 和 fragment）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
-## Rule.resource
+### Rule.resource
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.test` 同时存在。
 
-## Rule.resourceQuery
+### Rule.resourceQuery
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource 的 query 进行匹配。注：包含 `?`，当 `Rule.resourceQuery` 为 `?raw` 时，会和 `xxx?raw` 的资源请求进行匹配。
 
-## Rule.resourceFragment
+### Rule.resourceFragment
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource 的 fragment 进行匹配。注：包含 `#`，当 `Rule.resourceFragment` 为 `#abc` 时，会和 `xxx#abc` 的资源请求进行匹配。
 
-## Rule.test
+### Rule.test
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。该选项不能和 `Rule.resource` 同时存在。
 
-## Rule.issuer
+### Rule.issuer
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和引入当前模块的模块的 Resource（不包含 query 和 fragment 的绝对路径）进行匹配。
 
-## Rule.dependency
+### Rule.dependency
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和引入当前模块的依赖的类别（category）进行匹配，比如对于 `import`、`import()` 来说是 `esm`，对于 `require()` 来说是 `cjs`，对于 `new URL()`、`url()` 来说是 `url`。
 
-## Rule.scheme
+### Rule.scheme
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
@@ -125,21 +138,21 @@ module.exports = {
 };
 ```
 
-## Rule.mimetype
+### Rule.mimetype
 
 - **类型：** [`Condition`](/zh/config/module.html#condition)
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource 的 mimetype 进行匹配。
 
-## Rule.descriptionData
+### Rule.descriptionData
 
 - **类型：** `{ [k: string]: Condition }`
 - **默认值：** `undefined`
 
 匹配所有符合这个资源的模块，会和 Resource 的 package.json 中的字段进行匹配。
 
-## Rule.loaders
+### Rule.loaders
 
 :::warning
 
@@ -147,22 +160,22 @@ module.exports = {
 
 :::
 
-## Rule.loader
+### Rule.loader
 
 `Rule.loader` 是 `Rule.use: [ { loader } ]` 的简略写法。 详情见 [Rule.use](/config/module.html#ruleuse).
 
-## Rule.options
+### Rule.options
 
 `Rule.options` 是 `Rule.use: [ { options } ]` 的简略写法。 详情见 [Rule.use](/config/module.html#ruleuse).
 
-## Rule.parser
+### Rule.parser
 
 - **类型：** `Object`
 - **默认值：** `{}`
 
 模块的 parser 配置。
 
-### Rule.parser.dataUrlCondition
+#### Rule.parser.dataUrlCondition
 
 - **类型：** `object = { maxSize: number = 8096 }`
 - **默认值：** `{}`
@@ -187,14 +200,14 @@ module.exports = {
 };
 ```
 
-## Rule.generator
+### Rule.generator
 
 - **类型：** `Object`
 - **默认值：** `{}`
 
 模块的生成器选项，例如：对于 Asset Module 可以指定输出文件名。
 
-### Rule.generator.filename
+#### Rule.generator.filename
 
 - **类型：** `string`
 - **默认值：** `undefined`
@@ -226,13 +239,79 @@ module.exports = {
 };
 ```
 
-## Rule.sideEffects
+#### Rule.generator.publicPath
+
+- **类型：** `string`
+- **默认值：** `undefined`
+
+覆盖 [`output.publicPath`](/zh/config/output.html#outputpublicpath)，仅对模块类型为 `'asset'` 和 `'asset/resource'` 的模块生效。
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  output: {
+    publicPath: 'https://xxx.com/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource',
+        generator: {
+          publicPath: 'https://cdn.xxx.com/',
+        },
+      },
+    ],
+  },
+};
+```
+
+#### Rule.generator.dataUrl
+
+- **类型：** `Object`
+- **默认值：** `{}`
+
+仅对模块类型为 `'asset/inline'` 的模块生效。
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/inline',
+        generator: {
+          encoding: 'base64',
+          minetype: 'mimetype/png',
+        },
+      },
+    ],
+  },
+};
+```
+
+#### Rule.generator.dataUrl.encoding
+
+- **类型：** `false | 'base64'`
+- **默认值：** `base64`
+
+设置为 base64 时，模块将使用 base64 算法进行编码。将编码设置为 false 将禁用编码。仅对模块类型为 `'asset/inline'` 的模块生效。
+
+#### Rule.generator.dataUrl.minetype
+
+- **类型：** `string`
+- **默认值：** `require('mime-types').lookup(ext)`
+
+dataUrl 的 MIME 类型，默认从模块资源扩展名解析。仅对模块类型为 `'asset/inline'` 的模块生效。
+
+### Rule.sideEffects
 
 - **类型：** `boolean`
 
 标记模块是否存在副作用。
 
-## Rule.type
+### Rule.type
 
 - **类型：** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline' | 'tsx' | 'jsx'`
 
@@ -247,7 +326,7 @@ module.exports = {
 - `'json'`：JSON data 模块。
 - `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`：参考[资源模块](/guide/asset-module)。
 
-## Rule.use
+### Rule.use
 
 - **类型：**
 
@@ -279,7 +358,7 @@ module.exports = {
 };
 ```
 
-## Rule.resolve
+### Rule.resolve
 
 根据匹配的模块设置具体的模块 resolve 选项
 {
@@ -301,14 +380,14 @@ module.exports = {
 };
 ```
 
-## Rule.rules
+### Rule.rules
 
 - **类型：** <code>[Rule](#rule)[]</code>
 - **默认值：** `undefined`
 
 [嵌套 Rule](#nested-rule) 的一种，当其上层 [Rule](#rule) 匹配成功后会使用这些 Rule 进行匹配
 
-## Rule.oneOf
+### Rule.oneOf
 
 - **类型：** <code>[Rule](#rule)[]</code>
 - **默认值：** `undefined`
@@ -320,33 +399,49 @@ module.exports = {
 - **类型：** `Object`
 - **默认值：** `{}`
 
-一个对象，其中包含用于设置 parser 的选项。
-
-### module.parser.asset
+使用 `module.parser` 在一个地方配置所有解析器选项。
 
 ```ts title=rspack.config.js
 module.exports = {
   module: {
     parser: {
       asset: {
-        // Asset Module parser 的配置项
+        // asset 模块的解析器选项
+        dataUrlCondition: {
+          maxSize: 8000,
+        },
       },
     },
   },
 };
 ```
 
-## Condition
+## module.generator
 
-- **类型：** `string | RegExp | Condition[] | LogicalConditions`
+- **类型：** `Object`
+- **默认值：** `{}`
 
-Condition 代表了匹配一个给定输入的形式，它支持的类型为：
+使用 `module.generator` 在一个地方配置所有生成器选项。
 
-- `String`：给定一个输入，当输入的字符串满足 `startsWith` 时，则匹配成功。注：你可以认为是 `input.startsWith(condition)`。
-- `RegExp`：给定一个输入，当输入的字符串满足正则表达式时，则匹配成功。注：你可以认为是 `condition.test(input)`。
-- `Condition[]`：一系列条件，当有一个条件匹配上时，则匹配成功。
-- `LogicalConditions`：所有属性都匹配上时，则匹配成功。
-  - `{ and: Condition[] }`：所有条件都匹配，则匹配成功。
-  - `{ or: Condition[] }`：其中一个条件匹配，则匹配成功。
-  - `{ not: Condition }`：所有条件都不匹配时，则匹配成功。
-- `(value: string) => boolean`：当输入的字符串经函数调用后返回 true 是，则匹配成功。
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    generator: {
+      asset: {
+        // asset 模块的生成器选项
+        publicPath: 'https://cdn.xxx.com/',
+      },
+      'asset/inline': {
+        // asset/inline 模块的生成器选项
+        dataUrl: {
+          encoding: false,
+        },
+      },
+      'asset/resource': {
+        // asset/resource 模块的生成器选项
+        filename: '[name]-[contenthash][ext]',
+      },
+    },
+  },
+};
+```
