@@ -71,3 +71,5 @@ tuchg
 Rspress
 valorkin
 monaco
+jscpuprofile
+perfetto

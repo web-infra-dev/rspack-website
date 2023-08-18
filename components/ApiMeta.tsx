@@ -9,17 +9,14 @@ export enum Stability {
   Stable = 'Stable', // Compatibility with the npm ecosystem is a high priority.
   Legacy = 'Legacy', // Although this feature is unlikely to be removed and is still covered by semantic versioning guarantees, it is no longer actively maintained, and other alternatives are available.
 }
-export function ApiMeta(
-  props: {
-    addedVersion?: string;
-    deprecatedVersion?: string;
-    stability: Stability;
-  } = {
-    addedVersion: undefined,
-    deprecatedVersion: undefined,
-    stability: Stability.Stable,
-  }
-) {
+
+export interface ApiMetaProps {
+  addedVersion?: string;
+  deprecatedVersion?: string;
+  stability?: Stability;
+}
+
+export function ApiMeta(props: ApiMetaProps) {
   return (
     <div className="api-meta">
       <div className="api-meta-version">
@@ -28,7 +25,9 @@ export function ApiMeta(
           <span>deprecated in v{props.addedVersion}</span>
         )}
       </div>
-      <div className="api-meta-stability">Stability: {props.stability}</div>
+      {!!props.stability && (
+        <div className="api-meta-stability">Stability: {props.stability}</div>
+      )}
     </div>
   );
 }
