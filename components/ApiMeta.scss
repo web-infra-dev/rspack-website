@@ -1,6 +1,12 @@
 .api-meta-version {
-  color: var(--modern-c-brand);
-  font-size: 1rem;
+  padding: 2px 5px;
+  font-size: 14px;
+  background-color: var(--modern-c-brand);
+  color: white;
+  top: -4px;
+  display: inline-flex;
+
+  border-radius: 0.3rem;
 }
 .api-meta-stability {
   font-size: 1.2rem;
@@ -8,4 +14,17 @@
   padding: 1rem;
   color: white;
   margin-top: 1rem;
+  border-radius: 1rem;
+}
+.api-meta-stability-Stable {
+  background-color: #5a8147;
+}
+.api-meta-stability-Experimental {
+  background-color: #ca5010;
+}
+.api-meta-stability-Deprecated {
+  background-color: #d60027;
+}
+.api-meta-stability-Legacy {
+  background-color: #0a56b2;
 }
