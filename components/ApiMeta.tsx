@@ -19,14 +19,22 @@ export interface ApiMetaProps {
 export function ApiMeta(props: ApiMetaProps) {
   return (
     <div className="api-meta">
-      <div className="api-meta-version">
-        {!!props.addedVersion && <span>added in v{props.addedVersion}</span>}
-        {!!props.deprecatedVersion && (
-          <span>deprecated in v{props.addedVersion}</span>
-        )}
-      </div>
+      {(!!props.addedVersion || !!props.deprecatedVersion) && (
+        <div className="api-meta-version">
+          {!!props.addedVersion && <span>added in v{props.addedVersion}</span>}
+          {!!props.deprecatedVersion && (
+            <span>deprecated in v{props.addedVersion}</span>
+          )}
+        </div>
+      )}
       {!!props.stability && (
-        <div className="api-meta-stability">Stability: {props.stability}</div>
+        <div
+          className={`api-meta-stability api-meta-stability-${
+            props.stability || ''
+          }`}
+        >
+          Stability: {props.stability}
+        </div>
       )}
     </div>
   );
