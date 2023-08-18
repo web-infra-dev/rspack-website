@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.docschina.org/configuration/output/" />
 
@@ -106,6 +107,34 @@ module.exports = {
   - [Chunk Context](/config/output.html#chunk-context)
 
 此选项决定了非初始（non-initial）JavaScript chunk 文件的名称。
+
+## output.chunkFormat
+
+- **类型：** `false | 'array-push' | 'commonjs' | 'module'`
+
+chunk 产物的格式，默认值会根据 [`target`](/zh/config/target.html) 和 [`output.module`](#outputmodule) 的配置而决定，一般来说，target 为 web 或 webworker 时会使用 `'array-push'` 格式；为 ESM 时会使用 `'module'` 格式；为 node.js 时会使用 `'commonjs'` 格式
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkFormat: 'commonjs',
+  },
+};
+```
+
+## output.chunkLoading
+
+- **类型：** `false | 'jsonp' | 'import-scripts' | 'require' | 'async-node' | 'import'`
+
+加载 chunk 的方式，默认值会根据 [`target`](/zh/config/target.html) 和 [`chunkFormat`](#outputchunkformat) 的配置而决定，一般来说，target 为 web 时会使用 `'jsonp'` 来加载 chunk；为 ESM 时会使用 `'import'` 来加载 chunk；为 webworker 时会使用 `'import-scripts'` 来加载 chunk；为 node.js 时会使用 `'require'` 来加载 chunk；为 async node.js 时会使用 `'async-node'`（`fs.readFile` + `vm.runInThisContext`）来加载 chunk
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkLoading: 'async-node',
+  },
+};
+```
 
 ## output.chunkLoadingGlobal
 
@@ -1098,3 +1127,31 @@ module.exports = {
 - **默认值：** `false`
 
 在生成产物前，删除输出目录下的所有文件。
+
+## output.module
+
+<ApiMeta stability={Stability.Experimental} />
+
+- **类型：** `boolean`
+- **默认值：** `false`
+
+以 ESM 模块的形式输出 JavaScript 文件。由于此功能还处于实验阶段，默认关闭，想要使用的话必须将 [`experiments.outputModule`](zh/config/experiments.html#experimentsoutputmodule) 设置为 true
+
+## output.asyncChunks
+
+- **类型：** `boolean`
+- **默认值：** `true`
+
+是否创建按需加载的异步 chunk
+
+## output.wasmLoading
+
+- **类型：** `false | 'fetch', 'async-node'`
+- **默认值：** `'fetch'`
+
+用于设置加载 WebAssembly 模块的方式。默认方式包括 `'fetch'`（web/webworker）、`'async-node'`（Node.js）
+
+默认值会受不同 [`target`](/zh/config/target.html) 的影响：
+
+- 如果目标设置为 `'web'`、`'webworker'`、`'electron-renderer'` 或 `'node-webkit'`，默认值为 `'fetch'`。
+- 如果目标设置为 `'node'`、`'async-node'`、`'electron-main'` 或 `'electron-preload'`，则默认为 `'async-node'`。

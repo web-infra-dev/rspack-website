@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.js.org/configuration/output/" />
 
@@ -106,6 +107,34 @@ More can be found in [Template String](/config/output.html#template-string).
   - [Chunk Context](/config/output.html#chunk-context)
 
 This option determines the name of the non-initial JavaScript chunk file.
+
+## output.chunkFormat
+
+- **Type:** `false | 'array-push' | 'commonjs' | 'module'`
+
+The format of chunks, The default value of this option depends on the [`target`](/en/config/target.html) and [`output.module`](#outputmodule) setting. In general, the `'array-push'` format is used when the target is web or webworker, the `'module'` format is used when it is ESM, and the `'commonjs'` format is used when it is node.js.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkFormat: 'commonjs',
+  },
+};
+```
+
+## output.chunkLoading
+
+- **Type:** `false | 'jsonp' | 'import-scripts' | 'require' | 'async-node' | 'import'`
+
+The method to load chunks, The default value of this option depends on the [`target`](/zh/config/target.html) and [`chunkFormat`](#outputchunkformat) setting. In general, `'jsonp'` is used to load chunks when target is web; `'import'` is used to load chunks when ESM; `'import-scripts'` is used to load chunks when webworker; `'require'` is used to load chunks when node.js; `'async-node'` (`fs.readFile` + `vm`) is used to load chunks when async node.js. load chunks.
+
+```ts title="rspack.config.js"
+module.exports = {
+  output: {
+    chunkLoading: 'async-node',
+  },
+};
+```
 
 ## output.chunkLoadingGlobal
 
@@ -1145,3 +1174,31 @@ module.exports = {
 - **Default:** `false`
 
 Clean the output directory before emit.
+
+## output.module
+
+<ApiMeta stability={Stability.Experimental} />
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Output JavaScript files as module type. Disabled by default as it's an experimental feature. `output.module` is an experimental feature and can only be enabled by setting [`experiments.outputModule`](/en/config/experiments.html#experimentsoutputmodule) to true.
+
+## output.asyncChunks
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Create async chunks that are loaded on demand.
+
+## output.wasmLoading
+
+- **Type:** `false | 'fetch', 'async-node'`
+- **Default:** `'fetch'`
+
+Option to set the method of loading WebAssembly Modules. Methods included by default are `'fetch'` (web/webworker), `'async-node'` (Node.js).
+
+The default value can be affected by different target:
+
+- Defaults to `'fetch'` if target is set to `'web'`, `'webworker'`, `'electron-renderer'` or `'node-webkit'`.
+- Defaults to `'async-node'` if target is set to `'node'`, `'async-node'`, `'electron-main'` or `'electron-preload'`.
