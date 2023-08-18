@@ -8,22 +8,25 @@ The `entry` configuration is used to set the entry module for Rspack builds.
 
 - **Type:**
 
-```ts
-type EntryItem = string | string[];
+  ```ts
+  type EntryDescription = {
+    import: EntryItem;
+    runtime?: EntryRuntime;
+    chunkLoading?: ChunkLoading;
+    asyncChunks?: boolean;
+    publicPath?: PublicPath;
+    baseUri?: string;
+    filename?: EntryFilename;
+  };
 
-type EntryDescription = {
-  import: EntryItem;
-  runtime?: string | false;
-};
+  type EntryObject = {
+    [k: string]: EntryItem | EntryDescription;
+  };
 
-type EntryObject = {
-  [k: string]: EntryItem | EntryDescription;
-};
-
-type Config = {
-  entry: EntryItem | EntryObject;
-};
-```
+  type Config = {
+    entry: EntryItem | EntryObject;
+  };
+  ```
 
 - **Default:** `./src/index.js`
 
@@ -100,12 +103,31 @@ module.exports = {
 
 When you set `entry` to an object, you can set the value of the entry to a description object. A description object can contain the following properties:
 
-- `import`: The path to the entry module.
-- `runtime`: The name of the runtime chunk. When `runtime` is set, a new runtime chunk will be created. You can also set it to `false` to avoid a new runtime chunk.
+#### EntryDescription.import
 
-#### Set the Chunk Name
+- **Type:**
 
-The `runtime` property is used to set the name of the `chunk`, for example to set the name of the `main` entry chunk to `'foo'`:
+  ```ts
+  type EntryItem = string[] | string;
+  ```
+
+- **Default:** `'./src/index.js'`
+
+The path to the entry module.
+
+#### EntryDescription.runtime
+
+- **Type:**
+
+  ```ts
+  type EntryRuntime = false | string;
+  ```
+
+- **Default:** `undefined`
+
+The name of the runtime chunk. When `runtime` is set, a new runtime chunk will be created. You can also set it to `false` to avoid a new runtime chunk.
+
+The `runtime` property is used to set the name of the runtime chunk, for example to set the name of the `main` entry chunk to `'foo'`:
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -117,3 +139,51 @@ module.exports = {
   },
 };
 ```
+
+#### EntryDescription.chunkLoading
+
+- **Type:**
+
+  ```ts
+  type ChunkLoading = false | ChunkLoadingType;
+  type ChunkLoadingType =
+    | ('jsonp' | 'import-scripts' | 'require' | 'async-node' | 'import')
+    | string;
+  ```
+
+- **Default:** `undefined`
+
+How this entry load other chunks.
+
+#### EntryDescription.asyncChunks
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Whether to create a load-on-demand asynchronous chunk for this entry.
+
+#### EntryDescription.publicPath
+
+- **Type:**
+
+  ```ts
+  type PublicPath = 'auto' | string;
+  ```
+
+- **Default:** `undefined`
+
+The publicPath of the resource referenced by this entry.
+
+#### EntryDescription.baseUri
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+The baseURI of the resource referenced by this entry.
+
+#### EntryDescription.filename
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+The filename of the entry chunk.
