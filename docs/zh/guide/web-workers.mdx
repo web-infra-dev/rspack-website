@@ -1,8 +1,11 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 <WebpackLicense from="https://webpack.js.org/guides/web-workers/" />
 
-# Web Workers <sup>`v0.2.6+`</sup>
+# Web Workers
+
+<ApiMeta addedVersion={'2.6'} stability={Stability.Stable} />
 
 [Web Workers](https://developer.mozilla.org/zh-CN/docs/Web/API/Web_Workers_API/Using_web_workers) 是 Rspack 的一等公民，这意味着你不需要任何的 Loader 就可以直接使用 Web Workers。
 
