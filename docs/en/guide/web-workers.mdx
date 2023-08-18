@@ -1,8 +1,11 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 <WebpackLicense from="https://webpack.js.org/guides/web-workers/" />
 
-# Web Workers <sup>`v0.2.6+`</sup>
+# Web Workers
+
+<ApiMeta addedVersion={'2.6'} stability={Stability.Stable} />
 
 [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) are first-class citizens of Rspack, which means you don't need any loader to use Web Workers directly.
 
