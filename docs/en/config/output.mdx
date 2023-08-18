@@ -1184,13 +1184,6 @@ Clean the output directory before emit.
 
 Output JavaScript files as module type. Disabled by default as it's an experimental feature. `output.module` is an experimental feature and can only be enabled by setting [`experiments.outputModule`](/en/config/experiments.html#experimentsoutputmodule) to true.
 
-## output.asyncChunks
-
-- **Type:** `boolean`
-- **Default:** `true`
-
-Create async chunks that are loaded on demand.
-
 ## output.wasmLoading
 
 - **Type:** `false | 'fetch', 'async-node'`
@@ -1202,3 +1195,12 @@ The default value can be affected by different target:
 
 - Defaults to `'fetch'` if target is set to `'web'`, `'webworker'`, `'electron-renderer'` or `'node-webkit'`.
 - Defaults to `'async-node'` if target is set to `'node'`, `'async-node'`, `'electron-main'` or `'electron-preload'`.
+
+## output.asyncChunks
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **Type:** `boolean`
+- **Default:** `true`
+
+Create async chunks that are loaded on demand.

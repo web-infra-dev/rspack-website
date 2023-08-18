@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.js.org/configuration/entry-context/#entry" />
 
@@ -142,6 +143,8 @@ module.exports = {
 
 #### EntryDescription.chunkLoading
 
+<ApiMeta addedVersion={'0.2.6'} />
+
 - **Type:**
 
   ```ts
@@ -157,12 +160,16 @@ How this entry load other chunks.
 
 #### EntryDescription.asyncChunks
 
+<ApiMeta addedVersion={'0.2.6'} />
+
 - **Type:** `boolean`
 - **Default:** `true`
 
 Whether to create a load-on-demand asynchronous chunk for this entry.
 
 #### EntryDescription.publicPath
+
+<ApiMeta addedVersion={'0.2.6'} />
 
 - **Type:**
 
@@ -176,12 +183,16 @@ The publicPath of the resource referenced by this entry.
 
 #### EntryDescription.baseUri
 
+<ApiMeta addedVersion={'0.2.6'} />
+
 - **Type:** `string`
 - **Default:** `undefined`
 
 The baseURI of the resource referenced by this entry.
 
 #### EntryDescription.filename
+
+<ApiMeta addedVersion={'0.2.6'} />
 
 - **Type:** `string`
 - **Default:** `undefined`
