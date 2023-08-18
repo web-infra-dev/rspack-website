@@ -27,7 +27,7 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 
 - `resource` 为 `/path/to/image.png`
 - `resourceQuery` 为 `?inline`
-- `resourceFragment` 为 `#foo`。
+- `resourceFragment` 为 `#foo`
 
 **Rule 处理行为**
 
@@ -36,6 +36,16 @@ Rule 定义了一个模块的匹配条件以及处理这些模块的行为。
 - 将 Loader 的列表应用到这些模块上（`Rule.use`）
 - 定义模块的类型（`Rule.type`）
 - 定义模块的 resolve 配置（`Rule.resolve`）
+
+### Nested Rule
+
+嵌套 Rule 可以通过 [`Rule.rules`](#rulerules) 和 [`Rule.oneOf`](#ruleoneof) 定义，这些嵌套 Rule 只有在其上层 Rule 匹配成功时才会进行匹配，它们可以包含自己的 Rule 条件
+
+嵌套 Rule 的匹配顺序：
+
+1. 其上层 Rule
+2. [`Rule.rules`](#rulerules)
+3. [`Rule.oneOf`](#ruleoneof)
 
 ## Rule.exclude
 
@@ -290,6 +300,20 @@ module.exports = {
   },
 };
 ```
+
+## Rule.rules
+
+- **类型：** <code>[Rule](#rule)[]</code>
+- **默认值：** `undefined`
+
+[嵌套 Rule](#nested-rule) 的一种，当其上层 [Rule](#rule) 匹配成功后会使用这些 Rule 进行匹配
+
+## Rule.oneOf
+
+- **类型：** <code>[Rule](#rule)[]</code>
+- **默认值：** `undefined`
+
+[嵌套 Rule](#nested-rule) 的一种，当其上层 Rule 匹配成功后会使用这些 Rule 进行匹配，并且只使用匹配成功的第一个 Rule
 
 ## module.parser
 

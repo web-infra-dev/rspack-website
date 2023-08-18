@@ -37,6 +37,16 @@ Defines the processing behavior of the corresponding matching module, e.g. :
 - Apply the module's type (`Rule.type`)
 - Apply the module's resolve configuration (`Rule.resolve`)
 
+### Nested Rule
+
+Nested Rule can be specified under the properties [`Rule.rules`](#rulerules) and [`Rule.oneOf`](#ruleoneof), These rules are evaluated only when the parent Rule condition matches. Each nested rule can contain its own conditions.
+
+The order of evaluation is as follows:
+
+1. The parent Rule
+2. [`Rule.rules`](#rulerules)
+3. [`Rule.oneOf`](#ruleoneof)
+
 ## Rule.exclude
 
 - **Type:** [`Condition`](/config/module.html#condition)
@@ -288,6 +298,20 @@ module.exports = {
   },
 };
 ```
+
+## Rule.rules
+
+- **Type:** <code>[Rule](#rule)[]</code>
+- **Default:** `undefined`
+
+A kind of [Nested Rule](#nested-rule), an array of Rules that is also used when the parent Rule matches.
+
+## Rule.oneOf
+
+- **Type:** <code>[Rule](#rule)[]</code>
+- **Default:** `undefined`
+
+A kind of [Nested Rule](#nested-rule), an array of Rules from which only the first matching Rule is used when the parent Rule matches.
 
 ## module.parser
 

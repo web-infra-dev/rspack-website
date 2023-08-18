@@ -73,3 +73,4 @@ valorkin
 monaco
 jscpuprofile
 perfetto
+ruleoneof
