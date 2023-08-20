@@ -14,6 +14,35 @@ Rspack 原生支持 ES6 模块语法，可以使用静态的 `import`、`export`
 
 Rspack 也支持 `CommonJS` 语法，可以使用 `require` 和 `module.exports` 语法。
 
+### DataURI 模块
+
+Rspack 支持使用 `import` 和 `require` 语法导入 DataURI 模块。
+
+**import**
+
+```js
+import DataURI from 'data:text/javascript,export default 42';
+```
+
+**require**
+
+```js
+require('data:text/javascript,module.exports = 42');
+```
+
+除此之外，还支持了 Base64 编码：
+
+```js
+const {
+  number,
+  fn,
+} = require('data:text/javascript;charset=utf-8;base64,ZXhwb3J0IGNvbnN0IG51bWJlciA9IDQyOwpleHBvcnQgZnVuY3Rpb24gZm4oKSB7CiAgcmV0dXJuICJIZWxsbyB3b3JsZCI7Cn0=');
+```
+
+::: tip
+DataURI 模块可以被用作虚拟模块（Virtual Modules）的实现方式，如：配合 Loader 完成运行时动态加载自定义模块。
+:::
+
 ### Webpack
 
 除了上述的模块语法之外，Rspack 还支持一些 Webpack 特有的方法。

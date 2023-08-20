@@ -14,6 +14,35 @@ Rspack support ES6 module syntax natively, you can use static `import`, `export`
 
 Rspack is also support `CommonJS` syntax natively, you can use `require` and `module.exports` syntax.
 
+### DataURI Module
+
+Rspack supports importing DataURI modules using the `import` and `require` syntax.
+
+**import**
+
+```js
+import DataURI from 'data:text/javascript,export default 42';
+```
+
+**require**
+
+```js
+require('data:text/javascript,module.exports = 42');
+```
+
+In addition, Base64 encoded requests are also supported:
+
+```js
+const {
+  number,
+  fn,
+} = require('data:text/javascript;charset=utf-8;base64,ZXhwb3J0IGNvbnN0IG51bWJlciA9IDQyOwpleHBvcnQgZnVuY3Rpb24gZm4oKSB7CiAgcmV0dXJuICJIZWxsbyB3b3JsZCI7Cn0=');
+```
+
+::: tip
+The DataURI module can be used as a method to implement virtual modules, such as combining with a Loader to dynamically load custom modules at runtime.
+:::
+
 ### Webpack
 
 Aside from the module syntaxes described above, Rspack also support some webpack-specific methods.
