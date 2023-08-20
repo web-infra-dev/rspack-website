@@ -75,3 +75,5 @@ monaco
 jscpuprofile
 perfetto
 ruleoneof
+px2rem
+pxtorem
