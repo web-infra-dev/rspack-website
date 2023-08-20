@@ -80,6 +80,8 @@ module.exports = {
 };
 ```
 
+完整的示例可参考[postcss-loader-example](https://github.com/web-infra-dev/rspack/tree/main/examples/postcss-loader)
+
 ### 限制访问内部模块
 
 因为 Rspack 目前的内部模块的 API 不够稳定，因此直接使用 Rspack 内部模块的 API 很容易导致 Breaking, 因此 Rspack 限制了用户直接访问内部模块的能力，仅支持从根模块访问 Rspack 的 API。
