@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.docschina.org/configuration/entry-context/#entry" />
 
@@ -8,22 +9,25 @@ import WebpackLicense from '../../../components/webpack-license';
 
 - **类型：**
 
-```ts
-type EntryItem = string | string[];
+  ```ts
+  type EntryDescription = {
+    import: EntryItem;
+    runtime?: EntryRuntime;
+    chunkLoading?: ChunkLoading;
+    asyncChunks?: boolean;
+    publicPath?: PublicPath;
+    baseUri?: string;
+    filename?: EntryFilename;
+  };
 
-type EntryDescription = {
-  import: EntryItem;
-  runtime?: string | false;
-};
+  type EntryObject = {
+    [k: string]: EntryItem | EntryDescription;
+  };
 
-type EntryObject = {
-  [k: string]: EntryItem | EntryDescription;
-};
-
-type Config = {
-  entry: EntryItem | EntryObject;
-};
-```
+  type Config = {
+    entry: EntryItem | EntryObject;
+  };
+  ```
 
 - **默认值：** `./src/index.js`
 
@@ -100,12 +104,31 @@ module.exports = {
 
 当你将 `entry` 设置为一个对象时，可以将入口的值设置为一个描述对象。描述对象可以包含以下属性：
 
-- `import`：入口模块的路径。
-- `runtime`：运行时 chunk 的名称。设置 `runtime` 后，会创建一个新的运行时 chunk。你也可以将它设置为 `false` 来避免一个新的运行时 chunk。
+#### EntryDescription.import
 
-#### 设置 chunk 名称
+- **类型：**
 
-`runtime` 属性用于设置 `chunk` 的名称，比如将 `main` 入口的 chunk 名称设置为 `'foo'`：
+  ```ts
+  type EntryItem = string[] | string;
+  ```
+
+- **默认值：** `'./src/index.js'`
+
+入口模块的路径
+
+#### EntryDescription.runtime
+
+- **类型：**
+
+  ```ts
+  type EntryRuntime = false | string;
+  ```
+
+- **默认值：** `undefined`
+
+运行时 chunk 的名称。设置 `runtime` 后，会创建一个新的运行时 chunk。你也可以将它设置为 `false` 来避免一个新的运行时 chunk。
+
+`runtime` 属性用于设置运行时 `chunk` 的名称，比如将 `main` 入口的 chunk 名称设置为 `'foo'`：
 
 ```ts title="rspack.config.js"
 module.exports = {
@@ -117,3 +140,61 @@ module.exports = {
   },
 };
 ```
+
+#### EntryDescription.chunkLoading
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **类型：**
+
+  ```ts
+  type ChunkLoading = false | ChunkLoadingType;
+  type ChunkLoadingType =
+    | ('jsonp' | 'import-scripts' | 'require' | 'async-node' | 'import')
+    | string;
+  ```
+
+- **默认值：** `undefined`
+
+决定该入口在加载 chunk 时的加载方式。
+
+#### EntryDescription.asyncChunks
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **类型：** `boolean`
+- **默认值：** `true`
+
+是否为该入口创建按需加载的异步 chunk。
+
+#### EntryDescription.publicPath
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **类型：**
+
+  ```ts
+  type PublicPath = 'auto' | string;
+  ```
+
+- **默认值：** `undefined`
+
+修改该入口引用的资源的 publicPath。
+
+#### EntryDescription.baseUri
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **类型：** `string`
+- **默认值：** `undefined`
+
+修改该入口引用的资源的 baseURI。
+
+#### EntryDescription.filename
+
+<ApiMeta addedVersion={'0.2.6'} />
+
+- **类型：** `string`
+- **默认值：** `undefined`
+
+修改该入口所生成 chunk 的文件名。
