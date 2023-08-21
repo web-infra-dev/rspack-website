@@ -184,3 +184,7 @@ $ RSPACK_PROFILE=ALL rspack build
 ### 和 Webpack 架构对齐
 
 我们在 0.3 版本进一步优化了和 Webpack 架构的对齐工作，从原来的基于 AST 的 codegen 架构迁移到基于字符串变换的架构，该对齐工作可以进一步保障 Rspack 在 codegen 阶段能够对齐 Webpack 更多的 Hook API 以兼容更多的社区插件。
+
+### Rspack 生态
+
+Rspack 在 2.0 提供了对 `vue-loader` 的支持,但是基于 `vue-loader` 封装一套完整的 Vue.js cli 的解决方案是一个较为复杂工作，`Modern.js Builder` 提供了 Vue.js 的开销即用的工程化方案 [Modern.js Vue.js Support](https://modernjs.dev/builder/guide/framework/vue3.html) 来简化使用 Rspack 开发 Vue.js 的工作。
