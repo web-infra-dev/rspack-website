@@ -101,8 +101,17 @@ module.exports = {
         type: 'javascript/auto',
       },
       {
-        resourceQuery: /lang=ts/,
-        type: 'ts', // add this rule when you use typescript in Vue SFC
+        test: /\.ts$/, // add this rule when you use typescript in Vue SFC
+        loader: 'builtin:swc-loader',
+        options: {
+          sourceMap: true,
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        },
+        type: 'javascript/auto',
       },
     ],
   },
@@ -111,6 +120,8 @@ module.exports = {
   },
 };
 ```
+
+TypeScript is supported using Rspack's native `builtin:swc-loader`, see [this](/guide/loader#builtinswc-loader) for details.
 
 You can refer to the related example [example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2) and [example-vue2-ts](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2-ts).
 

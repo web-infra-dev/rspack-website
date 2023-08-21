@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Loader
 
 In bundling terminology, a loader is like a plugin but tasked with transforming file contents. You can use loaders to transform arbitrary input files into file types that are natively supported by Rspack.
@@ -141,7 +143,9 @@ Here's the translated text:
 
 Built-in Loaders offer superior performance compared to JS Loaders, without sacrificing the composability of JS Loaders.
 
-#### `builtin:swc-loader`
+#### builtin:swc-loader
+
+<ApiMeta addedVersion="0.3.0" />
 
 `builtin:swc-loader` is the Rust version of [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader), aiming to deliver better performance. The Loader's [configuration](https://swc.rs/docs/configuration/compilation) is aligned with the JS version of `swc-loader` (SWC plugins will be provided in future releases and are currently not supported).
 

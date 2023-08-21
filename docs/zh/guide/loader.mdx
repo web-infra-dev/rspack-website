@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Loader
 
 Loader 可以对文件内容进行转换，你可以借助 Loader，将 Rspack 中非一等公民支持的文件转换为一等公民类型，以被 Rspack 所正确识别。
@@ -139,7 +141,9 @@ module.exports = {
 
 内置 Loader 在不损失 JS Loader 的可组合性的同时，提供了比 JS Loader 更优的性能。
 
-#### `builtin:swc-loader`
+#### builtin:swc-loader
+
+<ApiMeta addedVersion="0.3.0" />
 
 `builtin:swc-loader` 是 [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader) 的 Rust 版本，旨在提供更优的性能，
 Loader 的[配置](https://swc.rs/docs/configuration/compilation)与 JS 版本的 `swc-loader` 保持对齐（SWC 插件将会在未来版本进行提供，暂不支持）。
