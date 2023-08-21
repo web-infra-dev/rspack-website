@@ -282,8 +282,10 @@ module.exports = {
         test: /\.png/,
         type: 'asset/inline',
         generator: {
-          encoding: 'base64',
-          minetype: 'mimetype/png',
+          dataUrl: {
+            encoding: 'base64',
+            minetype: 'mimetype/png',
+          },
         },
       },
     ],
@@ -298,7 +300,7 @@ module.exports = {
 
 设置为 base64 时，模块将使用 base64 算法进行编码。将编码设置为 false 将禁用编码。仅对模块类型为 `'asset/inline'` 的模块生效。
 
-#### Rule.generator.dataUrl.minetype
+#### Rule.generator.dataUrl.mimetype
 
 - **类型：** `string`
 - **默认值：** `require('mime-types').lookup(ext)`

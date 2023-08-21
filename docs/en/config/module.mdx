@@ -281,8 +281,10 @@ module.exports = {
         test: /\.png/,
         type: 'asset/inline',
         generator: {
-          encoding: 'base64',
-          minetype: 'mimetype/png',
+          dataUrl: {
+            encoding: 'base64',
+            mimetype: 'mimetype/png',
+          },
         },
       },
     ],
@@ -297,7 +299,7 @@ module.exports = {
 
 When set to 'base64', module source will be encoded using Base64 algorithm. Setting encoding to false will disable encoding. Only for modules with module type `'asset'` or `'asset/inline'`.
 
-#### Rule.generator.dataUrl.minetype
+#### Rule.generator.dataUrl.mimetype
 
 - **Type:** `string`
 - **Default:** `require('mime-types').lookup(ext)`
