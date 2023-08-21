@@ -139,6 +139,12 @@ make 阶段之前调用。
 
 ## Compilation 钩子
 
+### `buildModule`
+
+`SyncHook<[JsModule]>`
+
+在模块被构建之前调用，可以用来修改模块（Rspack 目前仅支持读）
+
 ### `processAssets`
 
 `AsyncSeriesHook<[CompilationAssets]>`
@@ -156,6 +162,12 @@ make 阶段之前调用。
 `AsyncSeriesBailHook<[JsModule[]]>`
 
 在 `afterOptimizeTree` 之后，在块模块优化的开始时调用。插件可以使用此钩子来对块模块执行优化。
+
+### `succeedModule`
+
+`SyncHook<[JsModule]>`
+
+在模块成功构建后调用
 
 ### `finishModules`
 

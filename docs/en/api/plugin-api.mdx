@@ -139,6 +139,12 @@ Called if the compilation fails.
 
 ## Compilation Hooks
 
+### `buildModule`
+
+`SyncHook<[JsModule]>`
+
+Triggered before a module build has started, can be used to modify the module (Rspack currently only support reading the module, modifying is not supported yet).
+
 ### `processAssets`
 
 `AsyncSeriesHook<[CompilationAssets]>`
@@ -156,6 +162,12 @@ Called at the beginning of the module optimization phase. A plugin can tap into 
 `AsyncSeriesBailHook<[JsModule[]]>`
 
 Called after the tree optimization, at the beginning of the chunk modules optimization. A plugin can tap into this hook to perform optimizations of chunk modules.
+
+### `succeedModule`
+
+`SyncHook<[JsModule]>`
+
+Executed when a module has been built successfully.
 
 ### `finishModules`
 
