@@ -12,22 +12,12 @@ Used to decide how to handle different types of modules in a project.
 
 An array of rules that match the module's requests when it is created. These rules can modify the creation behavior of the module. They can apply Loader, etc. to the module.
 
-## Rule
+### Rule
 
 - **Type:** `Rule`
 - **Default:** `{}`
 
 Rule defines the conditions for matching a module and the behavior of handling those modules.
-
-**Rule Condition**
-
-Defines a module's match conditions, common matches are with `resource` and `resourceQuery`, and `include` and `exclude`.
-
-Example: app.js imports `./image.png?inline#foo`
-
-- `resource` equals to `/path/to/image.png`
-- `resourceQuery` equals to `?inline`
-- `resourceFragment` equals to `#foo`
 
 **Rule behavior**
 
@@ -37,7 +27,30 @@ Defines the processing behavior of the corresponding matching module, e.g. :
 - Apply the module's type (`Rule.type`)
 - Apply the module's resolve configuration (`Rule.resolve`)
 
-### Nested Rule
+#### Condition
+
+- **Type:** `string | RegExp | Condition[] | LogicalConditions`
+
+Defines a module's match conditions, common matches are `resource`, `resourceQuery`, `include`, and `exclude`.
+
+Example: app.js imports `./image.png?inline#foo`
+
+- `resource` is `/path/to/image.png`, and will match against with `Rule.resource` Condition
+- `resourceQuery` is `?inline`, and will match against with `Rule.resourceQuery` Condition
+- `resourceFragment` is `#foo`, and will match against with `Rule.resourceFragment` Condition
+
+Condition represents the form of matching a given input, and it supports the following types:
+
+- `String`: Given an input, the match is successful when the input string satisfies startsWith. Note: You can think of it as `input.startsWith(condition)`.
+- `RegExp`: Given an input, the match is successful when the input string satisfies the regular expression. Note: You can think of it as `condition.test(input)`.
+- `Condition[]`: A list of conditions. At least one of the Conditions must match.
+- `LogicalConditions`: All Conditions must match.
+  - `{ and: Condition[] }`: All Conditions must match.
+  - `{ or: Condition[] }`: At least one of the Conditions must match.
+  - `{ not: Condition }`: All Conditions must NOT match.
+- `(value: string) => boolean`: If it's called with the input and return a truthy value, the match is succeeds.
+
+#### Nested Rule
 
 Nested Rule can be specified under the properties [`Rule.rules`](#rulerules) and [`Rule.oneOf`](#ruleoneof), These rules are evaluated only when the parent Rule condition matches. Each nested rule can contain its own conditions.
 
@@ -47,63 +60,63 @@ The order of evaluation is as follows:
 2. [`Rule.rules`](#rulerules)
 3. [`Rule.oneOf`](#ruleoneof)
 
-## Rule.exclude
+### Rule.exclude
 
 - **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Excludes all modules that match this condition and will match against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
 
-## Rule.include
+### Rule.include
 
 - **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this condition against the absolute path of the resource (without query and fragment). This option cannot be present together with `Rule.resource`.
 
-## Rule.resource
+### Rule.resource
 
 - **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.test`.
 
-## Rule.resourceQuery
+### Rule.resourceQuery
 
 - **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource against the Resource's query. Note: Containing `?`, when `Rule.resourceQuery` is `?raw`, it will match the resource request of `xxx?raw`
 
-## Rule.resourceFragment
+### Rule.resourceFragment
 
 - **Type:** [`Condition`](/zh/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource against the Resource's fragment. Note: Containing `#`, when `Rule.resourceFragment` is `#abc`, it will match the resource request of `xxx#abc`
 
-## Rule.test
+### Rule.test
 
 - **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment). This option cannot be present together with `Rule.resource`.
 
-## Rule.issuer
+### Rule.issuer
 
 - **Type:** [`Condition`](/zh/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment) of the module that issued the current module.
 
-## Rule.dependency
+### Rule.dependency
 
 - **Type:** [`Condition`](/zh/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the category of the dependency that introduced the current module, for example `esm` for `import` and `import()`, `cjs` for `require()`, `url` for `new URL()` and `url()`.
 
-## Rule.scheme
+### Rule.scheme
 
 - **Type:** [`Condition`](/zh/config/module.html#condition)
 - **Default:** `undefined`
@@ -125,21 +138,21 @@ module.exports = {
 };
 ```
 
-## Rule.mimetype
+### Rule.mimetype
 
 - **Type:** [`Condition`](/zh/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the Resource's mimetype.
 
-## Rule.descriptionData
+### Rule.descriptionData
 
 - **Type:** `{ [k: string]: Condition }`
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the data in the Resource's package.json.
 
-## Rule.loaders
+### Rule.loaders
 
 :::warning
 
@@ -147,22 +160,22 @@ This option is deprecated, please use `Rule.use` instead
 
 :::
 
-## Rule.loader
+### Rule.loader
 
 `Rule.loader` is a shortcut to `Rule.use: [ { loader } ]`. See [Rule.use](/config/module.html#ruleuse) for details.
 
-## Rule.options
+### Rule.options
 
 `Rule.options` is a shortcut to `Rule.use: [ { options } ]`. See [Rule.use](/config/module.html#ruleuse) for details.
 
-## Rule.parser
+### Rule.parser
 
 - **Type:** `Object`
 - **Default:** `{}`
 
 Module's parser configuration
 
-### Rule.parser.dataUrlCondition
+#### Rule.parser.dataUrlCondition
 
 - **Type:** `object = { maxSize: number = 8096 }`
 - **Default:** `{}`
@@ -187,14 +200,14 @@ module.exports = {
 };
 ```
 
-## Rule.generator
+### Rule.generator
 
 - **Type:** `Object`
 - **Default:** `{}`
 
 Generator options for the module, e.g. for Asset Module you can specify the output filename.
 
-### Rule.generator.filename
+#### Rule.generator.filename
 
 - **Type:** `string`
 - **Default:** `undefined`
@@ -225,13 +238,81 @@ module.exports = {
 };
 ```
 
-## Rule.sideEffects
+#### Rule.generator.publicPath
+
+- **Type:** `string`
+- **Default:** `undefined`
+
+Override [`output.publicPath`](/en/config/output.html#outputpublicpath), only for modules with module type `'asset'` or `'asset/resource'`.
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  output: {
+    publicPath: 'https://xxx.com/',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/resource',
+        generator: {
+          publicPath: 'https://cdn.xxx.com/',
+        },
+      },
+    ],
+  },
+};
+```
+
+#### Rule.generator.dataUrl
+
+- **Type:** `Object`
+- **Default:** `{}`
+
+Only for modules with module type `'asset'` or `'asset/inline'`.
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.png/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: {
+            encoding: 'base64',
+            mimetype: 'mimetype/png',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+#### Rule.generator.dataUrl.encoding
+
+- **Type:** `false | 'base64'`
+- **Default:** `'base64'`
+
+When set to 'base64', module source will be encoded using Base64 algorithm. Setting encoding to false will disable encoding. Only for modules with module type `'asset'` or `'asset/inline'`.
+
+#### Rule.generator.dataUrl.mimetype
+
+- **Type:** `string`
+- **Default:** `require('mime-types').lookup(ext)`
+
+A mimetype for data URI. Resolves from module resource extension by default. Only for modules with module type `'asset'` or `'asset/inline'`.
+
+### Rule.sideEffects
 
 - **Type:** `boolean`
 
 Flag the module for side effects
 
-## Rule.type
+### Rule.type
 
 - **Type:** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`
 
@@ -244,7 +325,7 @@ Used to mark the type of the matching module, which affects how the module is ha
 - `'json'`: JSON data module
 - `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`: See [Asset Module](/guide/asset-module)
 
-## Rule.use
+### Rule.use
 
 - **Type:**
 
@@ -277,7 +358,7 @@ module.exports = {
 };
 ```
 
-## Rule.resolve
+### Rule.resolve
 
 Set specific module resolve options based on the matching modules
 {
@@ -299,14 +380,14 @@ module.exports = {
 };
 ```
 
-## Rule.rules
+### Rule.rules
 
 - **Type:** <code>[Rule](#rule)[]</code>
 - **Default:** `undefined`
 
 A kind of [Nested Rule](#nested-rule), an array of Rules that is also used when the parent Rule matches.
 
-## Rule.oneOf
+### Rule.oneOf
 
 - **Type:** <code>[Rule](#rule)[]</code>
 - **Default:** `undefined`
@@ -318,33 +399,49 @@ A kind of [Nested Rule](#nested-rule), an array of Rules from which only the fir
 - **Type:** `Object`
 - **Default:** `{}`
 
-An object that contains options for setting the parser.
-
-### module.parser.asset
+Configure all parsers' options in one place with `module.parser`.
 
 ```ts title=rspack.config.js
 module.exports = {
   module: {
     parser: {
       asset: {
-        // Configuration of Asset Module parser
+        // Parser options for asset modules
+        dataUrlCondition: {
+          maxSize: 8000,
+        },
       },
     },
   },
 };
 ```
 
-## Condition
+## module.generator
 
-- **Type:** `string | RegExp | Condition[] | LogicalConditions`
+- **Type:** `Object`
+- **Default:** `{}`
 
-Condition represents the form of matching a given input, and it supports the following types:
+Configure all generators' options in one place with `module.generator`.
 
-- `String`: Given an input, the match is successful when the input string satisfies startsWith. Note: You can think of it as `input.startsWith(condition)`.
-- `RegExp`: Given an input, the match is successful when the input string satisfies the regular expression. Note: You can think of it as `condition.test(input)`.
-- `Condition[]`: A list of conditions. At least one of the Conditions must match.
-- `LogicalConditions`: All Conditions must match.
-  - `{ and: Condition[] }`: All Conditions must match.
-  - `{ or: Condition[] }`: At least one of the Conditions must match.
-  - `{ not: Condition }`: All Conditions must NOT match.
-- `(value: string) => boolean`: If it's called with the input and return a truthy value, the match is succeeds.
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    generator: {
+      asset: {
+        // Generator options for asset modules
+        publicPath: 'https://cdn.xxx.com/',
+      },
+      'asset/inline': {
+        // Generator options for asset/inline modules
+        dataUrl: {
+          encoding: false,
+        },
+      },
+      'asset/resource': {
+        // Generator options for asset/resource modules
+        filename: '[name]-[contenthash][ext]',
+      },
+    },
+  },
+};
+```
