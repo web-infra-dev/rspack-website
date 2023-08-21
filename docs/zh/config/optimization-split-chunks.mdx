@@ -205,3 +205,15 @@ module.exports = {
 - **类型：** `RegExp | string`
 
 控制此缓存组选择的模块。省略它会选择所有模块。它可以匹配绝对模块资源路径或 chunk 名称。匹配 chunk 名称时，将选择 chunk 中的所有模块。
+
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.enforce
+
+- **类型：** `boolean`
+
+告诉 Rspack 忽略 `splitChunks.minSize`、`splitChunks.minChunks`、`splitChunks.maxAsyncRequests` 和 `splitChunks.maxInitialRequests` 选项，并始终为此缓存组创建 chunk。
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.idHint
+
+设置 chunk id 的提示。 它将被添加到 chunk 的文件名中。
+
