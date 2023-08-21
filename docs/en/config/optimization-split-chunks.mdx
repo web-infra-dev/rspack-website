@@ -220,3 +220,15 @@ A module can belong to multiple cache groups. The optimization will prefer the c
 - **Type:** `RegExp | string`
 
 Controls which modules are selected by this cache group. Omitting it selects all modules. It can match the absolute module resource path or chunk names. When a chunk name is matched, all modules in the chunk are selected.
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.enforce
+
+- **Type:** `boolean`
+
+Tells Rspack to ignore `splitChunks.minSize`, splitChunks`.minChunks`, `splitChunks.maxAsyncRequests` and `splitChunks.maxInitialRequests` options and always create chunks for this cache group.
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.idHint
+
+- **Type:** `string`
+
+Sets the hint for chunk id. It will be added to chunk's filename.

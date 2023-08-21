@@ -39,6 +39,21 @@ In the above example, `b.js` has already been included in `EntryChunk` and `Entr
 | `named`         | Use meaningful, easy-to-debug content as id. This option is enabled by default in development mode                                 |
 | `deterministic` | Use the hashed module identifier as the id to benefit from long-term caching. This option is enabled by default in production mode |
 
+## optimization.chunkIds
+
+<PropertyType.CN type="'named' | 'deterministic'" />
+
+| option          | description                                                                                    |
+| --------------- | --------------------------------------------------------------------------------------- |
+| `'named'`         | Readable ids for better debugging.                   |
+| `'deterministic'` | Short numeric ids which will not be changing between compilation. Good for long term caching. |
+
+:::info Differences to Webpack
+
+- Rspack will use `deterministic` as the default value in produceton mode in the next minor version.
+
+:::
+
 ## optimization.minimize
 
 <PropertyType
