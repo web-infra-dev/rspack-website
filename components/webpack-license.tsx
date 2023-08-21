@@ -1,9 +1,9 @@
-import { useLang } from '@modern-js/doc-tools/runtime';
+import { useLang } from '../hooks';
 import { FC } from 'react';
 
 const WebpackLicense: FC<{ from: string | string[] }> = ({ from }) => {
   const links = Array.isArray(from) ? from : [from];
-  const isEn = useLang() == 'en';
+  const [, isEn] = useLang();
   if (isEn) {
     return (
       <summary>

@@ -1,3 +1,4 @@
+import { useLang } from '../hooks';
 import './ApiMeta.scss';
 /**
  * The Stability Index is learned from https://nodejs.org/api/documentation.html#stability-index
@@ -17,6 +18,7 @@ export interface ApiMetaProps {
 }
 
 export function ApiMeta(props: ApiMetaProps) {
+  const [, isEn] = useLang();
   return (
     <div className="api-meta">
       {(!!props.addedVersion || !!props.deprecatedVersion) && (
