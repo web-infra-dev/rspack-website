@@ -134,3 +134,77 @@ module.exports = {
 ```
 
 更多关于 Loader API 的信息，请参考 [loader-api](/api/loader-api)
+
+### 使用内置 Loader
+
+内置 Loader 在不损失 JS Loader 的可组合性的同时，提供了比 JS Loader 更优的性能。
+
+#### `builtin:swc-loader`
+
+`builtin:swc-loader` 是 [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader) 的 Rust 版本，旨在提供更优的性能，
+Loader 的[配置](https://swc.rs/docs/configuration/compilation)与 JS 版本的 `swc-loader` 保持对齐（SWC 插件将会在未来版本进行提供，暂不支持）。
+
+如需要在项目中使用 `builtin:swc-loader`，需进行如下配置。
+
+如对 `ts` 文件进行转译：
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: [/node_modules/],
+        loader: 'builtin:swc-loader',
+        options: {
+          sourceMap: true,
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        },
+        type: 'javascript/auto',
+      },
+    ],
+  },
+};
+```
+
+或是对 `jsx` 文件进行转译：
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: {
+          loader: 'builtin:swc-loader',
+          options: {
+            sourceMap: true,
+            jsc: {
+              parser: {
+                syntax: 'ecmascript',
+                jsx: true,
+              },
+              transform: {
+                react: {
+                  pragma: 'React.createElement',
+                  pragmaFrag: 'React.Fragment',
+                  throwIfNamespace: true,
+                  development: false,
+                  useBuiltins: false,
+                },
+              },
+            },
+          },
+        },
+        type: 'javascript/auto',
+      },
+    ],
+  },
+};
+```
+
+另外，你也可以直接参考 [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) 查看更多使用指南。
