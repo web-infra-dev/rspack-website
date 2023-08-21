@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Loader
 
 In bundling terminology, a loader is like a plugin but tasked with transforming file contents. You can use loaders to transform arbitrary input files into file types that are natively supported by Rspack.
@@ -134,3 +136,78 @@ module.exports = {
 ```
 
 For details, you can refer to [loader-api](/api/loader-api)
+
+### Using Built-in Loader
+
+Built-in Loaders offer superior performance compared to JS Loaders, without sacrificing the composability of JS Loaders.
+
+#### builtin:swc-loader
+
+<ApiMeta addedVersion="0.3.0" />
+
+`builtin:swc-loader` is the Rust version of [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader), aiming to deliver better performance. The Loader's [configuration](https://swc.rs/docs/configuration/compilation) is aligned with the JS version of `swc-loader` (SWC plugins will be provided in future releases and are currently not supported).
+
+If you need to use `builtin:swc-loader` in your project, configure it as follows:
+
+To transpile `ts` files:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: [/node_modules/],
+        loader: 'builtin:swc-loader',
+        options: {
+          sourceMap: true,
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        },
+        type: 'javascript/auto',
+      },
+    ],
+  },
+};
+```
+
+Or to transpile `jsx` files:
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.jsx$/,
+        use: {
+          loader: 'builtin:swc-loader',
+          options: {
+            sourceMap: true,
+            jsc: {
+              parser: {
+                syntax: 'ecmascript',
+                jsx: true,
+              },
+              transform: {
+                react: {
+                  pragma: 'React.createElement',
+                  pragmaFrag: 'React.Fragment',
+                  throwIfNamespace: true,
+                  development: false,
+                  useBuiltins: false,
+                },
+              },
+            },
+          },
+        },
+        type: 'javascript/auto',
+      },
+    ],
+  },
+};
+```
+
+Additionally, you can directly refer to [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) for more usage guidelines.

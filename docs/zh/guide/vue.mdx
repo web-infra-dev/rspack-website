@@ -101,8 +101,17 @@ module.exports = {
         type: 'javascript/auto',
       },
       {
-        resourceQuery: /lang=ts/, // 如果需要在 Vue SFC 里使用 Typescript, 请添加该规则
-        type: 'ts',
+        test: /\.ts$/, // 如果需要在 Vue SFC 里使用 Typescript, 请添加该规则
+        loader: 'builtin:swc-loader',
+        options: {
+          sourceMap: true,
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+          },
+        },
+        type: 'javascript/auto',
       },
     ],
   },
@@ -111,6 +120,8 @@ module.exports = {
   },
 };
 ```
+
+TypeScript 语法是通过 Rspack 内置的 `builtin:swc-loader` 进行支持的，点击[这里](/guide/loader#builtinswc-loader)查看更多信息。
 
 相关示例可以参考：[example-vue2](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2) 和 [example-vue2-ts](https://github.com/web-infra-dev/rspack/tree/main/examples/vue2-ts)。
 
