@@ -333,7 +333,19 @@ dataUrl 的 MIME 类型，默认从模块资源扩展名解析。仅对模块类
 - **类型：**
 
 ```ts
-type RuleUse = (string | { loader: string; options: object })[];
+export type RuleSetUse =
+  | RuleSetUseItem[]
+  | RuleSetUseItem
+  | ((ctx: RawFuncUseCtx) => RuleSetUseItem[]);
+export type RuleSetUseItem =
+  | { loader: string; options: Record<string, any> }
+  | string;
+export interface RawFuncUseCtx {
+  resource?: string;
+  realResource?: string;
+  resourceQuery?: string;
+  issuer?: string;
+}
 ```
 
 用于传递 Loader 包名与其选项的数组。`string[]` 如: `use: ['svgr-loader']` 是 `use: [ { loader: 'svgr-loader' } ]` 的简写。Loader 会按照从右到左的顺序执行。
@@ -354,6 +366,32 @@ module.exports = {
             },
           },
         ],
+      },
+    ],
+  },
+};
+```
+
+也可以使用一个函数：
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        type: 'asset',
+        use: (info) => ({
+          loader: 'svgo-loader',
+          options: {
+            plugins: [
+              {
+                cleanupIDs: { prefix: basename(info.resource) },
+              },
+            ],
+          },
+        }),
       },
     ],
   },
