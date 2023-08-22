@@ -315,7 +315,7 @@ dataUrl 的 MIME 类型，默认从模块资源扩展名解析。仅对模块类
 
 ### Rule.type
 
-- **类型：** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline' | 'tsx' | 'jsx'`
+- **类型：** `'javascript/auto' | 'typescript' | 'css' | 'css/module' | 'css/auto' | 'json' | 'asset' | 'asset/source' | 'asset/resource' | 'asset/inline' | 'tsx' | 'jsx'`
 
 用于标记匹配的模块的类型，这会影响 Rspack 内置对于该模块的处理方式。例如：当模块被标记为 `'typescript'` 则会使用 TS parser/generator 对模块进行处理。
 
@@ -325,6 +325,7 @@ dataUrl 的 MIME 类型，默认从模块资源扩展名解析。仅对模块类
 - `'tsx'`: 支持 tsx 的 TypeScript 模块。
 - `'css'`：CSS 模块。
 - `'css/module'`：CSS Modules 模块。
+- `'css/auto'`：基于文件名判断，若匹配`/\.module(s)?\.[^.]+$/`则为 CSS Modules 模块，否则为 CSS 模块。
 - `'json'`：JSON data 模块。
 - `'asset' | 'asset/source' | 'asset/resource' | 'asset/inline'`：参考[资源模块](/guide/asset-module)。
 
