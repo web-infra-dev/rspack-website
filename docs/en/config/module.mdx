@@ -330,7 +330,19 @@ Used to mark the type of the matching module, which affects how the module is ha
 - **Type:**
 
 ```ts
-type RuleUse = (string | { loader: string; options: object })[];
+export type RuleSetUse =
+  | RuleSetUseItem[]
+  | RuleSetUseItem
+  | ((ctx: RawFuncUseCtx) => RuleSetUseItem[]);
+export type RuleSetUseItem =
+  | { loader: string; options: Record<string, any> }
+  | string;
+export interface RawFuncUseCtx {
+  resource?: string;
+  realResource?: string;
+  resourceQuery?: string;
+  issuer?: string;
+}
 ```
 
 An array to pass the Loader package name and its options. `string[]` e.g.: `use: ['svgr-loader']` is shorthand for `use: [ { loader: 'svgr-loader' } ]`.
@@ -352,6 +364,32 @@ module.exports = {
             },
           },
         ],
+      },
+    ],
+  },
+};
+```
+
+A function can also be used:
+
+```ts title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        type: 'asset',
+        use: (info) => ({
+          loader: 'svgo-loader',
+          options: {
+            plugins: [
+              {
+                cleanupIDs: { prefix: basename(info.resource) },
+              },
+            ],
+          },
+        }),
       },
     ],
   },
