@@ -78,6 +78,23 @@ Passing an entry name to `{cacheGroup}.test` and using a name of an existing chu
 
 :::
 
+### splitChunks.cacheGroups
+
+Cache groups can inherit and/or override any options from `splitChunks.{cacheGroup}.xxx`; but `test`, `priority` and `reuseExistingChunk` can only be configured on cache group level. To disable any of the default cache groups, set them to `false`.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+      },
+    },
+  },
+};
+```
+
 ### splitChunks.chunks
 
 - **Type:** `string | 'initial' | 'all' | 'async'`
