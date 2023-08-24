@@ -31,7 +31,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('博客', 'Blog'),
-      link: getLink('/blog/announcing-0.2'),
+      link: getLink('/blog/announcing-0.3'),
       activeMatch: '/blog',
     },
     {
@@ -298,6 +298,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       },
     ],
     [getLink('/blog/')]: [
+      {
+        text: getText('0.3 发布公告', 'Announcing Rspack 0.3'),
+        link: getLink('/blog/announcing-0.3'),
+      },
       {
         text: getText('0.2 发布公告', 'Announcing Rspack 0.2'),
         link: getLink('/blog/announcing-0.2'),
