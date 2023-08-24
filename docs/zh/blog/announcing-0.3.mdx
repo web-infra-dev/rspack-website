@@ -113,7 +113,7 @@ new Worker(new URL('./worker.js', import.meta.url), {
 
 更多关于 Web Workers 的支持说明见 [Web Workers 文档](guide/web-workers)
 
-### builtin:swc-loader 支持
+### `builtin:swc-loader` 支持
 
 Rspack 虽然提供了很多 swc 的编译配置选项，但是这些配置都是全局性的编译配置，业务侧如果需要不同的模块走不同的 swc 转换逻辑则难以满足,因此 Rspack 支持 `builtin:swc-loader` 以提供更精细的 `swc` 转换配置，`builtin:swc-loader` 相比于 js 版本的 [swc-loader](https://github.com/swc-project/swc-loader) 性能更优。你可以通过如下方式使用 `builtin:swc-loader`
 
