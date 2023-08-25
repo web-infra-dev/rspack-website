@@ -55,7 +55,7 @@ module.exports = {
 
 ### 移除了内置的 css autoprefixer 功能
 
-为了更好的对齐 Webpack 的 CSS 处理， Rspack 从 0.3 移除了内置的 autoprefixer 功能，你可以使用 postcss-loader 来实现 autoprefixer。
+为了更好的对齐 webpack 的 CSS 处理， Rspack 从 0.3 移除了内置的 autoprefixer 功能，你可以使用 postcss-loader 来实现 autoprefixer。
 
 ```js
 module.exports = {
@@ -84,7 +84,7 @@ module.exports = {
 
 ### 限制访问内部模块
 
-因为 Rspack 目前的内部模块的 API 不够稳定，因此直接使用 Rspack 内部模块的 API 很容易导致 Breaking, 因此 Rspack 限制了用户直接访问内部模块的能力，仅支持从根模块访问 Rspack 的 API。
+考虑到 Rspack 目前的内部模块的 API 不够稳定，直接使用 Rspack 内部模块的 API 很容易导致 breaking，因此 Rspack 限制了用户直接访问内部模块的能力，仅支持从根模块访问 Rspack 的 API。
 
 - before
 
@@ -179,12 +179,12 @@ $ RSPACK_PROFILE=ALL rspack build
 
 ### 更多的 Hook 和插件支持
 
-相比 0.2 版本，我们在 0.3 版本中实现了更多的插件 API 和兼容了更多的插件，同时我们对 Webpack 的 插件 API 进行了梳理，将 插件 API 的支持进度透明化，你可以在这里[plugin-api-progress](https://github.com/orgs/web-infra-dev/projects/9/views/1) 追踪插件 api 的实现进度。
+相比 0.2 版本，我们在 0.3 版本中实现了更多的插件 API 和兼容了更多的插件，同时我们对 webpack 的 插件 API 进行了梳理，将 插件 API 的支持进度透明化，你可以在这里[plugin-api-progress](https://github.com/orgs/web-infra-dev/projects/9/views/1) 追踪插件 api 的实现进度。
 
-### 和 Webpack 架构对齐
+### 和 webpack 架构对齐
 
-我们在 0.3 版本进一步优化了和 Webpack 架构的对齐工作，从原来的基于 AST 的 codegen 架构迁移到基于字符串变换的架构，该对齐工作可以进一步保障 Rspack 在 codegen 阶段能够对齐 Webpack 更多的 Hook API 以兼容更多的社区插件。
+我们在 0.3 版本进一步优化了和 webpack 架构的对齐工作，从原来的基于 AST 的 codegen 架构迁移到基于字符串变换的架构，该对齐工作可以进一步保障 Rspack 在 codegen 阶段能够对齐 webpack 更多的 Hook API 以兼容更多的社区插件。
 
 ### Rspack 生态
 
-Rspack 在 2.0 提供了对 `vue-loader` 的支持,但是基于 `vue-loader` 封装一套完整的 Vue.js cli 的解决方案是一个较为复杂工作，`Modern.js Builder` 提供了 Vue.js 的开箱即用的工程化方案 [Modern.js Vue.js Support](https://modernjs.dev/builder/guide/framework/vue3.html) 来简化使用 Rspack 开发 Vue.js 的工作。
+Rspack 在 0.2 版本提供了对 `vue-loader` 的支持,但是基于 `vue-loader` 封装一套完整的 Vue.js cli 的解决方案是一个较为复杂工作，`Modern.js Builder` 提供了 Vue.js 的开箱即用的工程化方案 [Modern.js Vue.js Support](https://modernjs.dev/builder/guide/framework/vue3.html) 来简化使用 Rspack 开发 Vue.js 的工作。
