@@ -21,9 +21,15 @@ export function ApiMeta(props: ApiMetaProps) {
     <div className="api-meta">
       {(!!props.addedVersion || !!props.deprecatedVersion) && (
         <div className="api-meta-version">
-          {!!props.addedVersion && <span>added in v{props.addedVersion}</span>}
+          {!!props.addedVersion && (
+            <span className="api-meta-version-added">
+              v{props.addedVersion}
+            </span>
+          )}
           {!!props.deprecatedVersion && (
-            <span>deprecated in v{props.addedVersion}</span>
+            <span className="api-meta-version-deprecated">
+              v{props.addedVersion}
+            </span>
           )}
         </div>
       )}

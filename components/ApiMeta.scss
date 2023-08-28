@@ -1,21 +1,51 @@
-.api-meta-version {
-  padding: 2px 5px;
-  font-size: 14px;
-  background-color: var(--modern-c-brand);
-  color: white;
-  top: -4px;
-  display: inline-flex;
-
-  border-radius: 0.3rem;
-}
+.api-meta-version,
 .api-meta-stability {
-  font-size: 1.2rem;
-  background-color: #5a8147;
-  padding: 1rem;
+  margin-top: 16px;
+  margin-right: 8px;
+  padding: 6px 12px;
+  font-size: 13px;
+  background-color: #3eaf7c;
   color: white;
-  margin-top: 1rem;
-  border-radius: 1rem;
+  display: inline-flex;
+  border-radius: 0.2rem;
 }
+
+.api-meta-version {
+  padding: 6px 16px;
+  position: relative;
+  margin-right: 28px;
+}
+// Add a new tag in .api-meta-version
+.api-meta-version-added::before {
+  position: absolute;
+  right: -15px;
+  top: -10px;
+  content: 'new';
+  color: white;
+  padding: 0 4px;
+  height: 20px;
+  min-width: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  background-color: rgb(245, 63, 63);
+  border-radius: 5px;
+}
+
+.api-meta-version-deprecated::before {
+  position: absolute;
+  right: -26px;
+  top: -10px;
+  content: 'deprecated';
+  color: white;
+  padding: 0 4px;
+  height: 20px;
+  min-width: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  background-color: var(--modern-c-gray);
+  border-radius: 5px;
+}
+
 .api-meta-stability-Stable {
   background-color: #5a8147;
 }
