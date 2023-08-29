@@ -1,5 +1,6 @@
 import path from 'path';
-import docTools, { defineConfig, NavItem, Sidebar } from '@modern-js/doc-tools';
+import { defineConfig } from 'rspress/config';
+import { NavItem, Sidebar } from '@rspress/shared';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -42,8 +43,8 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           link: 'https://modernjs.dev/en/',
         },
         {
-          text: 'Modern.js Doc',
-          link: 'https://modernjs.dev/doc-tools/',
+          text: 'Rspress',
+          link: 'https://rspress.dev',
         },
         {
           text: 'Nx plugin for Rspack',
@@ -315,97 +316,94 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
 }
 
 export default defineConfig({
-  doc: {
-    root: path.join(__dirname, 'docs'),
-    title: 'Rspack',
-    description: 'A fast Rust-based web bundler',
-    logo: {
-      light:
-        'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2027.png',
-      dark: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-dark-2027.png',
+  root: path.join(__dirname, 'docs'),
+  title: 'Rspack',
+  description: 'A fast Rust-based web bundler',
+  logo: {
+    light:
+      'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-2027.png',
+    dark: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/navbar-logo-dark-2027.png',
+  },
+  icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
+  lang: 'en',
+  globalStyles: path.join(__dirname, 'theme', 'index.css'),
+  markdown: {
+    checkDeadLinks: true,
+    experimentalMdxRs: true,
+  },
+  themeConfig: {
+    footer: {
+      message: '© 2023 ByteDance Inc. All Rights Reserved.',
     },
-    icon: 'https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/favicon-1714.png',
-    lang: 'en',
-    globalStyles: path.join(__dirname, 'theme', 'index.css'),
-    markdown: {
-      checkDeadLinks: true,
-      experimentalMdxRs: true,
+    socialLinks: [
+      {
+        icon: 'github',
+        mode: 'link',
+        content: 'https://github.com/web-infra-dev/rspack',
+      },
+    ],
+    locales: [
+      {
+        lang: 'en',
+        title: 'Rspack',
+        description: 'A fast Rust-based web bundler',
+        nav: getNavConfig('en'),
+        sidebar: getSidebarConfig('en'),
+        label: 'English',
+      },
+      {
+        lang: 'zh',
+        title: 'Rspack',
+        description: '基于 Rust 的高性能 Web 构建工具',
+        nav: getNavConfig('zh'),
+        sidebar: getSidebarConfig('zh'),
+        label: '简体中文',
+      },
+    ],
+  },
+  builderConfig: {
+    source: {
+      alias: {
+        '@builtIns': path.join(__dirname, 'components', 'builtIns'),
+      },
     },
-    themeConfig: {
-      footer: {
-        message: '© 2023 ByteDance Inc. All Rights Reserved.',
-      },
-      socialLinks: [
-        {
-          icon: 'github',
-          mode: 'link',
-          content: 'https://github.com/web-infra-dev/rspack',
-        },
-      ],
-      locales: [
-        {
-          lang: 'en',
-          title: 'Rspack',
-          description: 'A fast Rust-based web bundler',
-          nav: getNavConfig('en'),
-          sidebar: getSidebarConfig('en'),
-          label: 'English',
-        },
-        {
-          lang: 'zh',
-          title: 'Rspack',
-          description: '基于 Rust 的高性能 Web 构建工具',
-          nav: getNavConfig('zh'),
-          sidebar: getSidebarConfig('zh'),
-          label: '简体中文',
-        },
-      ],
+    dev: {
+      startUrl: false,
     },
-    builderConfig: {
-      source: {
-        alias: {
-          '@builtIns': path.join(__dirname, 'components', 'builtIns'),
-        },
+    tools: {
+      postcss: (config, { addPlugins }) => {
+        addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
       },
-      dev: {
-        startUrl: false,
-      },
-      tools: {
-        postcss: (config, { addPlugins }) => {
-          addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
-        },
-      },
-      html: {
-        tags: [
-          // Configure Google Analytics
-          {
-            tag: 'script',
-            attrs: {
-              async: true,
-              src: 'https://www.googletagmanager.com/gtag/js?id=G-XKKCNZZNJD',
-            },
+    },
+    html: {
+      tags: [
+        // Configure Google Analytics
+        {
+          tag: 'script',
+          attrs: {
+            async: true,
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-XKKCNZZNJD',
           },
-          {
-            tag: 'script',
-            children: `
+        },
+        {
+          tag: 'script',
+          children: `
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-XKKCNZZNJD');`,
+        },
+      ],
+    },
+    output: {
+      copy: {
+        patterns: [
+          {
+            from: path.join(__dirname, 'docs', 'public', '_redirects'),
           },
         ],
       },
-      output: {
-        copy: {
-          patterns: [
-            {
-              from: path.join(__dirname, 'docs', 'public', '_redirects'),
-            },
-          ],
-        },
-      },
     },
   },
-  plugins: [docTools()],
 });

@@ -15,11 +15,11 @@ root
 
 ## Contributing
 
-This website is built with [Modern.js Doc](https://modernjs.dev/doc-tools), the document content can be written using markdown or mdx syntax. You can refer to the [Modern.js Doc Website](https://modernjs.dev/doc-tools) for detailed usage.
+This website is built with [Rspress](https://rspress.dev), the document content can be written using markdown or mdx syntax. You can refer to the [Rspress Website](https://rspress.dev) for detailed usage.
 
-The source code of Modern.js Doc can be found in [this folder](https://github.com/web-infra-dev/modern.js/tree/main/packages/solutions/doc-tools).
+The source code of Rspress can be found in [this folder](https://github.com/web-infra-dev/rspress).
 
-If you have any problems using the Modern.js Doc, please create a new issue at [Modern.js Issues](https://github.com/web-infra-dev/modern.js/issues).
+If you have any problems using the Rspress, please create a new issue at [Rspress Issues](https://github.com/web-infra-dev/rspress/issues).
 
 ### Install pnpm
 

@@ -5,7 +5,7 @@
   },
   "include": [
     "src",
-    "./modern.config.ts",
+    "./rspress.config.ts",
     "./docs/**/*.tsx",
     "./docs/**/*.ts",
     "./components/**/*.ts",
