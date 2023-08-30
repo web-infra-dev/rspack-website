@@ -37,7 +37,7 @@ export function HomeFeature({ features }: { features: Feature[] }) {
             key={title}
             className={`${
               gridClass ? styles[gridClass] : 'w-full'
-            } rounded-md hover:var(--modern-c-brand) mb-6`}
+            } rounded-md hover:var(--rp-c-brand) mb-6`}
           >
             <div className="p-2 h-full">
               <article

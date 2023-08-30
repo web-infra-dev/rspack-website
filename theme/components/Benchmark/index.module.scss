@@ -9,13 +9,13 @@
   height: 50px;
   border-radius: 10px;
   padding: 4px;
-  border: 1px solid var(--modern-c-gray-light-4);
+  border: 1px solid var(--rp-c-gray-light-4);
   box-sizing: content-box;
 }
 
 .progress-bar-inner-container {
   height: 50px;
-  background: var(--modern-c-gray-light-4);
+  background: var(--rp-c-gray-light-4);
   border-radius: 5px;
 }
 
@@ -32,7 +32,7 @@
 
 :global(.dark) {
   .progress-bar-inner-container {
-    background: var(--modern-c-gray-dark-2);
+    background: var(--rp-c-gray-dark-2);
   }
 }
 

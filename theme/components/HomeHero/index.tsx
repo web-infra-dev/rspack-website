@@ -24,7 +24,7 @@ export function HomeHero({ hero }: { hero: Hero }) {
     <div
       className="m-auto px-6 pb-12 sm:pt-0 sm:px-8  md:px-16 md:pb-16 md:pt-20"
       style={{
-        height: 'calc(100vh - var(--modern-nav-height)))',
+        height: 'calc(100vh - var(--rp-nav-height)))',
       }}
     >
       <div className="max-w-6xl m-auto flex flex-col md:flex-row">
