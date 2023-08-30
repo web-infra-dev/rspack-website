@@ -1,5 +1,5 @@
-import { Tabs, Tab } from '@modern-js/doc-tools/theme';
-import { NoSSR } from '@modern-js/doc-tools/runtime';
+import { Tabs, Tab } from 'rspress/theme';
+import { NoSSR } from 'rspress/runtime';
 import { ProgressBar } from './ProgressBar';
 import { MenuGroup } from '../MenuGroup/index';
 import { useEffect, useRef, useState } from 'react';

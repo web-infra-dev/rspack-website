@@ -1,5 +1,5 @@
-import { Button } from '@modern-js/doc-tools/theme';
-import { normalizeHref } from '@modern-js/doc-tools/runtime';
+import { Button } from 'rspress/theme';
+import { normalizeHref } from 'rspress/runtime';
 import styles from './index.module.scss';
 import logoImg from '../../../docs/public/logo.png';
 

@@ -1,5 +1,5 @@
-import { Link } from '@modern-js/doc-tools/theme';
-import { useLang } from '@modern-js/doc-tools/runtime';
+import { Link } from 'rspress/theme';
+import { useLang } from 'rspress/runtime';
 import { useI18n } from '../../i18n/index';
 
 function useFooterData() {

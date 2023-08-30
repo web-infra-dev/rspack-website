@@ -1,4 +1,4 @@
-import { useLang } from '@modern-js/doc-tools/runtime';
+import { useLang } from 'rspress/runtime';
 import { FC } from 'react';
 
 const WebpackLicense: FC<{ from: string | string[] }> = ({ from }) => {

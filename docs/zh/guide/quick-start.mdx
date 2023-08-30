@@ -41,17 +41,26 @@ pnpm create rspack@latest
 社区中已经有一些基于 Rspack 的工具链：
 
 - 如果你需要一个 React 框架来构建 Web 应用，你可以尝试 [Modern.js Framework](https://modernjs.dev/)。
-- 如果你需要开发一个文档站点，你可以尝试 [Modern.js Doc](https://modernjs.dev/doc-tools/).
+- 如果你需要开发一个静态站点(如文档站)，你可以尝试 [Rspress](https://rspress.dev).
 - 如果你需要在 Monorepo 项目中使用 Rspack，并使用快速、可扩展的构建系统，你可以尝试 [Nx](https://nx.dev)。
 
 ### Modern.js
 
-Modern.js 是字节跳动 Web 工程体系的开源版本，它提供多个基于 Rspack 解决方案，包括：
-
-- [Modern.js Framework](https://modernjs.dev/)：基于 Rspack 实现的渐进式 React 框架，并为开发 Web 应用提供了完整的解决方案。它支持嵌套路由、服务器端渲染（SSR），并提供开箱即用的 CSS 解决方案，比如 styled-components 和 Tailwind CSS。
-- [Modern.js Doc](https://modernjs.dev/doc-tools/): 基于 Rspack 的文档站框架，它的目标是给开发者提供一个简单、高效、可扩展的文档站解决方案。
+[Modern.js](https://modernjs.dev/) 是字节跳动 Web 工程体系的开源版本，它提供了一个基于 Rspack 实现的渐进式 React 框架，并为开发 Web 应用提供了完整的解决方案。框架支持嵌套路由、服务器端渲染（SSR），并提供开箱即用的 CSS 解决方案，比如 styled-components 和 Tailwind CSS。
 
 请阅读 [官方文档](https://modernjs.dev/guides/get-started/introduction) 来了解更多关于 Modern.js 的信息。
+
+### Rspress
+
+Rspress 是一个基于 Rspack 的静态站点生成器，它包含如下的特性：
+
+- 🚀 快速构建：基于 Rust 构建工具和 Markdown/MDX 编译器，构建速度极快，为你带来更舒适的开发体验。
+- 📚 MDX 支持：MDX 是一种强大的内容编写方式，允许你在 Markdown 中使用 React 组件。
+- 📦 内置全文搜索：在构建过程中自动生成全文搜索索引，提供开箱即用的全文搜索能力。
+- 🌈 静态站点生成：在生产环境中，它会自动构建成静态 HTML 文件，可以轻松部署到任何地方。
+- 🔌 提供插件系统：提供一个插件系统，你可以根据自己的需要定制构建过程和自定义主题。
+
+你可以去 [官网](https://rspress.dev) 了解更多关于 Rspress 的信息。
 
 ### 使用 Nx
 

@@ -1,6 +1,6 @@
 import { Hero, HomeHero } from '../components/HomeHero';
 import { HomeFeature, Feature } from '../components/HomeFeatures';
-import { NoSSR, usePageData } from '@modern-js/doc-tools/runtime';
+import { NoSSR, usePageData } from 'rspress/runtime';
 import { Benchmark } from '../components/Benchmark';
 import { HomeFooter } from '../components/HomeFooter/index';
 import { Contributors } from '../components/Contributors';
