@@ -41,10 +41,10 @@ export function MenuGroup({ children, defaultLabel }: MenuGroupProps) {
         <div
           className="p-3 w-full h-full w-auto max-h-100vh rounded-xl whitespace-nowrap bg-white"
           style={{
-            boxShadow: 'var(--modern-shadow-3)',
+            boxShadow: 'var(--rp-shadow-3)',
             marginRight: '-1.5rem',
             zIndex: 100,
-            border: '1px solid var(--modern-c-divider-light)',
+            border: '1px solid var(--rp-c-divider-light)',
           }}
         >
           {children}

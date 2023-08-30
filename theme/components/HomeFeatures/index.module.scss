@@ -50,12 +50,12 @@
 .featureCard {
   padding: 32px;
   height: 100%;
-  background: var(--modern-home-feature-bg);
+  background: var(--rp-home-feature-bg);
   border: 1px solid transparent;
   transition: all 0.3s;
   border-radius: 32px;
 }
 
 .featureCard:hover {
-  border: 1px solid var(--modern-c-brand);
+  border: 1px solid var(--rp-c-brand);
 }
