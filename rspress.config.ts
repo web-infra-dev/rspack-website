@@ -212,6 +212,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         link: getLink('/config/resolve'),
       },
       {
+        text: getText('ResolveLoader Loader解析', 'ResolveLoader'),
+        link: getLink('/config/resolve-loader'),
+      },
+      {
         text: getText('Node 全局变量', 'Node'),
         link: getLink('/config/node'),
       },
