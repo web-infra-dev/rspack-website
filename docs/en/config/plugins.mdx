@@ -4,12 +4,12 @@ import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 # Plugins
 
-Customize the build process, and there are two main types of plugin: JS plugin and Builtin plugin.
+Customize the build process.
 
 - **Type:** `Array<RspackPluginInstance | RspackPluginFunction | RspackBuiltinPlugin>`
 - **Default:** `[]`
 
-## JS plugin
+## External plugin
 
 Written in JavaScript and compatible with some of the plugins in the webpack community.
 
@@ -55,9 +55,9 @@ module.exports = {
 };
 ```
 
-## Builtin plugin
+## Internal plugin
 
-Written in Rust and integrated within Rspack.
+Integrated within Rspack.
 
 Configuration can be written to be used via `import`/`require`:
 
@@ -231,6 +231,26 @@ new rspack.ExternalsPlugin(type, externals);
 
 - [type](/en/config/externals.html#externalstype)
 - [externals](/en/config/externals.html#externals-1)
+
+### node.NodeTargetPlugin
+
+<ApiMeta addedVersion={'0.3.2'} />
+
+This plugin is used to external the Node.js built-in modules during bundling, and is used by [`externalsPresets.node`](/en/config/externals.html#node) under the hood.
+
+```js
+new rspack.node.NodeTargetPlugin();
+```
+
+### electron.ElectronTargetPlugin
+
+<ApiMeta addedVersion={'0.3.2'} />
+
+This plugin is used to external the Electron built-in modules during bundling, and is used by [`externalsPresets.electron`](/en/config/externals.html#electron), [`externalsPresets.electronMain`](/en/config/externals.html#electronmain), [`externalsPresets.electronRenderer`](/en/config/externals.html#electronrenderer), and [`externalsPresets.electronPreload`](/en/config/externals.html#electronpreload) under the hood.
+
+```js
+new rspack.electron.ElectronTargetPlugin();
+```
 
 ### HtmlPlugin
 

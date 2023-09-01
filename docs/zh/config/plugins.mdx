@@ -4,12 +4,12 @@ import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 # Plugin
 
-插件：该选项自定义构建流程，主要分为两种：JS plugin 和 Builtin plugin。
+插件：该选项自定义构建流程。
 
 - **类型：** `Array<RspackPluginInstance | RspackPluginFunction | RspackBuiltinPlugin>`
 - **默认值：** `[]`
 
-## JS plugin
+## 外部 plugin
 
 使用 JavaScript 编写，兼容部分 webpack 社区中的插件。
 
@@ -55,9 +55,9 @@ module.exports = {
 };
 ```
 
-## Builtin plugin
+## 内部 plugin
 
-使用 Rust 编写，集成在 Rspack 内部。
+集成在 Rspack 内部。
 
 编写配置时可以引入使用：
 
@@ -231,6 +231,26 @@ new rspack.ExternalsPlugin(type, externals);
 
 - [type](/zh/config/externals.html#externalstype)
 - [externals](/zh/config/externals.html#externals-1)
+
+### node.NodeTargetPlugin
+
+<ApiMeta addedVersion={'0.3.2'} />
+
+此插件用来在打包时将 Node.js 的内置模块外置掉，[`externalsPresets.node`](/zh/config/externals.html#node) 底层使用了该插件。
+
+```js
+new rspack.node.NodeTargetPlugin();
+```
+
+### electron.ElectronTargetPlugin
+
+<ApiMeta addedVersion={'0.3.2'} />
+
+此插件用来在打包时将 Electron 的内置模块外置掉，[`externalsPresets.electron`](/zh/config/externals.html#electron)、[`externalsPresets.electronMain`](/zh/config/externals.html#electronmain)、[`externalsPresets.electronRenderer`](/zh/config/externals.html#electronrenderer) 和 [`externalsPresets.electronPreload`](/zh/config/externals.html#electronpreload) 底层使用了该插件。
+
+```js
+new rspack.electron.ElectronTargetPlugin();
+```
 
 ### HtmlPlugin
 
