@@ -207,6 +207,10 @@ module.exports = {
 
 ## builtins.html
 
+:::warning
+This is replaced by [rspack.HtmlPlugin](/en/config/plugins.html#htmlplugin)
+:::
+
 This configuration simplifies creation of HTML files to serve your Rspack bundles.
 
 - **Type:**
@@ -257,6 +261,10 @@ For complex HTML configuration requirements, you can use [@rspack/plugin-html](h
 
 ## builtins.minifyOptions
 
+:::warning
+This will be replaced by [rspack.SwcJsMinimizerPlugin](/en/config/plugins.html#swcjsminimizerplugin) and [rspack.SwcCssMinimizerPlugin](/zh/config/plugins.html#swccssminimizerplugin)
+:::
+
 Set built-in minimizer options.
 
 - **Type:**
@@ -282,6 +290,10 @@ type BuiltinsMinifyOptions = {
 | `comments`        | `false\|"all \|"some"` | false   | By default will omit comments in the output, a regular expression string (e.g. /^!/) or a function, pass `"some"` to keeps JSDoc-style comments that contain "@license", "@copyright", "@preserve" or start with !, pass `"all"` to preserve all comments. |
 
 ## builtins.define
+
+:::warning
+This will be replaced by [rspack.DefinePlugin](/en/config/plugins.html#defineplugin)
+:::
 
 Replaces variables in your code with other values or expressions at compile time.
 
@@ -430,6 +442,10 @@ type BuiltinsCssModules = {
 
 ## builtins.progress
 
+:::warning
+This will be replaced by [rspack.ProgressPlugin](/en/config/plugins.html#progressplugin)
+:::
+
 This configuration can be used to control progress, `false` means to turn off progress.
 
 <PropertyType
@@ -448,6 +464,10 @@ This configuration can be used to control progress, `false` means to turn off pr
 
 ## builtins.devFriendlySplitChunks
 
+:::warning
+This is intended to improve the speed of the development environment `optimization.splitChunks`, which has been significantly optimized by [the refactoring of `optimization.splitChunks` in version 0.2](https://www.rspack.dev/blog/announcing-0.2.html#new-splitchunksplugin-implementation), so you don't need it anymore.
+:::
+
 Whether to enable the development-friendly split chunks algorithm.
 
 - **Type:** `boolean`
@@ -455,6 +475,10 @@ Whether to enable the development-friendly split chunks algorithm.
 - **Default:** `false`
 
 ## builtins.copy
+
+:::warning
+This will be replaced by [rspack.CopyPlugin](/zh/config/plugins.html#copyplugin)
+:::
 
 import WebpackLicense from '../../../components/webpack-license';
 
@@ -681,6 +705,10 @@ import 'antd/es/button/style';
 ```
 
 ## builtins.provide
+
+:::warning
+This will be replaced [rspack.ProvidePlugin](/zh/config/plugins.html#provideplugin)
+:::
 
 Automatically load modules instead of having to import or require them everywhere.
 
