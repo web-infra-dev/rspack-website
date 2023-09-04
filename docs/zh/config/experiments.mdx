@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Experiments
 
 实验性功能：该选项通过此配置项可以开启并试用一些实验的功能。
@@ -29,3 +31,13 @@ module.exports = {
 ## experiments.css
 
 启用原生 CSS 支持，请注意如果你在使用 `style-loader` 和 `css-loader` 请关闭该配置，因为 `style-loader` 和 `css-loader` 和原生 CSS 功能冲突。
+
+## experiments.rspackFuture
+
+<ApiMeta addedVersion="0.3.2" />
+
+- **类型：** `object`
+
+- **默认值：** 参考下方各项配置
+
+用于控制是否开启 Rspack 未来的默认行为，详情请参考[这里](https://github.com/web-infra-dev/rspack/pull/4107)。

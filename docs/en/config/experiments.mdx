@@ -1,20 +1,22 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Experiments
 
 Enable and try out some experimental features.
 
-- **Type：** `Object`
+- **Type:** `Object`
 
 ## experiments.incrementalRebuild
 
 Enable incremental rebuild. `true` will try to reuse the results of the last build when rebuild to improve build speed, supports configuration of different stages, the default is enabled.
 
-- **Type：** `boolean | { make?: boolean, emitAsset?: boolean }`
-- **Default：** `true`
+- **Type:** `boolean | { make?: boolean, emitAsset?: boolean }`
+- **Default:** `true`
 
 ## experiments.outputModule
 
-- **Type：** `boolean`
-- **Default：** `true`
+- **Type:** `boolean`
+- **Default:** `true`
 
 Once enabled, Rspack will output ECMAScript module syntax whenever possible. For instance, `import()` to load chunks, ESM exports to expose chunk data, among others.
 
@@ -28,7 +30,17 @@ module.exports = {
 
 ## experiments.css
 
-- **Type：** `boolean`
-- **Default：** `true`
+- **Type:** `boolean`
+- **Default:** `true`
 
 Once enabled, Rspack will enable native CSS support, Note that if you're using `style-loader` and `css-loader`, you should disable this option because `style-loader` and `css-loader` will conflict with native CSS.
+
+## experiments.rspackFuture
+
+<ApiMeta addedVersion="0.3.2" />
+
+- **Type:** `object`
+
+- **Default:** See options down below for details
+
+Used to control whether to enable Rspack future default options, check out the details [here](https://github.com/web-infra-dev/rspack/pull/4107).
