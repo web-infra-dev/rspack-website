@@ -81,9 +81,43 @@ export class CustomPlugin {
 }
 ```
 
-### DefinePlugin
+### Internal plugins compatible with webpack
 
-<ApiMeta addedVersion={'0.3.2'} />
+In webpack, these plugins are also exported as internal plugins
+
+#### EntryPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+Add an entry chunk at compile time.
+
+```js
+new rspack.EntryPlugin(context, entry, options);
+```
+
+- context
+  - **Type:** `string`
+  - **Description:** The path requested by the entry module is resolved from the context path.
+- entry
+  - **Type:** `string`
+  - **Description:** The path requested by the entry module
+- options
+  - **Type:**
+  ```ts
+  type EntryOptions = {
+    name?: string;
+    runtime?: EntryRuntime;
+    chunkLoading?: ChunkLoading;
+    asyncChunks?: boolean;
+    publicPath?: PublicPath;
+    baseUri?: string;
+    filename?: Filename;
+  };
+  ```
+
+#### DefinePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin will replace variables in the code with other values or expressions at compile time.
 
@@ -138,9 +172,9 @@ console.log(true === true);
 console.log(undefined === undefined);
 ```
 
-### ProvidePlugin
+#### ProvidePlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin will automatically load modules instead of having to import or require them everywhere.
 
@@ -177,9 +211,120 @@ import process from 'process/browser';
 console.log(process.version);
 ```
 
-### ProgressPlugin
+#### BannerPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
+
+```js
+new rspack.BannerPlugin(options);
+```
+
+Adds a banner to the top or bottom of each generated chunk.
+
+- options
+
+  - **Type:**
+
+  ```ts
+  type BannerContent = string;
+  type BannerRules = string | RegExp | Array<string | RegExp>;
+  type BannerPluginOptions = {
+    banner: BannerContent;
+    entryOnly?: boolean;
+    footer?: boolean;
+    raw?: boolean;
+    test?: BannerRules;
+    include?: BannerRules;
+    exclude?: BannerRules;
+  };
+  export type BannerPluginArgument = BannerContent | BannerPluginOptions;
+  ```
+
+  - **Default:** `undefined`
+
+  {' '}
+  <Table
+    header={[
+      {
+        name: 'Name',
+        key: 'name',
+      },
+      {
+        name: 'Type',
+        key: 'type',
+      },
+      {
+        name: 'Default',
+        key: 'default',
+      },
+      {
+        name: 'Description',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`banner`',
+        type: '`string`',
+        default: 'undefined',
+        description: 'Specifies the banner, it will be wrapped in a comment.',
+      },
+      {
+        name: '`entryOnly`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description:
+          'If true, the banner will only be added to the entry chunks.',
+      },
+      {
+        name: '`footer`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: 'If true, banner will be placed at the end of the output.',
+      },
+      {
+        name: '`raw`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: 'If true, banner will not be wrapped in a comment.',
+      },
+      {
+        name: '`test`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Include all modules that pass test assertion.',
+      },
+      {
+        name: '`include`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Include all modules matching any of these conditions.',
+      },
+      {
+        name: '`exclude`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Exclude all modules matching any of these conditions.',
+      },
+    ]}
+  />
+
+Add a banner to the top or bottom of each chunk file.
+
+```ts title="rspack.config.js"
+module.exports = {
+  plugins: [
+    new rspack.BannerPlugin({
+      banner: 'hello world',
+      footer: true,
+    }),
+  ],
+};
+```
+
+#### ProgressPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin can be used to configure the progress bar.
 
@@ -219,9 +364,9 @@ new rspack.ProgressPlugin(options);
       ]}
     />
 
-### ExternalsPlugin
+#### ExternalsPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin can be used to add external dependencies.
 
@@ -232,9 +377,9 @@ new rspack.ExternalsPlugin(type, externals);
 - [type](/en/config/externals.html#externalstype)
 - [externals](/en/config/externals.html#externals-1)
 
-### node.NodeTargetPlugin
+#### node.NodeTargetPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin is used to external the Node.js built-in modules during bundling, and is used by [`externalsPresets.node`](/en/config/externals.html#node) under the hood.
 
@@ -242,9 +387,9 @@ This plugin is used to external the Node.js built-in modules during bundling, an
 new rspack.node.NodeTargetPlugin();
 ```
 
-### electron.ElectronTargetPlugin
+#### electron.ElectronTargetPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin is used to external the Electron built-in modules during bundling, and is used by [`externalsPresets.electron`](/en/config/externals.html#electron), [`externalsPresets.electronMain`](/en/config/externals.html#electronmain), [`externalsPresets.electronRenderer`](/en/config/externals.html#electronrenderer), and [`externalsPresets.electronPreload`](/en/config/externals.html#electronpreload) under the hood.
 
@@ -252,14 +397,18 @@ This plugin is used to external the Electron built-in modules during bundling, a
 new rspack.electron.ElectronTargetPlugin();
 ```
 
-### HtmlPlugin
+### Rspack's unique internal plugin.
 
-<ApiMeta addedVersion={'0.3.2'} />
+These plugins are Rspack's unique internal plugin and follow the XxxRspackPlugin naming scheme.
+
+#### HtmlRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin can be used to create html files that are associated with Rspack assets.
 
 ```js
-new rspack.HtmlPlugin(options);
+new rspack.HtmlRspackPlugin(options);
 ```
 
 - options
@@ -267,7 +416,7 @@ new rspack.HtmlPlugin(options);
   - **Type:**
 
   ```ts
-  type HtmlPluginOptions = {
+  type HtmlRspackPluginOptions = {
     title?: string;
     filename?: string;
     template?: string;
@@ -401,14 +550,14 @@ new rspack.HtmlPlugin(options);
 For complex HTML configuration requirements, you can use [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html), which is compatible with the hooks and most configurations of html-webpack-plugin.
 :::
 
-### SwcJsMinimizerPlugin
+#### SwcJsMinimizerRspackPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin can be used to compress JS assets.
 
 ```js
-new rspack.SwcJsMinimizerPlugin(options);
+new rspack.SwcJsMinimizerRspackPlugin(options);
 ```
 
 - options
@@ -416,7 +565,7 @@ new rspack.SwcJsMinimizerPlugin(options);
   - **Type:**
 
   ```ts
-  type SwcJsMinimizerPluginOptions = {
+  type SwcJsMinimizerRspackPluginOptions = {
     passes?: number;
     dropConsole?: boolean;
     pureFuncs?: Array<string>;
@@ -489,26 +638,26 @@ new rspack.SwcJsMinimizerPlugin(options);
     ]}
   />
 
-### SwcCssMinimizerPlugin
+#### SwcCssMinimizerRspackPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 This plugin can be used to compress CSS assets.
 
 ```js
-new rspack.SwcCssMinimizerPlugin();
+new rspack.SwcCssMinimizerRspackPlugin();
 ```
 
-### CopyPlugin
+#### CopyRspackPlugin
 
-<ApiMeta addedVersion={'0.3.2'} />
+<ApiMeta addedVersion={'0.3.3'} />
 
 <WebpackLicense from="https://webpack.js.org/plugins/copy-webpack-plugin/#root" />
 
 Copies individual files or entire directories, which already exist, to the build directory.
 
 ```js
-new rspack.CopyPlugin(options);
+new rspack.CopyRspackPlugin(options);
 ```
 
 - options
@@ -516,7 +665,7 @@ new rspack.CopyPlugin(options);
   - **Type:**
 
   ```ts
-  export type CopyPluginOptions = {
+  export type CopyRspackPluginOptions = {
     patterns: (
       | string // If input is string, it's the same as { from: `your input string` }
       | {
@@ -623,7 +772,7 @@ const rspack = require('@rspack/core');
 module.exports = {
   entry: './src/index.js',
   plugins: [
-    new rspack.CopyPlugin({
+    new rspack.CopyRspackPlugin({
       patterns: [
         {
           from: 'file.txt',
@@ -641,7 +790,7 @@ const rspack = require('@rspack/core');
 module.exports = {
   entry: './src/index.js',
   plugins: [
-    new rspack.CopyPlugin({
+    new rspack.CopyRspackPlugin({
       patterns: [
         {
           from: 'directory',
@@ -659,7 +808,7 @@ const rspack = require('@rspack/core');
 module.exports = {
   entry: './src/index.js',
   plugins: [
-    new rspack.CopyPlugin({
+    new rspack.CopyRspackPlugin({
       patterns: [
         {
           from: 'directory/**/*',
@@ -672,33 +821,3 @@ module.exports = {
 ```
 
 The result of running with the above configuration would be that the `directory` folder is moved to the `newdirectory` folder within the output folder, for example `dist/newdirectory/directory/foo`.
-
-### EntryPlugin
-
-<ApiMeta addedVersion={'0.3.2'} />
-
-Add an entry chunk at compile time.
-
-```js
-new rspack.EntryPlugin(context, entry, options);
-```
-
-- context
-  - **Type:** `string`
-  - **Description:** The path requested by the entry module is resolved from the context path.
-- entry
-  - **Type:** `string`
-  - **Description:** The path requested by the entry module
-- options
-  - **Type:**
-  ```ts
-  type EntryOptions = {
-    name?: string;
-    runtime?: EntryRuntime;
-    chunkLoading?: ChunkLoading;
-    asyncChunks?: boolean;
-    publicPath?: PublicPath;
-    baseUri?: string;
-    filename?: Filename;
-  };
-  ```
