@@ -54,8 +54,8 @@ function useFooterData() {
           link: 'https://modernjs.dev/en/',
         },
         {
-          title: 'Modern.js Doc',
-          link: 'https://modernjs.dev/doc-tools/',
+          title: 'Rspress',
+          link: 'https://rspress.dev/',
         },
         {
           title: 'Nx plugin for Rspack',
