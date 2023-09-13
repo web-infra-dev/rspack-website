@@ -61,7 +61,26 @@ export function Button({ children }) {
 
 ## Fast Refresh
 
-Rspack 在 dev 下默认开启了 [Fast Refresh](https://reactnative.dev/docs/fast-refresh) 功能，你可以直接在项目中使用。你也可以通过 [builtins.react.refresh](config/builtins#builtinsreact) 来禁用 react-refresh 功能
+在 Rspack 中，可通过 [@rspack/plugin-react-refresh](https://github.com/web-infra-dev/rspack/tree/main/packages/rspack-plugin-react-refresh) 来添加的 [React Fast Refresh](https://reactnative.dev/docs/fast-refresh) 功能。
+
+`@rspack/dev-server` 中内置了该插件，这意味着如果你使用了 `@rspack/cli` 或 `@rspack/dev-server`，在 dev 模式下会默认开启 React Fast Refresh 功能，你可以直接在项目中使用。你也可以通过 [builtins.react.refresh](config/builtins#builtinsreact) 来禁用 React Fast Refresh 功能。
+
+如果你没有使用直接使用 `@rspack/cli` 或 `@rspack/dev-server`，而是使用了自定义的 Dev Server，可手动添加该插件：
+
+```js title=rspack.config.js
+const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
+const isDev = process.env.NODE_ENV === 'development';
+
+module.exports = {
+  // ...
+  mode: isDev ? 'development' : 'production',
+  plugins: [isDev && new ReactRefreshPlugin()].filter(Boolean),
+};
+```
+
+:::warning
+`@rspack/plugin-react-refresh` 依赖与 `@rspack/core` v0.3.3 及以上的版本，如果你的版本小于 v0.3.3，你需要在你的配置或自定义的 Dev Server 中[添加一个 entry](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L83-L88) 和[一个 provide](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L329-L331)。
+:::
 
 ## 集成 SVGR
 

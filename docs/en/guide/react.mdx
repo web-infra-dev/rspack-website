@@ -57,7 +57,26 @@ Other CSS-in-JS solutions can be used by configuring the babel-loader.
 
 ## Fast Refresh
 
-Rspack enables [Fast Refresh](https://reactnative.dev/docs/fast-refresh) functionality by default during development, allowing you to use it directly in your project. You can also disable the react-refresh feature through [builtins.react.refresh](config/builtins#builtinsreact).
+The [React Fast Refresh](https://reactnative.dev/docs/fast-refresh) feature that can be added in Rspack via [@rspack/plugin-react-refresh](https://github.com/web-infra-dev/rspack/tree/main/packages/rspack-plugin-react-refresh).
+
+The plugin is built into `@rspack/dev-server`, which means that if you use `@rspack/cli` or `@rspack/dev-server`, React Fast Refresh will be enabled by default in dev mode. You can also disable React Fash Refresh with [builtins.react.refresh](config/builtins#builtinsreact).
+
+If you are using a custom Dev Server instead of using `@rspack/cli` or `@rspack/dev-server` directly, you can add the plugin manually:
+
+```js title=rspack.config.js
+const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
+const isDev = process.env.NODE_ENV === 'development';
+
+module.exports = {
+  // ...
+  mode: isDev ? 'development' : 'production',
+  plugins: [isDev && new ReactRefreshPlugin()].filter(Boolean),
+};
+```
+
+:::warning
+`@rspack/plugin-react-refresh` is available after `@rspack/core` v0.3.3, before that, you need to [add an additional entry](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L83-L88) and [add a provide value](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L329-L331) in your configuration or custom dev server.
+:::
 
 ## Integrating SVGR
 
