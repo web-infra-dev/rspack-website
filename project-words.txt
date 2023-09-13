@@ -80,3 +80,4 @@ pxtorem
 rspress
 swcjsminimizerplugin
 swccssminimizerplugin
+outputenabledwasmloadingtypes
