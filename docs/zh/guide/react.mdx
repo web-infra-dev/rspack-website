@@ -78,6 +78,10 @@ module.exports = {
 };
 ```
 
+:::warning
+`@rspack/plugin-react-refresh` 依赖与 `@rspack/core` v0.3.3 及以上的版本，如果你的版本小于 v0.3.3，你需要在你的配置或自定义的 Dev Server 中[添加一个 entry](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L83-L88) 和[一个 provide](https://github.com/web-infra-dev/rspack/blob/ace58e2b41abcfecc9ddfa9c7e194ac0bdaf7db1/packages/rspack-dev-server/src/server.ts#L329-L331)。
+:::
+
 ## 集成 SVGR
 
 [SVGR](https://react-svgr.com/) 是一个用于将 SVG 转换为 React 组件的工具，
