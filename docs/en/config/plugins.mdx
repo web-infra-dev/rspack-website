@@ -243,6 +243,7 @@ Adds a banner to the top or bottom of each generated chunk.
   - **Default:** `undefined`
 
   {' '}
+
   <Table
     header={[
       {
@@ -385,6 +386,36 @@ This plugin is used to external the Node.js built-in modules during bundling, an
 
 ```js
 new rspack.node.NodeTargetPlugin();
+```
+
+#### node.NodeTemplatePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin is used to bundle out Node.js assets, often used with childCompiler.
+
+```js
+new rspack.node.NodeTemplatePlugin();
+```
+
+#### library.EnableLibraryPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+Enable library format bundling for this libraryType, and is used by [output.enabledLibraryTypes](/en/config/output.html#outputenabledlibrarytypes) under the hood.
+
+```js
+new rspack.library.EnableLibraryPlugin('var');
+```
+
+#### wasm.EnableWasmLoadingPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+Enable runtime module bundling for this wasmLoadingType, and is used by [output.enabledWasmLoadingTypes](/en/config/output.html#outputenabledwasmloadingtypes) under the hood.
+
+```js
+new rspack.library.EnableWasmLoadingPlugin('fetch');
 ```
 
 #### electron.ElectronTargetPlugin
@@ -547,7 +578,7 @@ new rspack.HtmlRspackPlugin(options);
   />
 
 :::info
-For complex HTML configuration requirements, you can use [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html), which is compatible with the hooks and most configurations of html-webpack-plugin.
+For complex HTML configuration requirements, you can use [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) (after v0.3.3) or [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html) (before v0.3.3).
 :::
 
 #### SwcJsMinimizerRspackPlugin

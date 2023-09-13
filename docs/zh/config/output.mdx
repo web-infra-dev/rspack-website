@@ -395,7 +395,7 @@ module.exports = {
 
 - **类型：** `string[]`
 
-入口点可用的 library 类型列表.
+入口点可用的 library 类型列表。
 
 ```javascript
 module.exports = {
@@ -1148,6 +1148,12 @@ module.exports = {
 
 - 如果目标设置为 `'web'`、`'webworker'`、`'electron-renderer'` 或 `'node-webkit'`，默认值为 `'fetch'`。
 - 如果目标设置为 `'node'`、`'async-node'`、`'electron-main'` 或 `'electron-preload'`，则默认为 `'async-node'`。
+
+## output.enabledWasmLoadingTypes
+
+开启可用的 wasmLoading 类型的运行时模块打包。
+
+- **类型：** `false | 'fetch', 'async-node'`
 
 ## output.asyncChunks
 
