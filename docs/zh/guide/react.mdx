@@ -63,7 +63,7 @@ export function Button({ children }) {
 
 在 Rspack 中，可通过 [@rspack/plugin-react-refresh](https://github.com/web-infra-dev/rspack/tree/main/packages/rspack-plugin-react-refresh) 来添加的 [React Fast Refresh](https://reactnative.dev/docs/fast-refresh) 功能。
 
-`@rspack/dev-server` 中内置了该插件，这意味着如果你使用了 `@rspack/cli` 或 `@rspack/dev-server`，在 dev 模式下会默认开启 React Fast Refresh 功能，你可以直接在项目中使用。你也可以通过 [builtins.react.refresh](config/builtins#builtinsreact) 来禁用 React Fast Refresh 功能。
+`@rspack/dev-server` 中内置了该插件，这意味着如果你使用了 `@rspack/cli` 或 `@rspack/dev-server`，在 dev 模式下会默认开启 React Fast Refresh 功能，你可以直接在项目中使用。你也可以通过 [builtins.react.refresh](config/builtins#reactoptions) 来禁用 React Fast Refresh 功能。
 
 如果你没有使用直接使用 `@rspack/cli` 或 `@rspack/dev-server`，而是使用了自定义的 Dev Server，可手动添加该插件：
 

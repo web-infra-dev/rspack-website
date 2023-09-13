@@ -64,7 +64,7 @@ eject 后的 CRA 也算一个配置较为复杂的 webpack 项目，以下列举
   - style-loader、css-loader、MiniCssExtractPlugin 等 CSS 相关功能在 Rspack 中已内置支持
   - TerserWebpackPlugin、CssMinimizerPlugin 等代码压缩功能在 Rspack 中已内置支持，production 模式下默认开启
   - DefinePlugin 在 Rspack 中可通过 [builtins.define](config/builtins#builtinsdefine) 进行替代
-  - ReactRefreshWebpackPlugin 在 Rspack 中已内置支持，可通过 [builtins.react.refresh](config/builtins#config/builtins#builtinsreact) 开启或关闭
+  - ReactRefreshWebpackPlugin 在 Rspack 中已内置支持，可通过 [builtins.react.refresh](config/builtins#config/builtins#reactoptions) 开启或关闭
 - 去掉 Rspack 目前还不完整支持的配置
   - cache 目前 Rspack 仅支持内存缓存，并会在 development 模式下默认开启
   - resolve.plugins 目前 Rspack 还不支持

@@ -71,7 +71,7 @@ Using optimization for emotion in compile-time.
 - **Type:**
 
 ```ts
-export type EmotionConfig =
+type EmotionOptions =
   | boolean
   | {
       sourceMap?: boolean;
@@ -342,7 +342,7 @@ This configuration can control the code transformation about react.
 - **Type:**
 
 ```ts
-type BuiltinsReact = {
+type ReactOptions = {
   runtime?: 'automatic' | 'classic';
   importSource?: string;
   pragma?: string;
@@ -564,7 +564,7 @@ Converted `graphql` call expression to corresponding `require` call expression.
 - **Type:**
 
 ```ts
-export type RelayConfig =
+export type RelayOptions =
   | undefined
   | boolean
   | {
