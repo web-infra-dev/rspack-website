@@ -1,11 +1,19 @@
+import { Table } from '@builtIns';
+import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
+
 # Plugins
 
 Customize the build process.
 
-- **Type:** `Array<RspackPluginInstance | RspackPluginFunction>`
+- **Type:** `Array<RspackPluginInstance | RspackPluginFunction | RspackBuiltinPlugin>`
 - **Default:** `[]`
 
-## RspackPluginInstance
+## External plugin
+
+Written in JavaScript and compatible with some of the plugins in the webpack community.
+
+### RspackPluginInstance
 
 ```ts
 interface RspackPluginInstance {
@@ -29,7 +37,7 @@ module.exports = {
 };
 ```
 
-## RspackPluginFunction
+### RspackPluginFunction
 
 ```ts
 type RspackPluginFunction = (this: Compiler, compiler: Compiler) => void;
@@ -46,3 +54,770 @@ module.exports = {
   plugins: [customPlugin],
 };
 ```
+
+## Internal plugin
+
+Integrated within Rspack.
+
+Configuration can be written to be used via `import`/`require`:
+
+```js title=rspack.config.js
+const rspack = require('@rspack/core');
+
+module.exports = {
+  // ...
+  plugins: [new rspack.XxxPlugin()],
+};
+```
+
+Plugins can be written to be used via `compiler.webpack.XxxPlugin`:
+
+```js title=CustomPlugin.js
+export class CustomPlugin {
+  apply(compiler) {
+    new compiler.webpack.XxxPlugin().apply(compiler);
+    // ...
+  }
+}
+```
+
+### Internal plugins compatible with webpack
+
+In webpack, these plugins are also exported as internal plugins
+
+#### EntryPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+Add an entry chunk at compile time.
+
+```js
+new rspack.EntryPlugin(context, entry, options);
+```
+
+- context
+  - **Type:** `string`
+  - **Description:** The path requested by the entry module is resolved from the context path.
+- entry
+  - **Type:** `string`
+  - **Description:** The path requested by the entry module
+- options
+  - **Type:**
+  ```ts
+  type EntryOptions = {
+    name?: string;
+    runtime?: EntryRuntime;
+    chunkLoading?: ChunkLoading;
+    asyncChunks?: boolean;
+    publicPath?: PublicPath;
+    baseUri?: string;
+    filename?: Filename;
+  };
+  ```
+
+#### DefinePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin will replace variables in the code with other values or expressions at compile time.
+
+```js
+new rspack.DefinePlugin(options);
+```
+
+- options
+  - **Type:** `Record<string, string | boolean | undefined>`
+
+When using the following configuration:
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.DefinePlugin({
+      'process.env.NODE_ENV': "'development'",
+      API_PREFIX: '/api',
+      TRUE: true,
+      TRUE_STRING: 'true',
+      UNDEFINED: undefined,
+      UNDEFINED_STRING: 'undefined',
+    }),
+  ],
+};
+```
+
+Input:
+
+```ts
+if (process.env.NODE_ENV === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('API_PREFIX/test');
+
+console.log(TRUE === TRUE_STRING);
+console.log(UNDEFINED === UNDEFINED_STRING);
+```
+
+Output:
+
+```ts
+if ('development' === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('/api/test');
+
+console.log(true === true);
+console.log(undefined === undefined);
+```
+
+#### ProvidePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin will automatically load modules instead of having to import or require them everywhere.
+
+```js
+new rspack.ProvidePlugin(options);
+```
+
+- options
+  - **Type:** `Record<string, string | string[]>`
+
+When using the following configuration:
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.ProvidePlugin({
+      process: [require.resolve('process/browser')],
+    }),
+  ],
+};
+```
+
+Which will convert the following code:
+
+```js
+console.log(process.version);
+```
+
+To:
+
+```js
+import process from 'process/browser';
+console.log(process.version);
+```
+
+#### BannerPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+```js
+new rspack.BannerPlugin(options);
+```
+
+Adds a banner to the top or bottom of each generated chunk.
+
+- options
+
+  - **Type:**
+
+  ```ts
+  type BannerContent = string;
+  type BannerRules = string | RegExp | Array<string | RegExp>;
+  type BannerPluginOptions = {
+    banner: BannerContent;
+    entryOnly?: boolean;
+    footer?: boolean;
+    raw?: boolean;
+    test?: BannerRules;
+    include?: BannerRules;
+    exclude?: BannerRules;
+  };
+  export type BannerPluginArgument = BannerContent | BannerPluginOptions;
+  ```
+
+  - **Default:** `undefined`
+
+  {' '}
+  <Table
+    header={[
+      {
+        name: 'Name',
+        key: 'name',
+      },
+      {
+        name: 'Type',
+        key: 'type',
+      },
+      {
+        name: 'Default',
+        key: 'default',
+      },
+      {
+        name: 'Description',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`banner`',
+        type: '`string`',
+        default: 'undefined',
+        description: 'Specifies the banner, it will be wrapped in a comment.',
+      },
+      {
+        name: '`entryOnly`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description:
+          'If true, the banner will only be added to the entry chunks.',
+      },
+      {
+        name: '`footer`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: 'If true, banner will be placed at the end of the output.',
+      },
+      {
+        name: '`raw`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: 'If true, banner will not be wrapped in a comment.',
+      },
+      {
+        name: '`test`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Include all modules that pass test assertion.',
+      },
+      {
+        name: '`include`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Include all modules matching any of these conditions.',
+      },
+      {
+        name: '`exclude`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: 'Exclude all modules matching any of these conditions.',
+      },
+    ]}
+  />
+
+Add a banner to the top or bottom of each chunk file.
+
+```ts title="rspack.config.js"
+module.exports = {
+  plugins: [
+    new rspack.BannerPlugin({
+      banner: 'hello world',
+      footer: true,
+    }),
+  ],
+};
+```
+
+#### ProgressPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin can be used to configure the progress bar.
+
+```js
+new rspack.ProgressPlugin(options);
+```
+
+- options
+  - **Type:** `{ prefix?: string }`
+  - **Default:** `{}`
+    <Table
+      header={[
+        {
+          name: 'Name',
+          key: 'name',
+        },
+        {
+          name: 'Type',
+          key: 'type',
+        },
+        {
+          name: 'Default',
+          key: 'default',
+        },
+        {
+          name: 'Description',
+          key: 'description',
+        },
+      ]}
+      body={[
+        {
+          name: '`prefix`',
+          type: '`string`',
+          default: "'Rspack'",
+          description: 'The text will be displayed before the progress bar.',
+        },
+      ]}
+    />
+
+#### ExternalsPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin can be used to add external dependencies.
+
+```js
+new rspack.ExternalsPlugin(type, externals);
+```
+
+- [type](/en/config/externals.html#externalstype)
+- [externals](/en/config/externals.html#externals-1)
+
+#### node.NodeTargetPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin is used to external the Node.js built-in modules during bundling, and is used by [`externalsPresets.node`](/en/config/externals.html#node) under the hood.
+
+```js
+new rspack.node.NodeTargetPlugin();
+```
+
+#### electron.ElectronTargetPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin is used to external the Electron built-in modules during bundling, and is used by [`externalsPresets.electron`](/en/config/externals.html#electron), [`externalsPresets.electronMain`](/en/config/externals.html#electronmain), [`externalsPresets.electronRenderer`](/en/config/externals.html#electronrenderer), and [`externalsPresets.electronPreload`](/en/config/externals.html#electronpreload) under the hood.
+
+```js
+new rspack.electron.ElectronTargetPlugin();
+```
+
+### Rspack's unique internal plugin.
+
+These plugins are Rspack's unique internal plugin and follow the XxxRspackPlugin naming scheme.
+
+#### HtmlRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin can be used to create html files that are associated with Rspack assets.
+
+```js
+new rspack.HtmlRspackPlugin(options);
+```
+
+- options
+
+  - **Type:**
+
+  ```ts
+  type HtmlRspackPluginOptions = {
+    title?: string;
+    filename?: string;
+    template?: string;
+    templateContent?: string;
+    templateParameters?: Record<string, string>;
+    inject?: 'head' | 'body';
+    publicPath?: string;
+    scriptLoading?: 'blocking' | 'defer' | 'module';
+    chunks?: string[];
+    excludedChunks?: string[];
+    sri?: 'sha256' | 'sha384' | 'sha512';
+    minify?: boolean;
+    favicon?: string;
+    meta?: Record<string, string | Record<string, string>>;
+  };
+  ```
+
+  - **Default:** `{}`
+
+  <Table
+    header={[
+      {
+        name: 'Name',
+        key: 'name',
+      },
+      {
+        name: 'Type',
+        key: 'type',
+      },
+      {
+        name: 'Default',
+        key: 'default',
+      },
+      {
+        name: 'Description',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`title`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: 'The title to use for the generated HTML document.',
+      },
+      {
+        name: '`filename`',
+        type: '`string`',
+        default: "'index.html'",
+        description:
+          'The file to write the HTML to. Defaults to `index.html`. You can specify a subdirectory here too (eg: pages/index.html).',
+      },
+      {
+        name: '`template`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: 'The template file path.',
+      },
+      {
+        name: '`templateContent`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description:
+          'The template file content, priority is greater than template.',
+      },
+      {
+        name: '`templateParameters`',
+        type: '`Record<string, string>`',
+        default: '{}',
+        description: 'Allows to overwrite the parameters used in the template.',
+      },
+      {
+        name: '`inject`',
+        type: "`'head'|'body'|undefined`",
+        default: 'undefined',
+        description: 'The script and link tag inject position in `template`.',
+      },
+      {
+        name: '`publicPath`',
+        type: '`string`',
+        default: "''",
+        description: 'The publicPath used for script and link tags.',
+      },
+      {
+        name: '`scriptLoading`',
+        type: "`'blocking'|'defer'|'module'`",
+        default: "'defer'",
+        description:
+          "Modern browsers support non blocking javascript loading ('defer') to improve the page startup performance. Setting to 'module' adds attribute type='module'. This also implies 'defer', since modules are automatically deferred.",
+      },
+      {
+        name: '`chunks`',
+        type: '`string[]|undefined`',
+        default: 'undefined',
+        description: 'Allows you to add only some chunks.',
+      },
+      {
+        name: '`excludedChunks`',
+        type: '`string[]|undefined`',
+        default: 'undefined',
+        description: 'Allows you to skip some chunks.',
+      },
+      {
+        name: '`sri`',
+        type: "`'sha256'|'sha384'|'sha512'|undefined`",
+        default: 'undefined',
+        description: 'The sri hash algorithm, disabled by default.',
+      },
+      {
+        name: '`minify`',
+        type: '`boolean`',
+        default: 'false',
+        description: 'Controls whether to minify the output.',
+      },
+      {
+        name: '`favicon`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: 'Adds the given favicon path to the output HTML.',
+      },
+      {
+        name: '`meta`',
+        type: '`Record<string, string|Record<string, string>>` ',
+        default: '{}',
+        description: 'Allows to inject meta-tags.',
+      },
+    ]}
+  />
+
+:::info
+For complex HTML configuration requirements, you can use [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html), which is compatible with the hooks and most configurations of html-webpack-plugin.
+:::
+
+#### SwcJsMinimizerRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin can be used to compress JS assets.
+
+```js
+new rspack.SwcJsMinimizerRspackPlugin(options);
+```
+
+- options
+
+  - **Type:**
+
+  ```ts
+  type SwcJsMinimizerRspackPluginOptions = {
+    passes?: number;
+    dropConsole?: boolean;
+    pureFuncs?: Array<string>;
+    extractComments: boolean | RegExp;
+    asciiOnly?: boolean;
+    comments?: false | 'all' | 'some';
+  };
+  ```
+
+  <Table
+    header={[
+      {
+        name: 'Name',
+        key: 'name',
+      },
+      {
+        name: 'Type',
+        key: 'type',
+      },
+      {
+        name: 'Default',
+        key: 'default',
+      },
+      {
+        name: 'Description',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`passes`',
+        type: '`number`',
+        default: '1',
+        description: 'The maximum number of times to run compress.',
+      },
+      {
+        name: '`dropConsole`',
+        type: '`boolean`',
+        default: 'false',
+        description: 'Pass true to discard calls to console.* functions.',
+      },
+      {
+        name: '`pureFuncs`',
+        type: '`Array<string>`',
+        default: '[]',
+        description:
+          'You can pass an array of names and Rspack will assume that those functions do not produce side effects.',
+      },
+      {
+        name: '`extractComments`',
+        type: '`boolean|RegExp`',
+        default: 'false',
+        description:
+          'Extract comments that match the configuration to a separate file (fileName: `{assetName}.LICENSE.txt`). If the option is set to true, use the regular expression `/@preserve|@lic|@cc_on|^**!/`.',
+      },
+      {
+        name: '`asciiOnly`',
+        type: '`boolean`',
+        default: 'false',
+        description:
+          'Escape Unicode characters in strings and regexps (affects directives with non-ascii characters becoming invalid)',
+      },
+      {
+        name: '`comments`',
+        type: '`false | "all" | "some"`',
+        default: 'false',
+        description:
+          'By default will omit comments in the output, a regular expression string (e.g. /^!/) or a function, pass `"some"` to keeps JSDoc-style comments that contain "@license", "@copyright", "@preserve" or start with !, pass `"all"` to preserve all comments.',
+      },
+    ]}
+  />
+
+#### SwcCssMinimizerRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin can be used to compress CSS assets.
+
+```js
+new rspack.SwcCssMinimizerRspackPlugin();
+```
+
+#### CopyRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+<WebpackLicense from="https://webpack.js.org/plugins/copy-webpack-plugin/#root" />
+
+Copies individual files or entire directories, which already exist, to the build directory.
+
+```js
+new rspack.CopyRspackPlugin(options);
+```
+
+- options
+
+  - **Type:**
+
+  ```ts
+  export type CopyRspackPluginOptions = {
+    patterns: (
+      | string // If input is string, it's the same as { from: `your input string` }
+      | {
+          from: string;
+          to?: string; // Determin based on `from`
+          context?: string; // Default to `context` in Rspack config
+          toType?: 'dir' | 'file' | 'template'; // Determine based on `from`
+          noErrorOnMissing?: boolean; // Default to false
+          force?: boolean; // Default to false
+          priority?: number; // Default to 0
+          globOptions?: {
+            caseSensitiveMatch?: boolean; // Default to true
+            dot?: boolean; // Default to true
+            ignore?: string[]; // ignore specific path
+          };
+        }
+    )[];
+  };
+  ```
+
+  - **Default:** `undefined`
+
+  <Table
+    header={[
+      {
+        name: 'Name',
+        key: 'name',
+      },
+      {
+        name: 'Type',
+        key: 'type',
+      },
+      {
+        name: 'Default',
+        key: 'default',
+      },
+      {
+        name: 'Description',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`from`',
+        type: '`string`',
+        default: 'undefined',
+        description:
+          'The source path of the copy operation, which can be an absolute path, a relative path, or a glob search string. It can refer to a file or a directory. If a relative path is passed, it is relative to the `context` configuration.',
+      },
+      {
+        name: '`to`',
+        type: '`string`',
+        default: 'undefined',
+        description:
+          "The destination of the copy operation, which can be an absolute path, a relative path, or a template string, such as `'[name].[hash][ext]'`. If not specified, it is equal to output path.",
+      },
+      {
+        name: '`context`',
+        type: '`string`',
+        default: 'undefined',
+        description:
+          'This configuration determines how the "from" path is matched and the resulting structure after copying.',
+      },
+      {
+        name: '`toType`',
+        type: "`'dir'|'file'|'template'`",
+        default: 'undefined',
+        description:
+          'Specify the type of `to`, which can be a directory, a file, or a template name in rspack. If not specified, it will be automatically inferred.',
+      },
+      {
+        name: '`noErrorOnMissing`',
+        type: '`boolean`',
+        default: 'false',
+        description: 'Ignore error if there are missing files or directories.',
+      },
+      {
+        name: '`force`',
+        type: '`boolean`',
+        default: 'false',
+        description: 'Wether to overwrite the asset if it already exist.',
+      },
+      {
+        name: '`priority`',
+        type: '`number`',
+        default: '0',
+        description:
+          'When `force` is set to `true`, if a matching file is found, the one with higher priority will overwrite the one with lower priority.',
+      },
+      {
+        name: '`globOptions`',
+        type: '`object`',
+        default: 'undefined',
+        description:
+          'The configuration for glob queries: `caseSensitiveMatch` determines whether the matching is case sensitive, and `dot` determines whether files starting with . are matched. `ignore` is an array of strings in glob format that can be used to ignore specific paths.',
+      },
+    ]}
+  />
+
+For example:
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'file.txt',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+The result of running with the above configuration would be: `"dist/file.txt"`.
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'directory',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+The result of running with the above configuration would be: files and directories inside `directory` will be placed at output path.
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'directory/**/*',
+          to: 'newdirectory',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+The result of running with the above configuration would be that the `directory` folder is moved to the `newdirectory` folder within the output folder, for example `dist/newdirectory/directory/foo`.

@@ -1,11 +1,19 @@
+import { Table } from '@builtIns';
+import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
+
 # Plugin
 
 插件：该选项自定义构建流程。
 
-- **类型：** `Array<RspackPluginInstance | RspackPluginFunction>`
+- **类型：** `Array<RspackPluginInstance | RspackPluginFunction | RspackBuiltinPlugin>`
 - **默认值：** `[]`
 
-## RspackPluginInstance
+## 外部插件
+
+使用 JavaScript 编写，兼容部分 webpack 社区中的插件。
+
+### RspackPluginInstance
 
 ```ts
 interface RspackPluginInstance {
@@ -29,7 +37,7 @@ module.exports = {
 };
 ```
 
-## RspackPluginFunction
+### RspackPluginFunction
 
 ```ts
 type RspackPluginFunction = (compiler: Compiler) => void;
@@ -46,3 +54,763 @@ module.exports = {
   plugins: [customPlugin],
 };
 ```
+
+## 内部插件
+
+集成在 Rspack 内部。
+
+编写配置时可以引入使用：
+
+```js title=rspack.config.js
+const rspack = require('@rspack/core');
+
+module.exports = {
+  // ...
+  plugins: [new rspack.XxxPlugin()],
+};
+```
+
+编写插件时可以通过 `compiler.webpack.XxxPlugin` 使用：
+
+```js title=CustomPlugin.js
+export class CustomPlugin {
+  apply(compiler) {
+    new compiler.webpack.XxxPlugin().apply(compiler);
+    // ...
+  }
+}
+```
+
+### 与 webpack 兼容的内部插件
+
+在 webpack 中，这些插件也以内部插件的形式导出
+
+#### EntryPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+在编译时添加一个入口 chunk。
+
+```js
+new rspack.EntryPlugin(context, entry, options);
+```
+
+- context
+  - **类型：** `string`
+  - **描述：** 入口模块请求的路径会从该 context 路径下进行 resolve
+- entry
+  - **类型：** `string`
+  - **描述：** 入口模块请求的路径
+- options
+  - **类型：**
+  ```ts
+  type EntryOptions = {
+    name?: string;
+    runtime?: EntryRuntime;
+    chunkLoading?: ChunkLoading;
+    asyncChunks?: boolean;
+    publicPath?: PublicPath;
+    baseUri?: string;
+    filename?: Filename;
+  };
+  ```
+
+#### DefinePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件将会在编译时将代码中的变量替换为其他值或表达式。
+
+```js
+new rspack.DefinePlugin(options);
+```
+
+- options
+  - **类型：** `Record<string, string | boolean | undefined>`
+
+当使用以下配置时：
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.DefinePlugin({
+      'process.env.NODE_ENV': "'development'",
+      API_PREFIX: '/api',
+      TRUE: true,
+      TRUE_STRING: 'true',
+      UNDEFINED: undefined,
+      UNDEFINED_STRING: 'undefined',
+    }),
+  ],
+};
+```
+
+输入代码：
+
+```ts
+if (process.env.NODE_ENV === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('API_PREFIX/test');
+
+console.log(TRUE === TRUE_STRING);
+console.log(UNDEFINED === UNDEFINED_STRING);
+```
+
+输出代码：
+
+```ts
+if ('development' === 'development') {
+  console.log('run in development mode');
+}
+
+fetch('/api/test');
+
+console.log(true === true);
+console.log(undefined === undefined);
+```
+
+#### ProvidePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件会自动的将全局变量转换为模块导入。
+
+```js
+new rspack.ProvidePlugin(options);
+```
+
+- options
+  - **类型：** `Record<string, string | string[]>`
+
+如下配置：
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.ProvidePlugin({
+      process: [require.resolve('process/browser')],
+    }),
+  ],
+};
+```
+
+将如下代码：
+
+```js
+console.log(process.version);
+```
+
+转换为：
+
+```js
+import process from 'process/browser';
+console.log(process.version);
+```
+
+#### BannerPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+```js
+new rspack.BannerPlugin(options);
+```
+
+在每个生成的 chunk 顶部或尾部添加一段指定的内容。
+
+- options
+
+  - **类型：**
+
+  ```ts
+  type BannerContent = string;
+  type BannerRules = string | RegExp | Array<string | RegExp>;
+  type BannerPluginOptions = {
+    banner: BannerContent;
+    entryOnly?: boolean;
+    footer?: boolean;
+    raw?: boolean;
+    test?: BannerRules;
+    include?: BannerRules;
+    exclude?: BannerRules;
+  };
+  export type BannerPluginArgument = BannerContent | BannerPluginOptions;
+  ```
+
+  - **默认值：** `undefined`
+
+  {' '}
+  <Table
+    header={[
+      {
+        name: '名称',
+        key: 'name',
+      },
+      {
+        name: '类型',
+        key: 'type',
+      },
+      {
+        name: '默认值',
+        key: 'default',
+      },
+      {
+        name: '描述',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`banner`',
+        type: '`string`',
+        default: 'undefined',
+        description: '指定 banner 内容（会被包裹成注释）',
+      },
+      {
+        name: '`entryOnly`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: '如果值为 true，将只在入口 chunks 文件中添加',
+      },
+      {
+        name: '`footer`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: '如果值为 true，banner 将会位于编译结果的最下方',
+      },
+      {
+        name: '`raw`',
+        type: '`boolean|undefined`',
+        default: 'undefined',
+        description: '如果值为 true，将直接输出，不会被作为注释',
+      },
+      {
+        name: '`test`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: '包含所有匹配的模块',
+      },
+      {
+        name: '`include`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: '根据条件匹配指定的模块',
+      },
+      {
+        name: '`exclude`',
+        type: '`BannerRules|undefined`',
+        default: 'undefined',
+        description: '根据条件排除指定的模块',
+      },
+    ]}
+  />
+
+为每个 chunk 文件头部或底部添加 banner。
+
+```ts title="rspack.config.js"
+module.exports = {
+  plugins: [
+    new rspack.BannerPlugin({
+      banner: 'hello world',
+      footer: true,
+    }),
+  ],
+};
+```
+
+#### ProgressPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件可以用来配置进度条。
+
+```js
+new rspack.ProgressPlugin(options);
+```
+
+- options
+  - **类型：** `{ prefix?: string }`
+  - **默认值：** `{}`
+    <Table
+      header={[
+        {
+          name: '名称',
+          key: 'name',
+        },
+        {
+          name: '类型',
+          key: 'type',
+        },
+        {
+          name: '默认值',
+          key: 'default',
+        },
+        {
+          name: '描述',
+          key: 'description',
+        },
+      ]}
+      body={[
+        {
+          name: '`prefix`',
+          type: '`string`',
+          default: "'Rspack'",
+          description: '进度条前显示文案',
+        },
+      ]}
+    />
+
+#### ExternalsPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件可以用来添加外部依赖。
+
+```js
+new rspack.ExternalsPlugin(type, externals);
+```
+
+- [type](/zh/config/externals.html#externalstype)
+- [externals](/zh/config/externals.html#externals-1)
+
+#### node.NodeTargetPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件用来在打包时将 Node.js 的内置模块外置掉，[`externalsPresets.node`](/zh/config/externals.html#node) 底层使用了该插件。
+
+```js
+new rspack.node.NodeTargetPlugin();
+```
+
+#### electron.ElectronTargetPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件用来在打包时将 Electron 的内置模块外置掉，[`externalsPresets.electron`](/zh/config/externals.html#electron)、[`externalsPresets.electronMain`](/zh/config/externals.html#electronmain)、[`externalsPresets.electronRenderer`](/zh/config/externals.html#electronrenderer) 和 [`externalsPresets.electronPreload`](/zh/config/externals.html#electronpreload) 底层使用了该插件。
+
+```js
+new rspack.electron.ElectronTargetPlugin();
+```
+
+### Rspack 独有的内部插件
+
+这些插件是 Rspack 独有的内部插件，遵循 XxxRspackPlugin 的命名方式。
+
+#### HtmlRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件可以创建与 Rspack 产物关联的 html 文件。
+
+```js
+new rspack.HtmlRspackPlugin(options);
+```
+
+- options
+
+  - **类型：**
+
+  ```ts
+  type HtmlRspackPluginOptions = {
+    title?: string;
+    filename?: string;
+    template?: string;
+    templateContent?: string;
+    templateParameters?: Record<string, string>;
+    inject?: 'head' | 'body';
+    publicPath?: string;
+    scriptLoading?: 'blocking' | 'defer' | 'module';
+    chunks?: string[];
+    excludedChunks?: string[];
+    sri?: 'sha256' | 'sha384' | 'sha512';
+    minify?: boolean;
+    favicon?: string;
+    meta?: Record<string, string | Record<string, string>>;
+  };
+  ```
+
+  - **默认值：** `{}`
+
+  <Table
+    header={[
+      {
+        name: '名称',
+        key: 'name',
+      },
+      {
+        name: '类型',
+        key: 'type',
+      },
+      {
+        name: '默认值',
+        key: 'default',
+      },
+      {
+        name: '描述',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`title`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: '构建 html 的标题',
+      },
+      {
+        name: '`filename`',
+        type: '`string`',
+        default: "'index.html'",
+        description: '输出的文件名，可以指定子目录，例如 `pages/index.html`',
+      },
+      {
+        name: '`template`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: '模版文件路径，支持 ejs',
+      },
+      {
+        name: '`templateContent`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: '模版文件内容，优先级大于 template',
+      },
+      {
+        name: '`templateParameters`',
+        type: '`Record<string, string>`',
+        default: '{}',
+        description: '传递给模版的参数',
+      },
+      {
+        name: '`inject`',
+        type: "`'head'|'body'|undefined`",
+        default: 'undefined',
+        description: '产物注入位置',
+      },
+      {
+        name: '`publicPath`',
+        type: '`string`',
+        default: "''",
+        description: 'script 和 link 标签的 publicPath',
+      },
+      {
+        name: '`scriptLoading`',
+        type: "`'blocking'|'defer'|'module'`",
+        default: "'defer'",
+        description:
+          '现代浏览器支持使用 defer 来异步加载 js，设置为 module 则会添加 `type="module"` 同时使用 defer',
+      },
+      {
+        name: '`chunks`',
+        type: '`string[]|undefined`',
+        default: 'undefined',
+        description: '配置需要注入的 chunk，默认注入所有 chunk',
+      },
+      {
+        name: '`excludedChunks`',
+        type: '`string[]|undefined`',
+        default: 'undefined',
+        description: '配置需要跳过注入的 chunk',
+      },
+      {
+        name: '`sri`',
+        type: "`'sha256'|'sha384'|'sha512'|undefined`",
+        default: 'undefined',
+        description: 'sri hash 算法，默认不开启 sri',
+      },
+      {
+        name: '`minify`',
+        type: '`boolean`',
+        default: 'false',
+        description: '是否启用压缩',
+      },
+      {
+        name: '`favicon`',
+        type: '`string|undefined`',
+        default: 'undefined',
+        description: '配置 html 图标',
+      },
+      {
+        name: '`meta`',
+        type: '`Record<string, string|Record<string, string>>` ',
+        default: '{}',
+        description: '配置需要注入 html 的 meta',
+      },
+    ]}
+  />
+
+:::info
+对于复杂的 HTML 配置需求，可使用 [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html)，兼容 html-webpack-plugin 中的 hooks 和大部分配置。
+:::
+
+#### SwcJsMinimizerRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件可以用来压缩 JS 产物。
+
+```js
+new rspack.SwcJsMinimizerRspackPlugin(options);
+```
+
+- options
+
+  - **类型：**
+
+  ```ts
+  type SwcJsMinimizerRspackPluginOptions = {
+    passes?: number;
+    dropConsole?: boolean;
+    pureFuncs?: Array<string>;
+    extractComments: boolean | RegExp;
+    asciiOnly?: boolean;
+    comments?: false | 'all' | 'some';
+  };
+  ```
+
+  <Table
+    header={[
+      {
+        name: '名称',
+        key: 'name',
+      },
+      {
+        name: '类型',
+        key: 'type',
+      },
+      {
+        name: '默认值',
+        key: 'default',
+      },
+      {
+        name: '描述',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`passes`',
+        type: '`number`',
+        default: '1',
+        description: '运行压缩的最大次数',
+      },
+      {
+        name: '`dropConsole`',
+        type: '`boolean`',
+        default: 'false',
+        description: '是否移除对 console.* 函数的调用',
+      },
+      {
+        name: '`pureFuncs`',
+        type: '`Array<string>`',
+        default: '[]',
+        description: '指定无副作用的函数名称，压缩时会丢弃相关语句',
+      },
+      {
+        name: '`extractComments`',
+        type: '`boolean|RegExp`',
+        default: 'false',
+        description:
+          '提取符合配置注释到一个单独的文件 (fileName: `{assetName}.LICENSE.txt`), 如果设置该选项为 `true`, 使用正则表达式`/@preserve|@lic|@cc_on|^**!/`。',
+      },
+      {
+        name: '`asciiOnly`',
+        type: '`boolean`',
+        default: 'false',
+        description:
+          '转义字符串和正则表达式中的 Unicode 字符（会影响包含非ASCII字符的指令，使其无效）。',
+      },
+      {
+        name: '`comments`',
+        type: '`false | "all" | "some"`',
+        default: 'false',
+        description:
+          '默认情况下将省略输出中的注释、正则表达式字符串（例如 /^!/）或函数，传递 `"some"` 以保留包含 "@license"、"@copyright"、"@preserve" 或以 ! 开头的注释，传递 `"all"` 以保留所有注释。',
+      },
+    ]}
+  />
+
+#### SwcCssMinimizerRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件可以用来压缩 CSS 产物。
+
+```js
+new rspack.SwcCssMinimizerRspackPlugin();
+```
+
+#### CopyRspackPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+<WebpackLicense from="https://webpack.js.org/plugins/copy-webpack-plugin/#root" />
+
+将已存在的单个文件或整个目录复制到产物目录。
+
+```js
+new rspack.CopyRspackPlugin(options);
+```
+
+- options
+
+  - **类型：**
+
+  ```ts
+  export type CopyRspackPluginOptions = {
+    patterns: (
+      | string // 如果传入字符串，会被视作 { from: `你传入的字符串` }
+      | {
+          from: string;
+          to?: string; // 默认根据 from 推断
+          context?: string; // 默认 Rspack 配置中的 context
+          toType?: 'dir' | 'file' | 'template'; // 默认根据 from 推断
+          noErrorOnMissing?: boolean; // 默认 false
+          force?: boolean; // 默认 false
+          priority?: number; // 默认 0
+          globOptions?: {
+            caseSensitiveMatch?: boolean; // 默认 true
+            dot?: boolean; // 默认 true
+            ignore?: string[]; // 忽略特定路径
+          };
+        }
+    )[];
+  };
+  ```
+
+  - **默认值：** `undefined`
+
+  <Table
+    header={[
+      {
+        name: '名称',
+        key: 'name',
+      },
+      {
+        name: '类型',
+        key: 'type',
+      },
+      {
+        name: '默认值',
+        key: 'default',
+      },
+      {
+        name: '描述',
+        key: 'description',
+      },
+    ]}
+    body={[
+      {
+        name: '`from`',
+        type: '`string`',
+        default: 'undefined',
+        description:
+          '复制的源路径，可以是绝对路径、相对路径、glob 查询字符串，可以是文件或目录。若传入相对路径，则是相对于 `context` 配置。',
+      },
+      {
+        name: '`to`',
+        type: '`string`',
+        default: 'undefined',
+        description:
+          "复制的目的地，可以是绝对路径、相对路径或者是 Rspack 的模版字符串，例如 `'[name].[hash][ext]'`。当不指定 `to` 时，则相当于是产物目录。",
+      },
+      {
+        name: '`context`',
+        type: '`string`',
+        default: 'undefined',
+        description: '该配置决定怎样匹配 `from` 路径，以及复制后的结构。',
+      },
+      {
+        name: '`toType`',
+        type: "`'dir'|'file'|'template'`",
+        default: 'undefined',
+        description:
+          '指定 `to` 的类型，可以是目录，文件或 Rspack 的模版名，若不指定则会自动推断。',
+      },
+      {
+        name: '`noErrorOnMissing`',
+        type: '`boolean`',
+        default: 'false',
+        description: '当没有找到对应的文件或目录时，忽略错误。',
+      },
+      {
+        name: '`force`',
+        type: '`boolean`',
+        default: 'false',
+        description: '当产物中已经有相应的文件时，是否覆写。',
+      },
+      {
+        name: '`priority`',
+        type: '`number`',
+        default: '0',
+        description:
+          '当设置 `force` 为 `true` 时，如果匹配到同样的文件，优先级高的会覆写优先级的。',
+      },
+      {
+        name: '`globOptions`',
+        type: '`object`',
+        default: 'undefined',
+        description:
+          'glob 查询选项，`caseSensitiveMatch` 决定是否大小写敏感，`dot` 决定是否匹配以 `.` 开头的文件，`ignore` 是 glob 形式的字符串数组，可以使用该配置忽略部分特定路径。',
+      },
+    ]}
+  />
+
+示例：
+
+```ts title="rspack.config.js"
+const rspack = require('@rspack/core');
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'file.txt',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+以上面的配置运行结果会是：`"dist/file.txt"`。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'directory',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+以上面的配置运行结果会是 `directory` 目录下的所有文件平铺在产物目录中。
+
+```ts title="rspack.config.js"
+module.exports = {
+  entry: './src/index.js',
+  plugins: [
+    new rspack.CopyRspackPlugin({
+      patterns: [
+        {
+          from: 'directory/**/*',
+          to: 'newdirectory',
+        },
+      ],
+    }),
+  ],
+};
+```
+
+以上面的配置运行结果会是 `directory` 目录被移动到产物目录中的 `newdirectory` 目录，例如 `dist/newdirectory/directory/foo`。

@@ -28,7 +28,7 @@ export function ApiMeta(props: ApiMetaProps) {
           )}
           {!!props.deprecatedVersion && (
             <span className="api-meta-version-deprecated">
-              v{props.addedVersion}
+              v{props.deprecatedVersion}
             </span>
           )}
         </div>
