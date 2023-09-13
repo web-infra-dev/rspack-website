@@ -59,7 +59,6 @@ eject 后的 CRA 也算一个配置较为复杂的 webpack 项目，以下列举
 - 将 webpack 相关包替换为 Rspack 对应的包，并将调用的代码进行替换
   - webpack -> @rspack/core
   - webpack-dev-server -> @rspack/dev-server
-  - html-webpack-plugin -> @rspack/plugin-html
 - 将 Rspack 已内置支持的配置替换掉
   - style-loader、css-loader、MiniCssExtractPlugin 等 CSS 相关功能在 Rspack 中已内置支持
   - TerserWebpackPlugin、CssMinimizerPlugin 等代码压缩功能在 Rspack 中已内置支持，production 模式下默认开启

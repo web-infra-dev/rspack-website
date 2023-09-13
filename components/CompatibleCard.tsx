@@ -33,28 +33,33 @@ export const CompatibleCardItem = ({
 export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
   const pluginList: CardMeta[] = [
     {
-      name: 'html-webpack-plugin',
-      url: 'https://www.npmjs.com/package/html-webpack-plugin',
-      status: i18n[lang]['alternative'],
-      description: i18n[lang]['html-webpack-plugin-desc'],
+      name: 'webpack.DefinePlugin',
+      url: 'https://webpack.js.org/plugins/define-plugin/',
+      status: i18n[lang]['compatible'],
+      description: i18n[lang]['define-plugin-desc'],
     },
     {
-      name: 'DefinePlugin',
-      url: 'https://webpack.js.org/plugins/define-plugin/',
+      name: 'webpack.BannerPlugin',
+      url: 'https://webpack.js.org/plugins/banner-plugin',
+      status: i18n[lang]['compatible'],
+      description: i18n[lang]['banner-plugin-desc'],
+    },
+    {
+      name: 'webpack.HotModuleReplacementPlugin',
+      url: 'https://webpack.js.org/plugins/hot-module-replacement-plugin',
       status: i18n[lang]['included'],
-      description: i18n[lang]['define-plugin-desc'],
+    },
+    {
+      name: 'html-webpack-plugin',
+      url: 'https://www.npmjs.com/package/html-webpack-plugin',
+      status: i18n[lang]['compatible'],
+      description: i18n[lang]['html-webpack-plugin-desc'],
     },
     {
       name: 'copy-webpack-plugin',
       url: 'https://www.npmjs.com/package/copy-webpack-plugin',
       status: i18n[lang]['included'],
       description: i18n[lang]['copy-plugin-desc'],
-    },
-    {
-      name: 'banner-plugin',
-      url: 'https://webpack.js.org/plugins/banner-plugin',
-      status: i18n[lang]['included'],
-      description: i18n[lang]['banner-plugin-desc'],
     },
     {
       name: 'mini-css-extract-plugin',
@@ -84,11 +89,6 @@ export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       url: 'https://www.npmjs.com/package/tsconfig-paths-webpack-plugin',
       status: i18n[lang]['included'],
       description: i18n[lang]['tsconfig-paths-webpack-plugin-desc'],
-    },
-    {
-      name: 'HotModuleReplacementPlugin',
-      url: 'https://webpack.js.org/plugins/hot-module-replacement-plugin',
-      status: i18n[lang]['included'],
     },
     {
       name: 'fork-ts-checker-webpack-plugin',
