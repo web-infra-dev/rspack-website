@@ -128,7 +128,7 @@ module.exports = {
 - **类型：**
 
 ```ts
-export type EmotionConfig =
+type EmotionOptions =
   | boolean
   | {
       sourceMap?: boolean;
@@ -593,7 +593,7 @@ console.log(undefined === undefined);
 - **类型：**
 
 ```ts
-type BuiltinsReact = {
+type ReactOptions = {
   runtime?: 'automatic' | 'classic';
   importSource?: string;
   pragma?: string;
@@ -1040,7 +1040,7 @@ module.exports = {
 - **类型：**
 
 ```ts
-export type RelayConfig =
+type RelayOptions =
   | undefined
   | boolean
   | {

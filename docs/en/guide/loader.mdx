@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Loader
 
@@ -211,3 +211,29 @@ module.exports = {
 ```
 
 Additionally, you can directly refer to [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) for more usage guidelines.
+
+##### options.rspackExperiments
+
+<ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
+
+These fields served as the alternative to the current builtin transform options, aiming to support transforming with respect to the certain module.
+
+- **Type:**
+
+```ts
+export type RspackExperiments = {
+  react?: ReactOptions;
+  import?: PluginImportOptions;
+  emotion?: EmotionOptions;
+  relay?: RelayOptions;
+};
+```
+
+- **Default:** `{}`
+
+The configuration can be found in the [builtins](/config/builtins) section:
+
+- [react](/config/builtins#builtinsreact)
+- [import](/config/builtins#builtinspluginimport)
+- [emotion](/config/builtins#builtinsemotion)
+- [relay](/config/builtins#builtinsrelay)

@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Loader
 
@@ -212,3 +212,29 @@ module.exports = {
 ```
 
 另外，你也可以直接参考 [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) 查看更多使用指南。
+
+##### options.rspackExperiments
+
+<ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
+
+这个字段是部分 `builtins` 替代，在保留了原有功能的基础上提供了模块粒度的精细转译。
+
+- **Type:**
+
+```ts
+export type RspackExperiments = {
+  react?: ReactOptions;
+  import?: PluginImportOptions;
+  emotion?: EmotionOptions;
+  relay?: RelayOptions;
+};
+```
+
+- **Default:** `{}`
+
+这些配置项可以在 [builtins](/config/builtins) 下找到：
+
+- [react](/config/builtins#builtinsreact)
+- [import](/config/builtins#builtinspluginimport)
+- [emotion](/config/builtins#builtinsemotion)
+- [relay](/config/builtins#builtinsrelay)
