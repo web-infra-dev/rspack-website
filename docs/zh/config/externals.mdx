@@ -355,6 +355,10 @@ jq('.my-element').animate(/* ... */);
 
 将对 `http(s)://...` 和 `std:...` 引入的模块视为外部模块，并在使用时通过 `import` (`externalType: "module"`) 来加载它们（请注意，这会改变执行顺序，因为外部模块的代码会在 Chunk 中的任何其他模块的代码之前执行）。
 
+### webAsync
+
+将对 `http(s)://...` 和 `std:...` 引入的模块视为外部模块，并在使用时通过 `async import()` (`externalType: "import"`) 来加载它们（请注意，此 external 类型为 async 模块，它对执行会产生各种副作用）。
+
 ### electron
 
 将 Electron 主进程和预加载脚本中常见的 Electron 内置模块如 `electron`、`ipc` 或 `shell` 视为外部模块，并在使用时通过 `require()` 加载它们。
