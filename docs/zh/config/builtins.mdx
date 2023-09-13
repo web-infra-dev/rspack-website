@@ -453,6 +453,8 @@ type BuiltinsHtml = Array<{
 type BuiltinsMinifyOptions = {
   passes?: number;
   dropConsole?: boolean;
+  keepClassNames?: boolean;
+  keepFnNames?: boolean;
   pureFuncs?: Array<string>;
   extractComments: boolean | RegExp;
   asciiOnly?: boolean;
@@ -491,6 +493,18 @@ type BuiltinsMinifyOptions = {
       type: '`boolean`',
       default: 'false',
       description: '是否移除对 console.* 函数的调用',
+    },
+    {
+      name: '`keepClassNames`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否保留原 class 名称',
+    },
+    {
+      name: '`keepFnNames`',
+      type: '`boolean`',
+      default: 'false',
+      description: '是否保留原 function 名称',
     },
     {
       name: '`pureFuncs`',
