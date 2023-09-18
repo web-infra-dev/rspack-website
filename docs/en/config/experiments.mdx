@@ -45,6 +45,36 @@ Once enabled, Rspack will enable native CSS support, Note that if you're using `
 
 Used to control whether to enable Rspack future default options, check out the details [here](https://github.com/web-infra-dev/rspack/pull/4107).
 
-| rspackFuture                 | introduced version | default enabled version | removed version | description                                                                                                                                                                                                                                                                                     |
-| ---------------------------- | ------------------ | ----------------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| disableReactRefreshByDefault | v0.3.5             | -                       | -               | Control whether `@rspack/dev-server` turns on react refresh by default. In the early `@rspack/cli` design, react refresh was turned on by default in the dev server for out-of-the-box use in new projects, but this resulted in non-react projects needing to turn off react refresh manually. |
+### disableReactRefreshByDefault
+
+- Introduced version:
+
+  v0.3.5
+
+- Default enabled version:
+
+  v0.4.0
+
+- Removed version:
+
+  v0.5.0
+
+- Description:
+
+  Control whether `@rspack/dev-server` turns on react refresh by default. In the early `@rspack/cli` design, react refresh was turned on by default in the dev server for out-of-the-box use in new projects, but this resulted in non-react projects needing to turn off react refresh manually.
+
+- Migration:
+
+  Manually add `@rspack/plugin-react-refresh` to your development configuration. For example:
+
+  ```js title=rspack.config.js
+  module.exports = {
+    // ...
+    plugins: [isDev && new ReactRefreshPlugin()].filter(Boolean),
+    experiments: {
+      rspackFuture: {
+        disableReactRefreshByDefault: true,
+      },
+    },
+  };
+  ```
