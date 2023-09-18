@@ -152,6 +152,21 @@ module.exports = {
 };
 ```
 
+## `output.enabledChunkLoadingTypes`
+
+- **类型：** `string[]`
+
+开启可用的 chunkLoading 类型的运行时模块打包。
+
+```javascript
+module.exports = {
+  //...
+  output: {
+    enabledChunkLoadingTypes: ['import'],
+  },
+};
+```
+
 ## output.cssFilename
 
 - **类型：** `string`

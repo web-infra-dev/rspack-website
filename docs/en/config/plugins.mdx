@@ -323,6 +323,16 @@ module.exports = {
 };
 ```
 
+#### HotModuleReplacementPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+This plugin is used to add the Hot Module Replacement feature. When added, it will add the runtime modules required for the hot change to the runtime chunk.
+
+```js
+new rspack.HotModuleReplacementPlugin();
+```
+
 #### ProgressPlugin
 
 <ApiMeta addedVersion={'0.3.3'} />
@@ -396,6 +406,16 @@ This plugin is used to bundle out Node.js assets, often used with childCompiler.
 
 ```js
 new rspack.node.NodeTemplatePlugin();
+```
+
+#### javascript.EnableChunkLoadingPlugin
+
+<ApiMeta addedVersion={'0.3.4'} />
+
+Enable runtime module bundling for this chunkLoadingType, and is used by [output.enabledChunkLoadingTypes](/en/config/output.html#outputchunkloading) under the hood.
+
+```js
+new rspack.javascript.EnableChunkLoadingPlugin('import');
 ```
 
 #### library.EnableLibraryPlugin
