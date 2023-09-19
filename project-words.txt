@@ -81,3 +81,5 @@ rspress
 swcjsminimizerplugin
 swccssminimizerplugin
 outputenabledwasmloadingtypes
+optionsrspackexperiments
+optionsrspackexperiments
