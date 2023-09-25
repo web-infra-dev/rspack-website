@@ -83,3 +83,4 @@ swccssminimizerplugin
 outputenabledwasmloadingtypes
 optionsrspackexperiments
 experimentsrspackfuture
+rspackplugin
