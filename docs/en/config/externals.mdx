@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 <WebpackLicense from="https://webpack.js.org/configuration/externals/" />
 
@@ -355,6 +356,8 @@ Treat node.js built-in modules like `fs`, `path` or `vm` as external and load th
 Treat references to `http(s)://...` and `std:...` as external and load them via `import` (`externalType: "module"`) when used. (Note that this changes execution order as externals are executed before any other code in the chunk).
 
 ### webAsync
+
+<ApiMeta addedVersion="0.3.5">
 
 Treat references to `http(s)://...` and `std:...` as external and load them via `import()` (`externalType: "import"`) when used. (Note that this external type is an async module, which has various effects on the execution).
 
