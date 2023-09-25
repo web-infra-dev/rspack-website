@@ -243,6 +243,7 @@ new rspack.BannerPlugin(options);
   - **默认值：** `undefined`
 
   {' '}
+
   <Table
     header={[
       {
@@ -384,6 +385,36 @@ new rspack.ExternalsPlugin(type, externals);
 
 ```js
 new rspack.node.NodeTargetPlugin();
+```
+
+#### node.NodeTemplatePlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+此插件用来打包出 Node.js 的产物，经常配合 childCompiler 一起使用。
+
+```js
+new rspack.node.NodeTemplatePlugin();
+```
+
+#### library.EnableLibraryPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+开启该 libraryType 的产物格式打包，[output.enabledLibraryTypes](/zh/config/output.html#outputenabledlibrarytypes) 底层使用了该插件。
+
+```js
+new rspack.library.EnableLibraryPlugin('var');
+```
+
+#### wasm.EnableWasmLoadingPlugin
+
+<ApiMeta addedVersion={'0.3.3'} />
+
+开启该 wasmLoadingType 的运行时模块打包，[output.enabledWasmLoadingTypes](/zh/config/output.html#outputenabledwasmloadingtypes) 底层使用了该插件。
+
+```js
+new rspack.library.EnableWasmLoadingPlugin('fetch');
 ```
 
 #### electron.ElectronTargetPlugin
@@ -544,7 +575,7 @@ new rspack.HtmlRspackPlugin(options);
   />
 
 :::info
-对于复杂的 HTML 配置需求，可使用 [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html)，兼容 html-webpack-plugin 中的 hooks 和大部分配置。
+对于复杂的 HTML 配置需求，可使用 [html-webpack-plugin](https://www.npmjs.com/package/html-webpack-plugin) 或 [@rspack/plugin-html](https://www.npmjs.com/package/@rspack/plugin-html)。
 :::
 
 #### SwcJsMinimizerRspackPlugin

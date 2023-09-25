@@ -1196,6 +1196,12 @@ The default value can be affected by different target:
 - Defaults to `'fetch'` if target is set to `'web'`, `'webworker'`, `'electron-renderer'` or `'node-webkit'`.
 - Defaults to `'async-node'` if target is set to `'node'`, `'async-node'`, `'electron-main'` or `'electron-preload'`.
 
+## output.enabledWasmLoadingTypes
+
+Enables available runtime module bundling of wasmLoadingType.
+
+- **Type:** `false | 'fetch', 'async-node'`
+
 ## output.asyncChunks
 
 <ApiMeta addedVersion={'0.2.6'} />

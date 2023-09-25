@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Loader
 
@@ -143,7 +143,7 @@ module.exports = {
 
 #### builtin:swc-loader
 
-<ApiMeta addedVersion="0.3.0" />
+<ApiMeta addedVersion="0.3.0" stability={Stability.Experimental} />
 
 `builtin:swc-loader` 是 [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader) 的 Rust 版本，旨在提供更优的性能，
 Loader 的[配置](https://swc.rs/docs/configuration/compilation)与 JS 版本的 `swc-loader` 保持对齐（SWC 插件将会在未来版本进行提供，暂不支持）。
@@ -212,3 +212,27 @@ module.exports = {
 ```
 
 另外，你也可以直接参考 [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) 查看更多使用指南。
+
+##### options.rspackExperiments
+
+<ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
+
+这个字段是部分 `builtins` 替代，在保留了原有功能的基础上提供了模块粒度的精细转译。
+
+- **Type:**
+
+```ts
+export type RspackExperiments = {
+  import?: PluginImportOptions;
+  emotion?: EmotionOptions;
+  relay?: RelayOptions;
+};
+```
+
+- **Default:** `{}`
+
+这些配置项可以在 [builtins](/config/builtins) 下找到：
+
+- [import](/config/builtins#builtinspluginimport)
+- [emotion](/config/builtins#builtinsemotion)
+- [relay](/config/builtins#builtinsrelay)

@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Loader
 
@@ -143,7 +143,7 @@ Built-in Loaders offer superior performance compared to JS Loaders, without sacr
 
 #### builtin:swc-loader
 
-<ApiMeta addedVersion="0.3.0" />
+<ApiMeta addedVersion="0.3.0" stability={Stability.Experimental} />
 
 `builtin:swc-loader` is the Rust version of [`swc-loader`](https://github.com/swc-project/pkgs/tree/main/packages/swc-loader), aiming to deliver better performance. The Loader's [configuration](https://swc.rs/docs/configuration/compilation) is aligned with the JS version of `swc-loader` (SWC plugins will be provided in future releases and are currently not supported).
 
@@ -211,3 +211,27 @@ module.exports = {
 ```
 
 Additionally, you can directly refer to [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) for more usage guidelines.
+
+##### options.rspackExperiments
+
+<ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
+
+These fields served as the alternative to the current builtin transform options, aiming to support transforming with respect to the certain module.
+
+- **Type:**
+
+```ts
+export type RspackExperiments = {
+  import?: PluginImportOptions;
+  emotion?: EmotionOptions;
+  relay?: RelayOptions;
+};
+```
+
+- **Default:** `{}`
+
+The configuration can be found in the [builtins](/config/builtins) section:
+
+- [import](/config/builtins#builtinspluginimport)
+- [emotion](/config/builtins#builtinsemotion)
+- [relay](/config/builtins#builtinsrelay)
