@@ -123,6 +123,12 @@ module.exports = {
 
 ## builtins.emotion
 
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.emotion` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
+
 用于设置对 emotion 的编译优化。
 
 - **类型：**
@@ -222,6 +228,12 @@ export type ImportMap =
 此选项允许你告诉 Rspack 它应该查看哪些 import 语句，确定应该转换什么，因此如果你重导出 emotion 的方法，仍然可以转换。
 
 ## builtins.presetEnv
+
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.presetEnv` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
 
 该配置可以让你的代码运行在更老版本的浏览器上，你可以通过 [browserslist](https://github.com/browserslist/browserslist#queries) 来指定需要支持的所有浏览器。
 当源代码中使用了这些浏览器中不支持的 API，则可以通过全局注入 [core-js](https://github.com/zloirock/core-js) 来为这些浏览器提供同样的 API。
@@ -588,6 +600,12 @@ console.log(undefined === undefined);
 
 ## builtins.react
 
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.react` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
+
 此选项可以用来配置 react 相关代码的转换。
 
 - **类型：**
@@ -688,6 +706,12 @@ type ReactOptions = {
 />
 
 ## builtins.decorator
+
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.decorator` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
 
 此选项可以用来配置装饰器的转换行为，false 表示关闭装饰器转换。
 
@@ -1035,6 +1059,12 @@ module.exports = {
 
 ## builtins.relay
 
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.relay` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
+
 将项目中的 `graphql` 调用转换成相对应的 `require`。
 
 - **类型：**
@@ -1055,6 +1085,12 @@ type RelayOptions =
 如果传入具体的配置则不会尝试查找任何 `relay` 配置文件，而是直接使用传入的配置。
 
 ## builtins.pluginImport
+
+<ApiMeta deprecatedVersion="0.3.5" />
+
+:::info
+`builtins.pluginImport` has been deprecated since `0.3.5`, please use `builtin:swc-loader` instead. Check out [this](https://www.rspack.dev/config/experiments.html#disabletransformbydefault) for the migration guide.
+:::
 
 移植自 [babel-plugin-import](https://github.com/umijs/babel-plugin-import)，配置基本保持一致。
 
