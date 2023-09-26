@@ -8,10 +8,10 @@ import {
 } from './mdx-components';
 
 interface TableProps {
-  children: ReactNode[];
-  body: any[];
-  header: { name: string; key: string }[];
-  tableStyle: Record<string, string>;
+  children?: ReactNode[];
+  body?: any[];
+  header?: { name: string | JSX.Element; key: string }[];
+  tableStyle?: Record<string, string>;
 }
 
 // Use case example:
@@ -35,7 +35,7 @@ interface TableProps {
 //   ]}
 // />
 export function Table(props: TableProps) {
-  const { body, tableStyle, header } = props;
+  const { body = [], tableStyle, header = [] } = props;
   // Support markdown syntax in table cell
   const compiledValue = body.map((item: any) => {
     Object.keys(item).forEach((key) => {
@@ -46,12 +46,21 @@ export function Table(props: TableProps) {
     return item;
   });
 
+  const renderHeaderItem = (name: string | JSX.Element) => {
+    if (typeof name === 'string') {
+      return <Markdown>{name}</Markdown>;
+    }
+    return name;
+  };
+
   // generate table tag
   return (
     <ModernTable style={tableStyle}>
       <ModernTableRow>
         {header.map((item) => (
-          <ModernTableHead key={item.key}>{item.name}</ModernTableHead>
+          <ModernTableHead key={item.key}>
+            {renderHeaderItem(item.name)}
+          </ModernTableHead>
         ))}
       </ModernTableRow>
       <tbody>
