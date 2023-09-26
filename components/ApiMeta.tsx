@@ -1,3 +1,4 @@
+import { useLang } from 'rspress/runtime';
 import './ApiMeta.scss';
 /**
  * The Stability Index is learned from https://nodejs.org/api/documentation.html#stability-index
@@ -17,18 +18,23 @@ export interface ApiMetaProps {
 }
 
 export function ApiMeta(props: ApiMetaProps) {
+  let lang = useLang();
   return (
     <div className="api-meta">
       {(!!props.addedVersion || !!props.deprecatedVersion) && (
         <div className="api-meta-version">
           {!!props.addedVersion && (
             <span className="api-meta-version-added">
-              v{props.addedVersion}
+              <a href={`/${lang}/misc/future`}>v{props.addedVersion}</a>
             </span>
           )}
           {!!props.deprecatedVersion && (
             <span className="api-meta-version-deprecated">
-              v{props.deprecatedVersion}
+              <a
+                href={`/${lang}/misc/future?deprecatedVersion=${props.deprecatedVersion}`}
+              >
+                v{props.deprecatedVersion}
+              </a>
             </span>
           )}
         </div>

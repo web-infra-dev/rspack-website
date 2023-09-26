@@ -72,6 +72,13 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           link: 'https://github.com/web-infra-dev/rspack/releases',
         },
         {
+          text: getText(
+            '未来默认行为与功能废弃',
+            'Future behavior & Deprecation'
+          ),
+          link: getLink('/misc/future'),
+        },
+        {
           text: getText('功能规划', 'Roadmap'),
           link: getLink('/misc/roadmap'),
         },
@@ -369,6 +376,8 @@ export default defineConfig({
     source: {
       alias: {
         '@builtIns': path.join(__dirname, 'components', 'builtIns'),
+        '@components': path.join(__dirname, 'components'),
+        '@hooks': path.join(__dirname, 'hooks'),
       },
     },
     dev: {

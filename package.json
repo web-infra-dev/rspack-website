@@ -30,18 +30,20 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.3",
+    "semver": "^7.5.4",
     "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
-    "rspress": "0.1.1",
-    "@rspress/shared": "0.1.1",
     "@modern-js/tsconfig": "2.21.1",
+    "@rspress/shared": "0.1.1",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
+    "@types/semver": "^7.5.2",
     "case-police": "0.5.10",
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
     "prettier": "^2.8.3",
+    "rspress": "0.1.1",
     "typescript": "^5.0.4"
   }
 }
