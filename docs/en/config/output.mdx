@@ -1210,3 +1210,30 @@ Enables available runtime module bundling of wasmLoadingType.
 - **Default:** `true`
 
 Create async chunks that are loaded on demand.
+
+## output.hotUpdateChunkFilename
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **Type:** `string`
+- **Default:** `"[id].[fullhash].hot-update.js"`
+
+Customize the filenames of hot update chunks, only placeholders allowed here are `[id]` and `[fullhash]`.
+
+## output.hotUpdateMainFilename
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **Type:** `string`
+- **Default:** `"[runtime].[fullhash].hot-update.json"`
+
+Customize the main hot update filename. `[fullhash]` and `[runtime]` are available as placeholder.
+
+## output.hotUpdateGlobal
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **Type:** `string`
+- **Default:** `"webpackHotUpdate" + output.uniqueName`
+
+Only used when [chunkLoading](/config/output.html#outputchunkloading) is `"jsonp"` or `"import-scripts"`. This global variable is used for loading hot update chunks.

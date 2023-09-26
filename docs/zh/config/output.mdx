@@ -1162,4 +1162,31 @@ module.exports = {
 - **类型：** `boolean`
 - **默认值：** `true`
 
-是否创建按需加载的异步 chunk
+是否创建按需加载的异步 chunk。
+
+## output.hotUpdateChunkFilename
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **类型：** `string`
+- **默认值：** `"[id].[fullhash].hot-update.js"`
+
+自定义热更新文件的文件名。只有 `[fullhash]` 和 `[id]` 可用作占位符。
+
+## output.hotUpdateMainFilename
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **类型：** `string`
+- **默认值：** `"[runtime].[fullhash].hot-update.json"`
+
+自定义热更新清单文件的文件名。只有 `[fullhash]` 和 `[runtime]` 可用作占位符。
+
+## output.hotUpdateGlobal
+
+<ApiMeta addedVersion={'0.3.5'} />
+
+- **类型：** `string`
+- **默认值：** `"webpackHotUpdate" + output.uniqueName`
+
+只在 [chunkLoading](/config/output.html#outputchunkloading) 为 `"jsonp"` 或 `"import-scripts"` 时会被使用。该全局变量会用来请求并加载热更新文件。
