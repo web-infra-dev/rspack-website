@@ -84,3 +84,4 @@ outputenabledwasmloadingtypes
 optionsrspackexperiments
 experimentsrspackfuture
 rspackplugin
+disabletransformbydefault
