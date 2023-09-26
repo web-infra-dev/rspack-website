@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.js.org/configuration/externals/" />
 
@@ -85,6 +86,8 @@ module.exports = {
 ```
 
 ### object
+
+<ApiMeta addedVersion={'0.3.5'} />
 
 An object with `{ root, amd, commonjs, ... }` is only allowed for [`libraryTarget: 'umd'`](/config/output.html#outputlibrarytarget) and [`externalsType: 'umd'`](#externalstype). It's not allowed for other library targets.
 
