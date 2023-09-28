@@ -21,11 +21,14 @@ export const CompatibleCardItem = ({
 }: CardMeta) => {
   return (
     <div className="component-card">
-      <div className="component-card-status">{status}</div>
-      <a className="component-card-link" href={url}>
-        {name}
-      </a>
-      {description && <div>{description}</div>}
+      <div className="component-card-title-line">
+        <a className="component-card-link" href={url}>
+          {name}
+        </a>
+        <div className="component-card-space"></div>
+        <div className="component-card-status">{status}</div>
+      </div>
+      {description && <div className="component-card-desc">{description}</div>}
       {remark && <div>{remark}</div>}
     </div>
   );
@@ -96,9 +99,11 @@ export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       status: i18n[lang]['compatible'],
     },
   ];
-  return pluginList.map((item) => (
-    <CompatibleCardItem key={item.name} {...item} />
-  ));
+  return pluginList
+    .sort((item1, item2) => {
+      return item1.status > item2.status ? 1 : -1;
+    })
+    .map((item) => <CompatibleCardItem key={item.name} {...item} />);
 };
 
 export const LoaderCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
