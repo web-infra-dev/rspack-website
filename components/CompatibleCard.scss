@@ -1,20 +1,33 @@
 .component-card {
   padding: 20px;
-  margin: 10px auto;
+  margin: 28px auto;
   border-radius: 10px;
-  box-shadow: 3px 3px 6px #e4e4e6;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
   position: relative;
+
+  &-title-line {
+    display: flex;
+    flex-direction: row;
+  }
+
   &-link {
     color: var(--rp-c-brand);
     margin-bottom: 5px;
   }
 
+  &-space {
+    flex-grow: 1;
+  }
+
   &-status {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 4px 10px;
-    border-radius: 0 5px;
-    border: 1px solid #42b98344;
+    color: #ff8900bd;
+    background-color: #ff89003d;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+
+  &-desc {
+    color: var(--rp-c-text-1);
+    margin: 8px 0 0 0;
   }
 }
