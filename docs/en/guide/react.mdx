@@ -1,3 +1,4 @@
+import { Tabs, Tab } from '@theme';
 import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 # React
@@ -79,10 +80,38 @@ Recognizing this issue, we aim to gradually transition users to a more correct a
 `@rspack/plugin-react-refresh` depends on [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#disabletransformbydefault)
 :::
 
+First you need to install the dependencies:
+
+<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
+   <Tab>
+
+```sh
+npm install -D @rspack/plugin-react-refresh react-refresh
+```
+
+   </Tab>
+
+   <Tab>
+
+```sh
+yarn add -D @rspack/plugin-react-refresh react-refresh
+```
+
+   </Tab>
+
+   <Tab>
+
+```sh
+pnpm install -D @rspack/plugin-react-refresh react-refresh
+```
+
+   </Tab>
+</Tabs>
+
 Enabling [React Fast Refresh](https://reactnative.dev/docs/fast-refresh) functionality primarily involves two aspects: code injection and code transformation.
 
-- Code injection can be enabled by [@rspack/plugin-react-refresh](https://github.com/web-infra-dev/rspack/tree/main/packages/rspack-plugin-react-refresh).
-- Code transformation can be added through loaders, such as [jsc.transform.react.refresh](https://swc.rs/docs/configuration/compilation#jsctransformreactrefresh) for swc-loader or the [react-refresh plugin](https://github.com/facebook/react/tree/main/packages/react-refresh) for babel-loader.
+- Code injection will inject some code from the `react-refresh` package, as well as some custom runtime code, all of which are integrated in the [@rspack/plugin-react-refresh](https://github.com/web-infra-dev/rspack/tree/main/packages/rspack-plugin-react-refresh) plugin and can be injected through this plugin.
+- Code transformation can be added through loaders, such as [jsc.transform.react.refresh](https://swc.rs/docs/configuration/compilation#jsctransformreactrefresh) for swc-loader or the [react-refresh/babel](https://github.com/facebook/react/tree/main/packages/react-refresh) for babel-loader.
 
 ```js title=rspack.config.js
 const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
