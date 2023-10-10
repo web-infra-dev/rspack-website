@@ -1,68 +1,45 @@
-# Migrate from Create React App
+# Migrating from Create React App
 
-Since `@rspack/cli` has built-in support for TypeScript, JSX, CSS, etc., it is relatively easy to migrate from the Create React App.
+Because Create React App (CRA) itself has many built-in capabilities, manually setting up an equivalent configuration using `@rspack/cli` can be challenging. Therefore, we recommend migrating CRA applications to [Modern.js Builder](https://modernjs.dev/builder/en) to leverage Rspack's capabilities.
 
-## Updating dependencies
+## Install Dependencies
 
-First, we need to update the dependencies, uninstall all the Create React App dependencies, then install the @rspack/cli dependencies and update the corresponding startup scripts.
+First, we need to install the relevant dependencies for Modern.js Builder and update the startup scripts.
 
 ```diff title=package.json
 {
-  "dependencies": {
--   "react-scripts": "5.0.1"
-+   "@rspack/cli": "latest"
+  "devDependencies": {
++    "@modern-js/builder-cli": "^2.35.1",
++    "@modern-js/builder-rspack-provider": "^2.35.1",
++    "@modern-js/tsconfig": "^2.35.1",
   },
   "scripts": {
--   "start": "react-scripts start",
--   "build": "react-scripts build",
--   "test": "react-scripts test"
-+   "start": "rspack serve",
-+   "build": "rspack build"
++    "start": "builder dev",
++    "build": "builder build",
++    "preview": "builder serve"
   }
 }
 ```
 
-## Configure rspack.config.js
+## Configure builder.config.ts
 
-Then, we need to create the `rspack.config.js` file in the root of the project to configure rspack-related options. `@rspack/cli` does not have all the CRA functionality built-in, so some additional options need to be configured as follows
+Builder uses `builder.config.ts` for configuration, and you can align it with the project capabilities of CRA using the following approach:
 
-```js title=rspack.config.js
-/** @type {import('@rspack/cli').Configuration} */
-const config = {
-  entry: {
-    main: './src/index.jsx', // Configure the project entry file
+```ts title=builder.config.ts
+import { defineConfig } from '@modern-js/builder-cli';
+
+// https://modernjs.dev/builder/en/api/index.html
+export default defineConfig<'rspack'>({
+  html: {
+    template: './public/index.html',
+    disableHtmlFolder: true, // https://modernjs.dev/builder/api/config-html.html#htmldisablehtmlfolder
   },
-  builtins: {
-    html: [
-      {
-        template: './index.html', // Align CRA to generate index.html
-      },
-    ],
-    copy: {
-      patterns: [
-        {
-          from: 'public',
-        },
-      ],
+  output: {
+    distPath: {
+      html: '', // https://modernjs.dev/builder/api/config-output.html#outputdistpath
     },
   },
-};
-module.exports = config;
+});
 ```
 
-## migrate ejected CRA to Rspack
-
-After ejecting the CRA is also considered a more complex webpack project configuration, the following lists the main things to do when migrating, the detailed code can be referred to [rspack-migration-showcase/pull/6](https://github.com/web-infra-dev/rspack-migration-showcase/pull/6)。
-
-- Replace the webpack package with the corresponding Rspack package and replace the calling code
-  - webpack -> @rspack/core
-  - webpack-dev-server -> @rspack/dev-server
-- Replaces the configuration that Rspack already has built-in support for
-  - CSS-related functions such as style-loader, css-loader, MiniCssExtractPlugin, etc. have built-in support in Rspack
-  - TerserWebpackPlugin, CssMinimizerPlugin and other code compression features have built-in support in Rspack, and are enabled by default in production mode.
-  - DefinePlugin can be replaced in Rspack by [builtins.define](config/builtins#builtinsdefine)
-  - ReactRefreshWebpackPlugin has built-in support in Rspack and can be turned on or off with [builtins.react.refresh](config/builtins#builtinsreact)
-- Remove configurations that are not currently fully supported by Rspack
-  - Currently cache in Rspack only supports memory caching, and it is enabled by default in development mode
-  - resolve.plugins is not currently supported by Rspack
-  - CaseSensitivePathsPlugin, ESLintPlugin, etc. are not currently supported in Rspack
+This completes the migration from CRA's build capabilities to Rspack. You can refer to [modern-builder-cra](https://github.com/rspack-contrib/modern-builder-cra) for migration examples.
