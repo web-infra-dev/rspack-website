@@ -550,7 +550,6 @@ module.exports = {
   builtins: {
     define: {
       'process.env.NODE_ENV': "'development'",
-      API_PREFIX: '/api',
       TRUE: true,
       TRUE_STRING: 'true',
       UNDEFINED: undefined,
@@ -566,8 +565,6 @@ module.exports = {
 if (process.env.NODE_ENV === 'development') {
   console.log('run in development mode');
 }
-
-fetch('API_PREFIX/test');
 
 console.log(TRUE === TRUE_STRING);
 console.log(UNDEFINED === UNDEFINED_STRING);

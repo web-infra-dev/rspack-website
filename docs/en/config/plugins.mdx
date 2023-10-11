@@ -136,7 +136,6 @@ module.exports = {
   plugins: [
     new rspack.DefinePlugin({
       'process.env.NODE_ENV': "'development'",
-      API_PREFIX: '/api',
       TRUE: true,
       TRUE_STRING: 'true',
       UNDEFINED: undefined,
@@ -152,8 +151,6 @@ Input:
 if (process.env.NODE_ENV === 'development') {
   console.log('run in development mode');
 }
-
-fetch('API_PREFIX/test');
 
 console.log(TRUE === TRUE_STRING);
 console.log(UNDEFINED === UNDEFINED_STRING);
