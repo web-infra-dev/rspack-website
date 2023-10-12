@@ -126,7 +126,7 @@ module.exports = {
 
 - **Type:** `false | 'jsonp' | 'import-scripts' | 'require' | 'async-node' | 'import'`
 
-The method to load chunks, The default value of this option depends on the [`target`](/zh/config/target.html) and [`chunkFormat`](#outputchunkformat) setting. In general, `'jsonp'` is used to load chunks when target is web; `'import'` is used to load chunks when ESM; `'import-scripts'` is used to load chunks when webworker; `'require'` is used to load chunks when node.js; `'async-node'` (`fs.readFile` + `vm.runInThisContext`) is used to load chunks when async node.js.
+The method to load chunks, The default value of this option depends on the [`target`](/config/target.html) and [`chunkFormat`](#outputchunkformat) setting. In general, `'jsonp'` is used to load chunks when target is web; `'import'` is used to load chunks when ESM; `'import-scripts'` is used to load chunks when webworker; `'require'` is used to load chunks when node.js; `'async-node'` (`fs.readFile` + `vm.runInThisContext`) is used to load chunks when async node.js.
 
 ```ts title="rspack.config.js"
 module.exports = {

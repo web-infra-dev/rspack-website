@@ -90,7 +90,7 @@ Matches all modules that match this resource against the Resource's query. Note:
 
 ### Rule.resourceFragment
 
-- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource against the Resource's fragment. Note: Containing `#`, when `Rule.resourceFragment` is `#abc`, it will match the resource request of `xxx#abc`
@@ -104,21 +104,21 @@ Matches all modules that match this resource, and will match against Resource (t
 
 ### Rule.issuer
 
-- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against Resource (the absolute path without query and fragment) of the module that issued the current module.
 
 ### Rule.dependency
 
-- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the category of the dependency that introduced the current module, for example `esm` for `import` and `import()`, `cjs` for `require()`, `url` for `new URL()` and `url()`.
 
 ### Rule.scheme
 
-- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the Resource's scheme.
@@ -140,7 +140,7 @@ module.exports = {
 
 ### Rule.mimetype
 
-- **Type:** [`Condition`](/zh/config/module.html#condition)
+- **Type:** [`Condition`](/config/module.html#condition)
 - **Default:** `undefined`
 
 Matches all modules that match this resource, and will match against the Resource's mimetype.
