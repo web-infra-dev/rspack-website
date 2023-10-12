@@ -12,7 +12,7 @@ export const EN_US = {
   cli: 'CLI',
   friendLink: 'Friend Link',
   community: 'Community',
-  benchmarkTitle: 'Blazing fast build speed',
+  benchmarkTitle: 'Build Performance',
   benchmarkDesc:
     'Combining TypeScript and Rust with a parallelized architecture to bring you the ultimate developer experience.',
   benchmarkDetail: 'See benchmark details',
