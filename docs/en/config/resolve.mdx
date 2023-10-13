@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Resolve
 
 Used to configure the Rspack module resolution logic.
@@ -162,6 +164,49 @@ module.exports = config;
 `tsconfig.json#extends` is not supported.
 
 :::
+
+## resolve.tsConfig
+
+<ApiMeta addedVersion="0.3.5" />
+
+- **Type:** `object`
+- **Default:** `undefined`
+
+This is currently an opt-in feature via [`experiments#rspackFuture.newResolver`](/config/experiments.html#experimentsrspackfuturenewresolver).
+
+```js title="rspack.config.js"
+module.exports = {
+  resolver: {
+  tsconfig: {
+    configFile: path.resolve(__dirname, './tsconfig.json'),
+    references: 'auto'
+  },
+  experiments: {
+    rspackFuture: {
+      newResolver: true
+    }
+  }
+}
+```
+
+### resolve.tsConfig.configFile
+
+- **Type:** `string`
+
+Same as [resolve.tsConfigPath](#resolvetsconfigpath).
+
+If you pass the path of `tsconfig.json` via the option, Rspack will try to resolve modules based on the `paths` and `baseUrl` of `tsconfig.json`, functionally equivalent to [tsconfig-paths-webpack-plugin](https://www.npmjs.com/package/tsconfig-paths-webpack-plugin).
+
+### resolve.tsConfig.references
+
+- **Type:** `string[] | "auto" | undefined`
+- **Default:** `undefined`
+
+Supports [tsconfig project references](https://www.typescriptlang.org/docs/handbook/project-references.html) defined in [tsconfig-paths-webpack-plugin](https://github.com/dividab/tsconfig-paths-webpack-plugin#references-_string-defaultundefined).
+
+The list of tsconfig paths can be provided manually, or you may specify `auto` to read the paths list from `tsconfig#references` automatically.
+
+This feature is disabled when the value is `undefined`.
 
 ## resolve.fullySpecified
 
