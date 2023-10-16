@@ -6,6 +6,10 @@ import WebpackLicense from '../../../components/webpack-license';
 
 Rspack Loader 在设计时就是为了复用 Webpack Loader，我们已兼容了大部分 Webpack Loader 的 API，其余部分 API 仍在实现中，所以目前大部分 Webpack Loader 已经能够在 Rspack 中运行。
 
+::: info Webpack Loader 接口支持情况
+你可以查看 [这个](https://github.com/orgs/web-infra-dev/projects/10) 页面来了解目前 Webpack Loader 接口的支持情况。
+:::
+
 ## 同步 Loader
 
 `return` 或 `this.callback` 都可以用来同步返回转换后的内容：
