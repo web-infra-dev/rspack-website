@@ -32,6 +32,14 @@ module.exports = {
 
 启用原生 CSS 支持，请注意如果你在使用 `style-loader` 和 `css-loader` 请关闭该配置，因为 `style-loader` 和 `css-loader` 和原生 CSS 功能冲突。
 
+## experiments.topLevelAwait
+
+<ApiMeta addedVersion="0.3.8" />
+
+开启打包 [top level await](https://github.com/tc39/proposal-top-level-await) 的支持，`top level await` 仅能在 [ModuleType](/config/module.html#ruletype) 为 `javascript/esm` 的模块中使用。
+
+默认开启，可通过该配置关闭。
+
 ## experiments.rspackFuture
 
 <ApiMeta addedVersion="0.3.2" />
@@ -235,10 +243,10 @@ module.exports = {
 module.exports = {
   experiments: {
     rspackFuture: {
-      newResolver: true
-    }
-  }
-}
+      newResolver: true,
+    },
+  },
+};
 ```
 
 新的 resolver 同时提供了在 [tsconfig-paths-webpack-plugin](https://github.com/dividab/tsconfig-paths-webpack-plugin#references-_string-defaultundefined) 中定义的[tsconfig project references](https://www.typescriptlang.org/docs/handbook/project-references.html) 功能。
