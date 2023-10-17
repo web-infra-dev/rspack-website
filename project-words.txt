@@ -85,3 +85,4 @@ optionsrspackexperiments
 experimentsrspackfuture
 rspackplugin
 disabletransformbydefault
+xstyled
