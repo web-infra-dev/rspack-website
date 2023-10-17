@@ -226,13 +226,80 @@ export type RspackExperiments = {
   import?: PluginImportOptions;
   emotion?: EmotionOptions;
   relay?: RelayOptions;
+  styledComponents?: StyledComponentsOptions;
 };
 ```
 
 - **Default:** `{}`
 
-这些配置项可以在 [builtins](/config/builtins) 下找到：
+其中部分配置项可以在 [builtins](/config/builtins) 下找到：
 
 - [import](/config/builtins#builtinspluginimport)
 - [emotion](/config/builtins#builtinsemotion)
 - [relay](/config/builtins#builtinsrelay)
+
+此外一些新的特性将仅通过 `builtin:swc-loader` 提供。
+
+##### options.rspackExperiments.styledComponents
+
+- **Type:**
+
+```ts
+type StyledComponentsOptions = {
+  displayName?: boolean;
+  ssr?: boolean;
+  fileName?: boolean;
+  meaninglessFileNames?: string[];
+  namespace?: string;
+  topLevelImportPaths?: string[];
+  transpileTemplateLiterals?: boolean;
+  minify?: boolean;
+  pure?: boolean;
+  cssProps?: boolean;
+}
+```
+
+- **Default:** `{}`
+
+配置对 [styled-components](https://github.com/styled-components/styled-components) 的编译时支持。SWC 对于 styled-components 的支持基本对齐了官方的 babel 插件，所以你可以访问 https://styled-components.com/docs/tooling#babel-plugin 了解更多信息。
+
+通常你需要还启用 `builtin:swc-loader` 的 JSX 支持用来处理 React 组件，配置项内容可以参考：
+
+```js
+/** @type {import('@rspack/core').Configuration}*/
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        loader: "builtin:swc-loader",
+        options: {
+          jsc: {
+            parser: {
+              syntax: "ecmascript",
+              jsx: true
+            }
+          },
+          rspackExperiments: {
+            styledComponents: {
+              displayName: true,
+              ssr: true,
+              fileName: true,
+              meaninglessFileNames: ["index", "styles"],
+              namespace: "rspack-test",
+              topLevelImportPaths: [
+                "@xstyled/styled-components",
+                "@xstyled/styled-components/*"
+              ],
+              transpileTemplateLiterals: true,
+              minify: true,
+              pure: true,
+              cssProps: true
+            }
+          }
+        }
+      }
+    ]
+  }
+};
+```
