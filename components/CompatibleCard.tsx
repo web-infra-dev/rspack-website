@@ -59,6 +59,12 @@ export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       description: i18n[lang]['html-webpack-plugin-desc'],
     },
     {
+      name: '@sentry/webpack-plugin',
+      url: 'https://www.npmjs.com/package/@sentry/webpack-plugin',
+      status: i18n[lang]['compatible'],
+      description: i18n[lang]['sentry_webpack-plugin-desc'],
+    },
+    {
       name: 'copy-webpack-plugin',
       url: 'https://www.npmjs.com/package/copy-webpack-plugin',
       status: i18n[lang]['included'],
