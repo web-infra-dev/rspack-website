@@ -348,6 +348,22 @@ export default defineConfig({
     },
     socialLinks: [
       {
+        icon: 'discord',
+        mode: 'link',
+        content: 'https://discord.gg/79ZZ66GH9E',
+      },
+      {
+        icon: 'twitter',
+        mode: 'link',
+        content: 'https://twitter.com/rspack_dev',
+      },
+      {
+        icon: 'lark',
+        mode: 'link',
+        content:
+          'https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=3c3vca77-bfc0-4ef5-b62b-9c5c9c92f1b4',
+      },
+      {
         icon: 'github',
         mode: 'link',
         content: 'https://github.com/web-infra-dev/rspack',
