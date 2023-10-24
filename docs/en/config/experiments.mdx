@@ -35,6 +35,14 @@ module.exports = {
 
 Once enabled, Rspack will enable native CSS support, Note that if you're using `style-loader` and `css-loader`, you should disable this option because `style-loader` and `css-loader` will conflict with native CSS.
 
+## experiments.topLevelAwait
+
+<ApiMeta addedVersion="0.3.8" />
+
+Enable support for [top level await](https://github.com/tc39/proposal-top-level-await), `top level await` can only be used in modules with [ModuleType](/config/module.html#ruletype) is `javascript/esm`.
+
+Enabled by default and can be turned off with this configuration.
+
 ## experiments.rspackFuture
 
 <ApiMeta addedVersion="0.3.2" />
@@ -232,10 +240,10 @@ which is 5 times faster than the previous resolver implementation.
 module.exports = {
   experiments: {
     rspackFuture: {
-      newResolver: true
-    }
-  }
-}
+      newResolver: true,
+    },
+  },
+};
 ```
 
 The new resolver also supports [tsconfig project references](https://www.typescriptlang.org/docs/handbook/project-references.html) defined in [tsconfig-paths-webpack-plugin](https://github.com/dividab/tsconfig-paths-webpack-plugin#references-_string-defaultundefined). See [resolve API](/config/resolve.html#resolvetsconfig) for details.
