@@ -1,5 +1,5 @@
 import { Button } from 'rspress/theme';
-import { normalizeHref } from 'rspress/runtime';
+import { normalizeHrefInRuntime } from 'rspress/runtime';
 import styles from './index.module.scss';
 import logoImg from '../../../docs/public/logo.png';
 
@@ -50,7 +50,7 @@ export function HomeHero({ hero }: { hero: Hero }) {
                 <Button
                   type="a"
                   text={action.text}
-                  href={normalizeHref(action.link)}
+                  href={normalizeHrefInRuntime(action.link)}
                   theme={action.theme}
                 />
               </div>
