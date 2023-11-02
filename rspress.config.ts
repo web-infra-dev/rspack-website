@@ -404,6 +404,15 @@ export default defineConfig({
       },
     },
     html: {
+      meta: {
+        "og:title": "Rspack",
+        "og:type": "website",
+        "og:url": "https://rspack.dev",
+        "og:image": "https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-image.png",
+        "og:description": "Fast Rust-based Web Bundler",
+        "twitter:site": "@rspack_dev",
+        "twitter:card": "summary_large_image"
+      },
       tags: [
         // Configure Google Analytics
         {
