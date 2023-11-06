@@ -340,13 +340,17 @@ export default defineConfig({
   globalStyles: path.join(__dirname, 'theme', 'index.css'),
   markdown: {
     checkDeadLinks: true,
-    experimentalMdxRs: true,
   },
   themeConfig: {
     footer: {
       message: '© 2023 ByteDance Inc. All Rights Reserved.',
     },
     socialLinks: [
+      {
+        icon: 'github',
+        mode: 'link',
+        content: 'https://github.com/web-infra-dev/rspack',
+      },
       {
         icon: 'discord',
         mode: 'link',
@@ -362,11 +366,6 @@ export default defineConfig({
         mode: 'link',
         content:
           'https://applink.feishu.cn/client/chat/chatter/add_by_link?link_token=3c3vca77-bfc0-4ef5-b62b-9c5c9c92f1b4',
-      },
-      {
-        icon: 'github',
-        mode: 'link',
-        content: 'https://github.com/web-infra-dev/rspack',
       },
     ],
     locales: [

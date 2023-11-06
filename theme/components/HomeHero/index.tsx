@@ -1,5 +1,5 @@
 import { Button } from 'rspress/theme';
-import { normalizeHref } from 'rspress/runtime';
+import { normalizeHrefInRuntime } from 'rspress/runtime';
 import styles from './index.module.scss';
 import logoImg from '../../../docs/public/logo.png';
 
@@ -22,7 +22,7 @@ export function HomeHero({ hero }: { hero: Hero }) {
   const hasImage = hero.image !== undefined;
   return (
     <div
-      className="m-auto px-6 pb-12 sm:pt-0 sm:px-8  md:px-16 md:pb-16 md:pt-20"
+      className="m-auto px-6 pb-12 sm:pt-0 sm:px-8  md:px-16 md:pb-16"
       style={{
         height: 'calc(100vh - var(--rp-nav-height)))',
       }}
@@ -50,7 +50,7 @@ export function HomeHero({ hero }: { hero: Hero }) {
                 <Button
                   type="a"
                   text={action.text}
-                  href={normalizeHref(action.link)}
+                  href={normalizeHrefInRuntime(action.link)}
                   theme={action.theme}
                 />
               </div>
