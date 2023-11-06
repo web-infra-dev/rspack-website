@@ -419,7 +419,7 @@ export default defineConfig({
         ...getMeta('og:url', 'https://rspack.dev/'),
         ...getMeta(
           'og:image',
-          'https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-image.png'
+          'https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-banner.png'
         ),
         ...getMeta('og:description', 'Fast Rust-based Web Bundler'),
         ...getMeta('twitter:site', '@rspack_dev'),
