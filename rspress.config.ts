@@ -4,6 +4,15 @@ import { NavItem, Sidebar } from '@rspress/shared';
 
 const isProd = process.env.NODE_ENV === 'production';
 
+function getMeta(name: string, value: string) {
+  return {
+    [name]: {
+      property: name,
+      content: value,
+    },
+  };
+}
+
 function getI18nHelper(lang: 'zh' | 'en') {
   const isZh = lang === 'zh';
   const prefix = isZh ? '/zh' : '';
@@ -405,13 +414,16 @@ export default defineConfig({
     },
     html: {
       meta: {
-        "og:title": "Rspack",
-        "og:type": "website",
-        "og:url": "https://rspack.dev",
-        "og:image": "https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-image.png",
-        "og:description": "Fast Rust-based Web Bundler",
-        "twitter:site": "@rspack_dev",
-        "twitter:card": "summary_large_image"
+        ...getMeta('og:title', 'Rspack'),
+        ...getMeta('og:type', 'website'),
+        ...getMeta('og:url', 'https://rspack.dev/'),
+        ...getMeta(
+          'og:image',
+          'https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-image.png'
+        ),
+        ...getMeta('og:description', 'Fast Rust-based Web Bundler'),
+        ...getMeta('twitter:site', '@rspack_dev'),
+        ...getMeta('twitter:card', 'summary_large_image'),
       },
       tags: [
         // Configure Google Analytics
