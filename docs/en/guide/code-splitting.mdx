@@ -77,7 +77,7 @@ const config = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    another: './src/index.js',
+    another: './src/another-module.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -85,6 +85,7 @@ const config = {
 +  optimization: {
 +    splitChunks: {
 +      chunks: 'all',
++      minSize: 1,
 +    }
 +  }
 };
@@ -127,7 +128,7 @@ const config = {
   mode: 'development',
   entry: {
     'index': './src/index.js',
--    'another': './src/index.js',
+-    'another': './src/another-module.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -135,6 +136,7 @@ const config = {
 -  optimization: {
 -    splitChunks: {
 -      chunks: 'all',
+-      minSize: 1,
 -    }
 -  }
 };
