@@ -86,3 +86,5 @@ experimentsrspackfuture
 rspackplugin
 disabletransformbydefault
 xstyled
+htmlrspackplugin
+swcjsminimizerrspackplugin
