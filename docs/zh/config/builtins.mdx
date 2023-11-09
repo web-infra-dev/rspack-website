@@ -19,6 +19,14 @@ _Builtins_ 提供的内置功能在未来可能会发生变化，或被更好的
 
 ## builtins.banner
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`BannerPlugin`](/config/plugins.html#bannerplugin)。
+
+:::
+
 - **类型：**
 
 ```ts
@@ -123,6 +131,17 @@ module.exports = {
 
 ## builtins.emotion
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
+
 用于设置对 emotion 的编译优化。
 
 - **类型：**
@@ -223,6 +242,17 @@ export type ImportMap =
 
 ## builtins.presetEnv
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
+
 该配置可以让你的代码运行在更老版本的浏览器上，你可以通过 [browserslist](https://github.com/browserslist/browserslist#queries) 来指定需要支持的所有浏览器。
 当源代码中使用了这些浏览器中不支持的 API，则可以通过全局注入 [core-js](https://github.com/zloirock/core-js) 来为这些浏览器提供同样的 API。
 如果源代码中使用了这些浏览器中不支持的语法，也会将这些语法转换成浏览器支持的语法。
@@ -303,6 +333,14 @@ module.exports = {
 :::
 
 ## builtins.html
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`HtmlRspackPlugin`](/config/plugins.html#htmlrspackplugin)。
+
+:::
 
 该配置可以快速创建与 Rspack 产物关联的 html 文件。
 
@@ -445,6 +483,14 @@ type BuiltinsHtml = Array<{
 
 ## builtins.minifyOptions
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`SwcJsMinimizerRspackPlugin`](/config/plugins.html#swcjsminimizerrspackplugin)。
+
+:::
+
 设置内置压缩器配置。
 
 - **类型：**
@@ -538,6 +584,14 @@ type BuiltinsMinifyOptions = {
 
 ## builtins.define
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`DefinePlugin`](/config/plugins.html#defineplugin)。
+
+:::
+
 此选项将会在编译时将代码中的变量替换为其他值或表达式。
 
 - **类型：** `Record<string, string | boolean | undefined>`
@@ -584,6 +638,17 @@ console.log(undefined === undefined);
 ```
 
 ## builtins.react
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
 
 此选项可以用来配置 react 相关代码的转换。
 
@@ -685,6 +750,17 @@ type ReactOptions = {
 />
 
 ## builtins.decorator
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
 
 此选项可以用来配置装饰器的转换行为，false 表示关闭装饰器转换。
 
@@ -817,6 +893,14 @@ type BuiltinsCssModules = {
 
 ## builtins.progress
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`ProgressPlugin`](/config/plugins.html#progressplugin)。
+
+:::
+
 此选项可以用来配置进度条，false 表示不显示进度条。
 
 <PropertyType.CN
@@ -867,6 +951,14 @@ type BuiltinsCssModules = {
 - **默认值：** `false`
 
 ## builtins.copy
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`CopyRspackPlugin`](/config/plugins.html#copyrspackplugin)。
+
+:::
 
 import WebpackLicense from '../../../components/webpack-license';
 
@@ -1032,6 +1124,17 @@ module.exports = {
 
 ## builtins.relay
 
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
+
 将项目中的 `graphql` 调用转换成相对应的 `require`。
 
 - **类型：**
@@ -1052,6 +1155,17 @@ type RelayOptions =
 如果传入具体的配置则不会尝试查找任何 `relay` 配置文件，而是直接使用传入的配置。
 
 ## builtins.pluginImport
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，在 v0.4 中默认将使用 [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 开启后的行为。
+请尽快迁移至 [builtin:swc-loader 配置](https://www.rspack.dev/guide/loader.html#builtinswc-loader)。
+
+如希望使用被废弃的行为，请确保[experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) 为关闭状态，这个配置项将在 v0.5 版本被完全移除。
+
+:::
 
 移植自 [babel-plugin-import](https://github.com/umijs/babel-plugin-import)，配置基本保持一致。
 
@@ -1160,6 +1274,14 @@ import 'antd/es/button/style';
 ```
 
 ## builtins.provide
+
+<ApiMeta deprecatedVersion="0.3.10" />
+
+:::warning
+
+配置项已经被废弃，并且将在版本 v0.5 被移除，请尽快迁移至 [`ProvidePlugin`](/config/plugins.html#provideplugin)。
+
+:::
 
 自动的将全局变量转换为模块导入，如下配置：
 
