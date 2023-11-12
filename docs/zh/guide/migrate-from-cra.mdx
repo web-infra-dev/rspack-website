@@ -1,45 +1,15 @@
 # 从 Create React App 迁移
 
-因为 CRA 本身内置了非常多的工程能力，手动的从 `@rspack/cli` 搭建出一个对等能力的配置并非易事，因此我们推荐 CRA 应用迁移到 [Modern.js Builder](https://modernjs.dev/builder) 来使用 Rspack 的能力。
+因为 CRA 本身内置了非常多的工程能力，手动的从 `@rspack/cli` 搭建出一个对等能力的配置并非易事，因此我们推荐 CRA 应用迁移到 [Rsbuild](https://modernjs.dev/builder) 来使用 Rspack 的能力。
 
-## 安装依赖
+## 什么是 Rsbuild
 
-首先我们需要安装 Modern.js Builder 的相关依赖,以及更新启动方式
+**Rsbuild 是一个基于 Rspack 的 web 构建工具**，它的目标是为 Rspack 用户提供开箱即用的构建能力，使开发者能够在零配置的情况下启动一个 web 项目。
 
-```diff title=package.json
- {
-  "devDependencies": {
-+    "@modern-js/builder-cli": "^2.35.1",
-+    "@modern-js/builder-rspack-provider": "^2.35.1",
-+    "@modern-js/tsconfig": "^2.35.1",
-  },
-  "scripts": {
-+    "start": "builder dev",
-+    "build": "builder build",
-+    "preview": "builder serve"
-  }
-}
-```
+Rsbuild 集成了社区中基于 Rust 的高性能工具，包括 Rspack 和 SWC，以提供一流的构建速度和开发体验。
 
-## 配置 builder.config.ts
+![rsbuild-toolchain](https://github.com/web-infra-dev/rsbuild/assets/7237365/204dadf8-b923-4f9c-8823-f3d75cb133ae)
 
-Builder 使用 `builder.config.ts` 进行配置，可以通过如下方式，对齐 CRA 的工程能力
+## 如何迁移
 
-```ts title=builder.config.ts
-import { defineConfig } from '@modern-js/builder-cli';
-
-// https://modernjs.dev/builder/en/api/index.html
-export default defineConfig<'rspack'>({
-  html: {
-    template: './public/index.html',
-    disableHtmlFolder: true, // https://modernjs.dev/builder/en/api/config-html.html#htmldisablehtmlfolder
-  },
-  output: {
-    distPath: {
-      html: '', // https://modernjs.dev/builder/en/api/config-output.html#outputdistpath
-    },
-  },
-});
-```
-
-这样就完成了从 CRA 构建能力到 Rspack 的迁移。你可以参考 [modern-builder-cra](https://github.com/rspack-contrib/modern-builder-cra) 进行迁移
+请参考 Rsbuild 提供的 [Create React App 迁移指南](https://rsbuild.dev/zh/guide/migration/cra) 来了解更多内容。
