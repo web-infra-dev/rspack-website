@@ -212,11 +212,17 @@ module.exports = {
 
 Additionally, you can directly refer to [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) for more usage guidelines.
 
+#### options
+
+See [SWC configuration](https://swc.rs/docs/configuration/swcrc).
+
 ##### options.rspackExperiments
 
 <ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
 
 These fields served as the alternative to the current builtin transform options, aiming to support transforming with respect to the certain module.
+
+For react support, take [`options.jsc.transform.react`](https://swc.rs/docs/configuration/compilation#jsctransformreact) as a reference.
 
 - **Type:**
 
@@ -259,7 +265,7 @@ type StyledComponentsOptions = {
   minify?: boolean;
   pure?: boolean;
   cssProps?: boolean;
-}
+};
 ```
 
 - **Default:** `{}`
@@ -275,34 +281,34 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: "builtin:swc-loader",
+        loader: 'builtin:swc-loader',
         options: {
           jsc: {
             parser: {
-              syntax: "ecmascript",
-              jsx: true
-            }
+              syntax: 'ecmascript',
+              jsx: true,
+            },
           },
           rspackExperiments: {
             styledComponents: {
               displayName: true,
               ssr: true,
               fileName: true,
-              meaninglessFileNames: ["index", "styles"],
-              namespace: "rspack-test",
+              meaninglessFileNames: ['index', 'styles'],
+              namespace: 'rspack-test',
               topLevelImportPaths: [
-                "@xstyled/styled-components",
-                "@xstyled/styled-components/*"
+                '@xstyled/styled-components',
+                '@xstyled/styled-components/*',
               ],
               transpileTemplateLiterals: true,
               minify: true,
               pure: true,
-              cssProps: true
-            }
-          }
-        }
-      }
-    ]
-  }
+              cssProps: true,
+            },
+          },
+        },
+      },
+    ],
+  },
 };
 ```
