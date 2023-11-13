@@ -35,10 +35,7 @@ export const RandomMemberList = () => {
       name: 'Hana',
       avatar: 'https://avatars.githubusercontent.com/u/10465670?s=120&v=4',
     },
-    {
-      id: 'hyf0',
-      avatar: 'https://avatars.githubusercontent.com/u/49502170?s=120&v=4',
-    },
+
     {
       id: 'IWANABETHATGUY',
       avatar: 'https://avatars.githubusercontent.com/u/17974631?s=120&v=4',
@@ -47,10 +44,7 @@ export const RandomMemberList = () => {
       id: 'jerrykingxyz',
       avatar: 'https://avatars.githubusercontent.com/u/9291503?s=120&v=4',
     },
-    {
-      id: 'underfin',
-      avatar: 'https://avatars.githubusercontent.com/u/14008915?s=120&v=4',
-    },
+
     {
       id: 'chenjiahan',
       avatar: 'https://avatars.githubusercontent.com/u/7237365?s=120&v=4',
@@ -91,6 +85,40 @@ export const RandomMemberList = () => {
 
   const randomList = list.sort(() => Math.random() - 0.5);
 
+  return (
+    <NoSSR>
+      <div className={style.wrapper}>
+        {randomList.map((item) => (
+          <a
+            className={style.link}
+            href={`https://github.com/${item.id}`}
+            target="_blank"
+            rel="nofollow"
+            key={item.id}
+            style={{
+              border: 'none',
+            }}
+          >
+            <img className={style.avatar} src={item.avatar} />
+            <span className={style.name}>{item.name || item.id}</span>
+          </a>
+        ))}
+      </div>
+    </NoSSR>
+  );
+};
+export const RandomContributorsList = () => {
+  const list: Member[] = [
+    {
+      id: 'hyf0',
+      avatar: 'https://avatars.githubusercontent.com/u/49502170?s=120&v=4',
+    },
+    {
+      id: 'underfin',
+      avatar: 'https://avatars.githubusercontent.com/u/14008915?s=120&v=4',
+    },
+  ];
+  const randomList = list.sort(() => Math.random() - 0.5);
   return (
     <NoSSR>
       <div className={style.wrapper}>
