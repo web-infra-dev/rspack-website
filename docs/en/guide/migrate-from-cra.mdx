@@ -1,45 +1,15 @@
 # Migrating from Create React App
 
-Because Create React App (CRA) itself has many built-in capabilities, manually setting up an equivalent configuration using `@rspack/cli` can be challenging. Therefore, we recommend migrating CRA applications to [Modern.js Builder](https://modernjs.dev/builder/en) to leverage Rspack's capabilities.
+Because Create React App (CRA) itself has many built-in capabilities, manually setting up an equivalent configuration using `@rspack/cli` can be challenging. Therefore, we recommend migrating CRA applications to [Rsbuild](https://rsbuild.dev/) to leverage Rspack's capabilities.
 
-## Install Dependencies
+## What is Rsbuild
 
-First, we need to install the relevant dependencies for Modern.js Builder and update the startup scripts.
+**Rsbuild is an Rspack-based build tool for the web.** The main goal of Rsbuild is to provide out-of-the-box build capabilities for Rspack users, allowing developers to start a web project with zero configuration.
 
-```diff title=package.json
-{
-  "devDependencies": {
-+    "@modern-js/builder-cli": "^2.35.1",
-+    "@modern-js/builder-rspack-provider": "^2.35.1",
-+    "@modern-js/tsconfig": "^2.35.1",
-  },
-  "scripts": {
-+    "start": "builder dev",
-+    "build": "builder build",
-+    "preview": "builder serve"
-  }
-}
-```
+Rsbuild integrates high-performance Rust-based tools from the community, including Rspack and SWC, to provide first-class build speed and development experience.
 
-## Configure builder.config.ts
+![rsbuild-toolchain](https://github.com/web-infra-dev/rsbuild/assets/7237365/204dadf8-b923-4f9c-8823-f3d75cb133ae)
 
-Builder uses `builder.config.ts` for configuration, and you can align it with the project capabilities of CRA using the following approach:
+## How to Migrate
 
-```ts title=builder.config.ts
-import { defineConfig } from '@modern-js/builder-cli';
-
-// https://modernjs.dev/builder/en/api/index.html
-export default defineConfig<'rspack'>({
-  html: {
-    template: './public/index.html',
-    disableHtmlFolder: true, // https://modernjs.dev/builder/api/config-html.html#htmldisablehtmlfolder
-  },
-  output: {
-    distPath: {
-      html: '', // https://modernjs.dev/builder/api/config-output.html#outputdistpath
-    },
-  },
-});
-```
-
-This completes the migration from CRA's build capabilities to Rspack. You can refer to [modern-builder-cra](https://github.com/rspack-contrib/modern-builder-cra) for migration examples.
+Please refer to the [Create React App Migration Guide](https://rsbuild.dev/guide/migration/cra) provided by Rsbuild for more information.
