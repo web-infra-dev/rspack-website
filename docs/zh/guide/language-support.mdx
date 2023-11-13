@@ -106,6 +106,29 @@ CSS 是 Rspack 的一等公民，Rspack 内置了对 CSS 的处理能力，你�
 
 如果你打算从 Webpack 进行迁移，那么你可以去除配置中的 `css-loader` 或 `style-loader` 以使用 Rspack 内置的 CSS 处理能力，详情可以参考[迁移指南](/guide/migrate-from-webpack#去除-css-loader-和-style-loader-和-mini-css-extract-plugin)。
 
+### CSS Modules
+
+Rspack 中可以引用一个 CSS Modules 文件，如：
+
+```ts title="index.module.css"
+.red {
+  color: red;
+}
+```
+
+这个模块将会被转换为一个 JavaScript 对象，你可以在 JavaScript 中引用它：
+
+```ts title="index.js"
+import { red } from './index.module.css';
+document.getElementById('element').className = red;
+```
+
+{
+// TODO: link to builtin
+}
+
+更多关于 CSS Modules 的配置可以参考 [builtins.css.modules](config/builtins#builtinscssmodules)。
+
 ### PostCSS
 
 Rspack 已经完成了对 [postcss-loader](https://github.com/webpack-contrib/postcss-loader) 的兼容，你可以这样配置：
@@ -126,7 +149,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // 如果你需要将 '*.module.css' 视为 CSS Module 那么将 'type' 设置为 'css/auto' 否则设置为 'css'
       },
     ],
   },
@@ -153,7 +176,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // 如果你需要将 '*.module.less' 视为 CSS Module 那么将 'type' 设置为 'css/auto' 否则设置为 'css'
       },
     ],
   },
@@ -180,7 +203,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // 如果你需要将 '*.module.(sass|scss)' 视为 CSS Module 那么将 'type' 设置为 'css/auto' 否则设置为 'css'
       },
     ],
   },
@@ -188,29 +211,6 @@ module.exports = {
 ```
 
 上述配置会将所有 `*.sass` 文件经过 [sass-loader](https://github.com/webpack-contrib/sass-loader) 处理，并将生成的结果交给 Rspack 完成 CSS 后续流程的处理。
-
-### CSS Modules
-
-Rspack 中可以引用一个 CSS Modules 文件，如：
-
-```ts title="index.module.css"
-.red {
-  color: red;
-}
-```
-
-这个模块将会被转换为一个 JavaScript 对象，你可以在 JavaScript 中引用它：
-
-```ts title="index.js"
-import { red } from './index.module.css';
-document.getElementById('element').className = red;
-```
-
-{
-// TODO: link to builtin
-}
-
-更多关于 CSS Modules 的配置可以参考 [builtins.css.modules](config/builtins#builtinscssmodules)。
 
 ### Tailwind CSS
 

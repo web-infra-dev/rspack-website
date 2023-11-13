@@ -103,6 +103,29 @@ By default, files ending in `*.css` are treated as CSS module types. Files endin
 
 If you're migrating from Webpack, you can remove the `css-loader` or `style-loader` components from your configuration to use Rspack's built-in CSS processing capabilities, as described in [migration guide](/guide/migrate-from-webpack#removing-css-loader-and-style-loader-and-mini-css-extract-plugin).
 
+### CSS Modules
+
+A "CSS Modules" file can be referenced in Rspack like this:
+
+```ts title="index.module.css"
+.red {
+  color: red;
+}
+```
+
+In the example above, the module will be converted to a JavaScript object, which you can reference in JavaScript:
+
+```ts title="index.js"
+import { red } from './index.module.css';
+document.getElementById('element').className = red;
+```
+
+{
+// TODO: link to builtin
+}
+
+For more information on configuring CSS Modules, see [builtins.css.modules](config/builtins#builtinscssmodules).
+
 ### PostCSS
 
 Rspack is compatible with [postcss-loader](https://github.com/webpack-contrib/postcss-loader), which you can configure like this:
@@ -123,7 +146,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // set to 'css/auto' if you want to support '*.module.css' as CSS Module, otherwise set type to 'css'
       },
     ],
   },
@@ -150,7 +173,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // set to 'css/auto' if you want to support '*.module.less' as CSS Module, otherwise set type to 'css'
       },
     ],
   },
@@ -168,7 +191,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.sass$/,
+        test: /\.(sass|scss)$/,
         use: [
           {
             loader: 'sass-loader',
@@ -177,7 +200,7 @@ module.exports = {
             },
           },
         ],
-        type: 'css',
+        type: 'css/auto', // set to 'css/auto' if you want to support '*.module.(scss|sass)' as CSS Module, otherwise set type to 'css'
       },
     ],
   },
@@ -185,29 +208,6 @@ module.exports = {
 ```
 
 The above configuration runs all `*.sass` files through the [sass-loader](https://github.com/webpack-contrib/sass-loader) and passes the resulting results to Rspack for CSS post-processing.
-
-### CSS Modules
-
-A "CSS Modules" file can be referenced in Rspack like this:
-
-```ts title="index.module.css"
-.red {
-  color: red;
-}
-```
-
-In the example above, the module will be converted to a JavaScript object, which you can reference in JavaScript:
-
-```ts title="index.js"
-import { red } from './index.module.css';
-document.getElementById('element').className = red;
-```
-
-{
-// TODO: link to builtin
-}
-
-For more information on configuring CSS Modules, see [builtins.css.modules](config/builtins#builtinscssmodules).
 
 ### Tailwind CSS
 
