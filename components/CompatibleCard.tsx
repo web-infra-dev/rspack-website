@@ -12,7 +12,7 @@ interface CardMeta {
   remark?: string;
 }
 
-export const CompatibleCardItem = ({
+const CompatibleCardItem = ({
   name,
   url,
   status,
@@ -33,6 +33,7 @@ export const CompatibleCardItem = ({
     </div>
   );
 };
+
 export const PluginCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
   const pluginList: CardMeta[] = [
     {
