@@ -18,6 +18,6 @@
   ],
   "caseSensitive": true,
   "allowCompoundWords": true,
-  "ignoreWords": ["antd", "ɑrespæk", "Shenzhen", "lingyucoder", "rspress", "experimentsrspackfuturenewresolver"],
+  "ignoreWords": ["antd", "ɑrespæk", "Shenzhen", "lingyucoder", "rsbuild", "rspress", "experimentsrspackfuturenewresolver"],
   "enableFiletypes": ["mdx"]
 }

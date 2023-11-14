@@ -93,3 +93,5 @@ funs
 fargs
 fnames
 typeofs
+htmlrspackplugin
+swcjsminimizerrspackplugin
