@@ -213,11 +213,17 @@ module.exports = {
 
 另外，你也可以直接参考 [`example-builtin-swc-loader`](https://github.com/web-infra-dev/rspack/tree/main/examples/builtin-swc-loader) 查看更多使用指南。
 
+#### options
+
+参考 [SWC 配置](https://swc.rs/docs/configuration/swcrc)。
+
 ##### options.rspackExperiments
 
 <ApiMeta stability={Stability.Experimental} addedVersion="0.3.3" />
 
 这个字段是部分 `builtins` 替代，在保留了原有功能的基础上提供了模块粒度的精细转译。
+
+如果是 react 应用，可以参考 [`options.jsc.transform.react`](https://swc.rs/docs/configuration/compilation#jsctransformreact) 进行配置。
 
 - **Type:**
 
@@ -260,7 +266,7 @@ type StyledComponentsOptions = {
   minify?: boolean;
   pure?: boolean;
   cssProps?: boolean;
-}
+};
 ```
 
 - **Default:** `{}`
@@ -276,34 +282,34 @@ module.exports = {
     rules: [
       {
         test: /\.jsx?$/,
-        loader: "builtin:swc-loader",
+        loader: 'builtin:swc-loader',
         options: {
           jsc: {
             parser: {
-              syntax: "ecmascript",
-              jsx: true
-            }
+              syntax: 'ecmascript',
+              jsx: true,
+            },
           },
           rspackExperiments: {
             styledComponents: {
               displayName: true,
               ssr: true,
               fileName: true,
-              meaninglessFileNames: ["index", "styles"],
-              namespace: "rspack-test",
+              meaninglessFileNames: ['index', 'styles'],
+              namespace: 'rspack-test',
               topLevelImportPaths: [
-                "@xstyled/styled-components",
-                "@xstyled/styled-components/*"
+                '@xstyled/styled-components',
+                '@xstyled/styled-components/*',
               ],
               transpileTemplateLiterals: true,
               minify: true,
               pure: true,
-              cssProps: true
-            }
-          }
-        }
-      }
-    ]
-  }
+              cssProps: true,
+            },
+          },
+        },
+      },
+    ],
+  },
 };
 ```
