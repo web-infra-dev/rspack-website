@@ -86,5 +86,12 @@ experimentsrspackfuture
 rspackplugin
 disabletransformbydefault
 xstyled
+fnames
+iife
+Iife
+funs
+fargs
+fnames
+typeofs
 htmlrspackplugin
 swcjsminimizerrspackplugin
