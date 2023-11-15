@@ -176,6 +176,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         items: [
           getLink('/guide/loader-compat'),
           getLink('/guide/plugin-compat'),
+          getLink('/guide/compat-others'),
         ],
       },
       {
