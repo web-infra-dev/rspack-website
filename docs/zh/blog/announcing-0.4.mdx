@@ -206,14 +206,14 @@ module.exports = {
 
 ### 升级 Node.js 版本
 
-自 0.4.0 起，Rspack 不再支持 Node.js 14，现在需要 Node.js 16+。
+自 0.4.0 起，Rspack 不再支持 Node.js 14，现在仅支持 Node.js 16+。
 
-### 使用 `@rspack/core` 手动安装 `@rspack/cli`
+### 需要手动安装 `@rspack/core`
 
 ### 使用内置的 `swc-loader` 支持模块转换
 
 自 0.4.0 起，Rspack 不再默认转换文件，因此现在需要使用 `builtin:swc-loader` 来转换文件，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
 
-### 对于 React 应用程序，请使用 `@rspack/plugin-react-refresh`
+### 对于 React 应用程序，请使用 `@rspack/plugin-react-refresh` 来支持 Fast Refresh
 
 当我们禁用默认转换时，`builtin.react.refresh` 将无法工作，因此您需要使用 `@rspack/plugin-react-refresh` 来启用 Fast Refresh，更多细节请参阅 [Deprecating builtin.react.refresh](#废弃-builtinreactrefresh)。
