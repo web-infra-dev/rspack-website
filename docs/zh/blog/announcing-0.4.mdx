@@ -1,0 +1,219 @@
+# Rspack 0.4 发布公告
+
+## Rsbuild v0.1 发布公告
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a0fe4dcdc2264c6f81a72ddeabd51268~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=1800&h=579&s=145010&e=png&b=fffdf1)
+
+我们很高兴地宣布 **[Rsbuild](https://github.com/web-infra-dev/rsbuild)** **v0.1** 的发布！这个里程碑表明 Rsbuild API 现在更加稳定可靠。
+
+Rsbuild 是基于 Rspack 的构建工具，旨在成为 **更加用户友好和强大的增强型 Rspack CLI**。由于 Rspack 团队对 Web 构建最佳实践的探索和实施，Rsbuild 是那些希望从 Webpack 迁移至 Rspack 的理想解决方案。它能够显著减少 90% 的配置同时提供 10 倍的构建速度。
+
+### 🚀 性能
+
+Rsbuild 的构建性能与原生 Rspack 相当。考虑到 Rsbuild 包含更多开箱即用的功能，其性能将略低于 Rspack。
+
+这是构建 1000 个 React 组件所需的时间：
+
+![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460cfdfd6d354d61bebc715ae5b511dd~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2976&h=1496&s=47174&e=png&b=272c35)
+
+> 数据基于 Farm 团队构建的基准测试，更多信息请参阅 [performance-compare](https://github.com/rspack-contrib/performance-compare)。
+
+### 🔥 特性
+
+Rsbuild 具有以下特性：
+
+- **易于配置**：Rsbuild 的目标之一是为 Rspack 用户提供开箱即用的构建能力，允许开发人员在零配置的情况下启动 Web 项目。此外，Rsbuild 提供语义化的构建配置，以减少 Rspack 配置的学习曲线。
+
+- **性能导向**：Rsbuild 集成了社区中基于高性能 Rust 的工具，包括 [Rspack](https://github.com/web-infra-dev/rspack) 和 [SWC](https://swc.rs/)，以提供一流的构建速度和开发体验。与基于 webpack 的工具（如 Create React App 和 Vue CLI）相比，Rsbuild 提供了 5 到 10 倍更快的构建性能和更轻量的依赖。
+
+- **插件生态系统**：Rsbuild 拥有轻量级的插件系统，并包含一系列高质量的官方插件。此外，Rsbuild 兼容大多数 webpack 插件和所有 Rspack 插件，允许用户在 Rsbuild 中利用现有社区或内部插件，而无需重写代码。
+
+- **稳定的构建产物**：Rsbuild 设计时强调构建产物的稳定性。它确保开发环境和生产构建中的产物之间具有高一致性，并自动完成语法降级和 polyfill 注入。Rsbuild 还提供用于类型检查和产物语法验证的插件，以防止生产代码中的质量和兼容性问题。
+
+- **框架无关**：Rsbuild 不与任何前端 UI 框架耦合。它通过插件支持 React、Vue 3、Vue 2、Svelte 和 Lit 等框架，并计划未来支持更多 UI 框架。
+
+## 主要变动
+
+### 停止支持 Node.js 14
+
+Rspack 不再支持 Node.js 14，现在需要 Node.js 16+。
+
+### 将 @rspack/core 设为 @rspack/cli 的 peerDep
+
+`@rspack/core` 现在是 `@rspack/cli` 的 peerDependency，而不是直接的依赖关系。这意味着现在您需要手动安装 `@rspack/core` 和 `@rspack/cli`。这使得 Rspack 更加接近 webpack。从长远来看，`@rspack/cli` 的定位将不再是开箱即用的解决方案。我们建议使用 [Rsbuild](https://rsbuild.dev/) 作为开箱即用的解决方案。
+
+### 废弃默认转换
+
+`experiments.rspackFuture.disableTransformByDefault` 在 v0.4.0 中默认启用。对于仍需要旧行为的用户，可以手动将此选项设置为 `false`。
+
+此功能主要解决三类问题：[内置](https://www.rspack.dev/config/builtins) 代码转换功能，[目标](https://www.rspack.dev/config/target)，和自定义 [Rule.type](https://www.rspack.dev/config/module#ruletype)。
+
+1. 移除对一些 [[内置](https://www.rspack.dev/config/builtins)](https://www.rspack.dev/config/builtins) 功能的支持：
+
+- [[builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay)](https://www.rspack.dev/config/builtins#builtinsrelay)：移动到 `rspackExperiments.relay`
+- [[builtins.react](https://www.rspack.dev/config/builtins#builtinsreact)](https://www.rspack.dev/config/builtins#builtinsreact)：移动到 `jsc.transform.react`
+- [[builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion)](https://www.rspack.dev/config/builtins#builtinsemotion)：移动到 `rspackExperiments.emotion`
+- [[builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport)](https://www.rspack.dev/config/builtins#builtinspluginimport)：移动到 `rspackExperiments.import`
+- [[builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator)](https://www.rspack.dev/config/builtins#builtinsdecorator)：移动到 `jsc.parser.decorator`
+- [[builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv)](https://www.rspack.dev/config/builtins#builtinspresetenv)：移动到 `jsc.env`
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /.jsx$/,
+        loader: 'builtin:swc-loader',
+        options: {
+          jsc: {
+            parser: {
+              syntax: "ecmascript",
+              jsx: true
+            }
+          },
+          rspackExperiments: {
+            emotion: true // 与 `builtins` 相同
+          }
+        }
+        type: 'javascript/auto',
+      },
+    ],
+  },
+  experiments: {
+    rspackFuture: {
+      disableTransformByDefault: true
+    }
+  }
+};
+```
+
+2. [[target](https://www.rspack.dev/config/target)](https://www.rspack.dev/config/target) 不会降级用户端代码
+
+```diff
+module.exports = {
+  target: ["web", "es5"],
+  module: {
+    rules: [
+      {
+        test: /.js$/,
+        exclude: /node_modules/,
+        loader: 'builtin:swc-loader',
+        options: {
+          jsc: {
+            parser: {
+              syntax: "ecmascript"
+            },
++           target: "es5" // 注意：`jsc.target` 和 `env` 不能同时设置。
+          },
++        env: { // 注意：`jsc.target` 和 `env` 不能同时设置。
++         targets: "chrome >= 48"
++        }
+        }
+        type: 'javascript/auto',
+      },
+    ],
+  }
+};
+```
+
+3. 移除非 webpack 兼容的 [[Rule.type](```
+
+## 废弃 builtin.react.refresh
+
+由于在 v0.4.0 中默认启用了 `experiments.rspackFuture.disableTransformByDefault`，`builtin.react.refresh` 也已被废弃。现在我们建议使用 `@rspack/plugin-react-refresh` 来启用 React 快速刷新。
+
+```diff
++ const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
+const isDev = process.env.NODE_ENV === 'development';
+
+module.exports = {
+  // ...
+  mode: isDev ? 'development' : 'production',
+  module: {
+    rules: [
+      {
+        test: /.jsx$/,
+        use: {
+          loader: 'builtin:swc-loader',
+          options: {
+            jsc: {
+              parser: {
+                syntax: 'ecmascript',
+                jsx: true,
+              },
+              transform: {
+                react: {
++                  development: isDev,
++                  refresh: isDev,
+                },
+              },
+            },
+          },
+        },
+      },
+    ],
+  },
+-  builtins: {
+-    react: {
+-      refresh: true,
+-    }
+-  },
+  plugins: [
++    isDev && new ReactRefreshPlugin()
+  ].filter(Boolean),
+};
+```
+
+查看更多详情，请访问 [这里](https://www.rspack.dev/zh/guide/react.html#fast-refresh)。
+
+### 废弃 builtin:sass-loader
+
+`builtin:sass-loader` 现已被废弃。如果您正在使用它，请迁移到 `sass-loader`。Rspack 将在 v0.5.0 中移除 `builtin:sass-loader`。
+
+### 废弃 experiments.incrementalRebuild
+
+`experiments.incrementalRebuild` 现已被废弃。Rspack 将在 v0.5.0 中移除它。
+
+### 重构 @rspack/core 中的导出 API
+
+以前，一些 API 可能会通过从 @rspack/core 重新导出而被意外导出。现在通过此重构，我们从 @rspack/core 中清理了导出的 API。
+
+这不应该造成任何问题，但如果您意外导出了 API，则可能会出现问题，您可能会以不正确的方式使用 Rspack。
+
+如果确实有需要从此重构中移除的 API，请在 Rspack 仓库中提出问题。
+
+### 废弃 `builtins.devFriendlySplitChunks` 和 `experiments.new_split_chunks`
+
+为了完全迁移到 Webpack 的分割块实现，这些字段已被废弃。Rspack 将在 v0.5.0 中移除这些字段。
+
+### 默认启用新的解析器
+
+[oxc_resolver](https://crates.io/crates/oxc_resolver) 现在默认启用。
+
+`oxc_resolver` 是由 [oxc 项目](https://github.com/oxc-project/oxc) 提供的用 Rust 编写的模块解析器。新解析器已通过了 [enhanced-resolve](https://www.npmjs.com/package/enhanced-resolve) 的所有测试套件。它比以前的实现快 5 倍，比 enhanced-resolve 快 28 倍。
+
+新解析器可以配置为读取 `tsconfig.json` 的 `compilerOptions.paths` 和 `references` 字段。有关详细信息，请参阅 API [resolve.tsConfig](https://www.rspack.dev/config/resolve.html#resolvetsconfig)。
+
+要退出新解析器，请将 `experiments.rspackFuture.newResolver` 设置为 `false`。
+
+## Migration Guide
+
+迁移示例 [migrate example](https://github.com/rspack-contrib/rspack-examples/pull/2) 展示了如何从 Rspack 0.3.14 迁移到 Rspack 0.4.0
+
+### 选择 `@rspack/cli` 还是 `Rsbuild`？
+
+如果您的应用程序是 CSR 应用程序，则我们强烈建议您使用 Rsbuild 而不是自行配置 Rspack，因为与 `@rspack/cli` 相比，Rsbuild 更容易使用。
+
+### 升级 Node.js 版本
+
+自 0.4.0 起，Rspack 不再支持 Node.js 14，现在需要 Node.js 16+。
+
+### 使用 `@rspack/core` 手动安装 `@rspack/cli`
+
+### 使用内置的 `swc-loader` 支持模块转换
+
+自 0.4.0 起，Rspack 不再默认转换文件，因此现在需要使用 `builtin:swc-loader` 来转换文件，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
+
+### 对于 React 应用程序，请使用 `@rspack/plugin-react-refresh`
+
+当我们禁用默认转换时，`builtin.react.refresh` 将无法工作，因此您需要使用 `@rspack/plugin-react-refresh` 来启用 Fast Refresh，更多细节请参阅 [Deprecating builtin.react.refresh](#废弃-builtinreactrefresh)。
