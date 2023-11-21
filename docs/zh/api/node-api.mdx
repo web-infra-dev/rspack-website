@@ -1,42 +1,13 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta, Stability } from '../../../components/ApiMeta.tsx';
 
 <WebpackLicense from="https://webpack.js.org/api/node/" />
 
-# Node.js 接口
+# Node.js API
 
-## Stats Object
+<ApiMeta stability={Stability.Experimental} />
 
-`stats` 对象会被作为 `rspack()` 回调函数的第二个参数传递，可以通过它获取到打包过程中的一些信息。
+:::warning Stability Warning
 
-### `stats.hasErrors()`
-
-判断打包过程中是否有错误，返回值为 true 或 false
-
-### `stats.hasWarnings()`
-
-判断打包过程中是否有警告，返回值为 true 或 false
-
-### `stats.toJson(options)`
-
-以 JSON 对象形式返回编译信息。options 可以是一个字符串或对象，所有可用的配置都可查询 [stats 文档](/config/stats)。
-
-```js
-rspack(config, (err, stats) => {
-  if (err) throw err;
-  const errorsInfo = stats.toJson('errors-only');
-  const assetsInfo = stats.toJson({ all: false, assets: true });
-});
-```
-
-### `stats.toString(options)`
-
-以格式化的字符串形式返回描述编译信息（CLI Build 或 Serve 时的输出就是通过该方法得到的）。
-
-配置对象与 `stats.toJson(options)` 一致，除了额外增加的一个 `colors` 选项用来控制返回的字符串是否带有控制台颜色。
-
-```js
-rspack(config, (err, stats) => {
-  if (err) throw err;
-  console.log(stats.toString({ preset: 'normal', colors: true }));
-});
-```
+Node.js API 目前处于实验阶段，可能会在未来发生变化。因此，请不要依赖与 webpack 不一致的任何 API，因为它们可能在未来发生重大变化。
+:::
