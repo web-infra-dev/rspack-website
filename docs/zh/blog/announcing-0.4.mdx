@@ -48,7 +48,7 @@ Rsbuild 具备以下特性：
 
 Rspack 不再支持 Node.js 14，现在需要 Node.js 16+。
 
-### 将 @rspack/core 设为 @rspack/cli 的 peerDep
+### 调整 @rspack/core 为 @rspack/cli 的 peer dependency
 
 `@rspack/core` 现在是 `@rspack/cli` 的 peerDependency，而不是直接的依赖关系。这意味着现在您需要手动安装 `@rspack/core` 和 `@rspack/cli`。这使得 Rspack 更加接近 webpack。从长远来看，`@rspack/cli` 的定位将不再是开箱即用的解决方案。我们建议使用 [Rsbuild](https://rsbuild.dev/) 作为开箱即用的解决方案。
 
