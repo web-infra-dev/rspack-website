@@ -92,7 +92,7 @@ module.exports = {
 };
 ```
 
-2. [target](https://www.rspack.dev/config/target)(https://www.rspack.dev/config/target) 不会降级用户端代码
+2. [target](https://www.rspack.dev/config/target)(https://www.rspack.dev/config/target) 不再降级用户端代码（包含 node_modules）
 
 ```diff
 module.exports = {
@@ -121,7 +121,7 @@ module.exports = {
 };
 ```
 
-3. 移除非 webpack 兼容的 [Rule.type](```
+3. 移除非 webpack 兼容的 [Rule.type](/config/module#ruletype)
 
 ## 废弃 builtin.react.refresh
 
@@ -187,7 +187,7 @@ module.exports = {
 
 如果确实有需要从此重构中移除的 API，请在 Rspack 仓库中提出问题。
 
-### 废弃 `builtins.devFriendlySplitChunks` 和 `experiments.new_split_chunks`
+### 废弃 `builtins.devFriendlySplitChunks` 和 `experiments.newSplitChunks`
 
 为了完全迁移到 Webpack 的 splitChunks 实现，这些字段已被废弃。Rspack 将在 v0.5.0 中移除这些字段。
 
@@ -251,9 +251,9 @@ Rspack 在 v0.4.0 中废弃了部分 builtin options 并迁移至 rspack [内部
 目前，rspack 的内部插件分为两类：
 
 - 与 Webpack 兼容的插件，如 DefinePlugin, ProvidePlugin 等，这部分实现与 webpack 完成了完整的对齐
-- Rspack 独有的插件，如 SwcJsMinimizerRspackPlugin 等
+- Rspack 独有的插件，如 SwcJsMinimizerRspackPlugin, CopyRspackPlugin 等
 
-如，原有的 `builtins.define` 可以这样迁移：
+原有的 `builtins.define` 可以这样迁移：
 
 ```diff
 + const rspack = require("@rspack/core")
@@ -266,6 +266,34 @@ module.exports = {
 +  ]
 }
 ```
+
+对于 `builtins.html` 可以直接迁移到 [HtmlRspackPlugin](/config/plugins.html#htmlrspackplugin)：
+
+```diff
++ const rspack = require("@rspack/core")
+module.exports = {
+-  builtins: {
+-    html: [{ template: "./index.html" }]
+-  },
++  plugins: [
++    new rspack.HtmlRspackPlugin({ template: "./index.html" })
++  ]
+}
+```
+
+当 `builtins.html` 中存在多个配置，可以创建多个插件实例：
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.HtmlRspackPlugin({ template: './index.html' }),
+    new rspack.HtmlRspackPlugin({ template: './foo.html' }),
+  ],
+};
+```
+
+对于 `builtins.copy` 可以直接迁移到 [CopyRspackPlugin](/config/plugins.html#copyrspackplugin)。
 
 原先的 `builtins.minifyOptions` 我们提供了 [SwcJsMinimizerRspackPlugin](/config/plugins.html#swcjsminimizerrspackplugin)：
 
@@ -282,4 +310,4 @@ module.exports = {
 };
 ```
 
-其他内容可以直接参考 rspack [内部插件](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6)，进行迁移。
+其他内容可以直接参考 rspack [内部插件](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6)进行迁移，也可以在升级到 v0.4.0 后根据 CLI 提示完成操作。
