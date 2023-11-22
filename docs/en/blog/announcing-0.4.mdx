@@ -214,7 +214,7 @@ This shouldn't break anything, but if you are using unintentionally exported API
 
 If there is a real need for removed APIs from this refactor, please raise an issue in the Rspack repository.
 
-### Deprecating `builtins.devFriendlySplitChunks` and `experiments.new_split_chunks`
+### Deprecating `builtins.devFriendlySplitChunks` and `experiments.newSplitChunks`
 
 In order to full migrate to Webpack's split chunks implementation, these fields are deprecated. Rspack will remove these fields in v0.5.0.
 
@@ -270,3 +270,71 @@ But we suggest you use `builtin:swc-loader` to transform files now. More details
 ### Use `@rspack/plugin-react-refresh` for React Applications
 
 `builtin.react.refresh` does not work when we disable the default transformation, so you need to use `@rspack/plugin-react-refresh` to enable fast refresh. More details are available in [Deprecating builtin.react.refresh](#deprecating-builtinreactrefresh).
+
+### Migrating builtin options to builtin plugins
+
+In v0.4.0, Rspack deprecated some of the builtin options and migrated them to [internal plugins](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6).
+
+Currently, Rspack's internal plugins are divided into two categories:
+
+- Plugins compatible with Webpack, such as DefinePlugin, ProvidePlugin, etc. This part has been fully aligned with webpack.
+- Rspack-specific plugins, such as SwcJsMinimizerRspackPlugin, CopyRspackPlugin, etc.
+
+The original `builtins.define` can be migrated as follows:
+
+```diff
++ const rspack = require("@rspack/core")
+module.exports = {
+-  builtins: {
+-    define: { process.env.NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
+-  },
++  plugins: [
++    new rspack.DefinePlugin({ process.env.NODE_ENV: JSON.stringify(process.env.NODE_ENV) })
++  ]
+}
+```
+
+For `builtins.html`, it can be directly migrated to [HtmlRspackPlugin](/config/plugins.html#htmlrspackplugin):
+
+```diff
++ const rspack = require("@rspack/core")
+module.exports = {
+-  builtins: {
+-    html: [{ template: "./index.html" }]
+-  },
++  plugins: [
++    new rspack.HtmlRspackPlugin({ template: "./index.html" })
++  ]
+}
+```
+
+When there are multiple configurations in `builtins.html`, multiple plugin instances can be created:
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  plugins: [
+    new rspack.HtmlRspackPlugin({ template: './index.html' }),
+    new rspack.HtmlRspackPlugin({ template: './foo.html' }),
+  ],
+};
+```
+
+For `builtins.copy`, it can be directly migrated to [CopyRspackPlugin](/config/plugins.html#copyrspackplugin).
+
+For the original `builtins.minifyOptions`, we provide [SwcJsMinimizerRspackPlugin](/config/plugins.html#swcjsminimizerrspackplugin):
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  optimization: {
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin({
+        // minimizer configuration
+      }),
+    ],
+  },
+};
+```
+
+Other builtin options can be directly referred to the rspack [internal plugins](/config/plugins.html#internal-plugins) for migration, or completed according to the CLI prompts after upgrading to v0.4.0.
