@@ -192,7 +192,7 @@ module.exports = {
 
 `oxc_resolver` 是由 [oxc 项目](https://github.com/oxc-project/oxc) 提供的用 Rust 编写的模块解析器。新解析器已通过了 [enhanced-resolve](https://www.npmjs.com/package/enhanced-resolve) 的所有测试套件。它比以前的实现快 5 倍，比 enhanced-resolve 快 28 倍。
 
-新解析器可以配置为读取 `tsconfig.json` 的 `compilerOptions.paths` 和 `references` 字段。有关详细信息，请参阅 API [resolve.tsConfig](https://www.rspack.dev/config/resolve.html#resolvetsconfig)。
+新解析器可以配置为读取 `tsconfig.json` 的 `compilerOptions.paths` 和 `references` 字段,对 monorepo 的嵌套 alias 提供了内置支持。有关详细信息，请参阅 API [resolve.tsConfig](https://www.rspack.dev/config/resolve.html#resolvetsconfig)。
 
 要退出新解析器，请将 `experiments.rspackFuture.newResolver` 设置为 `false`。
 

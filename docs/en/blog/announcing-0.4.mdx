@@ -209,7 +209,7 @@ In order to full migrate to Webpack's split chunks implementation, these fields 
 
 `oxc_resolver` is a module resolver written in Rust provided by the [oxc project](https://github.com/oxc-project/oxc). The new resolver has passed all of [enhanced-resolve](https://www.npmjs.com/package/enhanced-resolve)'s test suite. It is 5 times faster than previous implementation, and 28 times faster than enhanced-resolve.
 
-The new resolver can be configured to read `tsconfig.json`'s `compilerOptions.paths` and `references` field. See API [resolve.tsConfig](https://www.rspack.dev/config/resolve.html#resolvetsconfig) for details.
+The new resolver can be configured to read `tsconfig.json`'s `compilerOptions.paths` and `references` field and provides better support for nested path alias. See API [resolve.tsConfig](https://www.rspack.dev/config/resolve.html#resolvetsconfig) for details.
 
 To opt out of the new resolver, set `experiments.rspackFuture.newResolver` to `false`.
 
