@@ -243,7 +243,19 @@ Rspack no longer supports Node.js 14 as of version 0.4.0; Node.js 16+ is now req
 
 ### Use `builtin:swc-loader` to Support Module Transformation
 
-Rspack no longer transforms files by default as of version 0.4.0, so you need to use `builtin:swc-loader` to transform files now. More details are available in [Deprecating Default Transformation](#deprecating-default-transformation).
+Rspack no longer transforms files by default as of version 0.4.0, you can still enable old transform behavior by the following setting
+
+```js
+{
+  experiments: {
+    rspackFuture: {
+      disableTransformByDefault: false; // set to old transform behavior
+    }
+  }
+}
+```
+
+But we suggest you use `builtin:swc-loader` to transform files now. More details are available in [Deprecating Default Transformation](#deprecating-default-transformation).
 
 ### Use `@rspack/plugin-react-refresh` for React Applications
 

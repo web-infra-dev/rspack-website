@@ -226,8 +226,22 @@ module.exports = {
 
 ### 使用内置的 `builtin:swc-loader` 支持模块转换
 
-自 0.4.0 起，Rspack 不再默认转换文件，因此现在需要使用 `builtin:swc-loader` 来转换文件，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
+自 0.4.0 起，Rspack 不再默认转换文件，你仍然可以通过如下方式来开启默认转换，
+
+```js
+{
+  experiments: {
+    rspackFuture: {
+      disableTransformByDefault: false; // 开启默认转换
+    }
+  }
+}
+```
+
+我们建议迁移到 `builtin:swc-loader` 来进行模块转换，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
 
 ### 对于 React 应用程序，请使用 `@rspack/plugin-react-refresh` 来支持 Fast Refresh
 
 当我们禁用默认转换时，`builtin.react.refresh` 将无法工作，因此您需要使用 `@rspack/plugin-react-refresh` 来启用 Fast Refresh，更多细节请参阅 [Deprecating builtin.react.refresh](#废弃-builtinreactrefresh)。
+
+### 迁移 builtin options 到 builtin plugins
