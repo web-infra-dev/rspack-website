@@ -48,9 +48,9 @@ Feel free to check out the [Rsbuild repository](https://github.com/web-infra-dev
 
 Rspack no longer supports Node.js 14, Node.js 16+ is now required.
 
-### Make @rspack/core as peerDep of @rspack/cli
+### Make @rspack/core as peer dependency of @rspack/cli
 
-`@rspack/core` is now a peerDependency of `@rspack/cli` rather than a direct dependency. This means that you need to manually install `@rspack/core` with `@rspack/cli` now. aligning Rspack more closely with webpack. In the long term, the positioning of `@rspack/cli` will no longer be an out-of-the-box solution. We will align `@rspack/cli` with webpack-cli and may even directly support the use of `@rspack/core` in `webpack-cli`. We recommend [Rsbuild](https://rsbuild.dev/) as an out-of-the-box solution.
+`@rspack/core` is now a peer dependency of `@rspack/cli` rather than a direct dependency. This means that you need to manually install `@rspack/core` with `@rspack/cli` now. aligning Rspack more closely with webpack. In the long term, the positioning of `@rspack/cli` will no longer be an out-of-the-box solution. We will align `@rspack/cli` with webpack-cli and may even directly support the use of `@rspack/core` in `webpack-cli`. We recommend [Rsbuild](https://rsbuild.dev/) as an out-of-the-box solution.
 
 ### Deprecating default transformation
 
@@ -58,17 +58,16 @@ Rspack no longer supports Node.js 14, Node.js 16+ is now required.
 
 This feature primarily addresses three categories of problems: [builtins](https://www.rspack.dev/config/builtins) code transformation features, [target](https://www.rspack.dev/config/target), and custom [Rule.type](https://www.rspack.dev/config/module#ruletype).
 
-1.  Removal of support for some [[builtins](https://www.rspack.dev/config/builtins)](https://www.rspack.dev/config/builtins) features:
+1. Removal of support for some [[builtins](https://www.rspack.dev/config/builtins) features:
 
-- [[builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay)](https://www.rspack.dev/config/builtins#builtinsrelay): moved to `rspackExperiments.relay`
-- [[builtins.react](https://www.rspack.dev/config/builtins#builtinsreact)](https://www.rspack.dev/config/builtins#builtinsreact): moved to `jsc.transform.react`
-- [[builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion)](https://www.rspack.dev/config/builtins#builtinsemotion): moved to `rspackExperiments.emotion`
-- [[builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport)](https://www.rspack.dev/config/builtins#builtinspluginimport): moved to `rspackExperiments.import`
-- [[builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator)](https://www.rspack.dev/config/builtins#builtinsdecorator): moved to `jsc.parser.decorator`
-- [[builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv)](https://www.rspack.dev/config/builtins#builtinspresetenv): moved to `jsc.env`
+- [builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay): moved to `rspackExperiments.relay`
+- [builtins.react](https://www.rspack.dev/config/builtins#builtinsreact): moved to `jsc.transform.react`
+- [builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion): moved to `rspackExperiments.emotion`
+- [builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport): moved to `rspackExperiments.import`
+- [builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator): moved to `jsc.parser.decorator`
+- [builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv): moved to `jsc.env`
 
 ```js
-
 module.exports = {
   module: {
     rules: [
@@ -103,7 +102,7 @@ module.exports = {
 };
 ```
 
-2.  [[target](https://www.rspack.dev/config/target)](https://www.rspack.dev/config/target) will not downgrade user-side code
+2. [target](https://www.rspack.dev/config/target) will not downgrade user-side code(including `node_modules`)
 
 ```diff
 module.exports = {
@@ -132,7 +131,7 @@ module.exports = {
 };
 ```
 
-3.  Removed non-webpack compatible [[Rule.type](https://www.rspack.dev/config/module#ruletype)](https://www.rspack.dev/config/module#ruletype)
+3. Removed non-webpack compatible [Rule.type](https://www.rspack.dev/config/module#ruletype)
 
 These types have been removed:
 
@@ -273,7 +272,7 @@ But we suggest you use `builtin:swc-loader` to transform files now. More details
 
 ### Migrating builtin options to builtin plugins
 
-In v0.4.0, Rspack deprecated some of the builtin options and migrated them to [internal plugins](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6).
+In v0.4.0, Rspack deprecated some of the builtin options and migrated them to [internal plugins](/config/plugins.html#internal-plugins).
 
 Currently, Rspack's internal plugins are divided into two categories:
 
