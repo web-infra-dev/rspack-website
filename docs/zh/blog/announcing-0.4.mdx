@@ -69,7 +69,12 @@ module.exports = {
             parser: {
               syntax: "ecmascript",
               jsx: true
+            },
+            transform:{
+             react: {
+              runtime: "automatic"
             }
+          },
           },
           rspackExperiments: {
             emotion: true // 与 `builtins` 相同
@@ -219,7 +224,7 @@ module.exports = {
 }
 ```
 
-### 使用内置的 `swc-loader` 支持模块转换
+### 使用内置的 `builtin:swc-loader` 支持模块转换
 
 自 0.4.0 起，Rspack 不再默认转换文件，因此现在需要使用 `builtin:swc-loader` 来转换文件，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
 
