@@ -2,11 +2,11 @@
 
 ## Announcing Rsbuild v0.1
 
-![](/rsbuild.png)
+![](https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/rsbuild/Rsbuild-banner-010.png)
 
 We are pleased to announce **the release of** **[Rsbuild](https://github.com/web-infra-dev/rsbuild)** **v0.1!** This milestone indicates that the Rsbuild API is now more stable and reliable to use.
 
-Rsbuild is an Rspack-based build tool, designed to be **an enhanced Rspack** **CLI** that is both more user friendly and powerful. As a result of the Rspack team's exploration and implementation of best practices for web building, Rsbuild is the ideal solution for those looking to migrate from Webpack to Rspack. It significantly reduces configuration by 90% while offering a 5~10x build speed.
+Rsbuild is an Rspack-based build tool, designed to be **an enhanced Rspack** **CLI** that is both more user friendly and powerful. As a result of the Rspack team's exploration and implementation of best practices for web building, Rsbuild is the ideal solution for those looking to migrate from Webpack to Rspack. It significantly reduces configuration by 90% while offering a 10x build speed.
 
 ### 🚀 Performance
 
@@ -14,7 +14,7 @@ The build performance of Rsbuild is on par with native Rspack. Considering that 
 
 This is the time it takes to build 1000 React components:
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/460cfdfd6d354d61bebc715ae5b511dd~tplv-k3u1fbpfcp-jj-mark:0:0:0:0:q75.image#?w=2976&h=1496&s=47174&e=png&b=272c35)
+![](https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/rsbuild/benchmark-11211255.png)
 
 > The data is based on the benchmark built by the Farm team, more info in [performance-compare](https://github.com/rspack-contrib/performance-compare).
 
@@ -48,13 +48,13 @@ Rspack no longer supports Node.js 14, Node.js 16+ is now required.
 
 This feature primarily addresses three categories of problems: [builtins](https://www.rspack.dev/config/builtins) code transformation features, [target](https://www.rspack.dev/config/target), and custom [Rule.type](https://www.rspack.dev/config/module#ruletype).
 
-1.  Removal of support for some [builtins](https://www.rspack.dev/config/builtins) features:
+1.  Removal of support for some [[builtins](https://www.rspack.dev/config/builtins)](https://www.rspack.dev/config/builtins) features:
 
-- [builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay): moved to `rspackExperiments.relay`
-- [builtins.react](https://www.rspack.dev/config/builtins#builtinsreact): moved to `jsc.transform.react`
-- [builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion): moved to `rspackExperiments.emotion`
-- [builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport): moved to `rspackExperiments.import`
-- [builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator): moved to `jsc.parser.decorator`
+- [[builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay)](https://www.rspack.dev/config/builtins#builtinsrelay): moved to `rspackExperiments.relay`
+- [[builtins.react](https://www.rspack.dev/config/builtins#builtinsreact)](https://www.rspack.dev/config/builtins#builtinsreact): moved to `jsc.transform.react`
+- [[builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion)](https://www.rspack.dev/config/builtins#builtinsemotion): moved to `rspackExperiments.emotion`
+- [[builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport)](https://www.rspack.dev/config/builtins#builtinspluginimport): moved to `rspackExperiments.import`
+- [[builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator)](https://www.rspack.dev/config/builtins#builtinsdecorator): moved to `jsc.parser.decorator`
 - [[builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv)](https://www.rspack.dev/config/builtins#builtinspresetenv): moved to `jsc.env`
 
 ```js
@@ -93,7 +93,7 @@ module.exports = {
 };
 ```
 
-2. [target](https://www.rspack.dev/config/target) will not downgrade user-side code
+2.  [[target](https://www.rspack.dev/config/target)](https://www.rspack.dev/config/target) will not downgrade user-side code
 
 ```diff
 module.exports = {
@@ -111,9 +111,9 @@ module.exports = {
             },
 +           target: "es5" // Notice: `jsc.target` and `env` cannot be set at the same time.
           },
-+         env: { //  Notice: `jsc.target` and `env` cannot be set at the same time.
-+           targets: "chrome >= 48"
-+         }
++        env: { //  Notice: `jsc.target` and `env` cannot be set at the same time.
++         targets: "chrome >= 48"
++        }
         }
         type: 'javascript/auto',
       },
@@ -122,7 +122,7 @@ module.exports = {
 };
 ```
 
-3.  Removed non-webpack compatible [Rule.type](https://www.rspack.dev/config/module#ruletype)
+3.  Removed non-webpack compatible [[Rule.type](https://www.rspack.dev/config/module#ruletype)](https://www.rspack.dev/config/module#ruletype)
 
 These types have been removed:
 
@@ -142,7 +142,7 @@ Check out our previous discussion [here](https://github.com/web-infra-dev/rspack
 
 ### Deprecating builtin.react.refresh
 
-With `experiments.rspackFuture.disableTransformByDefault` is enabled by default in v0.4.0, `builtin.react.refresh` has also been deprecated. Now we recommend using `@rspack/plugin-react-refresh` to enable react fast refresh. And to use it, you need install [@rspack/plugin-react-refresh](https://www.npmjs.com/package/@rspack/plugin-react-refresh) and [react-refresh](https://www.npmjs.com/package/react-refresh)
+With `experiments.rspackFuture.disableTransformByDefault` is enabled by default in v0.4.0, `builtin.react.refresh` has also been deprecated. Now we recommend using `@rspack/plugin-react-refresh` to enable react fast refresh.
 
 ```diff
 + const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
@@ -192,9 +192,9 @@ Checkout [here](https://www.rspack.dev/zh/guide/react.html#fast-refresh) for mor
 
 `builtin:sass-loader` has now been deprecated. If you are using it, migrate to `sass-loader`. Rspack will remove `builtin:sass-loader` in v0.5.0.
 
-### Deprecating experiments.incrementalRebuild options
+### Deprecating experiments.incrementalRebuild
 
-`experiments.incrementalRebuild` has now internally enabled, so you don't need the options anymore, the options has been deprecated. Rspack will remove the options in v0.5.0.
+`experiments.incrementalRebuild` has now been deprecated. Rspack will remove it in v0.5.0.
 
 ### Refactoring export api in @rspack/core
 
