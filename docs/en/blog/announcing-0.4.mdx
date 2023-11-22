@@ -227,6 +227,15 @@ Rspack no longer supports Node.js 14 as of version 0.4.0; Node.js 16+ is now req
 
 ### Install `@rspack/core` Manually with `@rspack/cli`
 
+```diff title=package.json
+{
+  "devDependencies": {
++    "@rspack/core": "0.4.0",
+     "@rspack/cli": "0.4.0"
+  }
+}
+```
+
 ### Use `builtin:swc-loader` to Support Module Transformation
 
 Rspack no longer transforms files by default as of version 0.4.0, so you need to use `builtin:swc-loader` to transform files now. More details are available in [Deprecating Default Transformation](#deprecating-default-transformation).

@@ -210,6 +210,15 @@ module.exports = {
 
 ### 需要手动安装 `@rspack/core`
 
+```diff title=package.json
+{
+  "devDependencies": {
++    "@rspack/core": "0.4.0",
+     "@rspack/cli": "0.4.0"
+  }
+}
+```
+
 ### 使用内置的 `swc-loader` 支持模块转换
 
 自 0.4.0 起，Rspack 不再默认转换文件，因此现在需要使用 `builtin:swc-loader` 来转换文件，更多详情请参阅 [Deprecating default transformation](#废弃默认转换)。
