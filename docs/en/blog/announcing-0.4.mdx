@@ -4,9 +4,9 @@
 
 ![](https://lf3-static.bytednsdoc.com/obj/eden-cn/rjhwzy/ljhwZthlaukjlkulzlp/rsbuild/Rsbuild-banner-010.png)
 
-We are pleased to announce **the release of** **[Rsbuild](https://github.com/web-infra-dev/rsbuild)** **v0.1!** This milestone indicates that the Rsbuild API is now more stable and reliable to use.
+We are pleased to announce **the release of** **[Rsbuild](https://github.com/web-infra-dev/rsbuild)** **v0.1!** The milestone indicates that Rsbuild is stable enough to be used in a production environment.
 
-Rsbuild is an Rspack-based build tool, designed to be **an enhanced Rspack** **CLI** that is both more user friendly and powerful. As a result of the Rspack team's exploration and implementation of best practices for web building, Rsbuild is the ideal solution for those looking to migrate from Webpack to Rspack. It significantly reduces configuration by 90% while offering a 10x build speed.
+Rsbuild is an Rspack-based build tool, designed to be **an enhanced Rspack** **CLI** that is both more user friendly and out-of-the-box. Rsbuild is the ideal solution for those looking to migrate from Webpack to Rspack. It significantly reduces configuration by 90% while offering a 10x build speed.
 
 ### 🚀 Performance
 
@@ -30,9 +30,19 @@ Rsbuild has the following features:
 
 - **Stable Artifacts**: Rsbuild is designed with a strong focus on the stability of build artifacts. It ensures high consistency between artifacts in the development environment and production builds, and automatically completes syntax downgrading and polyfill injection. Rsbuild also provides plugins for type checking and artifact syntax validation to prevent quality and compatibility issues in production code.
 
-- **Framework Agnostic**: Rsbuild is not coupled with any front-end UI framework. It supports frameworks like React, Vue 3, Vue 2, Svelte, and Lit through plugins, and plans to support more UI frameworks from the community in the future.
+- **Framework Agnostic**: Rsbuild is not coupled with any front-end UI framework. It supports frameworks like React, Vue 3, Vue 2, Svelte, Solid and Lit through plugins, and plans to support more UI frameworks from the community in the future.
 
-## Major Changes
+### 🤝 Next Step
+
+Currently, Rsbuild is still evolving rapidly and plans to introduce many more powerful new features.
+
+For example, we are developing **Rsbuild Doctor**, a robust build analysis tool that can be used with all Rspack and Webpack projects. It will provide a visual user interface to help developers analyze build times, duplicate dependencies, code transformation processes, and more, making it easier to locate and resolve build issues.
+
+We will be releasing the first working version of Rsbuild Doctor soon. Thereafter, Rsbuild will iterate in sync with Rspack, with plans to release version 1.0 in the first half of 2024.
+
+Feel free to check out the [Rsbuild repository](https://github.com/web-infra-dev/rsbuild) and give it a try 🙌.
+
+## Rspack 0.4 Major Changes
 
 ### Drop NodeJS 14 Support
 
