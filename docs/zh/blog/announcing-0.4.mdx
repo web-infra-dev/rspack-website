@@ -48,14 +48,14 @@ Rspack 不再支持 Node.js 14，现在需要 Node.js 16+。
 
 此功能主要解决三类问题：[内置](https://www.rspack.dev/config/builtins) 代码转换功能，[目标](https://www.rspack.dev/config/target)，和自定义 [Rule.type](https://www.rspack.dev/config/module#ruletype)。
 
-1. 移除对一些 [[内置](https://www.rspack.dev/config/builtins)](https://www.rspack.dev/config/builtins) 功能的支持：
+1. 移除对一些 [内置](https://www.rspack.dev/config/builtins) 功能的支持：
 
-- [[builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay)](https://www.rspack.dev/config/builtins#builtinsrelay)：移动到 `rspackExperiments.relay`
-- [[builtins.react](https://www.rspack.dev/config/builtins#builtinsreact)](https://www.rspack.dev/config/builtins#builtinsreact)：移动到 `jsc.transform.react`
-- [[builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion)](https://www.rspack.dev/config/builtins#builtinsemotion)：移动到 `rspackExperiments.emotion`
-- [[builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport)](https://www.rspack.dev/config/builtins#builtinspluginimport)：移动到 `rspackExperiments.import`
-- [[builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator)](https://www.rspack.dev/config/builtins#builtinsdecorator)：移动到 `jsc.parser.decorator`
-- [[builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv)](https://www.rspack.dev/config/builtins#builtinspresetenv)：移动到 `jsc.env`
+- [builtins.relay](https://www.rspack.dev/config/builtins#builtinsrelay)：移动到 `rspackExperiments.relay`
+- [builtins.react](https://www.rspack.dev/config/builtins#builtinsreact)：移动到 `jsc.transform.react`
+- [builtins.emotion](https://www.rspack.dev/config/builtins#builtinsemotion)：移动到 `rspackExperiments.emotion`
+- [builtins.pluginImport](https://www.rspack.dev/config/builtins#builtinspluginimport)：移动到 `rspackExperiments.import`
+- [builtins.decorator](https://www.rspack.dev/config/builtins#builtinsdecorator)：移动到 `jsc.parser.decorator`
+- [builtins.presetEnv](https://www.rspack.dev/config/builtins#builtinspresetenv)：移动到 `jsc.env`
 
 ```javascript
 module.exports = {
@@ -92,7 +92,7 @@ module.exports = {
 };
 ```
 
-2. [[target](https://www.rspack.dev/config/target)](https://www.rspack.dev/config/target) 不会降级用户端代码
+2. [target](https://www.rspack.dev/config/target)(https://www.rspack.dev/config/target) 不会降级用户端代码
 
 ```diff
 module.exports = {
@@ -121,7 +121,7 @@ module.exports = {
 };
 ```
 
-3. 移除非 webpack 兼容的 [[Rule.type](```
+3. 移除非 webpack 兼容的 [Rule.type](```
 
 ## 废弃 builtin.react.refresh
 
@@ -245,3 +245,41 @@ module.exports = {
 当我们禁用默认转换时，`builtin.react.refresh` 将无法工作，因此您需要使用 `@rspack/plugin-react-refresh` 来启用 Fast Refresh，更多细节请参阅 [Deprecating builtin.react.refresh](#废弃-builtinreactrefresh)。
 
 ### 迁移 builtin options 到 builtin plugins
+
+Rspack 在 v0.4.0 中废弃了部分 builtin options 并迁移至 rspack [内部插件](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6)。
+
+目前，rspack 的内部插件分为两类：
+
+- 与 Webpack 兼容的插件，如 DefinePlugin, ProvidePlugin 等，这部分实现与 webpack 完成了完整的对齐
+- Rspack 独有的插件，如 SwcJsMinimizerRspackPlugin 等
+
+如，原有的 `builtins.define` 可以这样迁移：
+
+```diff
++ const rspack = require("@rspack/core")
+module.exports = {
+-  builtins: {
+-    define: { process.env.NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
+-  },
++  plugins: [
++    new rspack.DefinePlugin({ process.env.NODE_ENV: JSON.stringify(process.env.NODE_ENV) })
++  ]
+}
+```
+
+原先的 `builtins.minifyOptions` 我们提供了 [SwcJsMinimizerRspackPlugin](/config/plugins.html#swcjsminimizerrspackplugin)：
+
+```js
+const rspack = require('@rspack/core');
+module.exports = {
+  optimization: {
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin({
+        // minimizer 配置
+      }),
+    ],
+  },
+};
+```
+
+其他内容可以直接参考 rspack [内部插件](/config/plugins.html#%E5%86%85%E9%83%A8%E6%8F%92%E4%BB%B6)，进行迁移。
