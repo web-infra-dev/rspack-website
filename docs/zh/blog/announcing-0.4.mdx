@@ -6,7 +6,7 @@
 
 我们很高兴地宣布 **[Rsbuild](https://github.com/web-infra-dev/rsbuild)** **v0.1** 的发布！这个里程碑表明 Rsbuild API 现在更加稳定可靠。
 
-Rsbuild 是基于 Rspack 的构建工具，旨在成为 **更加用户友好和强大的增强型 Rspack CLI**。由于 Rspack 团队对 Web 构建最佳实践的探索和实施，Rsbuild 是那些希望从 Webpack 迁移至 Rspack 的理想解决方案。它能够显著减少 90% 的配置同时提供 10 倍的构建速度。
+Rsbuild 是基于 Rspack 的构建工具，旨在成为 **更加用户友好和强大的增强型 Rspack CLI**。由于 Rspack 团队对 Web 构建最佳实践的探索和实施，Rsbuild 是那些希望从 Webpack 迁移至 Rspack 的理想解决方案。它能够显著减少 90% 的配置同时提供 5 ～ 10 倍的构建速度。
 
 ### 🚀 性能
 
@@ -125,7 +125,7 @@ module.exports = {
 
 ## 废弃 builtin.react.refresh
 
-由于在 v0.4.0 中默认启用了 `experiments.rspackFuture.disableTransformByDefault`，`builtin.react.refresh` 也已被废弃。现在我们建议使用 `@rspack/plugin-react-refresh` 来启用 React 快速刷新。
+由于在 v0.4.0 中默认启用了 `experiments.rspackFuture.disableTransformByDefault`，`builtin.react.refresh` 也已被废弃。现在我们建议使用 `@rspack/plugin-react-refresh` 来启用 React Fast Refresh。你需要手动安装 [@rspack/plugin-react-refresh](https://www.npmjs.com/package/@rspack/plugin-react-refresh) 和 [react-refresh](https://www.npmjs.com/package/react-refresh)。
 
 ```diff
 + const ReactRefreshPlugin = require('@rspack/plugin-react-refresh');
@@ -175,7 +175,7 @@ module.exports = {
 
 `builtin:sass-loader` 现已被废弃。如果您正在使用它，请迁移到 `sass-loader`。Rspack 将在 v0.5.0 中移除 `builtin:sass-loader`。
 
-### 废弃 experiments.incrementalRebuild
+### experiments.incrementalRebuild 配置废弃
 
 `experiments.incrementalRebuild` 已内置开启，所以不再需要改配置。Rspack 将在 v0.5.0 中移除该配置。
 
@@ -189,7 +189,7 @@ module.exports = {
 
 ### 废弃 `builtins.devFriendlySplitChunks` 和 `experiments.new_split_chunks`
 
-为了完全迁移到 Webpack 的分割块实现，这些字段已被废弃。Rspack 将在 v0.5.0 中移除这些字段。
+为了完全迁移到 Webpack 的 splitChunks 实现，这些字段已被废弃。Rspack 将在 v0.5.0 中移除这些字段。
 
 ### 默认启用新的解析器
 
