@@ -1,46 +1,24 @@
+import { Tabs, Tab, PackageManagerTabs } from '@theme';
+
 # 快速上手
 
 通过本章节来了解如何快速上手并使用 Rspack。
 
 ## 使用脚手架快速创建
 
+### 使用 Rsbuild
+
+我们推荐使用 [Rsbuild](#rsbuild) 创建新项目，调用如下命令即可：
+
+<PackageManagerTabs command="create rsbuild@latest" />
+
+然后按照提示操作即可。
+
 ### 使用 Rspack CLI
 
 你可以直接使用 Rspack CLI 来创建一个基础项目，调用以下命令即可：
 
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }, {label: 'bun'}]}>
-  <Tab>
-
-```sh
-npm create rspack@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-yarn create rspack
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-pnpm create rspack@latest
-```
-
-  </Tab>
-    <Tab>
-
-```sh
-bun create rspack@latest
-```
-
-  </Tab>
-</Tabs>
-
+<PackageManagerTabs command="create rspack@latest" />
 然后按照提示操作即可。
 
 ## 社区工具链
@@ -117,207 +95,3 @@ pnpm create nx-workspace myrspackapp --preset=@nx/rspack  --pm=pnpm
 创建成功后，你可以直接用 `npm start` 来启动开发服务器。你也可以运行 `npm run build` 来为生产环境构建应用程序、运行 `npm run test` 来运行单元测试。
 
 你可以在 [https://nx.dev](https://nx.dev) 了解更多关于 Nx 的信息。
-
-## 手动安装指南
-
-### 安装
-
-首先我们创建一个目录，初始化 npm ，然后在本地安装 @rspack/cli，通过如下方式进行安装:
-
-import { Tabs, Tab } from '@theme';
-
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }]}>
-  <Tab>
-
-```sh
-mkdir rspack-demo
-cd rspack-demo
-npm init -y
-npm install -D @rspack/cli
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-mkdir rspack-demo
-cd rspack-demo
-npm init -y
-yarn add -D @rspack/cli
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-mkdir rspack-demo
-cd rspack-demo
-npm init -y
-pnpm install -D @rspack/cli
-```
-
-  </Tab>
-</Tabs>
-
-## 创建第一个 bundle
-
-### 项目创建
-
-首先创建一个入口文件 `src/index.js` 和 一个 `src/answer.js`
-
-```js title="src/index.js"
-import { answer } from './answer';
-function render() {
-  document.getElementById(
-    'root'
-  ).innerHTML = `the answer to the universe is ${answer}`;
-}
-render();
-```
-
-```js title="src/answer.js"
-export const answer = 42;
-```
-
-### 使用配置文件
-
-Rspack 默认通过 `rspack.config.js` 来配置打包行为，我们可以在项目根目录下创建一个 `rspack.config.js` 文件，然后在里面配置打包行为，如下:
-
-```js title="rspack.config.js"
-const path = require('path');
-
-module.exports = {
-  entry: {
-    main: './src/index.js',
-  },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-};
-```
-
-我们通过 `npx rspack build` 执行构建，你也可以通过 `npx rspack build -c <your-config-file>` 来自定义配置文件名。build 的输出结果如下：
-
-```sh
-npx rspack build
-Time: 21.388ms
-```
-
-:::info
-`@rspack/cli` 默认的 stats 只输出 errors、warnings 和 timings 的信息，可以通过 [`stats`](/config/stats) 设置输出更多构建信息。
-:::
-
-此时我们在 `dist` 目录里生成了 `main.js` 和 `main.js.map` 两个文件， 我们在 `dist` 里创建如下的 `dist/index.html` 来验证生成的产物运行是否正常。
-
-```html title="dist/index.html"
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>hello rspack</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="./main.js"></script>
-  </body>
-</html>
-```
-
-在浏览器里打开 `dist/index.html`，我们发现浏览器里正常渲染了 `the answer to the universe is 42`。
-
-### 添加三方依赖
-
-Rspack 不仅可以打包本地依赖，也可以打包三方依赖，我们现在用 React 来重构我们的应用，首先添加 `react` 作为依赖：
-
-```sh
-npm install --save react@18 react-dom@18
-```
-
-将 `src/index.js` 重命名为 `src/index.jsx` 并使用 `React` 重构代码：
-
-```jsx title="src/index.jsx"
-import { answer } from './answer';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-const App = () => {
-  return <div>the answer to the universe is {answer}</div>;
-};
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
-```
-
-Rspack 内置了对 React 的支持，你无需任何配置，但是别忘了将 `rspack.config.js` 里的入口改为 `src/index.jsx`。
-
-```js title="rspack.config.js"
-const path = require('path');
-
-module.exports = {
-  entry: {
-    main: './src/index.jsx',
-  },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-};
-```
-
-### 添加 html 支持
-
-Rspack 内置了对 html 的支持，无需自己手动的在 html 里配置产物 js 的地址，通过如下方式使用 html 功能：
-
-```js title="rspack.config.js"
-module.exports = {
-  entry: {
-    main: './src/index.jsx',
-  },
-  builtins: {
-    html: [{ template: './src/index.html' }],
-  },
-};
-```
-
-```html title="src/index.html"
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>hello rspack</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
-```
-
-此时我们执行 `npx rspack build`，我们发现 `dist/index.html` 里自动带上了 js 的地址：
-
-```html title="dist/index.html"
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script src="/main.js" defer></script>
-  </body>
-</html>
-```
-
-### 体验 HMR
-
-Rspack 内置了对 HMR 的支持，并对 React 项目内置了 fast-refresh 的支持，你无需配置，通过 `npx rspack serve` 即可体验 React 的 HMR，
-我们修改 `src/answer.js`
-
-```js title="src/answer.js"
-export const answer = 'Rspack';
-```
-
-我们发现浏览器上的内容自动更新为 `the answer to the universe is Rspack`。
