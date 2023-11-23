@@ -1,4 +1,4 @@
-import { Tabs, Tab } from '@theme';
+import { Tabs, Tab, PackageManagerTabs } from '@theme';
 
 # 快速上手
 
@@ -10,39 +10,7 @@ import { Tabs, Tab } from '@theme';
 
 我们推荐使用 [Rsbuild](#rsbuild) 创建新项目，调用如下命令即可：
 
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }, { label: 'bun'}]}>
-  <Tab>
-
-```sh
-npm create rsbuild@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-yarn create rsbuild
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-pnpm create rsbuild@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-bun create rspack@latest
-```
-
-  </Tab>
-</Tabs>
+<PackageManagerTabs command="install rsbuild -D" />
 
 然后按照提示操作即可。
 
@@ -50,39 +18,7 @@ bun create rspack@latest
 
 你可以直接使用 Rspack CLI 来创建一个基础项目，调用以下命令即可：
 
-<Tabs values={[{ label: 'npm' }, { label: 'yarn' }, { label: 'pnpm' }, {label: 'bun'}]}>
-  <Tab>
-
-```sh
-npm create rspack@latest
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-yarn create rspack
-```
-
-  </Tab>
-
-  <Tab>
-
-```sh
-pnpm create rspack@latest
-```
-
-  </Tab>
-    <Tab>
-
-```sh
-bun create rspack@latest
-```
-
-  </Tab>
-</Tabs>
-
+<PackageManagerTabs command="install rspack -D" />
 然后按照提示操作即可。
 
 ## 社区工具链
