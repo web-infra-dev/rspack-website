@@ -79,28 +79,28 @@ module.exports = {
         options: {
           jsc: {
             parser: {
-              syntax: "ecmascript",
-              jsx: true
+              syntax: 'ecmascript',
+              jsx: true,
             },
-            transform:{
-             react: {
-              runtime: "automatic"
-            }
-          },
+            transform: {
+              react: {
+                runtime: 'automatic',
+              },
+            },
           },
           rspackExperiments: {
-            emotion: true // 与 `builtins` 相同
-          }
-        }
+            emotion: true, // 与 `builtins` 相同
+          },
+        },
         type: 'javascript/auto',
       },
     ],
   },
   experiments: {
     rspackFuture: {
-      disableTransformByDefault: true
-    }
-  }
+      disableTransformByDefault: true,
+    },
+  },
 };
 ```
 
