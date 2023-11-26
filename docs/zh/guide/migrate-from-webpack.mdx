@@ -15,9 +15,9 @@ Rspack 已经内置了对 TypeScript、JSX 以及最新的 JavaScript 语法的�
 如果你的 babel-loader 是为了支持自定义的转换逻辑，那么这部分的 babel-loader 可以保留，但是我们不鼓励用户对大量的文件使用 babel-loader，因为这会导致严重的性能恶化。
 
 ```diff
- module.exports = {
+module.exports = {
    module: {
--    rules: [
+     rules: [
 -      {
 -        test: /\.tsx?$/i,
 -        use: [
@@ -38,34 +38,55 @@ Rspack 已经内置了对 TypeScript、JSX 以及最新的 JavaScript 语法的�
 -          },
 -        ],
 -      },
--    ],
-   },
- };
-```
-
-同时，Rspack 还默认支持了 JavaScript 语法降级的功能，这意味着你不需要再使用 babel-loader 来处理浏览器兼容性，你可以通过 [target](/config/target) 和 [builtins.presetEnv](/config/builtins#builtinspresetenv) 来指定浏览器兼容范围。
-
-```diff
- module.exports = {
-+  builtins: {
-+    presetEnv: {
-+      targets: ['Chrome >= 48'],
-+    },
-+  },
-+  target: ['web', 'es5'],
-   module: {
-     rules: [
--      {
--        test: /\.jsx?$/i,
--        use: [
--          {
--            loader: 'babel-loader',
--            options: {
--              presets: ['@babel/preset-env'],
--            },
--          },
--        ],
--      },
++      {
++        test: /\.(j|t)s$/,
++        exclude: [/[\\/]node_modules[\\/]/],
++        loader: 'builtin:swc-loader',
++        options: {
++          sourceMap: true,
++          jsc: {
++            parser: {
++              syntax: 'typescript',
++            },
++            externalHelpers: true,
++            transform: {
++              react: {
++                runtime: 'automatic',
++                development: !prod,
++                refresh: !prod,
++              },
++            },
++          },
++          env: {
++            targets: 'Chrome >= 48',
++          },
++        },
++      },
++      {
++        test: /\.(j|t)sx$/,
++        loader: 'builtin:swc-loader',
++        exclude: [/[\\/]node_modules[\\/]/],
++        options: {
++          sourceMap: true,
++          jsc: {
++            parser: {
++              syntax: 'typescript',
++              tsx: true,
++            },
++            transform: {
++              react: {
++                runtime: 'automatic',
++                development: !prod,
++                refresh: !prod,
++              },
++            },
++            externalHelpers: true,
++          },
++          env: {
++            targets: 'Chrome >= 48', // browser compatibility
++          },
++        },
++      },
      ],
    },
  };
@@ -139,32 +160,5 @@ Rspack 对齐 webpack 5 的 Asset Modules，这意味着你可以使用 Asset Mo
 -      },
      ],
    },
- };
-```
-
-## 处理 Plugins
-
-### 使用 builtins.html 来代替 html-webpack-plugin
-
-Rspack 内置了对 html 的支持，这意味着你可以使用 `builtins.html` 来代替 html-webpack-plugin。
-
-```diff
- const HtmlWebpackPlugin = require("html-webpack-plugin");
-
- module.exports = {
-+  builtins: {
-+    html: [
-+      {
-+        template: "index.html",
-+        filename: "index.html",
-+      },
-+    ],
-+  },
--  plugins: [
--    new HtmlWebpackPlugin({
--      template: "index.html",
--      filename: "index.html",
--    }),
--  ],
  };
 ```
