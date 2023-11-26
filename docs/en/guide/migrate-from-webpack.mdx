@@ -15,9 +15,9 @@ Rspack already has built-in support for TypeScript and JSX as well as the latest
 Alternatively, if your configuration relies on `babel-loader` for custom conversion logic, it should be kept. However, we recommend to avoid `babel-loader` if possible because it can cause significant performance degradation for large projects.
 
 ```diff
- module.exports = {
+module.exports = {
    module: {
--    rules: [
+     rules: [
 -      {
 -        test: /\.tsx?$/i,
 -        use: [
@@ -38,34 +38,55 @@ Alternatively, if your configuration relies on `babel-loader` for custom convers
 -          },
 -        ],
 -      },
--    ],
-   },
- };
-```
-
-Rspack also supports JavaScript syntax downgrading by default. This means you don't need to use `babel-loader` to support browser compatibility anymore. Specify your browser compatibility via [target](/config/target) and [builtins.presetEnv](/config/builtins#builtinspresetenv) as in this example:
-
-```diff
- module.exports = {
-+  builtins: {
-+    presetEnv: {
-+      targets: ['Chrome >= 48'],
-+    },
-+  },
-+  target: ['web', 'es5'],
-   module: {
-     rules: [
--      {
--        test: /\.jsx?$/i,
--        use: [
--          {
--            loader: 'babel-loader',
--            options: {
--              presets: ['@babel/preset-env'],
--            },
--          },
--        ],
--      },
++      {
++        test: /\.(j|t)s$/,
++        exclude: [/[\\/]node_modules[\\/]/],
++        loader: 'builtin:swc-loader',
++        options: {
++          sourceMap: true,
++          jsc: {
++            parser: {
++              syntax: 'typescript',
++            },
++            externalHelpers: true,
++            transform: {
++              react: {
++                runtime: 'automatic',
++                development: !prod,
++                refresh: !prod,
++              },
++            },
++          },
++          env: {
++            targets: 'Chrome >= 48',
++          },
++        },
++      },
++      {
++        test: /\.(j|t)sx$/,
++        loader: 'builtin:swc-loader',
++        exclude: [/[\\/]node_modules[\\/]/],
++        options: {
++          sourceMap: true,
++          jsc: {
++            parser: {
++              syntax: 'typescript',
++              tsx: true,
++            },
++            transform: {
++              react: {
++                runtime: 'automatic',
++                development: !prod,
++                refresh: !prod,
++              },
++            },
++            externalHelpers: true,
++          },
++          env: {
++            targets: 'Chrome >= 48', // browser compatibility
++          },
++        },
++      },
      ],
    },
  };
@@ -139,32 +160,5 @@ Rspack is aligned with Webpack 5's "asset modules," which should be used instead
 -      },
      ],
    },
- };
-```
-
-## Modify Plugins
-
-### Using builtins.html instead of html-webpack-plugin
-
-Rspack has built-in support for HTML. This means you can use `builtins.html` instead of `html-webpack-plugin`:
-
-```diff
- const HtmlWebpackPlugin = require("html-webpack-plugin");
-
- module.exports = {
-+  builtins: {
-+    html: [
-+      {
-+        template: "index.html",
-+        filename: "index.html",
-+      },
-+    ],
-+  },
--  plugins: [
--    new HtmlWebpackPlugin({
--      template: "index.html",
--      filename: "index.html",
--    }),
--  ],
  };
 ```
