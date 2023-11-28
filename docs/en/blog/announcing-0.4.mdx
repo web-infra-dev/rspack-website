@@ -74,7 +74,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.jsx$/,
+        test: /\.jsx$/,
         loader: 'builtin:swc-loader',
         options: {
           jsc: {
@@ -112,7 +112,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.[cm]?js$/,
         exclude: /node_modules/,
         loader: 'builtin:swc-loader',
         options: {
@@ -165,7 +165,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.jsx$/,
+        test: /\.jsx$/,
         use: {
           loader: 'builtin:swc-loader',
           options: {
