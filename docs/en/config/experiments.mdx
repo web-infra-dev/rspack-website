@@ -126,7 +126,7 @@ Used to control whether to enable Rspack future default options, check out the d
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.[cm]?js$/,
           exclude: /node_modules/,
           loader: 'builtin:swc-loader',
           options: {
