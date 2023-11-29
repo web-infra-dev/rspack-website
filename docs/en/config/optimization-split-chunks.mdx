@@ -191,8 +191,10 @@ The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` w
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.name
 
-- **Type:** `string`
+- **Type:** `string | function`
 - **Default:** `false`
+
+> where the version of the function type is `>=0.4.1`.
 
 Also available for each cacheGroup: `splitChunks.cacheGroups.{cacheGroup}.name`.
 
@@ -234,7 +236,9 @@ A module can belong to multiple cache groups. The optimization will prefer the c
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.test
 
-- **Type:** `RegExp | string`
+- **Type:** `RegExp | string | function`
+
+> where the version of the function type is `>=0.4.1`.
 
 Controls which modules are selected by this cache group. Omitting it selects all modules. It can match the absolute module resource path or chunk names. When a chunk name is matched, all modules in the chunk are selected.
 

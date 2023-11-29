@@ -63,6 +63,14 @@ Adds a hook right before running the compiler.
 
 Called at the beginning of a build execution.
 
+### `childCompiler`
+
+`SyncHook[Compiler, string, number]`
+
+> where the version of the function type is `>=0.4.1`.
+
+Executed after created a childCompiler.
+
 ### `watchRun`
 
 `AsyncSeriesHook<[Compiler]>`
@@ -104,6 +112,14 @@ Runs a plugin after a compilation has been created.
 `AsyncParallelHook<[Compilation]>`
 
 Executed before the make stage.
+
+### `shouldEmit`
+
+`SyncBailHook<[Compilation]>`
+
+> where the version of the function type is `>=0.4.1`.
+
+Return a boolean telling whether to emit.
 
 ### `emit`
 
