@@ -63,6 +63,14 @@ resolver 设置完成之后触发。
 
 在开始执行一次构建时调用。
 
+### `childCompiler`
+
+`SyncHook[Compiler, string, number]`
+
+> 最低版本要求为 `>=0.4.1`.
+
+当创建好一个 childCompiler 后执行。
+
 ### `watchRun`
 
 `AsyncSeriesHook<[Compiler]>`
@@ -104,6 +112,14 @@ compilation 创建之后执行。
 `AsyncParallelHook<[Compilation]>`
 
 make 阶段之前调用。
+
+### `shouldEmit`
+
+`SyncBailHook<[Compilation]>`
+
+> 最低版本要求为 `>=0.4.1`.
+
+返回值为一个布尔值，用于决定是否将资源写入到磁盘中。
 
 ### `emit`
 

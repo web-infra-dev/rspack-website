@@ -179,7 +179,10 @@ module.exports = {
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.name
 
-- **类型：** `string`
+- **类型：** `string | function`
+- **默认值：** `false`
+
+> 其中函数类型的版本要求为 `>=0.4.1`
 
 每个 cacheGroup 也可以使用：`splitChunks.cacheGroups.{cacheGroup}.name`。
 
@@ -219,10 +222,11 @@ module.exports = {
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.test
 
-- **类型：** `RegExp | string`
+- **类型：** `RegExp | string | function`
+
+> 其中函数类型的版本要求为 `>=0.4.1`
 
 控制此缓存组选择的模块。省略它会选择所有模块。它可以匹配绝对模块资源路径或 chunk 名称。匹配 chunk 名称时，将选择 chunk 中的所有模块。
-
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.enforce
 
@@ -235,4 +239,3 @@ module.exports = {
 - **类型：** `string`
 
 设置 chunk id 的提示。 它将被添加到 chunk 的文件名中。
-
