@@ -26,12 +26,14 @@ import { ApiMeta } from '../../../components/ApiMeta';
 - `require("abc")` 会尝试解析 `<root>/src/abc`。
 - `require("abc/file.js")` 不会命中匹配规则，它会尝试去解析 `node_modules/abc/files.js`。
 
-## resolve.aliasField
+## resolve.browserField
 
 - **类型：** `boolean`
 - **默认值：** `true`
 
 是否按照 [package-browser-filed-spec](https://github.com/defunctzombie/package-browser-field-spec) 规则解析。
+
+等同于 enhanced-resolve 的 `resolve.aliasFields = ["browser"]`。
 
 ## resolve.conditionNames
 
