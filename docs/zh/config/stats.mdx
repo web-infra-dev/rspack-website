@@ -3,7 +3,7 @@ import WebpackLicense from '../../../components/webpack-license';
 
 <WebpackLicense from="https://webpack.js.org/configuration/stats/" />
 
-# Status
+# Stats
 
 打包信息：该选项可用于生成分析模块的依赖关系图，以及优化编译速度的打包信息。
 
@@ -16,7 +16,11 @@ import WebpackLicense from '../../../components/webpack-license';
 
 <PropertyType.CN
   type="boolean | string | Object"
-  defaultValueList={[{ defaultValue: 'true' }]}
+  defaultValueList={[
+    {
+      defaultValue: `{"preset":"errors-warnings","timings":true}`,
+    },
+  ]}
 />
 
 ## 预设（Stats Presets）
@@ -106,7 +110,9 @@ import WebpackLicense from '../../../components/webpack-license';
   defaultValueList={[{ defaultValue: 'false' }]}
 />
 
-是否带有颜色。
+输出是否需要带有颜色。
+
+在支持颜色输出的环境中执行 `rspack build` 时，它被默认设置为 `true`。
 
 ### stats.version
 
