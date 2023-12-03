@@ -16,7 +16,11 @@ Generate packaging information that can be used to analyze module dependencies a
 
 <PropertyType
   type="boolean | string | Object"
-  defaultValueList={[{ defaultValue: 'false' }]}
+  defaultValueList={[
+    {
+      defaultValue: `{"preset":"errors-warnings","timings":true}`,
+    },
+  ]}
 />
 
 ## Stats Presets
@@ -104,6 +108,8 @@ Add warnings count.
 <PropertyType type="boolean" defaultValueList={[{ defaultValue: 'false' }]} />
 
 Tells stats whether to output in the different colors.
+
+It is set to `true` by default when executing `rspack build` on environments with color support.
 
 ### stats.version
 
