@@ -178,7 +178,7 @@ Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行�
 />
 
 告诉 rspack 对每个模块确定使用的导出。这取决于 `optimization.providedExports`。
-`optimization.usedExports` 收集的信息被其他优化或代码生成使用，即不会为未使用的导出生成导出，当所有用法兼容时，导出名称会被缩短为单个字符标识符。缩小器中的死代码消除将受益于此，并且可以删除未使用的导出。
+`optimization.usedExports` 收集的信息被其他优化或代码生成使用，即不会为未使用的导出生成导出信息，当所有用法兼容时，导出名称会被缩短为单个字符标识符。压缩器中的死代码消除将受益于此，并且可以删除未使用的导出。
 
 ```js title=rspack.config.js
 module.exports = {
