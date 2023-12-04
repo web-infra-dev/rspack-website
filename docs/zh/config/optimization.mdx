@@ -43,9 +43,9 @@ EntryChunk2(index.js, a.js, b.js)
 
 <PropertyType.CN type="'named' | 'deterministic'" />
 
-| 选项            | 描述                                                                                    |
-| --------------- | --------------------------------------------------------------------------------------- |
-| `'named'`         | 使用有意义、方便调试的内容当作 Chunk id。                   |
+| 选项              | 描述                                                                  |
+| ----------------- | --------------------------------------------------------------------- |
+| `'named'`         | 使用有意义、方便调试的内容当作 Chunk id。                             |
 | `'deterministic'` | 简短的数字 id，在多次编译的场景下，会尽量保持其稳定性。适合长期缓存。 |
 
 :::info Webpack 的差异点
@@ -163,6 +163,10 @@ module.exports = {
 
 ## optimization.splitChunks
 
-Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行拆分。
+<PropertyType type="false | object" />
+
+Rspack 支持通过 `optimization.splitChunks` 配置项来对 Chunk 进行拆分。
+
+该优化选项默认情况下是开启的，你可以将其设为 `false` 来关闭它。
 
 点击 [SplitChunksPlugin](/config/optimization-split-chunks) 查看可用配置项

@@ -167,6 +167,12 @@ module.exports = {
 
 ## optimization.splitChunks
 
-Rspack supports you to split Chunk with the `optimization.splitChunks` configuration item.
+<PropertyType type="false | object" />
+
+Rspack supports splitting chunks with the `optimization.splitChunks` configuration item.
+
+It is enabled by default for dynamically imported modules.
+
+To turn it off, set it to `false`.
 
 See details at [SplitChunksPlugin](/config/optimization-split-chunks).
