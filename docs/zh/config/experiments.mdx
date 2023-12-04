@@ -269,3 +269,22 @@ module.exports = {
   }
 }
 ```
+
+### experiments.rspackFuture.newTreeshaking
+
+<ApiMeta addedVersion="0.4.2" />
+
+- **Type:** `boolean`
+- **Default Value:** `false`
+
+该功能启用了与 webpack 相同的新摇树优化实现，可以生成更高效和更小的代码。
+
+```js title="rspack.config.js"
+module.exports = {
+  experiments: {
+    rspackFuture: {
+      newTreeshaking: true,
+    },
+  },
+};
+```

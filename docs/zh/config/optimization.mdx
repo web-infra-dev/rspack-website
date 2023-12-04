@@ -43,9 +43,9 @@ EntryChunk2(index.js, a.js, b.js)
 
 <PropertyType.CN type="'named' | 'deterministic'" />
 
-| 选项            | 描述                                                                                    |
-| --------------- | --------------------------------------------------------------------------------------- |
-| `'named'`         | 使用有意义、方便调试的内容当作 Chunk id。                   |
+| 选项              | 描述                                                                  |
+| ----------------- | --------------------------------------------------------------------- |
+| `'named'`         | 使用有意义、方便调试的内容当作 Chunk id。                             |
 | `'deterministic'` | 简短的数字 id，在多次编译的场景下，会尽量保持其稳定性。适合长期缓存。 |
 
 :::info Webpack 的差异点
@@ -166,3 +166,74 @@ module.exports = {
 Rspack 支持你通过 `optimization.splitChunks` 配置项来对 Chunk 进行拆分。
 
 点击 [SplitChunksPlugin](/config/optimization-split-chunks) 查看可用配置项
+
+## optimization.usedExports
+
+<PropertyType
+  type="boolean | 'global'"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
+
+告诉 rspack 对每个模块确定使用的导出。这取决于 `optimization.providedExports`。
+`optimization.usedExports` 收集的信息被其他优化或代码生成使用，即不会为未使用的导出生成导出，当所有用法兼容时，导出名称会被缩短为单个字符标识符。缩小器中的死代码消除将受益于此，并且可以删除未使用的导出。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    usedExports: false,
+  },
+};
+```
+
+如果需要在运行时取消使用的导出分析：
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    usedExports: 'global',
+  },
+};
+```
+
+## optimization.innerGraph
+
+<PropertyType
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
+`optimization.innerGraph` 告诉 rspack 是否进行未使用导出的内部图分析。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    innerGraph: false,
+  },
+};
+```
+
+## optimization.providedExports
+
+<PropertyType
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true'},
+  ]}
+/>
+告诉 rspack 弄清楚模块提供哪些导出，以为 `export * from ....` 生成更有效的代码。默认情况下，`optimization.providedExports` 已启用。
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    providedExports: false,
+  },
+};
+```
