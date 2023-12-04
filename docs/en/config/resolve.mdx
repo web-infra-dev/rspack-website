@@ -174,22 +174,15 @@ module.exports = config;
 - **Type:** `object`
 - **Default:** `undefined`
 
-This is currently an opt-in feature via [`experiments.rspackFuture.newResolver`](/config/experiments.html#experimentsrspackfuturenewresolver).
-
 ```js title="rspack.config.js"
 module.exports = {
   resolve: {
     tsconfig: {
       configFile: path.resolve(__dirname, './tsconfig.json'),
-      references: 'auto'
+      references: 'auto',
     },
-  }
-  experiments: {
-    rspackFuture: {
-      newResolver: true
-    }
-  }
-}
+  },
+};
 ```
 
 ### resolve.tsConfig.configFile
