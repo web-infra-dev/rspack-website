@@ -10,7 +10,7 @@ Rspack loader is designed to reuse the webpack loader, it is compatible with mos
 Check out [this](https://github.com/orgs/web-infra-dev/projects/10) page to see the status of Webpack Loader API conformance.
 :::
 
-## Synchronus Loaders
+## Synchronous Loaders
 
 Either `return` or `this.callback` can be used to return the transformed content synchronously:
 
@@ -30,7 +30,7 @@ module.exports = function (content, map, meta) {
 ```
 
 ::: info
-Rspack, internally, will convert loaders into asynchronous regardless of it's a synchronus loader for technical and performance reason.
+Rspack, internally, will convert loaders into asynchronous regardless of it's a synchronous loader for technical and performance reason.
 :::
 
 ## Asynchronous Loaders

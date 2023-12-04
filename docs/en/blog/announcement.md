@@ -19,7 +19,7 @@ The Rspack project started about 11 months ago. Although it's still in the early
 
 Rspack has completed the architecture of webpack loader. It means you can use all kinds of loaders in the community, such as `babel-loader`, `less-loader`, `svgr` etc. We are planning to support all features of loader in Rspack. By that time, you can use loaders which haven't been supported for now, such as `vue-loader`.
 
-Rspack currently only supports memory cache. Persistence and portable cache will be added in the future. We are working on a build system that can make cache shareable between two devices or environments. And Rspack will help accomplish that.
+Rspack currently only supports memory cache. Persistent and portable cache will be added in the future. We are working on a build system that can make cache shareable between two devices or environments. And Rspack will help accomplish that.
 
 Rspack is now available in all frameworks inside ByteDance, and we are trying to collaborate with all friends in the community. Just like webpack, Rspack is an infrastructure for JavaScript ecosystems, which means that frameworks and Rspack can be beneficial for each other.
 
