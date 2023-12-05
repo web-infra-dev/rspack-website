@@ -9,7 +9,7 @@ const PropertyType: FC<{ type: string; defaultValueList?: DefaultValue[] }> & {
   return (
     <>
       <ul>
-        <li>
+        <li style={{ marginBottom: '10px' }}>
           <strong>Type:</strong> <code>{type}</code>
         </li>
         {defaultValueList?.length && defaultValueList.length > 0 && (
@@ -44,7 +44,7 @@ PropertyType.CN = ({ type, defaultValueList }) => {
   return (
     <>
       <ul>
-        <li>
+        <li style={{ marginBottom: '10px' }}>
           <strong>类型：</strong> <code>{type}</code>
         </li>
         {defaultValueList?.length && defaultValueList.length > 0 && (

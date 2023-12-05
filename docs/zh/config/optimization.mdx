@@ -241,3 +241,25 @@ module.exports = {
   },
 };
 ```
+
+## optimization.mangleExports
+
+<PropertyType
+  type="boolean | 'deterministic' | 'size' "
+  defaultValueList={[
+    { defaultValue: 'deterministic', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
+
+`optimization.mangleExports` 允许控制导出名称的混淆。
+支持以下选项：
+
+| option  | description                                                          |
+| ------- | -------------------------------------------------------------------- |
+| 'named' | 使用有意义且易于调试的内容作为标识符。在开发模式下，默认启用此选项。 |
+
+| 'deterministic' | 使用哈希模块标识符作为标识符，以便从长期缓存中受益。在生产模式下，默认启用此选项。|
+| true |与 'deterministic' 相同。 |
+
+| false |保留原始名称。适用于可读性和调试。 |
