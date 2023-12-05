@@ -170,3 +170,74 @@ module.exports = {
 Rspack supports you to split Chunk with the `optimization.splitChunks` configuration item.
 
 See details at [SplitChunksPlugin](/config/optimization-split-chunks).
+
+## optimization.usedExports
+
+<PropertyType
+  type="boolean | 'global'"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
+
+Tells rspack to determine used exports for each module. This depends on `optimization.providedExports`.
+Information collected by `optimization.usedExports` is used by other optimizations or code generation i.e.
+Exports are not generated for unused exports, export names are mangled to single char identifiers when all usages are compatible. Dead code elimination in minimizers will benefit from this and can remove unused exports.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    usedExports: false,
+  },
+};
+```
+
+To opt-out from used exports analysis per runtime:
+
+```js
+module.exports = {
+  //...
+  optimization: {
+    usedExports: 'global',
+  },
+};
+```
+
+## optimization.innerGraph
+
+<PropertyType
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true', mode: 'production' },
+    { defaultValue: 'false', mode: 'development' },
+  ]}
+/>
+`optimization.innerGraph` tells rspack whether to conduct inner graph analysis for unused exports.
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    innerGraph: false,
+  },
+};
+```
+
+## optimization.providedExports
+
+<PropertyType
+  type="boolean"
+  defaultValueList={[
+    { defaultValue: 'true'},
+  ]}
+/>
+Tells rspack to figure out which exports are provided by modules to generate more efficient code for `export * from ....` By default `optimization.providedExports` is enabled.
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    providedExports: false,
+  },
+};
+```

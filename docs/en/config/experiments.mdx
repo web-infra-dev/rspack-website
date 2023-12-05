@@ -265,3 +265,22 @@ module.exports = {
   }
 }
 ```
+
+### experiments.rspackFuture.newTreeshaking
+
+<ApiMeta addedVersion="0.4.2" />
+
+- **Type:** `boolean`
+- **Default Value:** `false`
+
+This feature enables the new treeshaking implementation the same as webpack, which would generate more efficient and smaller code
+
+```js title="rspack.config.js"
+module.exports = {
+  experiments: {
+    rspackFuture: {
+      newTreeshaking: true,
+    },
+  },
+};
+```
