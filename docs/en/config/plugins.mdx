@@ -867,7 +867,7 @@ new rspack.CopyRspackPlugin(options);
       | string // If input is string, it's the same as { from: `your input string` }
       | {
           from: string;
-          to?: string; // Determin based on `from`
+          to?: string; // Determine based on `from`
           context?: string; // Default to `context` in Rspack config
           toType?: 'dir' | 'file' | 'template'; // Determine based on `from`
           noErrorOnMissing?: boolean; // Default to false
@@ -943,7 +943,7 @@ new rspack.CopyRspackPlugin(options);
         name: '`force`',
         type: '`boolean`',
         default: 'false',
-        description: 'Wether to overwrite the asset if it already exist.',
+        description: 'Whether to overwrite the asset if it already exist.',
       },
       {
         name: '`priority`',
