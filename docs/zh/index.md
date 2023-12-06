@@ -1,5 +1,6 @@
 ---
 pageType: home
+linkFeed: blog-zh
 
 hero:
   name: Rspack
