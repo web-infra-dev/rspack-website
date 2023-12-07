@@ -252,3 +252,18 @@ module.exports = {
 - **类型：** `string`
 
 仅在初始 chunk 时才允许覆盖文件名。 也可以在 output.filename 中使用所有占位符。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        defaultVendors: {
+          filename: 'vendors-[name].js',
+        },
+      },
+    },
+  },
+};
+```
