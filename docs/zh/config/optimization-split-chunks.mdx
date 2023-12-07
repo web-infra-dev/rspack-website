@@ -175,6 +175,13 @@ module.exports = {
 
 `maxInitialSize` 和 `maxSize` 的区别在于 `maxInitialSize` 仅会影响初始加载 chunks。
 
+### splitChunks.automaticNameDelimiter
+
+- **类型：** `string`
+- **默认值：** `-`
+
+默认情况下，Rspack 将使用 chunk 的来源和名称生成名称（例如 vendors-main.js）。此选项使你可以指定用于生成名称的分隔符。
+
 ### splitChunks.name
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.name
@@ -239,3 +246,9 @@ module.exports = {
 - **类型：** `string`
 
 设置 chunk id 的提示。 它将被添加到 chunk 的文件名中。
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.filename
+
+- **类型：** `string`
+
+仅在初始 chunk 时才允许覆盖文件名。 也可以在 output.filename 中使用所有占位符。
