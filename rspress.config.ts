@@ -352,9 +352,8 @@ const toFeedItem: PluginRssOption['toFeedItem'] = (page) => {
   const { date } = fm;
   if (!date) return false;
 
-  const categories = (fm['categories'] || [])
-    .concat([fm['category']])
-    .filter(Boolean);
+  const categories = toArray(fm['categories'], fm['category']);
+
   const isBlog = /blog/.test(page.routePath) || categories.includes('blog');
   // we only include the blogs at the moment
   if (!isBlog) return false;
@@ -499,6 +498,9 @@ export default defineConfig({
         patterns: [
           {
             from: path.join(__dirname, 'docs', 'public', '_redirects'),
+          },
+          {
+            from: path.join(__dirname, 'docs', 'public', '_headers'),
           },
         ],
       },
