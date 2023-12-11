@@ -1,8 +1,11 @@
 import path from 'path';
 import { defineConfig } from 'rspress/config';
 import { NavItem, Sidebar } from '@rspress/shared';
+import { pluginRss, PluginRssOption } from './rspress/plugin-rss';
+import { toArray } from './rspress/plugin-rss/utils';
 
-const isProd = process.env.NODE_ENV === 'production';
+const PUBLISH_URL = 'https://rspack.dev';
+const COPYRIGHT = '© 2023 ByteDance Inc. All Rights Reserved.';
 
 function getMeta(name: string, value: string) {
   return {
@@ -344,6 +347,31 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
   };
 }
 
+const toFeedItem: PluginRssOption['toFeedItem'] = (page) => {
+  const fm = page.frontmatter as Record<string, any>;
+  const { date } = fm;
+  if (!date) return false;
+
+  const categories = toArray(fm['categories'], fm['category']);
+
+  const isBlog = /blog/.test(page.routePath) || categories.includes('blog');
+  // we only include the blogs at the moment
+  if (!isBlog) return false;
+
+  const feed = `blog-${page.lang}`;
+
+  return {
+    title: fm.title || page.title || '',
+    id: fm.rssId || page.id || '',
+    link: fm.permalink || page.routePath || '',
+    description: fm.rssDescription || fm.description || '',
+    content: fm.rssContent || fm.summary || page.content || '',
+    date,
+    category: categories,
+    feed,
+  };
+};
+
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
   title: 'Rspack',
@@ -359,6 +387,17 @@ export default defineConfig({
   markdown: {
     checkDeadLinks: true,
   },
+  plugins: [
+    pluginRss({
+      routePublicPath: PUBLISH_URL,
+      feedOptions: { copyright: COPYRIGHT, link: PUBLISH_URL },
+      feedOptionsByName: {
+        'blog-en': { title: 'Rspack Blog', link: `${PUBLISH_URL}/blog` },
+        'blog-zh': { title: 'Rspack 博客', link: `${PUBLISH_URL}/zh/blog` },
+      },
+      toFeedItem,
+    }),
+  ],
   themeConfig: {
     footer: {
       message: '© 2023 ByteDance Inc. All Rights Reserved.',
@@ -425,7 +464,7 @@ export default defineConfig({
       meta: {
         ...getMeta('og:title', 'Rspack'),
         ...getMeta('og:type', 'website'),
-        ...getMeta('og:url', 'https://rspack.dev/'),
+        ...getMeta('og:url', PUBLISH_URL),
         ...getMeta(
           'og:image',
           'https://sf16-sg.tiktokcdn.com/obj/eden-sg/geh7plsnuhog/rspack/rspack-banner.png'
@@ -459,6 +498,9 @@ export default defineConfig({
         patterns: [
           {
             from: path.join(__dirname, 'docs', 'public', '_redirects'),
+          },
+          {
+            from: path.join(__dirname, 'docs', 'public', '_headers'),
           },
         ],
       },

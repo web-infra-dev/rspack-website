@@ -24,6 +24,7 @@
   "packageManager": "pnpm@8.6.10",
   "dependencies": {
     "date-fns": "^2.29.3",
+    "feed": "^4.2.2",
     "framer-motion": "^10.0.0",
     "markdown-to-jsx": "^7.2.1",
     "react": "^18.2.0",

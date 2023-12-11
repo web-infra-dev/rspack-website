@@ -1,3 +1,7 @@
+---
+date: 2023-03-06 21:37:00
+---
+
 # Announcing Rspack
 
 Today we are so thrilled to announce that Rspack is officially released! Rspack is a Rust-based JavaScript bundler developed by the ByteDance Web Infra team that has features including high-performance, webpack interoperability, flexible configuration etc. Rspack has solved many problems in our scenarios and improved the developer experience for JavaScript engineers. To help more people get involved in this exciting project, we decided to open source this project. You are welcomed to create a pull request or issue.
