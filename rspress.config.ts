@@ -140,6 +140,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             text: getText('Web Workers', 'Web Workers'),
           },
           getLink('/guide/loader'),
+          getLink('/guide/builtin:swc-loader'),
           {
             link: getLink('/guide/plugin'),
             text: getText('Plugin', 'Plugin'),
