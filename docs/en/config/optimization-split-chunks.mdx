@@ -1,6 +1,7 @@
 import PropertyType from '../../../components/property-type.tsx';
 
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta } from '../../../components/ApiMeta';
 
 <WebpackLicense from="https://webpack.js.org/configuration/optimization/" />
 
@@ -187,6 +188,17 @@ Like `maxSize`, `maxInitialSize` can be applied globally (`splitChunks.maxInitia
 
 The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` will only affect initial load chunks.
 
+### splitChunks.automaticNameDelimiter
+
+<ApiMeta addedVersion={'0.4.2'} />
+
+- **Type:** `string`
+- **Default:** `-`
+
+By default Rspack will generate names using origin and name of the chunk (e.g. vendors-main.js).
+
+This option lets you specify the delimiter to use for the generated names.
+
 ### splitChunks.name
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.name
@@ -253,3 +265,26 @@ Tells Rspack to ignore `splitChunks.minSize`, splitChunks`.minChunks`, `splitChu
 - **Type:** `string`
 
 Sets the hint for chunk id. It will be added to chunk's filename.
+
+#### splitChunks.cacheGroups.\{cacheGroup\}.filename
+
+<ApiMeta addedVersion={'0.4.2'} />
+
+- **Type:** `string`
+
+Allows to override the filename when and only when it's an initial chunk. All placeholders available in output.filename are also available here.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        defaultVendors: {
+          filename: 'vendors-[name].js',
+        },
+      },
+    },
+  },
+};
+```
