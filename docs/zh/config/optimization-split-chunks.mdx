@@ -139,6 +139,15 @@ module.exports = {
 
 拆分前必须共享模块的最小 chunk 数。
 
+### splitChunks.hidePathInfo
+
+<ApiMeta addedVersion="0.4.3" />
+
+- **类型：** `boolean`
+- **默认值：** `options.mode` 为 `'production'` 时默认为 `true`
+
+是否隐藏路径名。
+
 ### splitChunks.maxSize
 
 使用 `maxSize`（每个缓存组 `optimization.splitChunks.cacheGroups[x].maxSize` 全局使用 `optimization.splitChunks.maxSize` 或对后备缓存组 `optimization.splitChunks.fallbackCacheGroup.maxSize` 使用）告诉 Rspack 尝试将大于 `maxSize` 个字节的 chunk 分割成较小的部分。 这些较小的部分在体积上至少为 `minSize`（仅次于 `maxSize`）。
@@ -178,7 +187,7 @@ module.exports = {
 
 ### splitChunks.automaticNameDelimiter
 
-<ApiMeta addedVersion={'0.4.2'} />
+<ApiMeta addedVersion="0.4.3" />
 
 - **类型：** `string`
 - **默认值：** `-`
@@ -252,7 +261,7 @@ module.exports = {
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.filename
 
-<ApiMeta addedVersion={'0.4.2'} />
+<ApiMeta addedVersion="0.4.3" />
 
 - **类型：** `string`
 

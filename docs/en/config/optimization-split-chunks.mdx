@@ -138,6 +138,15 @@ Maximum number of parallel requests at an entry point.
 
 The minimum times must a module be shared among chunks before splitting.
 
+### splitChunks.hidePathInfo
+
+<ApiMeta addedVersion="0.4.3" />
+
+- **Type:** `boolean`
+- **Default:** defaults to `true` if `options.mode` is `'production'`, otherwise defaults to `false`
+
+Prevents exposing path info when creating names for parts splitted by maxSize.
+
 ### splitChunks.minSize
 
 Minimum size, in bytes, for a chunk to be generated.
@@ -190,7 +199,7 @@ The difference between `maxInitialSize` and `maxSize` is that `maxInitialSize` w
 
 ### splitChunks.automaticNameDelimiter
 
-<ApiMeta addedVersion={'0.4.2'} />
+<ApiMeta addedVersion="0.4.3" />
 
 - **Type:** `string`
 - **Default:** `-`
@@ -268,7 +277,7 @@ Sets the hint for chunk id. It will be added to chunk's filename.
 
 #### splitChunks.cacheGroups.\{cacheGroup\}.filename
 
-<ApiMeta addedVersion={'0.4.2'} />
+<ApiMeta addedVersion="0.4.3" />
 
 - **Type:** `string`
 
