@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta } from '../../../components/ApiMeta';
 
 <WebpackLicense from="['https://webpack.js.org/api/module-methods/', 'https://webpack.js.org/api/module-variables/']" />
 
@@ -92,14 +93,26 @@ require('file.js?test');
 __resourceQuery === '?test';
 ```
 
-### webpack_modules (webpack-specific)
+### \_\_webpack_modules\_\_ (webpack-specific)
 
 Access to the internal object of all modules.
 
-### webpack_hash (webpack-specific)
+### \_\_webpack_hash\_\_ (webpack-specific)
 
 It provides access to the hash of the compilation.
 
-### webpack_public_path (webpack-specific)
+### \_\_webpack_public_path\_\_ (webpack-specific)
 
 Equals the configuration option's [`output.publicPath`](/config/output#outputpublicpath).
+
+### \_\_webpack_chunkname\_\_ (webpack-specific)
+
+<ApiMeta addedVersion="0.4.4" />
+
+Access to name of current chunk.
+
+### \_\_webpack_runtime_id\_\_ (webpack-specific)
+
+<ApiMeta addedVersion="0.4.4" />
+
+Access the runtime id of current entry.
