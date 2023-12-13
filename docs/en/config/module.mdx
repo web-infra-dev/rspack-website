@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Module
 
 Used to decide how to handle different types of modules in a project.
@@ -455,6 +457,49 @@ module.exports = {
     },
   },
 };
+```
+
+### module.parser.javascript
+
+Configure options for JavaScript parser.
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    parser: {
+      javascript: {
+        dynamicImportMode: 'lazy',
+        url: true,
+      },
+    },
+  },
+};
+```
+
+#### module.parser.javascript.dynamicImportMode
+
+Specifies global mode for dynamic import.
+
+- **Type:** `'lazy' | 'eager'`
+- **Default:** `'lazy'`
+
+#### module.parser.javascript.url
+
+<ApiMeta addedVersion="0.4.4" />
+
+Enable parsing of `new URL()` syntax.
+
+- **Type:** `true | false | 'relative'`
+- **Default:** `true`
+
+When use 'relative', rspack would generate relative URLs for `new URL()` syntax, i.e., there's no base URL included in the result URL:
+
+```html
+<!-- with 'relative' -->
+<img src="icon.svg" />
+
+<!-- without 'relative' -->
+<img src="file:///path/to/project/dist/icon.svg" />
 ```
 
 ## module.generator
