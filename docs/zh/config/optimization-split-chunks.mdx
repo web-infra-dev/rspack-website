@@ -126,7 +126,7 @@ module.exports = {
 ### splitChunks.minSize
 
 - **类型：** `number`
-- **默认值：** `20000`
+- **默认值：** 生产环境下为 `20000`, 其余为 `10000`
 
 生成 chunk 的最小体积（以 bytes 为单位）。
 
