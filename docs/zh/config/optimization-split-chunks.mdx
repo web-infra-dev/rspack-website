@@ -92,10 +92,16 @@ module.exports = {
 
 ### splitChunks.chunks
 
+#### splitChunks.cacheGroups.\{cacheGroup\}.chunks
+
 - **Type:** `string 'initial' | 'all' | 'async'`
 - **Default:：** `'async'`
 
-这表明将选择哪些 chunk 进行优化。当提供一个字符串，有效值为 `all` ，`async` 和 `initial`。设置为 `all` 可能特别强大，因为这意味着 chunk 可以在异步和非异步 chunk 之间共享。
+这表明将选择哪些 chunk 进行优化。当提供一个字符串，有效值为 `all` ，`async` 和 `initial`。设置为 `all` 可能会更强大，因为这意味着 chunk 可以在异步和非异步 chunk 之间共享。
+
+或者，也可以提供一个函数来进行更多控制。返回值将显示是否包含该 Chunk。
+
+还可以传递正则表达式，它是 `(chunk) => regex.test(chunk.name)` 的缩写。
 
 ```js title=rspack.config.js
 module.exports = {
