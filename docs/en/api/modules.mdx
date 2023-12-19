@@ -11,6 +11,25 @@ While Rspack supports multiple module syntaxes, we recommend following a single 
 
 Rspack support ES6 module syntax natively, you can use static `import`, `export` and `import()` syntax.
 
+#### Magic Comments
+
+By adding comments to the import, we can do things such as name our chunk or select different modes.
+
+```js
+import(
+  /* webpackChunkName: "my-chunk-name" */
+  /* webpackPrefetch: true */
+  /* webpackPreload: true */
+  'module'
+);
+```
+
+`webpackChunkName`: A name for the new chunk.
+
+`webpackPrefetch`: Tells the browser that the resource is probably needed for some navigation in the future (Available since 0.4.5).
+
+`webpackPreload`: Tells the browser that the resource might be needed during the current navigation (Available since 0.4.5).
+
 ### CommonJS
 
 Rspack is also support `CommonJS` syntax natively, you can use `require` and `module.exports` syntax.
