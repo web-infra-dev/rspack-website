@@ -1,0 +1,31 @@
+import { useI18n } from '../../i18n';
+import { usePageData } from 'rspress/runtime';
+
+export function Announcement() {
+  const t = useI18n();
+  const { page } = usePageData();
+  // Only display in homepage
+  if (page.pageType !== 'home') {
+    return null;
+  }
+  return (
+    <div
+      className="h-8 flex justify-center items-center bg-gradient-to-r from-green-400 via-yellow-300 to-orange-500"
+      style={{
+        height: '2rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <a
+        href="https://webinfra.org/about"
+        className="underline text-gray-700 font-bold"
+        target="_blank"
+        rel="noopener noreferrer "
+      >
+        {t('recruit')}
+      </a>
+    </div>
+  );
+}

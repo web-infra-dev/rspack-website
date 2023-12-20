@@ -24,7 +24,6 @@
   "packageManager": "pnpm@8.6.10",
   "dependencies": {
     "date-fns": "^2.29.3",
-    "feed": "^4.2.2",
     "framer-motion": "^10.0.0",
     "markdown-to-jsx": "^7.2.1",
     "react": "^18.2.0",
@@ -32,11 +31,12 @@
     "react-intersection-observer": "^9.4.3",
     "semver": "^7.5.4",
     "tailwindcss": "^3.2.7",
+    "feed": "^4.2.2",
     "axios": "^1.6.1"
   },
   "devDependencies": {
     "@modern-js/tsconfig": "^2.38.0",
-    "@rspress/shared": "1.5.1",
+    "@rspress/shared": "1.7.5",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/semver": "^7.5.2",
@@ -44,7 +44,7 @@
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
     "prettier": "^2.8.3",
-    "rspress": "1.5.1",
+    "rspress": "1.7.5",
     "typescript": "^5.0.4"
   }
 }
