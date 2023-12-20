@@ -4,6 +4,7 @@ import { usePageData } from 'rspress/runtime';
 export function Announcement() {
   const t = useI18n();
   const { page } = usePageData();
+  // Only display in homepage
   if (page.pageType !== 'home') {
     return null;
   }
