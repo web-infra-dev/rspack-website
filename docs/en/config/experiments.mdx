@@ -284,3 +284,50 @@ module.exports = {
   },
 };
 ```
+
+### experiments.rspackFuture.disableApplyOptionsLazily
+
+<ApiMeta addedVersion="0.4.5" />
+
+- **Type:** `boolean`
+- **Default Value:** `false`
+- **Introduced in Version:** v0.4.5
+- **Enabled by Default in Version:** v0.5.0
+- **Removed in Version:** v0.6.0
+
+When this feature is not enabled, options can still make valid changes to some options after `compiler.hooks.afterEnvironment` is called.
+
+With this feature turned on, options will no longer make valid changes to options after a `compiler.hooks.afterEnvironment` call. This behavior is consistent with that of Webpack, so this configuration is largely unaffected for users developing applications in Rspack, but should be noted by developers of Rspack plugins or upper-level frameworks.
+
+A common scenario is to [make changes to entries after the Compiler has been created](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783):
+
+```js
+const rspack = require('@rspack/core');
+const compiler = rspack(options);
+
+function prependEntry(compiler, additionalEntry) {
+  for (const key in compiler.options.entry) {
+    compiler.options.entry[key].import = [
+      additionalEntry,
+      ...(compiler.options.entry[key].import || []),
+    ];
+  }
+}
+
+prependEntry(compiler, 'client.js');
+```
+
+在开启该功能后修改将不生效，需要进行如下修改：
+
+```js
+const rspack = require('@rspack/core');
+const compiler = rspack(options);
+
+function prependEntry(compiler, additionalEntry) {
+  new compiler.webpack.EntryPlugin(compiler.context, additionalEntry, {
+    name: undefined,
+  }).apply(compiler);
+}
+
+prependEntry(compiler, 'client.js');
+```
