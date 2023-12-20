@@ -10,9 +10,8 @@ export function Announcement() {
   }
   return (
     <div
-      className="h-8 flex justify-center items-center"
+      className="h-8 flex justify-center items-center bg-gradient-to-r from-green-400 via-yellow-300 to-orange-500"
       style={{
-        background: 'var(--rp-home-hero-name-background)',
         height: '2rem',
         display: 'flex',
         justifyContent: 'center',
@@ -21,12 +20,9 @@ export function Announcement() {
     >
       <a
         href="https://webinfra.org/about"
-        className="underline"
+        className="underline text-gray-700 font-bold"
         target="_blank"
-        rel="noopener noreferrer"
-        style={{
-          color: '#e1f764',
-        }}
+        rel="noopener noreferrer "
       >
         {t('recruit')}
       </a>
