@@ -16,4 +16,5 @@ export const EN_US = {
   benchmarkDesc:
     'Combining TypeScript and Rust with a parallelized architecture to bring you the ultimate developer experience.',
   benchmarkDetail: 'See benchmark details',
+  recruit: 'Rspack team is recruiting, welcome to join👏🏻',
 } as const;
