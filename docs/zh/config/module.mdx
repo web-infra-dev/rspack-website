@@ -1,3 +1,5 @@
+import { ApiMeta } from '../../../components/ApiMeta';
+
 # Module
 
 模块：该选项用于决定如何处理一个项目中不同类型的模块。
@@ -457,6 +459,49 @@ module.exports = {
     },
   },
 };
+```
+
+### module.parser.javascript
+
+JavaScript parser 的配置项。
+
+```ts title=rspack.config.js
+module.exports = {
+  module: {
+    parser: {
+      javascript: {
+        dynamicImportMode: 'lazy',
+        url: true,
+      },
+    },
+  },
+};
+```
+
+#### module.parser.javascript.dynamicImportMode
+
+指定动态导入的全局模式。
+
+- **类型：** `'lazy' | 'eager'`
+- **默认值：** `'lazy'`
+
+#### module.parser.javascript.url
+
+<ApiMeta addedVersion="0.4.4" />
+
+启用 `new URL()` 语法解析。
+
+- **类型：** `true | false | 'relative'`
+- **默认值：** `true`
+
+当使用 'relative' 时，webpack 将为 `new URL()` 语法生成相对的 URL，即结果 URL 中不包含根 URL
+
+```html
+<!-- 使用 'relative' -->
+<img src="icon.svg" />
+
+<!-- 不使用 'relative' -->
+<img src="file:///path/to/project/dist/icon.svg" />
 ```
 
 ## module.generator
