@@ -289,7 +289,7 @@ module.exports = {
 };
 ```
 
-### experiments.rspackFuture.disableApplyOptionsLazily
+### experiments.rspackFuture.disableApplyEntryLazily
 
 <ApiMeta addedVersion="0.4.5" />
 
@@ -299,11 +299,11 @@ module.exports = {
 - **默认开启版本：** v0.5.0
 - **移除版本：** v0.6.0
 
-在未开启该功能时，options 在 `compiler.hooks.afterEnvironment` 调用之后仍然可以对一些 options 进行有效的修改。
+在未开启该功能时，在 `compiler.hooks.afterEnvironment` 调用之后仍然可以对 `options.entry` 进行有效的修改。
 
-而在开启该功能后，options 在 `compiler.hooks.afterEnvironment` 调用之后不会再进行 options 的有效修改。该行为与 Webpack 一致，所以该配置对于使用 Rspack 开发应用的用户来说基本没有影响，而对于 Rspack 的插件或上层框架开发者需要注意。
+而在开启该功能后，在 `compiler.hooks.afterEnvironment` 调用之后不会再进行 `options.entry` 的有效修改。该行为与 Webpack 一致，所以该配置对于使用 Rspack 开发应用的用户来说基本没有影响，而对于 Rspack 的插件或上层框架开发者需要注意。
 
-一个常见的场景就是在[创建 Compiler 之后对 entry 进行一些修改](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783)：
+一个常见的场景就是在[创建 Compiler 之后增加一些入口](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783)：
 
 ```js
 const rspack = require('@rspack/core');
@@ -318,7 +318,7 @@ function prependEntry(compiler, additionalEntry) {
   }
 }
 
-prependEntry(compiler, 'client.js');
+prependEntry(compiler, 'dev-client.js');
 ```
 
 在开启该功能后修改将不生效，需要进行如下修改：
@@ -333,5 +333,5 @@ function prependEntry(compiler, additionalEntry) {
   }).apply(compiler);
 }
 
-prependEntry(compiler, 'client.js');
+prependEntry(compiler, 'dev-client.js');
 ```

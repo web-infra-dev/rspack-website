@@ -285,7 +285,7 @@ module.exports = {
 };
 ```
 
-### experiments.rspackFuture.disableApplyOptionsLazily
+### experiments.rspackFuture.disableApplyEntryLazily
 
 <ApiMeta addedVersion="0.4.5" />
 
@@ -295,11 +295,11 @@ module.exports = {
 - **Enabled by Default in Version:** v0.5.0
 - **Removed in Version:** v0.6.0
 
-When this feature is not enabled, options can still make valid changes to some options after `compiler.hooks.afterEnvironment` is called.
+When this feature is not enabled, `options.entry` can still make valid changes after `compiler.hooks.afterEnvironment` is called.
 
-With this feature turned on, options will no longer make valid changes to options after a `compiler.hooks.afterEnvironment` call. This behavior is consistent with that of Webpack, so this configuration is largely unaffected for users developing applications in Rspack, but should be noted by developers of Rspack plugins or upper-level frameworks.
+With this feature turned on, `options.entry` will no longer make valid changes after `compiler.hooks.afterEnvironment` call. This behavior is consistent with Webpack, so this configuration is unaffected for users developing applications in Rspack, but should be noted by developers of Rspack plugins or upper-level frameworks.
 
-A common scenario is to [make changes to entries after the Compiler has been created](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783):
+A common scenario is to [prepend entries after the Compiler has been created](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783):
 
 ```js
 const rspack = require('@rspack/core');
@@ -314,7 +314,7 @@ function prependEntry(compiler, additionalEntry) {
   }
 }
 
-prependEntry(compiler, 'client.js');
+prependEntry(compiler, 'dev-client.js');
 ```
 
 Modifications will not take effect when this configuration is turned on, and you need to make the following changes:
@@ -329,5 +329,5 @@ function prependEntry(compiler, additionalEntry) {
   }).apply(compiler);
 }
 
-prependEntry(compiler, 'client.js');
+prependEntry(compiler, 'dev-client.js');
 ```
