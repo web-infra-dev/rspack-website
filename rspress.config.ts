@@ -296,6 +296,10 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
         text: getText('Builtins 内置功能', 'Builtins'),
         link: getLink('/config/builtins'),
       },
+      {
+        text: getText('其他配置', 'Other Options'),
+        link: getLink('/config/other-options'),
+      },
     ],
     [getLink('/api/')]: [
       {
