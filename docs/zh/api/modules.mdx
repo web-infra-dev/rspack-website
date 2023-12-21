@@ -1,4 +1,5 @@
 import WebpackLicense from '../../../components/webpack-license';
+import { ApiMeta } from '../../../components/ApiMeta';
 
 <WebpackLicense from="['https://webpack.docschina.org/api/module-variables/', 'https://webpack.docschina.org/api/module-methods/']" />
 
@@ -92,14 +93,26 @@ require('file.js?test');
 __resourceQuery === '?test';
 ```
 
-### webpack_modules (webpack 专用)
+### \_\_webpack_modules\_\_ (webpack 专用)
 
 访问所有模块的内部对象。
 
-### webpack_hash (webpack 专用)
+### \_\_webpack_hash\_\_ (webpack 专用)
 
 这个变量提供对编译过程中（compilation）的 hash 信息的访问。
 
-### webpack_public_path (webpack 专用)
+### \_\_webpack_public_path\_\_ (webpack 专用)
 
 等于配置选项的 [output.publicPath](/config/output#outputpublicpath)。
+
+### \_\_webpack_chunkname\_\_ (webpack-specific)
+
+<ApiMeta addedVersion="0.4.4" />
+
+访问当前 chunk 的名称。
+
+### \_\_webpack_runtime_id\_\_ (webpack-specific)
+
+<ApiMeta addedVersion="0.4.4" />
+
+访问当前入口的 runtime id。
