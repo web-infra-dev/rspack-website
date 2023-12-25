@@ -4,9 +4,15 @@ import WebpackLicense from '../../../components/webpack-license';
 
 # devServer
 
-开发服务器：该选项用于开发应用程序。
+开发服务器：该选项用于配置 `@rspack/dev-server` 的行为。
 
 - **类型：** `Object`
+
+:::tip
+如果当前应用没有依赖 `@rspack/dev-server`，那么 devServer 配置将不会生效。
+
+比如，Rspack CLI 默认依赖了 `@rspack/dev-server`，因此在 Rspack CLI 项目里可以使用 devServer 配置。而 Rsbuild 自行实现了 dev server，并提供了单独的 "server" 配置，所以 Rsbuild 项目不能使用 devServer 配置。
+:::
 
 ## devServer.allowedHosts
 

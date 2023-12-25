@@ -4,9 +4,15 @@ import WebpackLicense from '../../../components/webpack-license';
 
 # devServer
 
-Used for developing applications.
+Used to configure the behavior of `@rspack/dev-server`.
 
 - **Type:** `Object`
+
+:::tip
+If the current application does not depend on `@rspack/dev-server`, then the devServer config will have no effect.
+
+For example, Rspack CLI depends on `@rspack/dev-server` by default, so the devServer config can be used in Rspack CLI projects. Rsbuild has implemented its own dev server and provides a separate "server" config, so the devServer config cannot be used in Rsbuild projects.
+:::
 
 ## devServer.allowedHosts
 
