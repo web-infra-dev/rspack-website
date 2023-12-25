@@ -149,6 +149,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             text: getText('Plugin', 'Plugin'),
           },
           getLink('/guide/module-resolution'),
+          getLink('/guide/module-federation'),
           getLink('/guide/dev-server'),
         ],
       },
