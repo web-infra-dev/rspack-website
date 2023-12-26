@@ -274,8 +274,8 @@ module.exports = {
 
 <ApiMeta addedVersion="0.4.2" />
 
-- **Type:** `boolean`
-- **Default Value:** `false`
+- **类型：** `boolean`
+- **默认值：** `false`
 
 该功能启用了与 webpack 相同的新摇树优化实现，可以生成更高效和更小的代码。
 
@@ -287,4 +287,51 @@ module.exports = {
     },
   },
 };
+```
+
+### experiments.rspackFuture.disableApplyEntryLazily
+
+<ApiMeta addedVersion="0.4.5" />
+
+- **类型：** `boolean`
+- **默认值：** `false`
+- **引入版本：** v0.4.5
+- **默认开启版本：** v0.5.0
+- **移除版本：** v0.6.0
+
+在未开启该功能时，在 `compiler.hooks.afterEnvironment` 调用之后仍然可以对 `options.entry` 进行有效的修改。
+
+而在开启该功能后，在 `compiler.hooks.afterEnvironment` 调用之后不会再进行 `options.entry` 的有效修改。该行为与 Webpack 一致，所以该配置对于使用 Rspack 开发应用的用户来说基本没有影响，而对于 Rspack 的插件或上层框架开发者需要注意。
+
+一个常见的场景就是在[创建 Compiler 之后增加一些入口](https://github.com/webpack/webpack-dev-server/blob/540c43852ea33f9cb18820e1cef05d5ddb86cc3e/lib/Server.js#L719-L783)：
+
+```js
+const rspack = require('@rspack/core');
+const compiler = rspack(options);
+
+function prependEntry(compiler, additionalEntry) {
+  for (const key in compiler.options.entry) {
+    compiler.options.entry[key].import = [
+      additionalEntry,
+      ...(compiler.options.entry[key].import || []),
+    ];
+  }
+}
+
+prependEntry(compiler, 'dev-client.js');
+```
+
+在开启该功能后修改将不生效，需要进行如下修改：
+
+```js
+const rspack = require('@rspack/core');
+const compiler = rspack(options);
+
+function prependEntry(compiler, additionalEntry) {
+  new compiler.webpack.EntryPlugin(compiler.context, additionalEntry, {
+    name: undefined,
+  }).apply(compiler);
+}
+
+prependEntry(compiler, 'dev-client.js');
 ```
