@@ -201,7 +201,7 @@ export const addRandomDate = (a) => a + randomDate;
 export const add = (a, b) => a + b;
 ```
 
-`random` 变量在默认情况下是需要被保留的，因为它在模块初始化时期包含副作用。
+变量 `randomDate` 在默认情况下是需要被保留的，因为它在模块初始化时期包含副作用。
 但是，由于 package.json 中包含了 sideEffects 字段，且值为 false，除此之外在 add.js 中没有使用任何导出变量，因此整个模块都可以被跳过，subtract.js 同理。
 
 ```js

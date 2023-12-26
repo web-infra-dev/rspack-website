@@ -205,7 +205,7 @@ export const addRandomDate = (a) => a + randomDate;
 export const add = (a, b) => a + b;
 ```
 
-The `random` variable would still be needed because it includes a side effect that runs during the module's initialization.
+The variable `randomDate` would still be needed because it includes a side effect that runs during the module's initialization.
 However, because the package.json includes the `sideEffects` field and the value is `false`, and there are no export variable used in
 **add.js**, so the whole module could be skipped, same for **subtract.js**
 

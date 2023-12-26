@@ -15,7 +15,7 @@ Rspack 仅会对源码进行转译，因此你需要使用其他工具（如：t
 ### isolatedModules
 
 Rspack 会为每一个模块分开转译，因此，这隐式地开启了 [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules)。
-而某一些功能，如 const enum 则是依赖了对整个项目的分析，因此，这些功能将无法使用。你可以显示地在 `tsconfig.json` 中开启这个选项，以使得 Rspack 的模块处理行为与 IDE 提示或类型检查中保持一致。
+而某一些功能，如 const enum 则是依赖了对整个项目的分析，因此，这些功能将无法使用。你可以显式地在 `tsconfig.json` 中开启这个选项，以使得 Rspack 的模块处理行为与 IDE 提示或类型检查中保持一致。
 
 ```json title="tsconfig.json"
 {
