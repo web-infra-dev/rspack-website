@@ -251,7 +251,7 @@ Override [`output.publicPath`](/en/config/output.html#outputpublicpath), only fo
 module.exports = {
   //...
   output: {
-    publicPath: 'https://xxx.com/',
+    publicPath: 'https://example.com/',
   },
   module: {
     rules: [
@@ -259,7 +259,7 @@ module.exports = {
         test: /\.png/,
         type: 'asset/resource',
         generator: {
-          publicPath: 'https://cdn.xxx.com/',
+          publicPath: 'https://cdn.example.com/',
         },
       },
     ],
@@ -533,7 +533,7 @@ module.exports = {
     generator: {
       asset: {
         // Generator options for asset modules
-        publicPath: 'https://cdn.xxx.com/',
+        publicPath: 'https://cdn.example.com/',
       },
       'asset/inline': {
         // Generator options for asset/inline modules

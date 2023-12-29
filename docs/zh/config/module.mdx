@@ -252,7 +252,7 @@ module.exports = {
 module.exports = {
   //...
   output: {
-    publicPath: 'https://xxx.com/',
+    publicPath: 'https://example.com/',
   },
   module: {
     rules: [
@@ -260,7 +260,7 @@ module.exports = {
         test: /\.png/,
         type: 'asset/resource',
         generator: {
-          publicPath: 'https://cdn.xxx.com/',
+          publicPath: 'https://cdn.example.com/',
         },
       },
     ],
@@ -535,7 +535,7 @@ module.exports = {
     generator: {
       asset: {
         // asset 模块的生成器选项
-        publicPath: 'https://cdn.xxx.com/',
+        publicPath: 'https://cdn.example.com/',
       },
       'asset/inline': {
         // asset/inline 模块的生成器选项
