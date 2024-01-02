@@ -20,10 +20,6 @@ Rspack 内部使用 SWC 进行代码的降级编译（可以通过 [presetEnv](/
 
 计划支持，我们和 NAPI-RS 团队一起在探索 wasm 方案，目前还在探索阶段，后续会有更多的进展。
 
-## 什么时候会支持 Vue
-
-计划支持中，预计 4-6 月完成支持。
-
 ## Rspack 相比 Webpack + SWC-loader 有什么优势
 
 即使是 Webpack + SWC-loader 解决了 babel-loader 的性能问题，但是 Webpack 本身仍然存在较多的性能瓶颈，如 make，seal 等阶段都是单线程的，但是 Rspack 突破了这些限制，因此 Rspack 比 Webpack + SWC-loader 有更好的性能表现，尤其是在多核场景。
