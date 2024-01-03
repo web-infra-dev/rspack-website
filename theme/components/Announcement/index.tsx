@@ -1,11 +1,16 @@
+import { useState } from 'react';
 import { useI18n } from '../../i18n';
 import { usePageData } from 'rspress/runtime';
+import IconCloseCircle from './close';
 
 export function Announcement() {
   const t = useI18n();
+  const [disable, setDisable] = useState(
+    window.localStorage.getItem('disabled-hire') ?? false
+  );
   const { page } = usePageData();
   // Only display in homepage
-  if (page.pageType !== 'home') {
+  if (page.pageType !== 'home' || disable) {
     return null;
   }
   return (
@@ -26,6 +31,18 @@ export function Announcement() {
       >
         {t('recruit')}
       </a>
+      <IconCloseCircle
+        onClick={() => {
+          setDisable(true);
+          window.localStorage.setItem('disabled-hire', 'true');
+        }}
+        style={{
+          right: 10,
+          color: 'white',
+          fontSize: 18,
+          position: 'absolute',
+        }}
+      ></IconCloseCircle>
     </div>
   );
 }
