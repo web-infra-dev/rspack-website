@@ -2,14 +2,20 @@ import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # 模块联邦
 
-<ApiMeta addedVersion={'0.4.5'} stability={Stability.Experimental} />
+<ApiMeta addedVersion={'0.5.0'} stability={Stability.Experimental} />
 
-模块联邦（Module Federation）允许 JavaScript 应用程序在运行时动态地加载来自其他构建的代码。这个功能使得各个独立构建的应用程序（微前端架构中的“微应用”）可以共享模块而无需重新编译整个应用。
+模块联邦（Module Federation）允许 JavaScript 应用在运行时从其他构建中动态加载代码。
 
-Rspack 中支持了 Module Federation 1.0 和 Module Federation 1.5 两个版本：
+此功能有几个用例，包括：
 
-- Module Federation 1.0 即当前 Webpack 实现的 ModuleFederationPlugin。
-- Module Federation 1.5 在 1.0 的基础上增加了运行时插件功能，使其可以对 Module Federation 的行为和功能进行扩展。
+- 独立应用（在微前端架构中称为“微前端”）之间共享模块，无需重新编译整个应用。
+- 不同的团队在不需要重新编译整个应用的情况下处理同一应用的不同部分。
+- 应用之间在运行时进行动态代码加载和共享。
+
+Rspack 支持两个版本的模块联邦：模块联邦 1.0 和模块联邦 1.5。
+
+- 模块联邦 1.0（Module Federation 1.0）是 Webpack 中 ModuleFederationPlugin 的当前实现。
+- 模块联邦 1.5（Module Federation 1.5）除其他功能外，还为 1.0 添加了运行时插件功能，允许扩展模块联邦的行为、功能，并向用户提供控制反转的能力。
 
 详细配置可参考：
 

@@ -447,13 +447,13 @@ new rspack.electron.ElectronTargetPlugin();
 
 #### container.ModuleFederationPlugin
 
-<ApiMeta addedVersion={'0.4.5'} stability={Stability.Experimental} />
+<ApiMeta addedVersion={'0.5.0'} stability={Stability.Experimental} />
 
-This plugin implements [Module Federation 1.5](https://github.com/module-federation/universe/tree/main/packages/enhanced)。
+This plugin implements [Module Federation 1.5](https://github.com/module-federation/universe/tree/main/packages/enhanced).
 
 - implementation
   - Type: `string`
-  - Usage: Provide a path as the implementation for Module Federation 1.5 runtime, which defaults to [@module-federation/webpack-bundler-runtime](https://github.com/module-federation/universe/tree/main/packages/webpack-bundler-runtime)。
+  - Usage: Provide a path as the implementation for Module Federation 1.5 runtime, which defaults to [@module-federation/runtime-tools](https://github.com/module-federation/universe/tree/canary/packages/runtime-tools).
 - runtimePlugins
   - Type: `string[]`
   - Usage: Provide the plugin required to run Module Federation 1.5, which can extend the behavior and capabilities of Module Federation.
