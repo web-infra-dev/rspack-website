@@ -190,7 +190,7 @@ v0.5.0 移除了许多已经弃用的功能，除此之外，v0.5.0 引入了四
 
 这是一个很可能会影响到您的破坏性更新。
 
-在将 `@rspack/core` 升级到 v0.5.0 后，如果构建失败并出现错误：`Failed to resolve ./src/xxx.tsx`，或者 `Failed to resolve ./src/xxx.ts`，或者 `Failed to resolve ./src/xxx.jsx`，则需要在配置中添加 `resolve.extensions = ['...', '.tsx', '.ts', '.jsx']`。
+在将 `@rspack/core` 升级到 v0.5.0 后，如果构建失败并出现错误：`Can't resolve './src/xxx.tsx'`，或者 `Can't resolve './src/xxx.ts'`，或者 `Can't resolve './src/xxx.jsx'`，则需要在配置中添加 `resolve.extensions = ['...', '.tsx', '.ts', '.jsx']`。
 
 ```diff
 const configuration = {
