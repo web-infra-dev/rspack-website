@@ -156,7 +156,11 @@ If you are using `externalHelpers: true` with `builtin:swc-loader` or `swc-loade
 
 ### Remove deprecated builtins options
 
-Some of the builtins options have been deprecated since v0.4.0, and they are removed in v0.5.0, which includes `builtins.noEmitAssets`, `builtins.presetEnv`, `builtins.decorator`, `builtins.devFriendlySplitChunks`, `builtins.react`, `builtins.pluginImport`, `builtins.emotion`, `builtins.relay`, `builtins.html`, `builtins.copy`, `builtins.minifyOptions`. If you are still using them, checkout [migrating builtin options to builtin plugins](https://www.rspack.dev/en/blog/announcing-0.4#%E8%BF%81%E7%A7%BB-builtin-options-%E5%88%B0-builtin-plugins) to migrate.
+Some of the builtins options have been deprecated since v0.4.0, and they are removed in v0.5.0.
+
+If you are still using `builtins.noEmitAssets`, `builtins.devFriendlySplitChunks`, `builtins.react`, `builtins.html`, `builtins.copy`, `builtins.minifyOptions`, checkout [migrating builtin options to builtin plugins](/blog/announcing-0-4#migrating-builtin-options-to-builtin-plugins) to migrate.
+
+And if you are still using `builtins.presetEnv`, `builtins.decorator`, `builtins.pluginImport`, `builtins.emotion`, `builtins.relay`, checkout the migration guide [here](#add-configuration-for-old-transforming-related-builtins).
 
 ### Remove builtin:sass-loader
 
@@ -184,7 +188,7 @@ This configuration has no effect on users developing applications in Rspack most
 
 ## Migration Guide
 
-v0.5.0 removed lots of deprecated features, except that, v0.5.0 introduced four breaking changes, and you only need to notice two of them if you are developing applications using Rspack. So v0.5.0 is easy to migrate if you already migrate to v0.4+ with no deprecate warnings, if you haven't, checkout the [v0.4.0 migration guide](https://www.rspack.dev/blog/announcing-0.4#migration-guide).
+v0.5.0 removed lots of deprecated features, except that, v0.5.0 introduced four breaking changes, and you only need to notice two of them if you are developing applications using Rspack. So v0.5.0 is easy to migrate if you already migrate to v0.4+ with no deprecate warnings, if you haven't, checkout the [v0.4.0 migration guide](https://www.rspack.dev/blog/announcing-0-4#migration-guide).
 
 ### Add resolve.extensions
 
@@ -202,6 +206,8 @@ const configuration = {
 ```
 
 You only need to add the needed extensions to `resolve.extensions`. For example, if you are not using any `.tsx` or `.ts` files, only using `.js` or `.jsx` files, then you only need to add `'.jsx'` to resolve.extensions. `'.js'` is one of the default extensions and all default extensions (`['.js', '.json', '.wasm']`) are represented by `'...'`.
+
+### Add configuration for old transforming related builtins
 
 ### Install @swc/helpers or react-refresh
 
