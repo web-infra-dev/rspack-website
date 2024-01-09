@@ -45,9 +45,9 @@ import { ApiMeta } from '../../../components/ApiMeta';
 ## resolve.extensions
 
 - **类型：** `string[]`
-- **默认值：** `[".js", ".json", ".wasm", ".tsx", ".ts", ".jsx"]`
+- **默认值：** `[".js", ".json", ".wasm"]`
 
-按照顺序解析模块，例如 `require('./index')`，会依次尝试解析 `'./index.tsx'`、`'./index.jsx'`...
+按照顺序解析模块，例如 `require('./index')`，会依次尝试解析 `'./index.js'`、`'./index.json'`...
 
 ## resolve.extensionAlias
 

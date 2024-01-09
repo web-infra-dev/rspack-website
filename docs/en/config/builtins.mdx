@@ -19,10 +19,10 @@ The built-in functionality provided by _builtins_ may change in the future or be
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`BannerPlugin`](/config/plugins.html#bannerplugin).
-
+Please migrate to [`BannerPlugin`](/config/plugins.html#bannerplugin).
 :::
 
 - **Type:**
@@ -76,13 +76,10 @@ module.exports = {
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader).
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader).
 :::
 
 Using optimization for emotion in compile-time.
@@ -187,13 +184,10 @@ This option allows you to tell Rspack what imports it should look at to determin
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
 :::
 
 This option allows your code to run on older versions of browsers by querying all the browsers that need to be supported through [browserslist](https://github.com/browserslist/browserslist#queries).
@@ -239,10 +233,10 @@ module.exports = {
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`HtmlRspackPlugin`](/config/plugins.html#htmlrspackplugin).
-
+Please migrate to [`HtmlRspackPlugin`](/config/plugins.html#htmlrspackplugin).
 :::
 
 This configuration simplifies creation of HTML files to serve your Rspack bundles.
@@ -297,10 +291,10 @@ For complex HTML configuration requirements, you can use [html-webpack-plugin](h
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`SwcJsMinimizerRspackPlugin`](/config/plugins.html#swcjsminimizerrspackplugin).
-
+Please migrate to [`SwcJsMinimizerRspackPlugin`](/config/plugins.html#swcjsminimizerrspackplugin).
 :::
 
 Set built-in minimizer options.
@@ -335,10 +329,10 @@ type BuiltinsMinifyOptions = {
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`DefinePlugin`](/config/plugins.html#defineplugin).
-
+Please migrate to [`DefinePlugin`](/config/plugins.html#defineplugin).
 :::
 
 Replaces variables in your code with other values or expressions at compile time.
@@ -390,13 +384,10 @@ console.log(undefined === undefined);
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
 :::
 
 This configuration can control the code transformation about react.
@@ -435,13 +426,10 @@ type ReactOptions = {
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
 :::
 
 This configuration can be used to control decorator transform behavior, `false` means to turn off transform.
@@ -509,10 +497,10 @@ type BuiltinsCssModules = {
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`ProgressPlugin`](/config/plugins.html#progressplugin).
-
+Please migrate to [`ProgressPlugin`](/config/plugins.html#progressplugin).
 :::
 
 This configuration can be used to control progress, `false` means to turn off progress.
@@ -535,11 +523,7 @@ This configuration can be used to control progress, `false` means to turn off pr
 
 <ApiMeta deprecatedVersion="0.3.12" />
 
-:::warning
-
-This option is deprecated, please migrate to `builtins.devFriendlySplitChunks = false` to use webpack's behavior.
-
-:::
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
 
 Whether to enable the development-friendly split chunks algorithm.
 
@@ -551,10 +535,10 @@ Whether to enable the development-friendly split chunks algorithm.
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`CopyRspackPlugin`](/config/plugins.html#copyrspackplugin).
-
+Please migrate to [`CopyRspackPlugin`](/config/plugins.html#copyrspackplugin).
 :::
 
 import WebpackLicense from '../../../components/webpack-license';
@@ -658,13 +642,10 @@ The result of running with the above configuration would be that the `directory`
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
 :::
 
 Converted `graphql` call expression to corresponding `require` call expression.
@@ -690,13 +671,10 @@ If specific configuration is passed, Rspack will not attempt to locate any `rela
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will not be able to use in v0.4 which [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) sets to `true` by default, please migrate to
-[builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
-
-If you wish to use the legacy behavior, please set [experiments.rspackFuture.disableTransformByDefault](/config/experiments.html#experimentsrspackfuturedisabletransformbydefault) to `false` and this option will finally be removed in v0.5.
-
+Please migrate to [builtin:swc-loader options](https://www.rspack.dev/guide/loader.html#builtinswc-loader)
 :::
 
 Ported from [babel-plugin-import](https://github.com/umijs/babel-plugin-import), configurations are basically the same.
@@ -807,10 +785,10 @@ import 'antd/es/button/style';
 
 <ApiMeta deprecatedVersion="0.3.10" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 :::warning
-
-This option is deprecated and will be removed in v0.5, please migrate to [`ProvidePlugin`](/config/plugins.html#provideplugin).
-
+Please migrate to [`ProvidePlugin`](/config/plugins.html#provideplugin).
 :::
 
 Automatically load modules instead of having to import or require them everywhere.
