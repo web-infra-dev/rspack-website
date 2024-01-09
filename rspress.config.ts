@@ -5,7 +5,7 @@ import { pluginRss, PluginRssOption } from './rspress/plugin-rss';
 import { toArray } from './rspress/plugin-rss/utils';
 
 const PUBLISH_URL = 'https://rspack.dev';
-const COPYRIGHT = '© 2023 ByteDance Inc. All Rights Reserved.';
+const COPYRIGHT = '© 2022-present ByteDance Inc. All Rights Reserved.';
 
 function getMeta(name: string, value: string) {
   return {
@@ -405,7 +405,7 @@ export default defineConfig({
   ],
   themeConfig: {
     footer: {
-      message: '© 2023 ByteDance Inc. All Rights Reserved.',
+      message: '© 2022-present ByteDance Inc. All Rights Reserved.',
     },
     socialLinks: [
       {
