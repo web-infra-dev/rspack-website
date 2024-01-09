@@ -5,7 +5,7 @@ import { pluginRss, PluginRssOption } from './rspress/plugin-rss';
 import { toArray } from './rspress/plugin-rss/utils';
 
 const PUBLISH_URL = 'https://rspack.dev';
-const COPYRIGHT = '© 2024 ByteDance Inc. All Rights Reserved.';
+const COPYRIGHT = '© 2022-present ByteDance Inc. All Rights Reserved.';
 
 function getMeta(name: string, value: string) {
   return {
