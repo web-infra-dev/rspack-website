@@ -334,6 +334,17 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
     ],
     [getLink('/blog/')]: [
       {
+        text: getText('0.5 发布公告', 'Announcing Rspack 0.5'),
+        link: getLink('/blog/announcing-0.5'),
+      },
+      {
+        text: getText(
+          'Rspack 支持模块联邦',
+          'Module Federation added to Rspack'
+        ),
+        link: getLink('/blog/module-federation-added-to-rspack'),
+      },
+      {
         text: getText('0.4 发布公告', 'Announcing Rspack 0.4'),
         link: getLink('/blog/announcing-0.4'),
       },

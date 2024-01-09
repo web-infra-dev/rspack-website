@@ -94,3 +94,4 @@ fnames
 typeofs
 htmlrspackplugin
 swcjsminimizerrspackplugin
+experimentsrspackfuturedisableapplyentrylazily
