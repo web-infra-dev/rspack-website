@@ -44,7 +44,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('博客', 'Blog'),
-      link: getLink('/blog/announcing-0.4'),
+      link: getLink('/blog/announcing-0.5'),
       activeMatch: '/blog',
     },
     {
