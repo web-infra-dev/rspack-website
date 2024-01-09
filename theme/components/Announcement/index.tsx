@@ -41,6 +41,7 @@ export function Announcement() {
           color: 'white',
           fontSize: 18,
           position: 'absolute',
+          cursor: 'pointer',
         }}
       ></IconCloseCircle>
     </div>
