@@ -405,7 +405,7 @@ export default defineConfig({
   ],
   themeConfig: {
     footer: {
-      message: '© 2024 ByteDance Inc. All Rights Reserved.',
+      message: '© 2022-present ByteDance Inc. All Rights Reserved.',
     },
     socialLinks: [
       {
