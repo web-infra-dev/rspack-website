@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Experiments
 
@@ -10,7 +10,11 @@ import { ApiMeta } from '../../../components/ApiMeta';
 
 <ApiMeta deprecatedVersion="0.4.0" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 启用增量重新编译。当启用此选项，Rspack 在重新编译时会尝试复用上次构建的结果来提升构建速度，支持对不同阶段进行配置，默认为开启状态。
+
+0.5 版本移除该配置并内置开启该功能。
 
 - **类型：** `boolean | { make?: boolean, emitAsset?: boolean }`
 - **默认值：** `true`
@@ -55,8 +59,6 @@ module.exports = {
 ### experiments.rspackFuture.disableTransformByDefault
 
 - **类型：** `boolean`
-
-- **默认值：** `false`
 
 - **引入版本：** v0.3.5
 
@@ -234,10 +236,13 @@ module.exports = {
 
 ### experiments.rspackFuture.newResolver
 
-<ApiMeta addedVersion="0.3.7" />
+- **类型：** `boolean`
 
-- **Type:** `boolean`
-- **Default Value:** `true`
+- **引入版本：** v0.3.5
+
+- **默认开启版本：** v0.4.0
+
+- **移除版本：** v0.5.0
 
 该功能将会开启 [oxc](https://github.com/web-infra-dev/oxc) 提供的 resolver，新的实现比旧版的 resolver 快了 5 倍。
 
@@ -294,7 +299,6 @@ module.exports = {
 <ApiMeta addedVersion="0.4.5" />
 
 - **类型：** `boolean`
-- **默认值：** `false`
 - **引入版本：** v0.4.5
 - **默认开启版本：** v0.5.0
 - **移除版本：** v0.6.0

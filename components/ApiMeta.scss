@@ -46,6 +46,21 @@
   border-radius: 5px;
 }
 
+.api-meta-version-removed::before {
+  position: absolute;
+  right: -26px;
+  top: -10px;
+  content: 'removed';
+  color: white;
+  padding: 0 4px;
+  height: 20px;
+  min-width: 20px;
+  font-weight: 500;
+  font-size: 12px;
+  background-color: rgb(90, 0, 0);
+  border-radius: 5px;
+}
+
 .api-meta-stability-Stable {
   background-color: #5a8147;
 }
@@ -54,6 +69,9 @@
 }
 .api-meta-stability-Deprecated {
   background-color: #d60027;
+}
+.api-meta-stability-Removed {
+  background-color: #7e7e7e;
 }
 .api-meta-stability-Legacy {
   background-color: #0a56b2;

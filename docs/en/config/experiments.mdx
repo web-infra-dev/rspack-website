@@ -1,4 +1,4 @@
-import { ApiMeta } from '../../../components/ApiMeta';
+import { ApiMeta, Stability } from '../../../components/ApiMeta';
 
 # Experiments
 
@@ -10,7 +10,11 @@ Enable and try out some experimental features.
 
 <ApiMeta deprecatedVersion="0.4.0" />
 
+<ApiMeta removedVersion="0.5.0" stability={Stability.Removed} />
+
 Enable incremental rebuild. `true` will try to reuse the results of the last build when rebuild to improve build speed, supports configuration of different stages, the default is enabled.
+
+0.5 removed this options and internally enabled this feature.
 
 - **Type:** `boolean | { make?: boolean, emitAsset?: boolean }`
 - **Default:** `true`
@@ -60,7 +64,6 @@ Used to control whether to enable Rspack future default options, check out the d
 <ApiMeta addedVersion="0.3.5" />
 
 - **Type:** `boolean`
-- **Default Value:** `false`
 - **Introduced in Version:** v0.3.5
 - **Enabled by Default in Version:** v0.4.0
 - **Removed in Version:** v0.5.0
@@ -233,7 +236,9 @@ Used to control whether to enable Rspack future default options, check out the d
 <ApiMeta addedVersion="0.3.7" />
 
 - **Type:** `boolean`
-- **Default Value:** `true`
+- **Introduced in Version:** v0.3.7
+- **Enabled by Default in Version:** v0.4.0
+- **Removed in Version:** v0.5.0
 
 This feature enables the new resolver implementation provided by [oxc](https://github.com/web-infra-dev/oxc),
 which is 5 times faster than the previous resolver implementation.
@@ -290,7 +295,6 @@ module.exports = {
 <ApiMeta addedVersion="0.4.5" />
 
 - **Type:** `boolean`
-- **Default Value:** `false`
 - **Introduced in Version:** v0.4.5
 - **Enabled by Default in Version:** v0.5.0
 - **Removed in Version:** v0.6.0

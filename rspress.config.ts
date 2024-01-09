@@ -44,7 +44,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
     },
     {
       text: getText('博客', 'Blog'),
-      link: getLink('/blog/announcing-0.4'),
+      link: getLink('/blog/announcing-0.5'),
       activeMatch: '/blog',
     },
     {
@@ -143,7 +143,7 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
             text: getText('Web Workers', 'Web Workers'),
           },
           getLink('/guide/loader'),
-          getLink('/guide/builtin:swc-loader'),
+          getLink('/guide/builtin-swc-loader'),
           {
             link: getLink('/guide/plugin'),
             text: getText('Plugin', 'Plugin'),
@@ -333,6 +333,17 @@ function getSidebarConfig(lang: 'zh' | 'en'): Sidebar {
       },
     ],
     [getLink('/blog/')]: [
+      {
+        text: getText('0.5 发布公告', 'Announcing Rspack 0.5'),
+        link: getLink('/blog/announcing-0.5'),
+      },
+      {
+        text: getText(
+          'Rspack 支持模块联邦',
+          'Module Federation added to Rspack'
+        ),
+        link: getLink('/blog/module-federation-added-to-rspack'),
+      },
       {
         text: getText('0.4 发布公告', 'Announcing Rspack 0.4'),
         link: getLink('/blog/announcing-0.4'),
