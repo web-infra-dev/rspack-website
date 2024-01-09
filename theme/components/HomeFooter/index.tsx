@@ -105,7 +105,7 @@ export function HomeFooter() {
       </div>
       <div className="flex flex-center">
         <h2 className="font-normal text-sm text-gray-600 dark:text-light-600 py-4">
-          © 2024 ByteDance Inc. All Rights Reserved.
+          © 2022-present ByteDance Inc. All Rights Reserved.
         </h2>
       </div>
     </div>
