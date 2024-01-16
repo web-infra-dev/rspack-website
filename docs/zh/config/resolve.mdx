@@ -26,7 +26,18 @@ import { ApiMeta } from '../../../components/ApiMeta';
 - `require("abc")` 会尝试解析 `<root>/src/abc`。
 - `require("abc/file.js")` 不会命中匹配规则，它会尝试去解析 `node_modules/abc/files.js`。
 
+## resolve.aliasFields
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `['browser']`
+
+定义一个字段，例如 `browser`，以依照[此规范](https://github.com/defunctzombie/package-browser-field-spec)进行解析。
+
 ## resolve.browserField
+
+<ApiMeta deprecatedVersion="0.5.1" />
 
 - **类型：** `boolean`
 - **默认值：** `true`
@@ -138,6 +149,15 @@ module.exports = {
 
 当开启时，`require('file')` 会首先寻找当前目录下的 `./file` 文件，而不是 `<modules>/file`。
 
+## resolve.preferAbsolute
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+在解析时，倾向使用与 `resolve.roots` 相关的绝对路径。
+
 ## resolve.tsConfigPath
 
 - **类型：** `string | undefined`
@@ -210,6 +230,24 @@ module.exports = {
 - **默认值：** `false`
 
 不再解析扩展名，不再解析 package.json 中的 mainFiles（但不会影响来自 mainFiles, browser, alias 的请求）。
+
+## resolve.restrictions
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `[]`
+
+限制请求解析路径的解析限制列表。
+
+## resolve.roots
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `[]`
+
+一个目录列表，用于解析服务器相对 URL（以'/'开头的 URL）。默认使用 context 配置选项。在非 Windows 系统上，这些请求首先作为绝对路径进行解析。
 
 ## resolve.byDependency
 

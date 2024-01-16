@@ -26,7 +26,18 @@ At this point:
 - `require("abc")` will attempt to resolve `<root>/src/abc`.
 - `require("abc/file.js")` will not match, and it will attempt to resolve `node_modules/abc/file.js`.
 
+## resolve.aliasFields
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `['browser']`
+
+Define a field, such as `browser`, that should be parsed in accordance with [this specification](https://github.com/defunctzombie/package-browser-field-spec).
+
 ## resolve.browserField
+
+<ApiMeta deprecatedVersion="0.5.1" />
 
 - **Type:** `boolean`
 - **Default:** `true`
@@ -138,6 +149,15 @@ The name of the directory to use when resolving dependencies.
 
 When enabled, `require('file')` will first look for the `. /file` file in the current directory, not `<modules>/file`.
 
+## resolve.preferAbsolute
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `boolean`
+- **Default:** `false`
+
+Opt for absolute paths when resolving, in relation to `resolve.roots`.
+
 ## resolve.tsConfigPath
 
 - **Type:** `string | undefined`
@@ -210,6 +230,24 @@ This feature is disabled when the value is `undefined`.
 - **Default:** `false`
 
 No longer resolve extensions, no longer resolve mainFiles in package.json (but does not affect requests from mainFiles, browser, alias).
+
+## resolve.restrictions
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `[]`
+
+A list of resolve restrictions to restrict the paths that a request can be resolved on.
+
+## resolve.roots
+
+<ApiMeta addedVersion="0.5.1" />
+
+- **Type:** `string[]`
+- **Default:** `[]`
+
+A list of directories where server-relative URLs (beginning with '/') are resolved. It defaults to the `context` configuration option. On systems other than Windows, these requests are initially resolved as an absolute path.
 
 ## resolve.byDependency
 
