@@ -198,9 +198,9 @@ export const LoaderCompatibleCardList = ({ lang }: { lang: 'zh' | 'en' }) => {
       url: 'https://github.com/webpack-contrib/thread-loader',
     },
     {
-      name: 'image-webpack-loader',
+      name: 'image-minimizer-webpack-plugin',
       status: i18n[lang]['compatible'],
-      url: 'https://github.com/tcoopman/image-webpack-loader',
+      url: 'https://github.com/webpack-contrib/image-minimizer-webpack-plugin',
     },
     {
       name: 'svg-react-loader',
