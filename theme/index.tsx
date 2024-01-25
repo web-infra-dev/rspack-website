@@ -2,9 +2,11 @@ import Theme from 'rspress/theme';
 import { HomeLayout } from './pages';
 import { Announcement } from './components/Announcement';
 import { NoSSR } from 'rspress/runtime';
+import { RsfamilyNavIcon } from 'rsfamily-nav-icon';
 
 const Layout = () => (
   <Theme.Layout
+    beforeNavTitle={<RsfamilyNavIcon />}
     beforeNav={
       <NoSSR>
         <Announcement />
