@@ -60,6 +60,7 @@ recognise
 Rollup
 rome
 Rsdoctor
+rsfamily
 rspack
 Rspack
 rspackplugin
