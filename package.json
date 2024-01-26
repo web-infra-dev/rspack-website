@@ -36,8 +36,8 @@
     "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
-    "@modern-js/tsconfig": "^2.38.0",
-    "@rspress/shared": "1.7.5",
+    "@modern-js/tsconfig": "^2.46.1",
+    "@rspress/shared": "1.11.0",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@types/semver": "^7.5.2",
@@ -45,7 +45,7 @@
     "husky": "^8.0.3",
     "nano-staged": "^0.8.0",
     "prettier": "^2.8.3",
-    "rspress": "1.7.5",
+    "rspress": "1.11.0",
     "typescript": "^5.0.4"
   }
 }
