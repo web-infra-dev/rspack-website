@@ -37,7 +37,7 @@ import rspackAudio from '../../public/rspack.mp3';
       />
     </svg>
   </button>
-  <p style={{ display: 'inline' }}>
+  <p style={{ display: 'inline', lineHeight: '1.75rem' }}>
     <span>）是一个基于 Rust 的高性能构建引擎，</span>
     <span>具备与 Webpack 生态系统的互操作性，可以被 Webpack</span>
     <span>项目低成本集成，并提供更好的构建性能。</span>
@@ -64,7 +64,7 @@ import rspackAudio from '../../public/rspack.mp3';
 
 ## Rspack 目前的状态
 
-到今天（2023 年 3 月）为止 Rspack 已经开发了 11 个月，虽然 Rspack 仍处于比较早期的状态，且缺失了一些 webpack 的功能，但根据二八原则，目前的功能已经能够满足大多数项目的需求。同时，我们已经在内部的多个业务上完成了落地，取得了 5~10 倍编译性能的提升。目前的性能仍然存在较大提升空间，我们会持续对 Rspack 进行更深入的性能优化。
+虽然 Rspack 已经实现了 Webpack 大部分的主要功能，目前的功能已经能够满足大多数项目的需求。同时，我们已经在内部的几百个业务上完成了落地，取得了 5~10 倍编译性能的提升。目前的性能仍然存在较大提升空间，我们会持续对 Rspack 进行更深入的性能优化。
 
 Rspack 已经完成了对 webpack 主要配置的兼容，并且适配了 webpack 的 loader 架构。目前，你已经可以在 Rspack 中无缝使用你熟悉的各种 loader，如 babel-loader、less-loader、sass-loader、vue-loader 等等。
 
