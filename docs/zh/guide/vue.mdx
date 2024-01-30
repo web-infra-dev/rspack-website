@@ -2,15 +2,14 @@
 
 Vue 是一个非常流行的前端框架，现在你可以配合 Rspack 使用 Vue 的相关功能。
 
-::: tip
-Rsbuild 提供了开箱即用的 Vue3 和 Vue2 体验，用法可以参考 [Vue3](https://rsbuild.dev/zh/guide/framework/vue3) 或 [Vue2](https://rsbuild.dev/zh/guide/framework/vue2)。
-:::
+## 如何使用
 
-::: danger 对于 Rspack 版本的要求
-为了保证生成产物的稳定性，请尽快升级 @rspack/cli 或 @rspack/core 到 v0.3.3，[详情](https://github.com/web-infra-dev/rspack/issues/4003#issuecomment-1689662380)
-:::
+Rspack 提供两种方案来支持 Vue：
 
-## Vue3
+- **使用 Rsbuild**：Rsbuild 提供对 Vue 3 和 Vue 2 开箱即用的支持，能够快速创建一个 Vue 项目，详见 ["Rsbuild - Vue 3"](https://rsbuild.dev/zh/guide/framework/vue3) 或 ["Rsbuild - Vue 2"](https://rsbuild.dev/zh/guide/framework/vue2)。
+- **手动配置**：你可以参考当前文档，手动添加 Vue 相关的配置。
+
+## Vue 3
 
 目前，Rspack 已经完成了对 Vue3 的支持，请确保你的 [vue-loader](https://github.com/vuejs/vue-loader) 版本 >= 17.2.2，并进行如下配置：
 
@@ -89,7 +88,7 @@ module.exports = config;
 
 相关示例可以参考 [example-vue3](https://github.com/rspack-contrib/rspack-examples/tree/main/rspack/vue)。
 
-## Vue2
+## Vue 2
 
 Rspack 已经完成对 Vue2（使用 vue-loader@15）的兼容。
 

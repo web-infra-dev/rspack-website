@@ -2,15 +2,14 @@
 
 Vue is a very popular front-end framework, and you can start to use Vue with Rspack now.
 
-::: tip
-Rsbuild offers an out-of-the-box Vue3 and Vue2 solution. Check out the guides for [Vue3](https://rsbuild.dev/guide/framework/vue3) or [Vue2](https://rsbuild.dev/guide/framework/vue2).
-:::
+## How to Use
 
-::: danger Requirement for Rspack Version
-To ensure the stability of the artifacts, please upgrade @rspack/cli or @rspack/core to v0.3.3 as soon as possible. [Details](https://github.com/web-infra-dev/rspack/issues/4003#issuecomment-1689662380)
-:::
+Rspack provides two solutions to support Vue:
 
-## Vue3
+- **Use Rsbuild**: Rsbuild provides out-of-the-box support for Vue 3 and Vue 2, allowing you to quickly create a Vue project. See ["Rsbuild - Vue 3"](https://rsbuild.dev/guide/framework/vue3) or ["Rsbuild - Vue 2"](https://rsbuild.dev/guide/framework/vue2) for details.
+- **Manual configuration**: You can refer to the current document to manually add configurations for Vue.
+
+## Vue 3
 
 Currently, Vue3 is supported by Rspack. Please make sure your [vue-loader](https://github.com/vuejs/vue-loader) version is >= 17.2.2 and configure as follows:
 
@@ -89,7 +88,7 @@ Besides, as Rspack has built-in TS support, we also support `lang="ts"` configur
 
 You can refer to the related example [example-vue3](https://github.com/rspack-contrib/rspack-examples/tree/main/rspack/vue).
 
-## Vue2
+## Vue 2
 
 Rspack has completed compatibility with Vue2 (using vue-loader@15).
 
