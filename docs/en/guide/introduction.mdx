@@ -52,12 +52,12 @@ Rspack was initially created to solve performance problems encountered at ByteDa
 
 - **Dev mode startup performance.** `npm run dev` is a command that developers may invoke many times per hour. Engineering productivity suffers if startup time exceeds 10-15 seconds.
 - **Fast builds.** `npm run build` is used in CI/CD pipelines and directly impacts merging productivity and application delivery time. Large applications may spend 20-30 minutes running these pipelines, and bundling time is often a major contributor.
-- **Flexible configuration.** From experimenting with various popular bundlers, we found that one-size-fits all configurations encountered many problems when trying to accommodate real world projects. A major advantage of webpack is its flexibility and ease of accommodating customized requirements for each project. This in turn may pose steep migration costs for legacy projects that try to migrate away from Webpack.
+- **Flexible configuration.** From experimenting with various popular bundlers, we found that one-size-fits-all configurations encountered many problems when trying to accommodate real world projects. A major advantage of webpack is its flexibility and ease of accommodating customized requirements for each project. This in turn may pose steep migration costs for legacy projects that try to migrate away from Webpack.
 - **Production optimization capabilities.** All of the existing bundling solutions also had various limitations when optimizing for a production environment, such as insufficiently fine-grained package splitting, etc. Rspack was an opportunity to rethink these optimizations from the ground up, leveraging Rust-specific features such as multithreading.
 
 ## Current status of Rspack
 
-Rspack has been under continuous development since April 2022, and was launched as open source in March 2023. Rspack has finished implemented most important features of webpack and these features can meet the needs of most projects. Some ByteDance internal projects have already achieved a 5-10 times improvement moving from Webpack to Rspack, and there's still room for future optimizations.
+Rspack has been under continuous development since April 2022, and was launched as open source in March 2023. Rspack has finished implementing most important features of webpack and these features can meet the needs of most projects. Some ByteDance internal projects have already achieved a 5-10 times improvement moving from Webpack to Rspack, and there's still room for future optimizations.
 
 Rspack is compatible with webpack's configuration schema and loader architecture. You can seamlessly use familiar loaders such as `babel-loader`, `less-loader`, `sass-loader`, `vue-loader`, etc.
 
