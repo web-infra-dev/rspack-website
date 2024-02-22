@@ -152,7 +152,7 @@ module.exports = {
 };
 ```
 
-## `output.devtoolFallbackModuleFilenameTemplate`
+## output.devtoolFallbackModuleFilenameTemplate
 
 - **Type:** `string` | `function (info)`
 
@@ -204,9 +204,15 @@ module.exports = {
 };
 ```
 
-如果多个模块产生相同的名称，使用 [`output.devtoolFallbackModuleFilenameTemplate`](/zh/config/output.html#devtoolfallbackmodulefilenametemplate) 来代替这些模块。
+如果多个模块产生相同的名称，使用 [`output.devtoolFallbackModuleFilenameTemplate`](/zh/config/output.html#outputdevtoolfallbackmodulefilenametemplate) 来代替这些模块。
 
-## `output.enabledChunkLoadingTypes`
+## output.devtoolNamespace
+
+此选项确定 [`output.devtoolModuleFilenameTemplate`](/zh/config/output.html#outputdevtoolmodulefilenametemplate) 使用的模块名称空间。未指定时的默认值为：[`output.uniqueName`](/zh/config/output.html#outputuniquename)。在加载多个通过 Rspack 构建的 library 时，用于防止 source map 中源文件路径冲突。
+
+例如，如果你有两个 `library`，分别使用命名空间 `library1` 和 `library2`，并且都有一个文件 `./src/index.js`（可能具有不同内容），它们会将这些文件暴露为 `webpack://library1/./src/index.js` 和 `webpack://library2/./src/index.js`。
+
+## output.enabledChunkLoadingTypes
 
 - **类型：** `string[]`
 

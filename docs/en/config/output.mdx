@@ -152,7 +152,7 @@ module.exports = {
 };
 ```
 
-## `output.devtoolFallbackModuleFilenameTemplate`
+## output.devtoolFallbackModuleFilenameTemplate
 
 - **Type:** `string` | `function (info)`
 
@@ -204,9 +204,15 @@ module.exports = {
 };
 ```
 
-If multiple modules would result in the same name, [`output.devtoolFallbackModuleFilenameTemplate`](/en/config/output.html#devtoolfallbackmodulefilenametemplate) is used instead for these modules.
+If multiple modules would result in the same name, [`output.devtoolFallbackModuleFilenameTemplate`](/en/config/output.html#outputdevtoolfallbackmodulefilenametemplate) is used instead for these modules.
 
-## `output.enabledChunkLoadingTypes`
+## output.devtoolNamespace
+
+This option determines the module's namespace used with the [`output.devtoolModuleFilenameTemplate`](/en/config/output.html#outputdevtoolmodulefilenametemplate). When not specified, it will default to the value of: [`output.uniqueName`](/en/config/output.html#outputuniquename). It's used to prevent source file path collisions in sourcemaps when loading multiple libraries built with Rspack.
+
+For example, if you have 2 libraries, with namespaces `library1` and `library2`, which both have a file `./src/index.js` (with potentially different contents), they will expose these files as `webpack://library1/./src/index.js` and `webpack://library2/./src/index.js`.
+
+## output.enabledChunkLoadingTypes
 
 - **Type:** `string[]`
 

@@ -401,7 +401,7 @@ new rspack.SourceMapDevToolPlugin(options);
 - `append` (`string` `function`)：在原始资源后追加给定值。通常是 #sourceMappingURL 注释。[url] 被替换成 source map 文件的 URL。支持 path 参数：[chunk]、[filename] 和 [contenthash]。设置 append 为 false 会禁止追加。
 - `moduleFilenameTemplate（string）`：详见 [`output.devtoolModuleFilenameTemplate`](/zh/config/output.html#outputdevtoolmodulefilenametemplate)。
 - `fallbackModuleFilenameTemplate` (`string`)：详见上面的链接。
-- `namespace` (`string`)：详见 `output.devtoolNamespace`.
+- `namespace` (`string`)：详见 [`output.devtoolNamespace`](/zh/config/output.html#outputdevtoolnamespace).
 - `module = true` (`boolean`)：表示 loader 是否生成 source map。
 - `columns = true` (`boolean`)：表示是否应该使用 column mapping。
 - `noSources = false` (`boolean`)：防止源文件的内容被包含在 source map 中。

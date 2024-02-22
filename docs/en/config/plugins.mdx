@@ -402,7 +402,7 @@ new rspack.SourceMapDevToolPlugin(options);
 - `append` (`string` `function`): Appends the given value to the original asset. Usually the #sourceMappingURL comment. [url] is replaced with a URL to the source map file. Path parameters are supported: [chunk], [filename] and [contenthash]. Setting append to false disables the appending.
 - `moduleFilenameTemplate` (`string`): See [`output.devtoolModuleFilenameTemplate`]((/en/config/output.html#outputdevtoolmodulefilenametemplate)).
 - `fallbackModuleFilenameTemplate` (`string`): See link above.
-- `namespace` (`string`): See `output.devtoolNamespace`.
+- `namespace` (`string`): See [`output.devtoolNamespace`](/en/config/output.html#outputdevtoolnamespace).
 - `module = true` (`boolean`): Indicates whether loaders should generate source maps.
 - `columns = true` (`boolean`): Indicates whether column mappings should be used.
 - `noSources = false` (`boolean`): Prevents the source file content from being included in the source map.
