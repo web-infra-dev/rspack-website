@@ -96,3 +96,7 @@ xstyled
 Zack
 Zack Jackson
 zackarychapple
+outputdevtoolfallbackmodulefilenametemplate
+outputdevtoolmodulefilenametemplate
+outputdevtoolmodulefilenametemplate
+outputdevtoolnamespace

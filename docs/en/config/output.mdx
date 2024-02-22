@@ -152,7 +152,67 @@ module.exports = {
 };
 ```
 
-## `output.enabledChunkLoadingTypes`
+## output.devtoolFallbackModuleFilenameTemplate
+
+- **Type:** `string` | `function (info)`
+
+A fallback is used when the template string or function above yields duplicates.
+
+See [`output.devtoolModuleFilenameTemplate`](/en/config/output.html#outputdevtoolmodulefilenametemplate).
+
+## output.devtoolModuleFilenameTemplate
+
+- **Type:** `string = 'webpack://[namespace]/[resource-path]?[loaders]'` | `function (info) => string`
+
+This option is only used when [`devtool`](/en/config/devtool.html) uses an option that requires module names.
+
+Customize the names used in each source map's `sources` array. This can be done by passing a template string or function. For example, when using `devtool: 'eval'`.
+
+```js
+module.exports = {
+  //...
+  output: {
+    devtoolModuleFilenameTemplate:
+      'webpack://[namespace]/[resource-path]?[loaders]',
+  },
+};
+```
+
+The following substitutions are available in template strings:
+
+| Template                 | Description                                                                                         |
+| ------------------------ | --------------------------------------------------------------------------------------------------- |
+| [absolute-resource-path] | The absolute filename                                                                               |
+| [all-loaders]            | Automatic and explicit loaders and params up to the name of the first loader                        |
+| [hash]                   | The hash of the module identifier                                                                   |
+| [id]                     | The module identifier                                                                               |
+| [loaders]                | Explicit loaders and params up to the name of the first loader                                      |
+| [resource]               | The path used to resolve the file and any query params used on the first loader                     |
+| [resource-path]          | The path used to resolve the file without any query params                                          |
+| [namespace]              | The modules namespace. This is usually the library name when building as a library, empty otherwise |
+
+When using a function, the same options are available camel-cased via the `info` parameter:
+
+```js
+module.exports = {
+  //...
+  output: {
+    devtoolModuleFilenameTemplate: (info) => {
+      return `webpack:///${info.resourcePath}?${info.loaders}`;
+    },
+  },
+};
+```
+
+If multiple modules would result in the same name, [`output.devtoolFallbackModuleFilenameTemplate`](/en/config/output.html#outputdevtoolfallbackmodulefilenametemplate) is used instead for these modules.
+
+## output.devtoolNamespace
+
+This option determines the module's namespace used with the [`output.devtoolModuleFilenameTemplate`](/en/config/output.html#outputdevtoolmodulefilenametemplate). When not specified, it will default to the value of: [`output.uniqueName`](/en/config/output.html#outputuniquename). It's used to prevent source file path collisions in sourcemaps when loading multiple libraries built with Rspack.
+
+For example, if you have 2 libraries, with namespaces `library1` and `library2`, which both have a file `./src/index.js` (with potentially different contents), they will expose these files as `webpack://library1/./src/index.js` and `webpack://library2/./src/index.js`.
+
+## output.enabledChunkLoadingTypes
 
 - **Type:** `string[]`
 
