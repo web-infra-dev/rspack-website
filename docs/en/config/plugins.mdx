@@ -400,7 +400,7 @@ new rspack.SourceMapDevToolPlugin(options);
 - `exclude` (`string` `RegExp` `[string, RegExp]`): Exclude modules that match the given value from source map generation.
 - `filename` (`string`): Defines the output filename of the SourceMap (will be inlined if no value is provided).
 - `append` (`string` `function`): Appends the given value to the original asset. Usually the #sourceMappingURL comment. [url] is replaced with a URL to the source map file. Path parameters are supported: [chunk], [filename] and [contenthash]. Setting append to false disables the appending.
-- `moduleFilenameTemplate` (`string`): See `output.devtoolModuleFilenameTemplate`.
+- `moduleFilenameTemplate` (`string`): See [`output.devtoolModuleFilenameTemplate`]((/en/config/output.html#outputdevtoolmodulefilenametemplate)).
 - `fallbackModuleFilenameTemplate` (`string`): See link above.
 - `namespace` (`string`): See `output.devtoolNamespace`.
 - `module = true` (`boolean`): Indicates whether loaders should generate source maps.

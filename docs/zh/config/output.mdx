@@ -152,6 +152,60 @@ module.exports = {
 };
 ```
 
+## `output.devtoolFallbackModuleFilenameTemplate`
+
+- **Type:** `string` | `function (info)`
+
+当模板字符串或函数产生重复时使用的备用内容。
+
+详见 [`output.devtoolModuleFilenameTemplate`](/zh/config/output.html#outputdevtoolmodulefilenametemplate).
+
+## output.devtoolModuleFilenameTemplate
+
+- **Type:** `string = 'webpack://[namespace]/[resource-path]?[loaders]'` | `function (info) => string`
+
+此选项仅在 [`devtool`](/zh/config/devtool.html) 使用了需要模块名称的选项时使用。
+
+自定义每个 source map 的 `sources` 数组中使用的名称。可以通过传递模板字符串或者函数来完成。例如，当使用 `devtool: 'eval'`，默认值是：
+
+```js
+module.exports = {
+  //...
+  output: {
+    devtoolModuleFilenameTemplate:
+      'webpack://[namespace]/[resource-path]?[loaders]',
+  },
+};
+```
+
+模板字符串支持以下模式：
+
+| 模板                      | 描述                                                              |
+| ------------------------ | ----------------------------------------------------------------- |
+| [absolute-resource-path] | 绝对路径文件名                                                      |
+| [all-loaders]            | 自动和显式的 loader，并且参数取决于第一个 loader 名称                   |
+| [hash]                   | 模块标识符的 hash                                                   |
+| [id]                     | 模块标识符                                                          |
+| [loaders]                | 显式的 loader，并且参数取决于第一个 loader 名称                        |
+| [resource]               | 用于解析文件的路径和用于第一个 loader 的任意查询参数                     |
+| [resource-path]          | 不带任何查询参数，用于解析文件的路径                                    |
+| [namespace]              | 模块命名空间。在构建成为一个 library 之后，通常也是 library 名称，否则为空 |
+
+当使用一个函数，同样的选项要通过 `info` 参数并使用驼峰式：
+
+```js
+module.exports = {
+  //...
+  output: {
+    devtoolModuleFilenameTemplate: (info) => {
+      return `webpack:///${info.resourcePath}?${info.loaders}`;
+    },
+  },
+};
+```
+
+如果多个模块产生相同的名称，使用 [`output.devtoolFallbackModuleFilenameTemplate`](/zh/config/output.html#devtoolfallbackmodulefilenametemplate) 来代替这些模块。
+
 ## `output.enabledChunkLoadingTypes`
 
 - **类型：** `string[]`
