@@ -85,6 +85,10 @@ export const RandomMemberList = () => {
       id: 'SyMind',
       avatar: 'https://avatars.githubusercontent.com/u/19852293?v=4',
     },
+    {
+      id: 'xc2',
+      avatar: 'https://avatars.githubusercontent.com/u/18117084?v=4',
+    },
   ];
 
   const randomList = list.sort(() => Math.random() - 0.5);
