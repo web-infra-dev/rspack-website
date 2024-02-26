@@ -25,7 +25,7 @@ export function Announcement() {
     >
       <a
         href="https://webinfra.org/about"
-        className="underline text-gray-700 font-bold"
+        className="hover:underline text-gray-700 font-bold"
         target="_blank"
         rel="noopener noreferrer "
       >
