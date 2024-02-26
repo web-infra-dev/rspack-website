@@ -2,19 +2,15 @@
 
 ## TypeScript
 
-TypeScript is a first-class citizen with Rspack. TypeScript processing is natively implemented.
-
-By default, we treat files ending in `*.ts` as TypeScript module types. Rspack will use [Speedy Web Compiler (SWC)](https://swc.rs/) to transpile TypeScript to JavaScript without additional configuration.
-
-If you're migrating from Webpack, you can remove the `babel-loader` or `ts-loader` component from your configuration to use Rspack's built-in TypeScript transpilation for better performance, as described in the [migration guide](/guide/migrate-from-webpack#removing-babel-loader).
+Enabling TypeScript support can be done through [`builtin:swc-loader`](/guide/builtin-swc-loader).
 
 ### Transpile-only
 
-For maximum speed, Rspack transpiles TypeScript source code without performing any type checking. An external tool such as `tsc` must be used for type checking.
+For maximum speed, `builtin:swc-loader` transpiles TypeScript source code without performing any type checking. An external tool such as `tsc` must be used for type checking.
 
 ### isolatedModules
 
-To maximize parallelism, Rspack will transpile each module separately. This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
+To maximize parallelism, `builtin:swc-loader` will transpile each module separately. This implies that [`isolatedModules`](https://www.typescriptlang.org/tsconfig#isolatedModules) must be enabled in your TypeScript configuration. Certain language features such as `const enum` rely on parsing the entire project, and thus cannot be used with isolated module transpilation. Enable `isolatedModules` in your `tsconfig.json ` file to ensure that your IDE hints and type checker accurately reflect Rspack's module handling behavior:
 
 ```json title="tsconfig.json"
 {
@@ -40,23 +36,7 @@ Remember to evaluate the trade-off between build speed and the accuracy of type 
 
 ## JSX and TSX
 
-[JSX and TSX](https://www.typescriptlang.org/docs/handbook/jsx.html) are first-class citizens with Rspack. By default, files ending in `*.jsx` and `*.tsx` will be handled as JSX/TSX module types.
-
-{
-// TODO: link to builtin
-}
-If you are using renderer other than React, you can configure the JSX transpilation with the [builtins.react]() option. For example, if you are using the [Preact](https://preactjs.com/) renderer:
-
-```ts title="rspack.config.js"
-module.exports = {
-  builtins: {
-    react: {
-      pragma: 'h',
-      pragmaFrag: 'Fragment',
-    },
-  },
-};
-```
+Enabling TSX|JSX support can be done through [`builtin:swc-loader`](/guide/builtin-swc-loader).
 
 ## Alias
 
