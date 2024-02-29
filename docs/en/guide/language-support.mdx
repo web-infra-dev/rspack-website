@@ -44,10 +44,10 @@ See [resolve.tsConfigPath](/config/resolve#resolvetsconfigpath) for details.
 
 ### Node polyfills
 
-Rspack does not automatically inject polyfills for Node. If you need to use the corresponding functionality, add the `@rspack/plugin-node-polyfill` plugin and corresponding configuration in `rspack.config.js`:
+Rspack does not automatically inject polyfills for Node. If you need to use the corresponding functionality, add the `node-polyfill-webpack-plugin` plugin and corresponding configuration in `rspack.config.js`:
 
 ```ts title="rspack.config.js"
-const NodePolyfill = require('@rspack/plugin-node-polyfill');
+const NodePolyfill = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   plugins: [new NodePolyfill()],
