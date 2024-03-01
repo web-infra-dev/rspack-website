@@ -7,6 +7,41 @@ Used to decide how to handle different types of modules in a project.
 - **Type:** `Object`
 - **Default:** `{}`
 
+## module.noParse
+
+- **Type:** `string | string[] | RegExp | RegExp[] | ((request: string) => boolean)`
+- **Default:** `undefined`
+
+Keep module mechanism of the matched modules as-is, such as `module.exports`, `require`, `import`.
+
+It's useful and can boost build performance when used to ignore libraries without external dependencies.
+
+Note: these modules will still be processed by configured loaders.
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: /typescript|watermark-dom/,
+  },
+};
+```
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: [require.resolve('typescript'), /watermark-dom/],
+  },
+};
+```
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: (request) => /typescript|watermark-dom/.test(request),
+  },
+};
+```
+
 ## module.rules
 
 - **Type:** `Rule[]`
