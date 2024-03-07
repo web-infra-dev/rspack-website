@@ -180,15 +180,15 @@ module.exports = {
 
 模板字符串支持以下模式：
 
-| 模板                      | 描述                                                              |
-| ------------------------ | ----------------------------------------------------------------- |
-| [absolute-resource-path] | 绝对路径文件名                                                      |
-| [all-loaders]            | 自动和显式的 loader，并且参数取决于第一个 loader 名称                   |
-| [hash]                   | 模块标识符的 hash                                                   |
-| [id]                     | 模块标识符                                                          |
-| [loaders]                | 显式的 loader，并且参数取决于第一个 loader 名称                        |
-| [resource]               | 用于解析文件的路径和用于第一个 loader 的任意查询参数                     |
-| [resource-path]          | 不带任何查询参数，用于解析文件的路径                                    |
+| 模板                     | 描述                                                                       |
+| ------------------------ | -------------------------------------------------------------------------- |
+| [absolute-resource-path] | 绝对路径文件名                                                             |
+| [all-loaders]            | 自动和显式的 loader，并且参数取决于第一个 loader 名称                      |
+| [hash]                   | 模块标识符的 hash                                                          |
+| [id]                     | 模块标识符                                                                 |
+| [loaders]                | 显式的 loader，并且参数取决于第一个 loader 名称                            |
+| [resource]               | 用于解析文件的路径和用于第一个 loader 的任意查询参数                       |
+| [resource-path]          | 不带任何查询参数，用于解析文件的路径                                       |
 | [namespace]              | 模块命名空间。在构建成为一个 library 之后，通常也是 library 名称，否则为空 |
 
 当使用一个函数，同样的选项要通过 `info` 参数并使用驼峰式：
@@ -1116,7 +1116,7 @@ AMD module 将会是这样：
 define('MyLibrary', [], factory);
 ```
 
-## output.libraryExport
+## output.libraryExport {#outputlibraryexport-1}
 
 我们可能会停止对此的支持，所以最好使用 [output.library.export](#outputlibraryexport)，其作用与 `libraryExport` 一致。
 
