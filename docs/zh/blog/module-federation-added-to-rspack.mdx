@@ -4,6 +4,8 @@ date: 2024-01-09 13:21:00
 
 # Rspack 支持 Module Federation
 
+> 2024 年 1 月 9 日
+
 ## 介绍 Rspack 0.5.0
 
 最新的 Rspack 0.5.0 引入了备受期待的模块联邦功能，以及新的 “v1.5” 模块联邦 API。这是模块联邦创建以来最重大的改进。v1.5 为用户和框架作者提供了额外的功能，这是原始设计所无法实现的。
@@ -144,7 +146,7 @@ init({
 // 通过远程模块的名称加载
 loadRemote <
   { add: (...args: Array<number>) => number } >
-  ('app2/util').then((md) => {
+  'app2/util'.then((md) => {
     md.add(1, 2, 3);
   });
 ```
