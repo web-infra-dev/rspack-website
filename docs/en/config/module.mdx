@@ -304,7 +304,7 @@ module.exports = {
 
 #### Rule.generator.dataUrl
 
-- **Type:** `Object`
+- **Type:** `Object | (options: { content: string, filename: string }) => string`
 - **Default:** `{}`
 
 Only for modules with module type `'asset'` or `'asset/inline'`.
@@ -321,6 +321,28 @@ module.exports = {
           dataUrl: {
             encoding: 'base64',
             mimetype: 'mimetype/png',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+When used a a function, it executes for every module and must return a data URI string.
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: ({ content }) => {
+            const svgToMiniDataURI = require('mini-svg-data-uri');
+            return svgToMiniDataURI(content);
           },
         },
       },
