@@ -70,6 +70,10 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           text: 'Rspack Community Package',
           link: 'https://github.com/rspack-contrib',
         },
+        {
+          text: 'Awesome Rspack',
+          link: 'https://github.com/web-infra-dev/awesome-rspack',
+        },
       ],
     },
     {

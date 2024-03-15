@@ -7,6 +7,41 @@ import { ApiMeta } from '../../../components/ApiMeta';
 - **类型：** `Object`
 - **默认值：** `{}`
 
+## module.noParse
+
+- **类型：** `string | string[] | RegExp | RegExp[] | ((request: string) => boolean)`
+- **默认值：** `undefined`
+
+匹配的文件代码不会被 rspack 转换，包括 `module.exports`, `require`, `import` 这些模块系统相关的语法。
+
+用来忽略那些没有外部依赖的第三方库的时候很有用，有时还能提升性能。
+
+请注意：这些文件依然还会被已配置的 loaders 处理。
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: /typescript|watermark-dom/,
+  },
+};
+```
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: [require.resolve('typescript'), /watermark-dom/],
+  },
+};
+```
+
+```js title=rspack.config.js
+module.exports = {
+  module: {
+    noParse: (request) => /typescript|watermark-dom/.test(request),
+  },
+};
+```
+
 ## module.rules
 
 - **类型：** `Rule[]`
@@ -270,7 +305,7 @@ module.exports = {
 
 #### Rule.generator.dataUrl
 
-- **类型：** `Object`
+- **类型：** `Object | (options: { content: string, filename: string }) => string`
 - **默认值：** `{}`
 
 仅对模块类型为 `'asset/inline'` 的模块生效。
@@ -287,6 +322,28 @@ module.exports = {
           dataUrl: {
             encoding: 'base64',
             mimetype: 'mimetype/png',
+          },
+        },
+      },
+    ],
+  },
+};
+```
+
+当被作为一个函数使用，它必须为每个模块执行且并须返回一个 data URI 字符串。
+
+```js title=rspack.config.js
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.svg$/,
+        type: 'asset/inline',
+        generator: {
+          dataUrl: ({ content }) => {
+            const svgToMiniDataURI = require('mini-svg-data-uri');
+            return svgToMiniDataURI(content);
           },
         },
       },
