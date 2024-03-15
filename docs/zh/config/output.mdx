@@ -1091,6 +1091,53 @@ module.exports = {
 };
 ```
 
+### output.library.export
+
+指定哪一个导出应该被暴露为一个库。
+
+- **类型：** `string | string[]`
+
+默认情况下为 `undefined`，将导出整个（命名空间）对象。下述 demo 演示了使用 [`output.library.type: 'var'`](#type-var) 配置型产生的作用。
+
+```js
+module.exports = {
+  output: {
+    library: {
+      name: 'MyLibrary',
+      type: 'var',
+      export: 'default',
+    },
+  },
+};
+```
+
+入口点的默认导出将会被赋值为库名称：
+
+```js
+// 如果你的库有默认导出
+var MyLibrary = _entry_return_.default;
+```
+
+你可以传递一个数组给 `output.library.export`，它将被解析为要分配给库名称的模块路径：
+
+```js
+module.exports = {
+  output: {
+    library: {
+      name: 'MyLibrary',
+      type: 'var',
+      export: ['default', 'subModule'],
+    },
+  },
+};
+```
+
+这里是库代码：
+
+```js
+var MyLibrary = _entry_return_.default.subModule;
+```
+
 ### output.library.umdNamedDefine
 
 - **类型：** `boolean`
