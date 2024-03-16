@@ -75,10 +75,17 @@ If you are encountering performance issue, and you are using `optimization.split
 
 <PropertyType
   type="Array<Plugin>"
-  defaultValueList={[{ defaultValue: '[]' }]}
+  defaultValueList={[
+    {
+      defaultValue:
+        '[new SwcJsMinimizerRspackPlugin(), new SwcCssMinimizerRspackPlugin()]',
+    },
+  ]}
 />
 
-Customize the minimizer. When using a custom minimizer, the built-in minimizer will be disabled.
+Customize the minimizer. By default, [`rspack.SwcJsMinimizerRspackPlugin`](/config/plugins.html#swcjsminimizerrspackplugin)
+and [`rspack.SwcCssMinimizerRspackPlugin`](/config/plugins.html#swccssminimizerrspackplugin) are used.
+When `optimization.minimizer` is specified, the default minimizers will be disabled.
 
 ```js title=rspack.config.js
 const minifyPlugin = require('@rspack/plugin-minify');
@@ -94,6 +101,32 @@ module.exports = {
       new minifyPlugin({
         minifier: 'terser',
       }),
+    ],
+  },
+};
+```
+
+Use the built-in minimizer with custom options:
+
+```js title=rspack.config.js
+const rspack = require('@rspack/core');
+module.exports = {
+  context: __dirname,
+  target: 'node',
+  entry: {
+    main: './index.js',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin({
+        format: {
+          comments: false,
+        },
+      }),
+      // when `optimization.minimizer` is specified, the default minimizers are disabled
+      // so this is needed if you want to minimize css assets
+      new rspack.SwcCssMinimizerRspackPlugin(),
     ],
   },
 };
