@@ -113,14 +113,14 @@ module.exports = {
   // ...
   optimization: {
     minimize: process.env.NODE_ENV === 'production',
+    // 当声明了 `optimization.minimizer`，默认压缩器会被禁用
+    // 但你可以配合使用 '...'，它代表默认压缩器
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
         format: {
           comments: false,
         },
       }),
-      // 当声明了 `optimization.minimizer`，默认压缩器会被禁用
-      // 但你可以配合使用 '...'，它代表默认压缩器
       new rspack.SwcCssMinimizerRspackPlugin(),
     ],
   },
