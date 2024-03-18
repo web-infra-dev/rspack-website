@@ -110,13 +110,9 @@ module.exports = {
 ```js title=rspack.config.js
 const rspack = require('@rspack/core');
 module.exports = {
-  context: __dirname,
-  target: 'node',
-  entry: {
-    main: './index.js',
-  },
+  // ...
   optimization: {
-    minimize: true,
+    minimize: process.env.NODE_ENV === 'production',
     minimizer: [
       new rspack.SwcJsMinimizerRspackPlugin({
         format: {
@@ -124,7 +120,7 @@ module.exports = {
         },
       }),
       // 当声明了 `optimization.minimizer`，默认压缩器会被禁用
-      // 所以如果想压缩 CSS 资源，这一行是必要的
+      // 但你可以配合使用 '...'，它代表默认压缩器
       new rspack.SwcCssMinimizerRspackPlugin(),
     ],
   },
