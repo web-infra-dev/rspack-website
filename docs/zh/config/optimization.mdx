@@ -75,10 +75,16 @@ EntryChunk2(index.js, a.js, b.js)
 
 <PropertyType.CN
   type="Array<Plugin>"
-  defaultValueList={[{ defaultValue: '[]' }]}
+  defaultValueList={[
+    {
+      defaultValue:
+        '[new SwcJsMinimizerRspackPlugin(), new SwcCssMinimizerRspackPlugin()]',
+    },
+  ]}
 />
 
-自定义压缩器。当使用自定义压缩器时，内置压缩器将会被禁用。
+自定义压缩器。默认使用 [`rspack.SwcJsMinimizerRspackPlugin`](/config/plugins.html#swcjsminimizerrspackplugin)
+和 [`rspack.SwcCssMinimizerRspackPlugin`](/config/plugins.html#swccssminimizerrspackplugin)。当声明了 `optimization.minimizer`，默认压缩器会被禁用。
 
 ```js title=rspack.config.js
 const minifyPlugin = require('@rspack/plugin-minify');
@@ -94,6 +100,28 @@ module.exports = {
       new minifyPlugin({
         minifier: 'terser',
       }),
+    ],
+  },
+};
+```
+
+使用内置压缩器和自定义选项：
+
+```js title=rspack.config.js
+const rspack = require('@rspack/core');
+module.exports = {
+  // ...
+  optimization: {
+    minimize: process.env.NODE_ENV === 'production',
+    // 当声明了 `optimization.minimizer`，默认压缩器会被禁用
+    // 但你可以配合使用 '...'，它代表默认压缩器
+    minimizer: [
+      new rspack.SwcJsMinimizerRspackPlugin({
+        format: {
+          comments: false,
+        },
+      }),
+      new rspack.SwcCssMinimizerRspackPlugin(),
     ],
   },
 };

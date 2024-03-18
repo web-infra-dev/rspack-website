@@ -78,6 +78,7 @@ statoscope
 suxin2017
 svgr
 swccssminimizerplugin
+swccssminimizerrspackplugin
 swcjsminimizerplugin
 swcjsminimizerrspackplugin
 swcpack
