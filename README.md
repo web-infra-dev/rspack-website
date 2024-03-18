@@ -21,25 +21,28 @@ The source code of Rspress can be found in [this folder](https://github.com/web-
 
 If you have any problems using the Rspress, please create a new issue at [Rspress Issues](https://github.com/web-infra-dev/rspress/issues).
 
-### Install pnpm
+### Install dependencies
 
-```bash
-# enable pnpm with corepack
-# only available on node >= `v14.19.0`
+Enable [pnpm](https://pnpm.io/) with corepack:
+
+```sh
 corepack enable
-
-# or install pnpm 7 directly
-npm install -g pnpm@7
 ```
 
-### Local Development
+Install dependencies:
+
+```sh
+pnpm install
+```
+
+### Local development
 
 ```bash
 pnpm install
 pnpm run dev
 ```
 
-### Production Build
+### Production build
 
 ```bash
 pnpm run build
