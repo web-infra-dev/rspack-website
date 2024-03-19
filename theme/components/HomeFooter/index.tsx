@@ -20,12 +20,12 @@ function useFooterData() {
           link: getLink('/guide/language-support'),
         },
         {
-          title: t('compatibility'),
-          link: getLink('/guide/loader-compat'),
-        },
-        {
           title: t('migration'),
           link: getLink('/guide/migrate-from-webpack'),
+        },
+        {
+          title: t('compatibility'),
+          link: getLink('/guide/loader-compat'),
         },
       ],
     },
@@ -37,33 +37,33 @@ function useFooterData() {
           link: getLink('/api/cli'),
         },
         {
-          title: 'Loader API',
-          link: getLink('/api/loader-api'),
-        },
-        {
           title: 'Plugin API',
           link: getLink('/api/plugin-api'),
+        },
+        {
+          title: 'Loader API',
+          link: getLink('/api/loader-api'),
         },
       ],
     },
     {
-      title: t('friendLink'),
+      title: t('ecosystem'),
       items: [
         {
-          title: 'Modern.js Framework',
-          link: 'https://modernjs.dev/en/',
+          title: 'Rsbuild',
+          link: 'https://rsbuild.dev/',
         },
         {
           title: 'Rspress',
           link: 'https://rspress.dev/',
         },
         {
-          title: 'Nx plugin for Rspack',
-          link: 'https://nx.dev/packages/rspack/documents/overview',
+          title: 'Rsdoctor',
+          link: 'https://rsdoctor.dev/',
         },
         {
-          title: 'Web Infra',
-          link: 'https://webinfra.org',
+          title: 'Modern.js',
+          link: 'https://modernjs.dev/en/',
         },
       ],
     },
@@ -77,6 +77,10 @@ function useFooterData() {
         {
           title: 'Discord',
           link: 'https://discord.gg/ab2Rv4BXwf',
+        },
+        {
+          title: 'X',
+          link: 'https://twitter.com/rspack_dev',
         },
       ],
     },

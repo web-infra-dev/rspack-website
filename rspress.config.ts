@@ -59,20 +59,28 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
           link: 'https://rspress.dev',
         },
         {
+          text: 'Rsdoctor',
+          link: 'https://rsdoctor.dev',
+        },
+        {
           text: 'Modern.js',
           link: 'https://modernjs.dev/en/',
         },
         {
-          text: 'Nx plugin for Rspack',
+          text: 'Nx Rspack plugin',
           link: 'https://nx.dev/packages/rspack/documents/overview',
-        },
-        {
-          text: 'Rspack Community Package',
-          link: 'https://github.com/rspack-contrib',
         },
         {
           text: 'Awesome Rspack',
           link: 'https://github.com/web-infra-dev/awesome-rspack',
+        },
+        {
+          text: 'Rspack Examples',
+          link: 'https://github.com/rspack-contrib/rspack-examples',
+        },
+        {
+          text: 'Rspack Community Packages',
+          link: 'https://github.com/rspack-contrib',
         },
       ],
     },
