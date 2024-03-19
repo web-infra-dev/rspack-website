@@ -1,7 +1,7 @@
-import path from 'path';
+import path from 'node:path';
 import { defineConfig } from 'rspress/config';
-import { NavItem, Sidebar } from '@rspress/shared';
-import { pluginRss, PluginRssOption } from './rspress/plugin-rss';
+import type { NavItem, Sidebar } from '@rspress/shared';
+import { pluginRss, type PluginRssOption } from './rspress/plugin-rss';
 import { toArray } from './rspress/plugin-rss/utils';
 
 const PUBLISH_URL = 'https://rspack.dev';
@@ -72,7 +72,7 @@ function getNavConfig(lang: 'zh' | 'en'): NavItem[] {
         },
         {
           text: 'Awesome Rspack',
-          link: 'https://github.com/web-infra-dev/awesome-rspack'
+          link: 'https://github.com/web-infra-dev/awesome-rspack',
         },
       ],
     },
@@ -373,7 +373,7 @@ const toFeedItem: PluginRssOption['toFeedItem'] = (page) => {
   const { date } = fm;
   if (!date) return false;
 
-  const categories = toArray(fm['categories'], fm['category']);
+  const categories = toArray(fm.categories, fm.category);
 
   const isBlog = /blog/.test(page.routePath) || categories.includes('blog');
   // we only include the blogs at the moment
@@ -421,7 +421,7 @@ export default defineConfig({
   ],
   themeConfig: {
     footer: {
-      message: '© 2022-present ByteDance Inc. All Rights Reserved.',
+      message: COPYRIGHT,
     },
     socialLinks: [
       {
@@ -474,12 +474,7 @@ export default defineConfig({
       },
     },
     dev: {
-      startUrl: false,
-    },
-    tools: {
-      postcss: (config, { addPlugins }) => {
-        addPlugins([require('tailwindcss/nesting'), require('tailwindcss')]);
-      },
+      startUrl: true,
     },
     html: {
       meta: {
