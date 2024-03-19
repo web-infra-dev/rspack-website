@@ -9,10 +9,10 @@ export const ZH_CN: Record<keyof typeof EN_US, string> = {
   guide: '指南',
   quickStart: '快速开始',
   features: '核心特性',
-  compatibility: '对 webpack 的兼容性',
+  compatibility: 'webpack 兼容性',
   migration: '迁移指南',
-  cli: 'CLI 接口',
-  friendLink: '友情链接',
+  cli: 'CLI',
+  ecosystem: '生态',
   community: '社区',
   benchmarkTitle: '极快的构建速度',
   benchmarkDesc:
